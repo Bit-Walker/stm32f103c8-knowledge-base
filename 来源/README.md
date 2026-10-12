@@ -24,3 +24,26 @@ DS文件页数与部分印刷总页数不一致，RM的PWR章节页脚总数也�
 - [IHI0031D](IHI0031D.md)
 
 GPIO、内核与调试来源按原厂文档归档；各SRC定位标识、适用范围、原文差异及来源文件标识分别保留。
+
+## DMA与缓冲区协作来源
+
+DMA来源按真实文档与固定源码归并，18条支持范围分别使用唯一定位ID。AN2548为Rev9（2024-02）；DMA/ADC源码固定至bd368aa335c529641d2e567574885e02deacc64a。RM0008整份字节身份核验继续沿用本目录上文及其记录中的说明。
+
+- [SRC-DS5319-R20-DMA-C8-RESOURCES](DS5319.md#src-ds5319-r20-dma-c8-resources)：C8中容量DMA1七通道、ADC1/2、TIM1及TIM2～4资源边界
+- [SRC-RM0008-R21-DMA-REQUEST-MAPPING](RM0008.md#src-rm0008-r21-dma-request-mapping)：DMA1七通道全部36个请求源
+- [SRC-ES096-R15-DMA-REGISTER-ACCESS](ES096.md#src-es096-r15-dma-register-access)：DMA寄存器始终对齐32位word访问
+- [SRC-RM0008-R21-DMA-WIDTH-ALIGNMENT](RM0008.md#src-rm0008-r21-dma-width-alignment)：NDT按项、非零1～65535
+- [SRC-RM0008-R21-DMA-REGISTERS-LIFECYCLE](RM0008.md#src-rm0008-r21-dma-registers-lifecycle)：请求应答、配置、普通/循环、MEM2MEM与CIRC互斥
+- [SRC-UM1850-R3-DMA-HAL-CONTRACT](UM1850.md#src-um1850-r3-dma-hal-contract)：DMA结构体、API原型/参数、常量、DMA1标志和TIM句柄索引
+- [SRC-RM0008-R21-DMA-USART-COMPLETION](RM0008.md#src-rm0008-r21-dma-usart-completion)：DMA把数据写入DR的完成与USART移位发送结束TC是不同条件
+- [SRC-RM0008-R21-DMA-CIRCULAR-BUFFER](RM0008.md#src-rm0008-r21-dma-circular-buffer)：循环重装、HT/TC标志及剩余计数的硬件基础
+- [SRC-RM0008-R21-DMA-ADC-CONTRACT](RM0008.md#src-rm0008-r21-dma-adc-contract)：规则序列逐项DR→DMA
+- [SRC-AN2548-R9-DMA-BUS-COMPETITION](AN2548.md#src-an2548-r9-dma-bus-competition)：主设备轮转、通道固定优先级、低优先级饿死、CPU同APB竞争
+- [SRC-AN2548-R9-DMA-SERVICE-TIMING](AN2548.md#src-an2548-r9-dma-service-timing)：tS=tA+tRD+tWR
+- [SRC-AN2548-R9-DMA-RESOURCE-BUDGET](AN2548.md#src-an2548-r9-dma-resource-budget)：预计负载外50%余量，约三分之一能力保留
+- [SRC-RM0008-R21-DMA-TIM-BURST](RM0008.md#src-rm0008-r21-dma-tim-burst)：TIM1 DCR.DBA/DBL编码与DMAR地址重定向
+- [SRC-ES096-R15-DMA-GLOBAL-FLAG-ERRATUM](ES096.md#src-es096-r15-dma-global-flag-erratum)：活动通道清GIF与TE同周期会漏TEIF、禁用失败
+- [SRC-UM1850-R3-DMA-HAL-LL-OWNERSHIP](UM1850.md#src-um1850-r3-dma-hal-ll-ownership)：同实例LL可使HAL句柄镜像失真
+- [SRC-HAL-BD368AA-DMA-DMA-LIFECYCLE](驱动实现.md#src-hal-bd368aa-dma-dma-lifecycle)：READY/BUSY门控
+- [SRC-HAL-BD368AA-DMA-ADC-START](驱动实现.md#src-hal-bd368aa-dma-adc-start)：设置内部DMA回调，先CR2.DMA再Start_IT且丢弃返回，再开EXTTRIG/SWSTART，不能只信外层HAL_OK
+- [SRC-RM0008-R21-DMA-BUS-TOPOLOGY](RM0008.md#src-rm0008-r21-dma-bus-topology)：ICode直达FLITF
