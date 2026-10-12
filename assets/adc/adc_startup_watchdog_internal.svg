@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1000" viewBox="0 0 1200 1000" role="img" aria-labelledby="title desc">
+<title id="title">ADC 上电校准、看门狗与内部通道</title>
+<desc id="desc">三部分概括上电稳定与校准的先后条件、模拟看门狗阈值区域，以及ADC1内部温度和VREFINT的共同TSVREFE使能路径。</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="#51758b"/></marker></defs><rect width="1200" height="1000" fill="white"/><g font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" fill="#173649">
+<text x="30" y="42" font-size="27" text-anchor="start" font-weight="bold">ADC 基础硬件条件</text>
+<text x="30" y="72" font-size="16" text-anchor="start" font-weight="normal">STM32F103C8T6；关系图不按持续时间比例绘制，寄存器动作仍须按手册与固定驱动核对。</text>
+<text x="30" y="116" font-size="22" text-anchor="start" font-weight="bold">1  上电稳定、校准、正常转换</text>
+<rect x="30" y="160" width="170" height="85" rx="7" fill="#eef5f9" stroke="#93acba"/>
+<text x="115.0" y="189" font-size="16" text-anchor="middle" font-weight="normal">电源、时钟有效</text>
+<text x="115.0" y="214" font-size="16" text-anchor="middle" font-weight="normal">ADON = 1</text>
+<rect x="225" y="160" width="225" height="85" rx="7" fill="#eef5f9" stroke="#93acba"/>
+<text x="337.5" y="189" font-size="16" text-anchor="middle" font-weight="normal">等待上电稳定</text>
+<text x="337.5" y="214" font-size="16" text-anchor="middle" font-weight="normal">CAL 前已使能 ≥2 周期</text>
+<rect x="475" y="160" width="195" height="85" rx="7" fill="#eef5f9" stroke="#93acba"/>
+<text x="572.5" y="189" font-size="16" text-anchor="middle" font-weight="normal">RSTCAL = 1</text>
+<text x="572.5" y="214" font-size="16" text-anchor="middle" font-weight="normal">等待硬件清零</text>
+<rect x="695" y="160" width="190" height="85" rx="7" fill="#eef5f9" stroke="#93acba"/>
+<text x="790.0" y="189" font-size="16" text-anchor="middle" font-weight="normal">CAL = 1</text>
+<text x="790.0" y="214" font-size="16" text-anchor="middle" font-weight="normal">等待硬件清零</text>
+<rect x="910" y="160" width="255" height="85" rx="7" fill="#eef5f9" stroke="#93acba"/>
+<text x="1037.5" y="189" font-size="16" text-anchor="middle" font-weight="normal">开放触发 / 软件启动</text>
+<text x="1037.5" y="214" font-size="16" text-anchor="middle" font-weight="normal">采样 S + 转换 12.5 周期</text>
+<path d="M200,202 L220,202" fill="none" stroke="#51758b" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M450,202 L470,202" fill="none" stroke="#51758b" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M670,202 L690,202" fill="none" stroke="#51758b" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M885,202 L905,202" fill="none" stroke="#51758b" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="30" y="282" font-size="16" text-anchor="start" font-weight="normal">两项约束分别核对：上电稳定时间 tSTAB，以及 CAL 开始前 ADON=1 至少两个 ADCCLK 周期。</text>
+<text x="30" y="309" font-size="16" text-anchor="start" font-weight="normal">CAL 由硬件在校准完成后清零；随后可进行正常转换。示意正常规则单次、无注入时，完成写 DR 并置 EOC。</text>
+<text x="30" y="336" font-size="15" text-anchor="start" font-weight="normal">tSTAB：ADC 上电稳定时间，单位 s；S：采样周期数；ADCCLK：ADC 时钟。DS 给 tSTAB 最大 1 µs。</text>
+<path d="M30,360 H1170" stroke="#d0dfe8"/>
+<text x="30" y="401" font-size="22" text-anchor="start" font-weight="bold">2  模拟看门狗：对齐之前比较</text>
+<path d="M130,632 V436" stroke="#51758b" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="62" y="430" font-size="15" text-anchor="start" font-weight="normal">12 位码值</text>
+<text x="117" y="445" font-size="15" text-anchor="end" font-weight="normal">4095</text>
+<text x="117" y="502" font-size="15" text-anchor="end" font-weight="normal">HTR</text>
+<text x="117" y="570" font-size="15" text-anchor="end" font-weight="normal">LTR</text>
+<text x="117" y="632" font-size="15" text-anchor="end" font-weight="normal">0</text>
+<rect x="145" y="440" width="400" height="57" fill="#fbe8e6"/><rect x="145" y="497" width="400" height="68" fill="#d9f0e5"/><rect x="145" y="565" width="400" height="62" fill="#fbe8e6"/>
+<path d="M130,497 H550" stroke="#719486" stroke-width="2"/>
+<path d="M130,565 H550" stroke="#719486" stroke-width="2"/>
+<text x="345" y="476" font-size="17" text-anchor="middle" font-weight="normal">高于 HTR：越界</text>
+<text x="345" y="537" font-size="17" text-anchor="middle" font-weight="normal">LTR ≤ 结果 ≤ HTR：窗口内</text>
+<text x="345" y="602" font-size="17" text-anchor="middle" font-weight="normal">低于 LTR：越界</text>
+<rect x="610" y="453" width="550" height="150" rx="7" fill="#f6f9fc" stroke="#93acba"/>
+<text x="885.0" y="482" font-size="16" text-anchor="middle" font-weight="normal">HTR / LTR：12 位上、下阈值，取值 0～4095</text>
+<text x="885.0" y="507" font-size="16" text-anchor="middle" font-weight="normal">AWD：越界状态标志；AWDIE：中断使能</text>
+<text x="885.0" y="532" font-size="16" text-anchor="middle" font-weight="normal">AWDCH 选择单通道，或监视所选组全部通道</text>
+<text x="885.0" y="557" font-size="16" text-anchor="middle" font-weight="normal">ALIGN 左 / 右对齐不改变比较阈值</text>
+<text x="30" y="663" font-size="15" text-anchor="start" font-weight="normal">本图只表示阈值关系；上、下阈值并未指定示例数值。监视规则组、注入组或两组由 CR1 相关位选择。</text>
+<path d="M30,685 H1170" stroke="#d0dfe8"/>
+<text x="30" y="727" font-size="22" text-anchor="start" font-weight="bold">3  ADC1 的内部温度与参考通道</text>
+<rect x="30" y="764" width="200" height="69" rx="7" fill="#eef5f9" stroke="#93acba"/>
+<text x="130.0" y="793" font-size="16" text-anchor="middle" font-weight="normal">温度传感器</text>
+<text x="130.0" y="818" font-size="16" text-anchor="middle" font-weight="normal">输出 VSENSE</text>
+<rect x="30" y="855" width="200" height="69" rx="7" fill="#eef5f9" stroke="#93acba"/>
+<text x="130.0" y="884" font-size="16" text-anchor="middle" font-weight="normal">内部参考电压</text>
+<text x="130.0" y="909" font-size="16" text-anchor="middle" font-weight="normal">输出 VREFINT</text>
+<rect x="295" y="785" width="250" height="111" rx="7" fill="#eef5f9" stroke="#93acba"/>
+<text x="420.0" y="814" font-size="16" text-anchor="middle" font-weight="normal">TSVREFE 共同使能</text>
+<text x="420.0" y="839" font-size="16" text-anchor="middle" font-weight="normal">由关闭到开启后</text>
+<text x="420.0" y="864" font-size="16" text-anchor="middle" font-weight="normal">核对启动等待条件</text>
+<path d="M230,798 L290,813" fill="none" stroke="#51758b" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M230,890 L290,869" fill="none" stroke="#51758b" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="610" y="764" width="245" height="69" rx="7" fill="#eef5f9" stroke="#93acba"/>
+<text x="732.5" y="793" font-size="16" text-anchor="middle" font-weight="normal">ADC1_IN16</text>
+<text x="732.5" y="818" font-size="16" text-anchor="middle" font-weight="normal">温度信号</text>
+<rect x="610" y="855" width="245" height="69" rx="7" fill="#eef5f9" stroke="#93acba"/>
+<text x="732.5" y="884" font-size="16" text-anchor="middle" font-weight="normal">ADC1_IN17</text>
+<text x="732.5" y="909" font-size="16" text-anchor="middle" font-weight="normal">内部参考信号</text>
+<path d="M545,813 L605,798" fill="none" stroke="#51758b" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M545,869 L605,890" fill="none" stroke="#51758b" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="920" y="785" width="245" height="111" rx="7" fill="#eef5f9" stroke="#93acba"/>
+<text x="1042.5" y="814" font-size="16" text-anchor="middle" font-weight="normal">结果数据路径</text>
+<text x="1042.5" y="839" font-size="16" text-anchor="middle" font-weight="normal">按规则 / 注入配置</text>
+<text x="1042.5" y="864" font-size="16" text-anchor="middle" font-weight="normal">进入 DR 或 JDRx</text>
+<path d="M855,798 L915,813" fill="none" stroke="#51758b" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M855,890 L915,869" fill="none" stroke="#51758b" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="30" y="953" font-size="15" text-anchor="start" font-weight="normal">VSENSE、VREFINT：电压，单位 V；ADC2 的通道 16/17 接 VSS。温度启动时间与采样窗口须分开核对。</text>
+<text x="30" y="983" font-size="14" text-anchor="start" font-weight="normal">来源：RM0008 Rev21 图23、24、26、39及 §11.4 / §11.12，pp220、223–224、235、242；DS5319 表47。</text>
+</g></svg>

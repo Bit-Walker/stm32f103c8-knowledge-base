@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="850" viewBox="0 0 1200 850" role="img" aria-labelledby="title desc"><title id="title">双 ADC 控制与结果通路</title><desc id="desc">ADC1 控制双模式，ADC2从属参与；两实例具有各自DR与四个JDR，规则组合结果由ADC1_DR读取。示意限定STM32F103C8T6。</desc><defs><marker id="a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8" fill="#477286"/></marker></defs><rect width="1200" height="850" fill="white"/><g font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" fill="#173649">
+<text x="30" y="43" font-size="27" text-anchor="start">双 ADC：控制归属与数据归属</text>
+<text x="30" y="76" font-size="16" text-anchor="start">STM32F103C8T6；按 RM0008 图29及相邻文字重新组织，图中的连接表示功能关系。</text>
+<rect x="30" y="160" width="225" height="115" rx="8" fill="#eef5f9" stroke="#87a6b7"/>
+<text x="142.5" y="187" font-size="16" text-anchor="middle">外部模拟输入</text>
+<text x="142.5" y="212" font-size="16" text-anchor="middle">PA0–PA7：IN0–IN7</text>
+<text x="142.5" y="237" font-size="16" text-anchor="middle">PB0/PB1：IN8/IN9</text>
+<rect x="340" y="120" width="370" height="190" rx="8" fill="#eef5f9" stroke="#87a6b7"/>
+<text x="525.0" y="147" font-size="16" text-anchor="middle">ADC2（从）</text>
+<text x="525.0" y="172" font-size="16" text-anchor="middle">规则组 → ADC2_DR（低16位）</text>
+<text x="525.0" y="197" font-size="16" text-anchor="middle">注入组 → JDR1–JDR4</text>
+<text x="525.0" y="222" font-size="16" text-anchor="middle">仍有自己的外部触发通路</text>
+<rect x="340" y="420" width="370" height="215" rx="8" fill="#eef5f9" stroke="#87a6b7"/>
+<text x="525.0" y="447" font-size="16" text-anchor="middle">ADC1（主）</text>
+<text x="525.0" y="472" font-size="16" text-anchor="middle">规则组 → ADC1_DR</text>
+<text x="525.0" y="497" font-size="16" text-anchor="middle">注入组 → JDR1–JDR4</text>
+<text x="525.0" y="522" font-size="16" text-anchor="middle">CR1.DUALMOD 管理双模式</text>
+<text x="525.0" y="547" font-size="16" text-anchor="middle">内部温度/VREFINT 仅 ADC1</text>
+<path d="M255 192 H300 V176 H335" fill="none" stroke="#477286" stroke-width="2" marker-end="url(#a)"/>
+<path d="M255 245 H285 V480 H335" fill="none" stroke="#477286" stroke-width="2" marker-end="url(#a)"/>
+<rect x="30" y="370" width="225" height="95" rx="8" fill="#eef5f9" stroke="#87a6b7"/>
+<text x="142.5" y="397" font-size="16" text-anchor="middle">主侧规则 / 注入触发</text>
+<text x="142.5" y="422" font-size="16" text-anchor="middle">软件或所选定时器 / EXTI</text>
+<text x="142.5" y="447" font-size="16" text-anchor="middle">分别选择并开放</text>
+<path d="M255 414 H305 V531 H335" fill="none" stroke="#477286" stroke-width="2" marker-end="url(#a)"/>
+<path d="M520 420 V318" fill="none" stroke="#477286" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#a)"/>
+<text x="533" y="348" font-size="15" text-anchor="start">双模式内部协调</text>
+<text x="533" y="374" font-size="15" text-anchor="start">关系由模式决定</text>
+<rect x="795" y="125" width="370" height="125" rx="8" fill="#eef5f9" stroke="#87a6b7"/>
+<text x="980.0" y="152" font-size="16" text-anchor="middle">ADC2 本实例寄存器</text>
+<text x="980.0" y="177" font-size="16" text-anchor="middle">CPU 可访问 ADC2_DR / JDRx</text>
+<text x="980.0" y="202" font-size="16" text-anchor="middle">C8 无 ADC2 独立 DMA 请求</text>
+<path d="M710 181 H790" fill="none" stroke="#477286" stroke-width="2" marker-end="url(#a)"/>
+<rect x="795" y="390" width="370" height="145" rx="8" fill="#eef5f9" stroke="#87a6b7"/>
+<text x="980.0" y="417" font-size="16" text-anchor="middle">规则双模式的组合结果</text>
+<text x="980.0" y="442" font-size="16" text-anchor="middle">读取 ADC1_DR 的32位字</text>
+<text x="980.0" y="467" font-size="16" text-anchor="middle">[31:16] ADC2  |  [15:0] ADC1</text>
+<text x="980.0" y="492" font-size="16" text-anchor="middle">要求 ADC1_CR2.DMA = 1</text>
+<path d="M710 455 H790" fill="none" stroke="#477286" stroke-width="2" marker-end="url(#a)"/>
+<path d="M710 275 H754 V417 H790" fill="none" stroke="#477286" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#a)"/>
+<text x="790" y="567" font-size="14" text-anchor="start">ADC2 → 组合字：仅表示数据合并关系</text>
+<rect x="795" y="598" width="370" height="95" rx="8" fill="#eef5f9" stroke="#87a6b7"/>
+<text x="980.0" y="625" font-size="16" text-anchor="middle">DMA1 通道1 或 CPU 读取</text>
+<text x="980.0" y="650" font-size="16" text-anchor="middle">DMA 搬组合结果时采用32位</text>
+<text x="980.0" y="675" font-size="16" text-anchor="middle">JDRx 不产生规则 DMA 请求</text>
+<path d="M1120 535 V592" fill="none" stroke="#477286" stroke-width="2" marker-end="url(#a)"/>
+<rect x="30" y="535" width="225" height="95" rx="8" fill="#eef5f9" stroke="#87a6b7"/>
+<text x="142.5" y="562" font-size="16" text-anchor="middle">ADC1 内部通道</text>
+<text x="142.5" y="587" font-size="16" text-anchor="middle">IN16：温度传感器</text>
+<text x="142.5" y="612" font-size="16" text-anchor="middle">IN17：VREFINT</text>
+<path d="M255 580 H335" fill="none" stroke="#477286" stroke-width="2" marker-end="url(#a)"/>
+<text x="30" y="691" font-size="15" text-anchor="start">ADC2 外部触发在原图29中省略，但硬件仍存在；双模式下要按具体模式配置主从触发，避免独立误启动。</text>
+<text x="30" y="726" font-size="15" text-anchor="start">数据顺序：同时模式把两个半字视作同步对；交错模式 ADC2 在先、ADC1 在后，须按采样时序重建。</text>
+<text x="30" y="761" font-size="15" text-anchor="start">同一模拟输入不可被两个 ADC 重叠采样；内部协调线不表示所有双模式都在同一时刻启动两 ADC。</text>
+<text x="30" y="806" font-size="14" text-anchor="start">来源：RM0008 Rev21 图29及注1–2，p229；§11.8–11.9、§11.12.14，pp227–235、251。</text>
+</g></svg>

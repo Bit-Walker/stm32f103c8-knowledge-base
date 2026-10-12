@@ -1,0 +1,210 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1480" height="790" viewBox="0 0 1480 790" role="img" aria-labelledby="title desc"><title id="title">开关电容 SAR 原理关系</title><desc id="desc">保留AN2834十位原理例的十一支路电容权重、输入或参考选择、公共比较节点、复位开关、比较器和数字控制。不是F103内部电路复原。</desc><defs><marker id="a" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0 0L7 3.5L0 7" fill="#55788a"/></marker></defs><rect width="1480" height="790" fill="white"/><g font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" fill="#18394c">
+<text x="30" y="42" font-size="27" text-anchor="start">开关电容与 SAR：采样、保持、电荷重分配、逐位判决</text>
+<text x="30" y="78" font-size="17" text-anchor="start">原文为10位原理例；C8 ADC 是12位。本图不声称复原 F103 的晶体管、电容布局或内部参数。</text>
+<rect x="60" y="125" width="180" height="60" rx="6" fill="#eef5f8" stroke="#9ab3c1"/>
+<text x="150.0" y="161.0" font-size="17" text-anchor="middle">VIN 输入电压</text>
+<rect x="350" y="125" width="200" height="60" rx="6" fill="#eef5f8" stroke="#9ab3c1"/>
+<text x="450.0" y="161.0" font-size="17" text-anchor="middle">VREF 参考电压</text>
+<path d="M150 185V227H264" fill="none" stroke="#55788a" stroke-width="2" marker-end="url(#a)"/>
+<path d="M450 185V195" fill="none" stroke="#55788a" stroke-width="2" marker-end="url(#a)"/>
+<rect x="270" y="200" width="300" height="55" rx="6" fill="#eef5f8" stroke="#9ab3c1"/>
+<text x="420.0" y="233.5" font-size="17" text-anchor="middle">Sa：选择输入 / 参考</text>
+<path d="M420 255V280H1390" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M420 280H90" fill="none" stroke="#55788a" stroke-width="2"/>
+<text x="665" y="247" font-size="16" text-anchor="start">上方公共选择母线</text>
+<circle cx="110" cy="280" r="3.5" fill="#55788a"/>
+<path d="M110 280V310" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M110 355L130 317" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M145 322H155" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M155 322V330" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M141 330H169" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M146 337H164" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M151 344H159" fill="none" stroke="#55788a" stroke-width="2"/>
+<text x="100" y="341" font-size="15" text-anchor="end">S1</text>
+<path d="M110 355V378" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M93 378H127" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M93 388H127" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M110 388V445" fill="none" stroke="#55788a" stroke-width="2"/>
+<circle cx="110" cy="445" r="3.5" fill="#55788a"/>
+<text x="133" y="417" font-size="16" text-anchor="start">C</text>
+<circle cx="230" cy="280" r="3.5" fill="#55788a"/>
+<path d="M230 280V310" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M230 355L250 317" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M265 322H275" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M275 322V330" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M261 330H289" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M266 337H284" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M271 344H279" fill="none" stroke="#55788a" stroke-width="2"/>
+<text x="220" y="341" font-size="15" text-anchor="end">S2</text>
+<path d="M230 355V378" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M213 378H247" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M213 388H247" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M230 388V445" fill="none" stroke="#55788a" stroke-width="2"/>
+<circle cx="230" cy="445" r="3.5" fill="#55788a"/>
+<text x="253" y="417" font-size="16" text-anchor="start">C/2</text>
+<circle cx="350" cy="280" r="3.5" fill="#55788a"/>
+<path d="M350 280V310" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M350 355L370 317" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M385 322H395" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M395 322V330" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M381 330H409" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M386 337H404" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M391 344H399" fill="none" stroke="#55788a" stroke-width="2"/>
+<text x="340" y="341" font-size="15" text-anchor="end">S3</text>
+<path d="M350 355V378" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M333 378H367" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M333 388H367" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M350 388V445" fill="none" stroke="#55788a" stroke-width="2"/>
+<circle cx="350" cy="445" r="3.5" fill="#55788a"/>
+<text x="373" y="417" font-size="16" text-anchor="start">C/4</text>
+<circle cx="470" cy="280" r="3.5" fill="#55788a"/>
+<path d="M470 280V310" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M470 355L490 317" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M505 322H515" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M515 322V330" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M501 330H529" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M506 337H524" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M511 344H519" fill="none" stroke="#55788a" stroke-width="2"/>
+<text x="460" y="341" font-size="15" text-anchor="end">S4</text>
+<path d="M470 355V378" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M453 378H487" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M453 388H487" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M470 388V445" fill="none" stroke="#55788a" stroke-width="2"/>
+<circle cx="470" cy="445" r="3.5" fill="#55788a"/>
+<text x="493" y="417" font-size="16" text-anchor="start">C/8</text>
+<circle cx="590" cy="280" r="3.5" fill="#55788a"/>
+<path d="M590 280V310" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M590 355L610 317" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M625 322H635" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M635 322V330" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M621 330H649" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M626 337H644" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M631 344H639" fill="none" stroke="#55788a" stroke-width="2"/>
+<text x="580" y="341" font-size="15" text-anchor="end">S5</text>
+<path d="M590 355V378" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M573 378H607" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M573 388H607" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M590 388V445" fill="none" stroke="#55788a" stroke-width="2"/>
+<circle cx="590" cy="445" r="3.5" fill="#55788a"/>
+<text x="613" y="417" font-size="16" text-anchor="start">C/16</text>
+<circle cx="710" cy="280" r="3.5" fill="#55788a"/>
+<path d="M710 280V310" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M710 355L730 317" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M745 322H755" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M755 322V330" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M741 330H769" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M746 337H764" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M751 344H759" fill="none" stroke="#55788a" stroke-width="2"/>
+<text x="700" y="341" font-size="15" text-anchor="end">S6</text>
+<path d="M710 355V378" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M693 378H727" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M693 388H727" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M710 388V445" fill="none" stroke="#55788a" stroke-width="2"/>
+<circle cx="710" cy="445" r="3.5" fill="#55788a"/>
+<text x="733" y="417" font-size="16" text-anchor="start">C/32</text>
+<circle cx="830" cy="280" r="3.5" fill="#55788a"/>
+<path d="M830 280V310" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M830 355L850 317" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M865 322H875" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M875 322V330" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M861 330H889" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M866 337H884" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M871 344H879" fill="none" stroke="#55788a" stroke-width="2"/>
+<text x="820" y="341" font-size="15" text-anchor="end">S7</text>
+<path d="M830 355V378" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M813 378H847" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M813 388H847" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M830 388V445" fill="none" stroke="#55788a" stroke-width="2"/>
+<circle cx="830" cy="445" r="3.5" fill="#55788a"/>
+<text x="853" y="417" font-size="16" text-anchor="start">C/64</text>
+<circle cx="950" cy="280" r="3.5" fill="#55788a"/>
+<path d="M950 280V310" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M950 355L970 317" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M985 322H995" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M995 322V330" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M981 330H1009" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M986 337H1004" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M991 344H999" fill="none" stroke="#55788a" stroke-width="2"/>
+<text x="940" y="341" font-size="15" text-anchor="end">S8</text>
+<path d="M950 355V378" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M933 378H967" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M933 388H967" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M950 388V445" fill="none" stroke="#55788a" stroke-width="2"/>
+<circle cx="950" cy="445" r="3.5" fill="#55788a"/>
+<text x="973" y="417" font-size="16" text-anchor="start">C/128</text>
+<circle cx="1070" cy="280" r="3.5" fill="#55788a"/>
+<path d="M1070 280V310" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M1070 355L1090 317" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M1105 322H1115" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M1115 322V330" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M1101 330H1129" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M1106 337H1124" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M1111 344H1119" fill="none" stroke="#55788a" stroke-width="2"/>
+<text x="1060" y="341" font-size="15" text-anchor="end">S9</text>
+<path d="M1070 355V378" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M1053 378H1087" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M1053 388H1087" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M1070 388V445" fill="none" stroke="#55788a" stroke-width="2"/>
+<circle cx="1070" cy="445" r="3.5" fill="#55788a"/>
+<text x="1093" y="417" font-size="16" text-anchor="start">C/256</text>
+<circle cx="1190" cy="280" r="3.5" fill="#55788a"/>
+<path d="M1190 280V310" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M1190 355L1210 317" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M1225 322H1235" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M1235 322V330" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M1221 330H1249" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M1226 337H1244" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M1231 344H1239" fill="none" stroke="#55788a" stroke-width="2"/>
+<text x="1180" y="341" font-size="15" text-anchor="end">S10</text>
+<path d="M1190 355V378" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M1173 378H1207" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M1173 388H1207" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M1190 388V445" fill="none" stroke="#55788a" stroke-width="2"/>
+<circle cx="1190" cy="445" r="3.5" fill="#55788a"/>
+<text x="1213" y="417" font-size="16" text-anchor="start">C/512</text>
+<circle cx="1310" cy="280" r="3.5" fill="#55788a"/>
+<path d="M1310 280V310" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M1310 355L1330 317" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M1345 322H1355" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M1355 322V330" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M1341 330H1369" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M1346 337H1364" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M1351 344H1359" fill="none" stroke="#55788a" stroke-width="2"/>
+<text x="1300" y="341" font-size="15" text-anchor="end">S11</text>
+<path d="M1310 355V378" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M1293 378H1327" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M1293 388H1327" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M1310 388V445" fill="none" stroke="#55788a" stroke-width="2"/>
+<circle cx="1310" cy="445" r="3.5" fill="#55788a"/>
+<text x="1333" y="417" font-size="16" text-anchor="start">C/512</text>
+<path d="M85 445H1320" fill="none" stroke="#55788a" stroke-width="2"/>
+<text x="1335" y="451" font-size="16" text-anchor="start">VCOMP</text>
+<path d="M85 445V475" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M85 510L73 482" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M85 520V552" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M85 552V560" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M71 560H99" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M76 567H94" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M81 574H89" fill="none" stroke="#55788a" stroke-width="2"/>
+<text x="105" y="506" font-size="16" text-anchor="start">Sb：比较节点复位开关</text>
+<path d="M645 445V510H730" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M730 478L730 568L815 523Z" fill="#eef5f8" stroke="#55788a" stroke-width="2"/>
+<text x="748" y="511" font-size="17" text-anchor="start">+</text>
+<text x="748" y="550" font-size="17" text-anchor="start">−</text>
+<path d="M690 550H730" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M690 550V558" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M676 558H704" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M681 565H699" fill="none" stroke="#55788a" stroke-width="2"/>
+<path d="M686 572H694" fill="none" stroke="#55788a" stroke-width="2"/>
+<text x="772" y="591" font-size="16" text-anchor="middle">比较器</text>
+<path d="M815 523H873" fill="none" stroke="#55788a" stroke-width="2" marker-end="url(#a)"/>
+<rect x="880" y="477" width="270" height="91" rx="6" fill="#eef5f8" stroke="#9ab3c1"/>
+<text x="1015.0" y="528.5" font-size="17" text-anchor="middle">数字判决与逐次逼近控制</text>
+<path d="M1150 523H1350" fill="none" stroke="#55788a" stroke-width="2" marker-end="url(#a)"/>
+<text x="1360" y="529" font-size="17" text-anchor="start">ADC Data</text>
+<path d="M1015 640V575" fill="none" stroke="#55788a" stroke-width="2" marker-end="url(#a)"/>
+<text x="1015" y="666" font-size="17" text-anchor="middle">ADC Clk：转换时钟</text>
+<text x="30" y="708" font-size="17" text-anchor="start">采样时 Sa 选择 VIN、Sb 闭合；保持后通过电荷重分配逐位比较。图示开关位置用于拓扑，不指定同一运行状态。</text>
+<text x="30" y="739" font-size="16" text-anchor="start">VIN、VREF、VCOMP：电压（V）；C及各权重：电容（F）；S1–S11、Sa、Sb是原理开关标号。</text>
+<text x="30" y="771" font-size="15" text-anchor="start">来源：AN2834 Rev10 §2保留的SAR结构图；十一支路权重为 C…C/512，再加一支 C/512。图不指定电容绝对值。</text>
+</g></svg>

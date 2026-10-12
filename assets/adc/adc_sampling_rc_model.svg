@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="540" viewBox="0 0 1100 540" role="img" aria-labelledby="title desc">
+<title id="title">ADC采样窗口的RC建立模型</title><desc id="desc">外部输入源通过RAIN和RADC为CADC充电。时间常数为电阻之和乘CADC；建立约束使用数据手册四分之一LSB条件。简化模型不代替完整的输入保护和寄生模型。</desc>
+<rect width="1100" height="540" fill="white"/>
+<g font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" fill="#18394d">
+<text x="30" y="44" font-size="26" font-weight="bold">采样窗口的 RC 建立模型</text>
+<text x="30" y="77" font-size="16">采样开关闭合期间的简化模型；元件符号表示等效关系，不表示可从芯片外部单独接入。</text>
+<g stroke="#426d86" stroke-width="3" fill="none">
+<circle cx="100" cy="230" r="35"/><path d="M100,195 V170 H230 M100,265 V345 H825 M230,156 H350 V184 H230 Z M350,170 H450 M450,156 H570 V184 H450 Z M570,170 H825 V240 M790,240 H860 M790,254 H860 M825,254 V345"/>
+<path d="M100,345 V366 M80,366 H120 M86,374 H114 M94,382 H106"/>
+</g>
+<text x="100" y="235" font-size="17" text-anchor="middle">VAIN</text>
+<text x="290" y="138" font-size="19" text-anchor="middle">RAIN</text>
+<text x="510" y="138" font-size="19" text-anchor="middle">RADC</text>
+<text x="878" y="250" font-size="19">CADC</text>
+<text x="660" y="150" font-size="17">电容电压 VC</text>
+<text x="180" y="226" font-size="16">外部等效源阻</text><text x="405" y="226" font-size="16">内部采样开关电阻</text>
+<text x="180" y="275" font-size="18">τ = (RAIN + RADC) × CADC</text>
+<text x="180" y="310" font-size="18">四分之一 LSB 条件：RAIN &lt; TS / [fADC × CADC × ln(2^(N+2))] − RADC</text>
+<text x="30" y="410" font-size="15">RAIN、RADC：电阻，单位 Ω；CADC：采样保持电容，单位 F；τ：时间常数，单位 s。</text>
+<text x="30" y="438" font-size="15">VAIN、VC：电压，单位 V；TS：采样周期数；fADC：ADC 时钟频率，单位 Hz；N=12；ln：自然对数。</text>
+<text x="30" y="466" font-size="15">只给出建立约束；寄生电容、漏电、钳位、供电扰动及动态驱动能力还须纳入完整前端设计。</text>
+<text x="30" y="513" font-size="15">来源：DS5319 Rev20 Equation1、Table47–48、Figure38，pp74–77；C8 总源阻上限仍为 50 kΩ。</text>
+</g></svg>

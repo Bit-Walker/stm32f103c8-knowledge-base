@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1150" height="640" viewBox="0 0 1150 640">
+<defs><marker id="a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="#465c76"/></marker></defs><rect width="100%" height="100%" fill="white"/>
+<g font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" fill="#20344e">
+<text x="25" y="38" font-size="24" text-anchor="start" font-weight="bold">C8T6 的 ADC 信号、结果与事件路径</text>
+<text x="25" y="65" font-size="15" text-anchor="start">据 RM0008 图 22 与 §11.3.7 重绘；结果寄存器与中断标志分别表示。</text>
+<rect x="25" y="205" width="225" height="135" rx="8" fill="#edf4fa" stroke="#7695b5"/>
+<text x="137.5" y="231" font-size="16" text-anchor="middle">IN0～IN9 外部引脚</text>
+<text x="137.5" y="256" font-size="16" text-anchor="middle">ADC1_IN16：温度</text>
+<text x="137.5" y="281" font-size="16" text-anchor="middle">ADC1_IN17：VREFINT</text>
+<text x="137.5" y="306" font-size="16" text-anchor="middle">ADC2_IN16/17：VSS</text>
+<rect x="325" y="225" width="210" height="105" rx="8" fill="#edf4fa" stroke="#7695b5"/>
+<text x="430.0" y="251" font-size="16" text-anchor="middle">输入多路器</text>
+<text x="430.0" y="276" font-size="16" text-anchor="middle">逐通道采样时间</text>
+<text x="430.0" y="301" font-size="16" text-anchor="middle">12 位逐次逼近核心</text>
+<rect x="605" y="220" width="220" height="100" rx="8" fill="#edf4fa" stroke="#7695b5"/>
+<text x="715.0" y="246" font-size="16" text-anchor="middle">规则序列 ≤16 项</text>
+<text x="715.0" y="271" font-size="16" text-anchor="middle">DR（规则结果）</text>
+<text x="715.0" y="296" font-size="16" text-anchor="middle">ADC1→DMA1 通道1</text>
+<rect x="605" y="380" width="220" height="100" rx="8" fill="#edf4fa" stroke="#7695b5"/>
+<text x="715.0" y="406" font-size="16" text-anchor="middle">注入序列 ≤4 项</text>
+<text x="715.0" y="431" font-size="16" text-anchor="middle">扣除 JOFRx 偏移</text>
+<text x="715.0" y="456" font-size="16" text-anchor="middle">JDR1～JDR4</text>
+<rect x="605" y="100" width="220" height="90" rx="8" fill="#edf4fa" stroke="#7695b5"/>
+<text x="715.0" y="126" font-size="16" text-anchor="middle">模拟看门狗</text>
+<text x="715.0" y="151" font-size="16" text-anchor="middle">12 位 HTR / LTR 比较</text>
+<text x="715.0" y="176" font-size="16" text-anchor="middle">在 ALIGN 对齐前比较</text>
+<rect x="935" y="220" width="190" height="150" rx="8" fill="#edf4fa" stroke="#7695b5"/>
+<text x="1030.0" y="246" font-size="16" text-anchor="middle">EOC / JEOC / AWD</text>
+<text x="1030.0" y="271" font-size="16" text-anchor="middle">独立状态标志</text>
+<text x="1030.0" y="296" font-size="16" text-anchor="middle">分别经 EOCIE</text>
+<text x="1030.0" y="321" font-size="16" text-anchor="middle">JEOCIE / AWDIE</text>
+<text x="1030.0" y="346" font-size="16" text-anchor="middle">→ ADC1_2 IRQ</text>
+<rect x="25" y="415" width="235" height="105" rx="8" fill="#edf4fa" stroke="#7695b5"/>
+<text x="142.5" y="441" font-size="16" text-anchor="middle">规则 / 注入触发多路器</text>
+<text x="142.5" y="466" font-size="16" text-anchor="middle">TIM1～TIM4、EXTI</text>
+<text x="142.5" y="491" font-size="16" text-anchor="middle">软件启动</text>
+<rect x="325" y="425" width="210" height="75" rx="8" fill="#edf4fa" stroke="#7695b5"/>
+<text x="430.0" y="451" font-size="16" text-anchor="middle">RCC ADC 分频</text>
+<text x="430.0" y="476" font-size="16" text-anchor="middle">ADCCLK ≤14 MHz</text>
+<path d="M250,270 L325,270" fill="none" stroke="#465c76" stroke-width="2" marker-end="url(#a)"/>
+<path d="M535,250 L605,250" fill="none" stroke="#465c76" stroke-width="2" marker-end="url(#a)"/>
+<path d="M535,300 L570,300 L570,430 L605,430" fill="none" stroke="#465c76" stroke-width="2" marker-end="url(#a)"/>
+<path d="M535,235 L555,235 L555,145 L605,145" fill="none" stroke="#465c76" stroke-width="2" marker-end="url(#a)"/>
+<path d="M825,145 L880,145 L880,245 L935,245" fill="none" stroke="#465c76" stroke-width="2" marker-end="url(#a)"/>
+<text x="838" y="136" font-size="14" text-anchor="start">AWD</text>
+<path d="M825,275 L935,275" fill="none" stroke="#465c76" stroke-width="2" marker-end="url(#a)"/>
+<text x="845" y="266" font-size="14" text-anchor="start">规则 EOC</text>
+<path d="M825,430 L885,430 L885,340 L935,340" fill="none" stroke="#465c76" stroke-width="2" marker-end="url(#a)"/>
+<text x="896" y="407" font-size="14" text-anchor="start">注入 JEOC/EOC</text>
+<path d="M260,465 L290,465 L290,310 L325,310" fill="none" stroke="#465c76" stroke-width="2" marker-end="url(#a)"/>
+<text x="265" y="385" font-size="14" text-anchor="start">启动</text>
+<path d="M430,425 L430,330" fill="none" stroke="#465c76" stroke-width="2" marker-end="url(#a)"/>
+<text x="442" y="378" font-size="14" text-anchor="start">时钟</text>
+<text x="25" y="558" font-size="16" text-anchor="start">规则与注入共享单 ADC 转换核心；双 ADC 协同由 ADC1 控制 ADC2。</text>
+<text x="25" y="585" font-size="16" text-anchor="start">C8T6 无 ADC3、TIM8；IN10～IN15 的选择编码存在，但本封装无外部引脚。</text>
+<text x="25" y="612" font-size="16" text-anchor="start">EOC 可由规则或注入转换结束置位，不能单独据 EOC 判断 DR 有新规则数据。</text>
+</g></svg>

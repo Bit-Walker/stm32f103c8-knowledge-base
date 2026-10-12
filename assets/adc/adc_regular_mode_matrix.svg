@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1250" height="1040" viewBox="0 0 1250 1040" role="img" aria-labelledby="title desc"><title id="title">规则组单次连续与扫描关系</title><desc id="desc">四种独立规则组扫描连续组合，加上按物理通道共享采样时间的序列示意。</desc><defs><marker id="a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8" fill="#50788b"/></marker></defs><rect width="1250" height="1040" fill="white"/><g font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" fill="#173b4d">
+<text x="30" y="42" font-size="27" text-anchor="start">规则组：单次、连续、单通道与扫描</text>
+<text x="30" y="76" font-size="16" text-anchor="start">限定独立规则组、无间断、无注入抢占；时间块只表示顺序，不按采样或转换时长比例绘制。</text>
+<rect x="30" y="110" width="580" height="230" rx="6" fill="#f8fafc" stroke="#9cb6c4"/>
+<text x="50" y="143" font-size="21" text-anchor="start">单通道单次：SCAN=0，CONT=0</text>
+<rect x="50" y="180" width="90" height="55" rx="6" fill="#e9f3f8" stroke="#9cb6c4"/>
+<text x="95.0" y="213.5" font-size="17" text-anchor="middle">启动</text>
+<path d="M140 208H160" fill="none" stroke="#50788b" stroke-width="2" marker-end="url(#a)"/>
+<rect x="165" y="180" width="345" height="55" rx="6" fill="#e9f3f8" stroke="#9cb6c4"/>
+<text x="337.5" y="213.5" font-size="17" text-anchor="middle">所选通道的一次转换</text>
+<text x="50" y="288" font-size="17" text-anchor="start">完成本次转换 / 序列后，等待下一次启动。</text>
+<text x="50" y="315" font-size="16" text-anchor="start">停止转换循环不等于把 ADON 自动清零。</text>
+<rect x="640" y="110" width="580" height="230" rx="6" fill="#f8fafc" stroke="#9cb6c4"/>
+<text x="660" y="143" font-size="21" text-anchor="start">扫描单次：SCAN=1，CONT=0</text>
+<rect x="660" y="180" width="90" height="55" rx="6" fill="#e9f3f8" stroke="#9cb6c4"/>
+<text x="705.0" y="213.5" font-size="17" text-anchor="middle">启动</text>
+<path d="M750 208H770" fill="none" stroke="#50788b" stroke-width="2" marker-end="url(#a)"/>
+<rect x="775" y="180" width="105" height="55" rx="6" fill="#e9f3f8" stroke="#9cb6c4"/>
+<text x="827.5" y="213.5" font-size="17" text-anchor="middle">Rank 1</text>
+<path d="M880 208H891" fill="none" stroke="#50788b" stroke-width="2" marker-end="url(#a)"/>
+<rect x="895" y="180" width="105" height="55" rx="6" fill="#e9f3f8" stroke="#9cb6c4"/>
+<text x="947.5" y="213.5" font-size="17" text-anchor="middle">…</text>
+<path d="M1000 208H1011" fill="none" stroke="#50788b" stroke-width="2" marker-end="url(#a)"/>
+<rect x="1015" y="180" width="105" height="55" rx="6" fill="#e9f3f8" stroke="#9cb6c4"/>
+<text x="1067.5" y="213.5" font-size="17" text-anchor="middle">Rank L</text>
+<text x="660" y="288" font-size="17" text-anchor="start">完成本次转换 / 序列后，等待下一次启动。</text>
+<text x="660" y="315" font-size="16" text-anchor="start">停止转换循环不等于把 ADON 自动清零。</text>
+<rect x="30" y="370" width="580" height="230" rx="6" fill="#f8fafc" stroke="#9cb6c4"/>
+<text x="50" y="403" font-size="21" text-anchor="start">单通道连续：SCAN=0，CONT=1</text>
+<rect x="50" y="440" width="90" height="55" rx="6" fill="#e9f3f8" stroke="#9cb6c4"/>
+<text x="95.0" y="473.5" font-size="17" text-anchor="middle">启动</text>
+<path d="M140 468H160" fill="none" stroke="#50788b" stroke-width="2" marker-end="url(#a)"/>
+<rect x="165" y="440" width="345" height="55" rx="6" fill="#e9f3f8" stroke="#9cb6c4"/>
+<text x="337.5" y="473.5" font-size="17" text-anchor="middle">所选通道的一次转换</text>
+<path d="M510 495V529H155V468H163" fill="none" stroke="#50788b" stroke-width="2" marker-end="url(#a)"/>
+<text x="50" y="568" font-size="17" text-anchor="start">首次启动后自动重复；不逐轮等待外部触发。</text>
+<rect x="640" y="370" width="580" height="230" rx="6" fill="#f8fafc" stroke="#9cb6c4"/>
+<text x="660" y="403" font-size="21" text-anchor="start">扫描连续：SCAN=1，CONT=1</text>
+<rect x="660" y="440" width="90" height="55" rx="6" fill="#e9f3f8" stroke="#9cb6c4"/>
+<text x="705.0" y="473.5" font-size="17" text-anchor="middle">启动</text>
+<path d="M750 468H770" fill="none" stroke="#50788b" stroke-width="2" marker-end="url(#a)"/>
+<rect x="775" y="440" width="105" height="55" rx="6" fill="#e9f3f8" stroke="#9cb6c4"/>
+<text x="827.5" y="473.5" font-size="17" text-anchor="middle">Rank 1</text>
+<path d="M880 468H891" fill="none" stroke="#50788b" stroke-width="2" marker-end="url(#a)"/>
+<rect x="895" y="440" width="105" height="55" rx="6" fill="#e9f3f8" stroke="#9cb6c4"/>
+<text x="947.5" y="473.5" font-size="17" text-anchor="middle">…</text>
+<path d="M1000 468H1011" fill="none" stroke="#50788b" stroke-width="2" marker-end="url(#a)"/>
+<rect x="1015" y="440" width="105" height="55" rx="6" fill="#e9f3f8" stroke="#9cb6c4"/>
+<text x="1067.5" y="473.5" font-size="17" text-anchor="middle">Rank L</text>
+<path d="M1120 495V529H765V468H773" fill="none" stroke="#50788b" stroke-width="2" marker-end="url(#a)"/>
+<text x="660" y="568" font-size="17" text-anchor="start">首次启动后自动重复；不逐轮等待外部触发。</text>
+<text x="30" y="653" font-size="16" text-anchor="start">L：规则序列长度，1～16，无量纲。SCAN 控制扫描，CONT 控制首次启动后的连续重复。</text>
+<rect x="30" y="685" width="1190" height="230" rx="6" fill="#f8fafc" stroke="#9cb6c4"/>
+<text x="50" y="723" font-size="22" text-anchor="start">采样时间属于物理通道，同一通道的多个 Rank 共享一个 SMPR 配置</text>
+<text x="110" y="758" font-size="15" text-anchor="middle">Rank 1</text>
+<rect x="55" y="773" width="110" height="43" rx="6" fill="#e9f3f8" stroke="#9cb6c4"/>
+<text x="110.0" y="800.5" font-size="17" text-anchor="middle">IN1</text>
+<text x="110" y="844" font-size="16" text-anchor="middle">1.5 周期</text>
+<text x="238" y="758" font-size="15" text-anchor="middle">Rank 2</text>
+<rect x="183" y="773" width="110" height="43" rx="6" fill="#e9f3f8" stroke="#9cb6c4"/>
+<text x="238.0" y="800.5" font-size="17" text-anchor="middle">IN2</text>
+<text x="238" y="844" font-size="16" text-anchor="middle">13.5 周期</text>
+<text x="366" y="758" font-size="15" text-anchor="middle">Rank 3</text>
+<rect x="311" y="773" width="110" height="43" rx="6" fill="#e9f3f8" stroke="#9cb6c4"/>
+<text x="366.0" y="800.5" font-size="17" text-anchor="middle">IN8</text>
+<text x="366" y="844" font-size="16" text-anchor="middle">7.5 周期</text>
+<text x="494" y="758" font-size="15" text-anchor="middle">Rank 4</text>
+<rect x="439" y="773" width="110" height="43" rx="6" fill="#e9f3f8" stroke="#9cb6c4"/>
+<text x="494.0" y="800.5" font-size="17" text-anchor="middle">IN4</text>
+<text x="494" y="844" font-size="16" text-anchor="middle">7.5 周期</text>
+<text x="622" y="758" font-size="15" text-anchor="middle">Rank 5</text>
+<rect x="567" y="773" width="110" height="43" rx="6" fill="#e9f3f8" stroke="#9cb6c4"/>
+<text x="622.0" y="800.5" font-size="17" text-anchor="middle">IN7</text>
+<text x="622" y="844" font-size="16" text-anchor="middle">71.5 周期</text>
+<text x="750" y="758" font-size="15" text-anchor="middle">Rank 6</text>
+<rect x="695" y="773" width="110" height="43" rx="6" fill="#e9f3f8" stroke="#9cb6c4"/>
+<text x="750.0" y="800.5" font-size="17" text-anchor="middle">IN7</text>
+<text x="750" y="844" font-size="16" text-anchor="middle">71.5 周期</text>
+<text x="878" y="758" font-size="15" text-anchor="middle">Rank 7</text>
+<rect x="823" y="773" width="110" height="43" rx="6" fill="#e9f3f8" stroke="#9cb6c4"/>
+<text x="878.0" y="800.5" font-size="17" text-anchor="middle">IN7</text>
+<text x="878" y="844" font-size="16" text-anchor="middle">71.5 周期</text>
+<text x="1006" y="758" font-size="15" text-anchor="middle">Rank 8</text>
+<rect x="951" y="773" width="110" height="43" rx="6" fill="#e9f3f8" stroke="#9cb6c4"/>
+<text x="1006.0" y="800.5" font-size="17" text-anchor="middle">IN3</text>
+<text x="1006" y="844" font-size="16" text-anchor="middle">28.5 周期</text>
+<text x="1134" y="758" font-size="15" text-anchor="middle">Rank 9</text>
+<rect x="1079" y="773" width="110" height="43" rx="6" fill="#e9f3f8" stroke="#9cb6c4"/>
+<text x="1134.0" y="800.5" font-size="17" text-anchor="middle">IN9</text>
+<text x="1134" y="844" font-size="16" text-anchor="middle">1.5 周期</text>
+<text x="50" y="884" font-size="15" text-anchor="start">此例沿用 AN3116 图2的序列/采样关系，将原 CH11 改为 C8 可接线的 IN9；三次 IN7 都用 71.5 周期。</text>
+<text x="30" y="955" font-size="15" text-anchor="start">来源：AN3116 Rev1 图1–5的模式与序列关系；硬件约束按 RM0008 Rev21 pp218–223、243–245核对。</text>
+<text x="30" y="990" font-size="15" text-anchor="start">原例其它通道编号仅作序列示意；每个 Rank 的通道、采样周期和结果数组位置须由同一配置表维护。</text>
+</g></svg>

@@ -47,3 +47,13 @@ DMA来源按真实文档与固定源码归并，18条支持范围分别使用唯
 - [SRC-HAL-BD368AA-DMA-DMA-LIFECYCLE](驱动实现.md#src-hal-bd368aa-dma-dma-lifecycle)：READY/BUSY门控
 - [SRC-HAL-BD368AA-DMA-ADC-START](驱动实现.md#src-hal-bd368aa-dma-adc-start)：设置内部DMA回调，先CR2.DMA再Start_IT且丢弃返回，再开EXTTRIG/SWSTART，不能只信外层HAL_OK
 - [SRC-RM0008-R21-DMA-BUS-TOPOLOGY](RM0008.md#src-rm0008-r21-dma-bus-topology)：ICode直达FLITF
+
+## ADC采集与精度来源
+
+- [RM0008硬件与寄存器](RM0008.md#src-rm0008-r21-adc-hardware)
+- [DS5319电气表与图注](DS5319.md#src-ds5319-r20-adc-electrical)
+- [ES096注入耦合与触发条件](ES096.md#src-es096-r15-adc-coupling-trgo)
+- [UM1850接口范围](UM1850.md#src-um1850-r3-adc-hal-ll)
+- [固定HAL/LL与器件定义](驱动实现.md#src-adc-fixed-implementations)
+- [AN2834前端与精度](AN2834.md)
+- [AN3116模式与应用](AN3116.md)

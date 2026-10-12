@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1150" viewBox="0 0 1200 1150" role="img" aria-labelledby="title desc">
+<title id="title">ADC 注入序列、同时与交替触发</title>
+<desc id="desc">四组关系示意：规则转换被注入抢占后重做、双ADC注入同时序列、注入交替与间断模式、规则同时加注入交替模式中忙期间触发忽略。各块不按持续时间比例绘制。</desc>
+<defs><marker id="ar" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="#557a91"/></marker></defs><rect width="1200" height="1150" fill="white"/><g font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" fill="#183a4a">
+<text x="30" y="42" font-size="27" text-anchor="start" font-weight="bold">注入序列与双 ADC 触发关系</text>
+<text x="30" y="72" font-size="16" text-anchor="start">示意事件先后和序列位置，不按时间比例绘制；Rank 为序列位置，IN 为模拟输入通道。</text>
+<text x="30" y="113" font-size="21" text-anchor="start" font-weight="bold">1  注入抢占：被打断的规则转换从头重做</text>
+<text x="35" y="168" font-size="16" text-anchor="start">规则组</text>
+<rect x="170" y="145" width="145" height="32" rx="4" fill="#dbeaf5" stroke="#91aebb"/>
+<text x="242.5" y="167" font-size="15" text-anchor="middle">Rank 1 完成</text>
+<rect x="335" y="145" width="150" height="32" rx="4" fill="#dbeaf5" stroke="#91aebb"/>
+<text x="410.0" y="167" font-size="15" text-anchor="middle">Rank 2 被打断</text>
+<rect x="795" y="145" width="165" height="32" rx="4" fill="#dbeaf5" stroke="#91aebb"/>
+<text x="877.5" y="167" font-size="15" text-anchor="middle">重做 Rank 2</text>
+<rect x="980" y="145" width="150" height="32" rx="4" fill="#dbeaf5" stroke="#91aebb"/>
+<text x="1055.0" y="167" font-size="15" text-anchor="middle">Rank 3</text>
+<text x="35" y="218" font-size="16" text-anchor="start">注入组</text>
+<rect x="520" y="195" width="115" height="32" rx="4" fill="#d7eddd" stroke="#91aebb"/>
+<text x="577.5" y="217" font-size="15" text-anchor="middle">J1</text>
+<rect x="650" y="195" width="115" height="32" rx="4" fill="#d7eddd" stroke="#91aebb"/>
+<text x="707.5" y="217" font-size="15" text-anchor="middle">J2</text>
+<text x="492" y="127" font-size="15" text-anchor="middle">注入事件</text>
+<path d="M492,132 L492,192" fill="none" stroke="#557a91" stroke-width="2" marker-end="url(#ar)"/>
+<path d="M485,161 L516,208" fill="none" stroke="#557a91" stroke-width="2" marker-end="url(#ar)"/>
+<path d="M765,211 L790,164" fill="none" stroke="#557a91" stroke-width="2" marker-end="url(#ar)"/>
+<text x="30" y="265" font-size="15" text-anchor="start">事件到转换开始存在同步与切换延迟；上限查 DS5319 表47，外部触发还须计入一个 PCLK2 时钟周期。</text>
+<text x="30" y="292" font-size="15" text-anchor="start">J1、J2 是本例的注入 Rank。规则流出现时间缺口，恢复后的 Rank 2 不能当作未受抢占的原采样时刻。</text>
+<path d="M30,310 H1170" stroke="#d5e1e7"/>
+<text x="30" y="350" font-size="21" text-anchor="start" font-weight="bold">2  注入同时：每对输入同步，各 ADC 独立保存 JDR 与 JEOC</text>
+<text x="40" y="399" font-size="16" text-anchor="start">ADC1</text>
+<text x="40" y="445" font-size="16" text-anchor="start">ADC2</text>
+<rect x="170" y="376" width="180" height="32" rx="4" fill="#d7eddd" stroke="#91aebb"/>
+<text x="260.0" y="398" font-size="15" text-anchor="middle">Rank 1 / IN3</text>
+<rect x="170" y="422" width="180" height="32" rx="4" fill="#d7eddd" stroke="#91aebb"/>
+<text x="260.0" y="444" font-size="15" text-anchor="middle">Rank 1 / IN0</text>
+<rect x="375" y="376" width="180" height="32" rx="4" fill="#d7eddd" stroke="#91aebb"/>
+<text x="465.0" y="398" font-size="15" text-anchor="middle">Rank 2 / IN2</text>
+<rect x="375" y="422" width="180" height="32" rx="4" fill="#d7eddd" stroke="#91aebb"/>
+<text x="465.0" y="444" font-size="15" text-anchor="middle">Rank 2 / IN1</text>
+<rect x="580" y="376" width="180" height="32" rx="4" fill="#d7eddd" stroke="#91aebb"/>
+<text x="670.0" y="398" font-size="15" text-anchor="middle">Rank 3 / IN1</text>
+<rect x="580" y="422" width="180" height="32" rx="4" fill="#d7eddd" stroke="#91aebb"/>
+<text x="670.0" y="444" font-size="15" text-anchor="middle">Rank 3 / IN2</text>
+<rect x="785" y="376" width="180" height="32" rx="4" fill="#d7eddd" stroke="#91aebb"/>
+<text x="875.0" y="398" font-size="15" text-anchor="middle">Rank 4 / IN0</text>
+<rect x="785" y="422" width="180" height="32" rx="4" fill="#d7eddd" stroke="#91aebb"/>
+<text x="875.0" y="444" font-size="15" text-anchor="middle">Rank 4 / IN3</text>
+<path d="M150,369 L169,390" fill="none" stroke="#557a91" stroke-width="2" marker-end="url(#ar)"/>
+<text x="30" y="375" font-size="15" text-anchor="start">共同触发</text>
+<text x="1020" y="398" font-size="15" text-anchor="start">ADC1.JEOC</text>
+<text x="1020" y="444" font-size="15" text-anchor="start">ADC2.JEOC</text>
+<text x="30" y="495" font-size="15" text-anchor="start">对应 Rank 采用相同采样时间且不重叠采同一输入；各自完成全部注入 Rank 后置 JEOC。</text>
+<path d="M30,517 H1170" stroke="#d5e1e7"/>
+<text x="30" y="557" font-size="21" text-anchor="start" font-weight="bold">3  注入交替触发：每次触发分配给轮到的 ADC</text>
+<text x="30" y="586" font-size="15" text-anchor="start">未启用注入间断：第 1 次触发 ADC1 整组，第 2 次触发 ADC2 整组，之后依次交替。</text>
+<text x="30" y="613" font-size="15" text-anchor="start">两边均启用 JDISCEN 时：每次只推进该 ADC 的下一个 Rank；以下每边各有 4 个 Rank。</text>
+<text x="40" y="669" font-size="16" text-anchor="start">ADC1</text>
+<text x="40" y="715" font-size="16" text-anchor="start">ADC2</text>
+<text x="234" y="639" font-size="15" text-anchor="middle">1</text>
+<rect x="185" y="646" width="98" height="32" rx="4" fill="#d7eddd" stroke="#91aebb"/>
+<text x="234.0" y="668" font-size="15" text-anchor="middle">Rank 1</text>
+<text x="353" y="639" font-size="15" text-anchor="middle">2</text>
+<rect x="304" y="692" width="98" height="32" rx="4" fill="#d7eddd" stroke="#91aebb"/>
+<text x="353.0" y="714" font-size="15" text-anchor="middle">Rank 1</text>
+<text x="472" y="639" font-size="15" text-anchor="middle">3</text>
+<rect x="423" y="646" width="98" height="32" rx="4" fill="#d7eddd" stroke="#91aebb"/>
+<text x="472.0" y="668" font-size="15" text-anchor="middle">Rank 2</text>
+<text x="591" y="639" font-size="15" text-anchor="middle">4</text>
+<rect x="542" y="692" width="98" height="32" rx="4" fill="#d7eddd" stroke="#91aebb"/>
+<text x="591.0" y="714" font-size="15" text-anchor="middle">Rank 2</text>
+<text x="710" y="639" font-size="15" text-anchor="middle">5</text>
+<rect x="661" y="646" width="98" height="32" rx="4" fill="#d7eddd" stroke="#91aebb"/>
+<text x="710.0" y="668" font-size="15" text-anchor="middle">Rank 3</text>
+<text x="829" y="639" font-size="15" text-anchor="middle">6</text>
+<rect x="780" y="692" width="98" height="32" rx="4" fill="#d7eddd" stroke="#91aebb"/>
+<text x="829.0" y="714" font-size="15" text-anchor="middle">Rank 3</text>
+<text x="948" y="639" font-size="15" text-anchor="middle">7</text>
+<rect x="899" y="646" width="98" height="32" rx="4" fill="#d7eddd" stroke="#91aebb"/>
+<text x="948.0" y="668" font-size="15" text-anchor="middle">Rank 4</text>
+<text x="1067" y="639" font-size="15" text-anchor="middle">8</text>
+<rect x="1018" y="692" width="98" height="32" rx="4" fill="#d7eddd" stroke="#91aebb"/>
+<text x="1067.0" y="714" font-size="15" text-anchor="middle">Rank 4</text>
+<text x="40" y="639" font-size="15" text-anchor="start">触发序号</text>
+<path d="M997,662 L1030,662" fill="none" stroke="#557a91" stroke-width="2" marker-end="url(#ar)"/>
+<text x="1040" y="668" font-size="14" text-anchor="start">ADC1.JEOC</text>
+<text x="1050" y="744" font-size="14" text-anchor="start">ADC2.JEOC</text>
+<text x="30" y="781" font-size="15" text-anchor="start">JEOC 对应该 ADC 完成全部 4 个 Rank：分别在第 7、8 次触发后的转换结束置位。</text>
+<path d="M30,803 H1170" stroke="#d5e1e7"/>
+<text x="30" y="843" font-size="21" text-anchor="start" font-weight="bold">4  规则同时 + 注入交替：保持两路规则序列同步恢复</text>
+<rect x="30" y="881" width="267" height="106" rx="4" fill="#f1f6f9" stroke="#91aebb"/>
+<text x="163.5" y="909" font-size="16" text-anchor="middle">有效注入事件</text>
+<text x="163.5" y="934" font-size="16" text-anchor="middle">轮到 ADC1</text>
+<path d="M297,935 L317,935" fill="none" stroke="#557a91" stroke-width="2" marker-end="url(#ar)"/>
+<rect x="322" y="881" width="267" height="106" rx="4" fill="#f1f6f9" stroke="#91aebb"/>
+<text x="455.5" y="909" font-size="16" text-anchor="middle">两路规则暂停</text>
+<text x="455.5" y="934" font-size="16" text-anchor="middle">ADC1 执行注入</text>
+<text x="455.5" y="959" font-size="16" text-anchor="middle">ADC2 等待</text>
+<path d="M589,935 L609,935" fill="none" stroke="#557a91" stroke-width="2" marker-end="url(#ar)"/>
+<rect x="614" y="881" width="267" height="106" rx="4" fill="#f1f6f9" stroke="#91aebb"/>
+<text x="747.5" y="909" font-size="16" text-anchor="middle">忙期间再来事件</text>
+<text x="747.5" y="934" font-size="16" text-anchor="middle">在此组合条件下忽略</text>
+<path d="M881,935 L901,935" fill="none" stroke="#557a91" stroke-width="2" marker-end="url(#ar)"/>
+<rect x="906" y="881" width="267" height="106" rx="4" fill="#f1f6f9" stroke="#91aebb"/>
+<text x="1039.5" y="909" font-size="16" text-anchor="middle">注入结束</text>
+<text x="1039.5" y="934" font-size="16" text-anchor="middle">两路规则同步恢复</text>
+<text x="30" y="1022" font-size="15" text-anchor="start">忽略条件按 RM §11.9.8：注入正在执行且已经打断规则转换；不能泛化为所有双 ADC 模式。</text>
+<text x="30" y="1052" font-size="15" text-anchor="start">下一次有效交替触发可分配给另一 ADC。原图37右端重复的触发编号不作为事件序号依据。</text>
+<text x="30" y="1095" font-size="14" text-anchor="start">来源：RM0008 Rev21 §11.3.9、§11.9.1、§11.9.5、§11.9.8，图25、30、34–37，pp221–222、230、232–234。</text>
+<text x="30" y="1125" font-size="14" text-anchor="start">触发最大延迟参数：DS5319 Rev20 Table47；本图省略采样/转换内部比例，不用块宽计算实际时长。</text>
+</g></svg>

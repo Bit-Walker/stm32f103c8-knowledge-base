@@ -1,0 +1,191 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="820" viewBox="0 0 1200 820">
+<rect width="1200" height="820" fill="white"/>
+<style>text{font-family:Arial,"Noto Sans CJK SC",sans-serif;fill:#14283c}.title{font-size:25px;font-weight:bold}.body{font-size:17px}.small{font-size:14px}.bit{font-size:13px}</style>
+<text x="35" y="44" class="title" text-anchor="start">ADC 结果对齐与注入序列槽位</text>
+<text x="35" y="74" class="body" text-anchor="start">STM32F103C8T6 · 自主示意 · 位位置与顺序按 RM0008 Rev21 整理</text>
+<text x="242.0" y="113" class="small" text-anchor="middle">15</text>
+<text x="296.0" y="113" class="small" text-anchor="middle">14</text>
+<text x="350.0" y="113" class="small" text-anchor="middle">13</text>
+<text x="404.0" y="113" class="small" text-anchor="middle">12</text>
+<text x="458.0" y="113" class="small" text-anchor="middle">11</text>
+<text x="512.0" y="113" class="small" text-anchor="middle">10</text>
+<text x="566.0" y="113" class="small" text-anchor="middle">9</text>
+<text x="620.0" y="113" class="small" text-anchor="middle">8</text>
+<text x="674.0" y="113" class="small" text-anchor="middle">7</text>
+<text x="728.0" y="113" class="small" text-anchor="middle">6</text>
+<text x="782.0" y="113" class="small" text-anchor="middle">5</text>
+<text x="836.0" y="113" class="small" text-anchor="middle">4</text>
+<text x="890.0" y="113" class="small" text-anchor="middle">3</text>
+<text x="944.0" y="113" class="small" text-anchor="middle">2</text>
+<text x="998.0" y="113" class="small" text-anchor="middle">1</text>
+<text x="1052.0" y="113" class="small" text-anchor="middle">0</text>
+<text x="35" y="155" class="body" text-anchor="start">规则组 右对齐</text>
+<rect x="215" y="128" width="52" height="39" rx="4" fill="#e8eef5" stroke="#8698aa"/>
+<text x="241.0" y="153" class="bit" text-anchor="middle">0</text>
+<rect x="269" y="128" width="52" height="39" rx="4" fill="#e8eef5" stroke="#8698aa"/>
+<text x="295.0" y="153" class="bit" text-anchor="middle">0</text>
+<rect x="323" y="128" width="52" height="39" rx="4" fill="#e8eef5" stroke="#8698aa"/>
+<text x="349.0" y="153" class="bit" text-anchor="middle">0</text>
+<rect x="377" y="128" width="52" height="39" rx="4" fill="#e8eef5" stroke="#8698aa"/>
+<text x="403.0" y="153" class="bit" text-anchor="middle">0</text>
+<rect x="431" y="128" width="52" height="39" rx="4" fill="#dff3f2" stroke="#8698aa"/>
+<text x="457.0" y="153" class="bit" text-anchor="middle">D11</text>
+<rect x="485" y="128" width="52" height="39" rx="4" fill="#dff3f2" stroke="#8698aa"/>
+<text x="511.0" y="153" class="bit" text-anchor="middle">D10</text>
+<rect x="539" y="128" width="52" height="39" rx="4" fill="#dff3f2" stroke="#8698aa"/>
+<text x="565.0" y="153" class="bit" text-anchor="middle">D9</text>
+<rect x="593" y="128" width="52" height="39" rx="4" fill="#dff3f2" stroke="#8698aa"/>
+<text x="619.0" y="153" class="bit" text-anchor="middle">D8</text>
+<rect x="647" y="128" width="52" height="39" rx="4" fill="#dff3f2" stroke="#8698aa"/>
+<text x="673.0" y="153" class="bit" text-anchor="middle">D7</text>
+<rect x="701" y="128" width="52" height="39" rx="4" fill="#dff3f2" stroke="#8698aa"/>
+<text x="727.0" y="153" class="bit" text-anchor="middle">D6</text>
+<rect x="755" y="128" width="52" height="39" rx="4" fill="#dff3f2" stroke="#8698aa"/>
+<text x="781.0" y="153" class="bit" text-anchor="middle">D5</text>
+<rect x="809" y="128" width="52" height="39" rx="4" fill="#dff3f2" stroke="#8698aa"/>
+<text x="835.0" y="153" class="bit" text-anchor="middle">D4</text>
+<rect x="863" y="128" width="52" height="39" rx="4" fill="#dff3f2" stroke="#8698aa"/>
+<text x="889.0" y="153" class="bit" text-anchor="middle">D3</text>
+<rect x="917" y="128" width="52" height="39" rx="4" fill="#dff3f2" stroke="#8698aa"/>
+<text x="943.0" y="153" class="bit" text-anchor="middle">D2</text>
+<rect x="971" y="128" width="52" height="39" rx="4" fill="#dff3f2" stroke="#8698aa"/>
+<text x="997.0" y="153" class="bit" text-anchor="middle">D1</text>
+<rect x="1025" y="128" width="52" height="39" rx="4" fill="#dff3f2" stroke="#8698aa"/>
+<text x="1051.0" y="153" class="bit" text-anchor="middle">D0</text>
+<text x="35" y="214" class="body" text-anchor="start">注入组 右对齐</text>
+<rect x="215" y="187" width="52" height="39" rx="4" fill="#ffe8c2" stroke="#8698aa"/>
+<text x="241.0" y="212" class="bit" text-anchor="middle">S</text>
+<rect x="269" y="187" width="52" height="39" rx="4" fill="#ffe8c2" stroke="#8698aa"/>
+<text x="295.0" y="212" class="bit" text-anchor="middle">S</text>
+<rect x="323" y="187" width="52" height="39" rx="4" fill="#ffe8c2" stroke="#8698aa"/>
+<text x="349.0" y="212" class="bit" text-anchor="middle">S</text>
+<rect x="377" y="187" width="52" height="39" rx="4" fill="#ffe8c2" stroke="#8698aa"/>
+<text x="403.0" y="212" class="bit" text-anchor="middle">S</text>
+<rect x="431" y="187" width="52" height="39" rx="4" fill="#dff3f2" stroke="#8698aa"/>
+<text x="457.0" y="212" class="bit" text-anchor="middle">D11</text>
+<rect x="485" y="187" width="52" height="39" rx="4" fill="#dff3f2" stroke="#8698aa"/>
+<text x="511.0" y="212" class="bit" text-anchor="middle">D10</text>
+<rect x="539" y="187" width="52" height="39" rx="4" fill="#dff3f2" stroke="#8698aa"/>
+<text x="565.0" y="212" class="bit" text-anchor="middle">D9</text>
+<rect x="593" y="187" width="52" height="39" rx="4" fill="#dff3f2" stroke="#8698aa"/>
+<text x="619.0" y="212" class="bit" text-anchor="middle">D8</text>
+<rect x="647" y="187" width="52" height="39" rx="4" fill="#dff3f2" stroke="#8698aa"/>
+<text x="673.0" y="212" class="bit" text-anchor="middle">D7</text>
+<rect x="701" y="187" width="52" height="39" rx="4" fill="#dff3f2" stroke="#8698aa"/>
+<text x="727.0" y="212" class="bit" text-anchor="middle">D6</text>
+<rect x="755" y="187" width="52" height="39" rx="4" fill="#dff3f2" stroke="#8698aa"/>
+<text x="781.0" y="212" class="bit" text-anchor="middle">D5</text>
+<rect x="809" y="187" width="52" height="39" rx="4" fill="#dff3f2" stroke="#8698aa"/>
+<text x="835.0" y="212" class="bit" text-anchor="middle">D4</text>
+<rect x="863" y="187" width="52" height="39" rx="4" fill="#dff3f2" stroke="#8698aa"/>
+<text x="889.0" y="212" class="bit" text-anchor="middle">D3</text>
+<rect x="917" y="187" width="52" height="39" rx="4" fill="#dff3f2" stroke="#8698aa"/>
+<text x="943.0" y="212" class="bit" text-anchor="middle">D2</text>
+<rect x="971" y="187" width="52" height="39" rx="4" fill="#dff3f2" stroke="#8698aa"/>
+<text x="997.0" y="212" class="bit" text-anchor="middle">D1</text>
+<rect x="1025" y="187" width="52" height="39" rx="4" fill="#dff3f2" stroke="#8698aa"/>
+<text x="1051.0" y="212" class="bit" text-anchor="middle">D0</text>
+<text x="35" y="273" class="body" text-anchor="start">规则组 左对齐</text>
+<rect x="215" y="246" width="52" height="39" rx="4" fill="#dff3f2" stroke="#8698aa"/>
+<text x="241.0" y="271" class="bit" text-anchor="middle">D11</text>
+<rect x="269" y="246" width="52" height="39" rx="4" fill="#dff3f2" stroke="#8698aa"/>
+<text x="295.0" y="271" class="bit" text-anchor="middle">D10</text>
+<rect x="323" y="246" width="52" height="39" rx="4" fill="#dff3f2" stroke="#8698aa"/>
+<text x="349.0" y="271" class="bit" text-anchor="middle">D9</text>
+<rect x="377" y="246" width="52" height="39" rx="4" fill="#dff3f2" stroke="#8698aa"/>
+<text x="403.0" y="271" class="bit" text-anchor="middle">D8</text>
+<rect x="431" y="246" width="52" height="39" rx="4" fill="#dff3f2" stroke="#8698aa"/>
+<text x="457.0" y="271" class="bit" text-anchor="middle">D7</text>
+<rect x="485" y="246" width="52" height="39" rx="4" fill="#dff3f2" stroke="#8698aa"/>
+<text x="511.0" y="271" class="bit" text-anchor="middle">D6</text>
+<rect x="539" y="246" width="52" height="39" rx="4" fill="#dff3f2" stroke="#8698aa"/>
+<text x="565.0" y="271" class="bit" text-anchor="middle">D5</text>
+<rect x="593" y="246" width="52" height="39" rx="4" fill="#dff3f2" stroke="#8698aa"/>
+<text x="619.0" y="271" class="bit" text-anchor="middle">D4</text>
+<rect x="647" y="246" width="52" height="39" rx="4" fill="#dff3f2" stroke="#8698aa"/>
+<text x="673.0" y="271" class="bit" text-anchor="middle">D3</text>
+<rect x="701" y="246" width="52" height="39" rx="4" fill="#dff3f2" stroke="#8698aa"/>
+<text x="727.0" y="271" class="bit" text-anchor="middle">D2</text>
+<rect x="755" y="246" width="52" height="39" rx="4" fill="#dff3f2" stroke="#8698aa"/>
+<text x="781.0" y="271" class="bit" text-anchor="middle">D1</text>
+<rect x="809" y="246" width="52" height="39" rx="4" fill="#dff3f2" stroke="#8698aa"/>
+<text x="835.0" y="271" class="bit" text-anchor="middle">D0</text>
+<rect x="863" y="246" width="52" height="39" rx="4" fill="#e8eef5" stroke="#8698aa"/>
+<text x="889.0" y="271" class="bit" text-anchor="middle">0</text>
+<rect x="917" y="246" width="52" height="39" rx="4" fill="#e8eef5" stroke="#8698aa"/>
+<text x="943.0" y="271" class="bit" text-anchor="middle">0</text>
+<rect x="971" y="246" width="52" height="39" rx="4" fill="#e8eef5" stroke="#8698aa"/>
+<text x="997.0" y="271" class="bit" text-anchor="middle">0</text>
+<rect x="1025" y="246" width="52" height="39" rx="4" fill="#e8eef5" stroke="#8698aa"/>
+<text x="1051.0" y="271" class="bit" text-anchor="middle">0</text>
+<text x="35" y="332" class="body" text-anchor="start">注入组 左对齐</text>
+<rect x="215" y="305" width="52" height="39" rx="4" fill="#ffe8c2" stroke="#8698aa"/>
+<text x="241.0" y="330" class="bit" text-anchor="middle">S</text>
+<rect x="269" y="305" width="52" height="39" rx="4" fill="#dff3f2" stroke="#8698aa"/>
+<text x="295.0" y="330" class="bit" text-anchor="middle">D11</text>
+<rect x="323" y="305" width="52" height="39" rx="4" fill="#dff3f2" stroke="#8698aa"/>
+<text x="349.0" y="330" class="bit" text-anchor="middle">D10</text>
+<rect x="377" y="305" width="52" height="39" rx="4" fill="#dff3f2" stroke="#8698aa"/>
+<text x="403.0" y="330" class="bit" text-anchor="middle">D9</text>
+<rect x="431" y="305" width="52" height="39" rx="4" fill="#dff3f2" stroke="#8698aa"/>
+<text x="457.0" y="330" class="bit" text-anchor="middle">D8</text>
+<rect x="485" y="305" width="52" height="39" rx="4" fill="#dff3f2" stroke="#8698aa"/>
+<text x="511.0" y="330" class="bit" text-anchor="middle">D7</text>
+<rect x="539" y="305" width="52" height="39" rx="4" fill="#dff3f2" stroke="#8698aa"/>
+<text x="565.0" y="330" class="bit" text-anchor="middle">D6</text>
+<rect x="593" y="305" width="52" height="39" rx="4" fill="#dff3f2" stroke="#8698aa"/>
+<text x="619.0" y="330" class="bit" text-anchor="middle">D5</text>
+<rect x="647" y="305" width="52" height="39" rx="4" fill="#dff3f2" stroke="#8698aa"/>
+<text x="673.0" y="330" class="bit" text-anchor="middle">D4</text>
+<rect x="701" y="305" width="52" height="39" rx="4" fill="#dff3f2" stroke="#8698aa"/>
+<text x="727.0" y="330" class="bit" text-anchor="middle">D3</text>
+<rect x="755" y="305" width="52" height="39" rx="4" fill="#dff3f2" stroke="#8698aa"/>
+<text x="781.0" y="330" class="bit" text-anchor="middle">D2</text>
+<rect x="809" y="305" width="52" height="39" rx="4" fill="#dff3f2" stroke="#8698aa"/>
+<text x="835.0" y="330" class="bit" text-anchor="middle">D1</text>
+<rect x="863" y="305" width="52" height="39" rx="4" fill="#dff3f2" stroke="#8698aa"/>
+<text x="889.0" y="330" class="bit" text-anchor="middle">D0</text>
+<rect x="917" y="305" width="52" height="39" rx="4" fill="#e8eef5" stroke="#8698aa"/>
+<text x="943.0" y="330" class="bit" text-anchor="middle">0</text>
+<rect x="971" y="305" width="52" height="39" rx="4" fill="#e8eef5" stroke="#8698aa"/>
+<text x="997.0" y="330" class="bit" text-anchor="middle">0</text>
+<rect x="1025" y="305" width="52" height="39" rx="4" fill="#e8eef5" stroke="#8698aa"/>
+<text x="1051.0" y="330" class="bit" text-anchor="middle">0</text>
+<text x="35" y="382" class="body" text-anchor="start">D11…D0：12位结果；S：符号扩展。注入结果先减对应 JOFR 偏移，可能为负。</text>
+<text x="35" y="411" class="body" text-anchor="start">注入左对齐保留 bit15 符号、bit14:3 数据；不能按规则左对齐统一右移4位解释。</text>
+<line x1="35" y1="437" x2="1165" y2="437" stroke="#bcc8d4"/>
+<text x="35" y="474" class="body" text-anchor="start">注入序列：JL 是转换次数减一，未使用的前部槽位不参与本次序列</text>
+<text x="35" y="522" class="body" text-anchor="start">JL=0  ·  1次转换</text>
+<rect x="280" y="497" width="112" height="36" rx="6" fill="#dff3f2" stroke="#428c88"/>
+<text x="336" y="521" class="body" text-anchor="middle">JSQ4</text>
+<text x="35" y="572" class="body" text-anchor="start">JL=1  ·  2次转换</text>
+<rect x="280" y="547" width="112" height="36" rx="6" fill="#dff3f2" stroke="#428c88"/>
+<text x="336" y="571" class="body" text-anchor="middle">JSQ3</text>
+<text x="410" y="571" class="body" text-anchor="middle">→</text>
+<rect x="430" y="547" width="112" height="36" rx="6" fill="#dff3f2" stroke="#428c88"/>
+<text x="486" y="571" class="body" text-anchor="middle">JSQ4</text>
+<text x="35" y="622" class="body" text-anchor="start">JL=2  ·  3次转换</text>
+<rect x="280" y="597" width="112" height="36" rx="6" fill="#dff3f2" stroke="#428c88"/>
+<text x="336" y="621" class="body" text-anchor="middle">JSQ2</text>
+<text x="410" y="621" class="body" text-anchor="middle">→</text>
+<rect x="430" y="597" width="112" height="36" rx="6" fill="#dff3f2" stroke="#428c88"/>
+<text x="486" y="621" class="body" text-anchor="middle">JSQ3</text>
+<text x="560" y="621" class="body" text-anchor="middle">→</text>
+<rect x="580" y="597" width="112" height="36" rx="6" fill="#dff3f2" stroke="#428c88"/>
+<text x="636" y="621" class="body" text-anchor="middle">JSQ4</text>
+<text x="35" y="672" class="body" text-anchor="start">JL=3  ·  4次转换</text>
+<rect x="280" y="647" width="112" height="36" rx="6" fill="#dff3f2" stroke="#428c88"/>
+<text x="336" y="671" class="body" text-anchor="middle">JSQ1</text>
+<text x="410" y="671" class="body" text-anchor="middle">→</text>
+<rect x="430" y="647" width="112" height="36" rx="6" fill="#dff3f2" stroke="#428c88"/>
+<text x="486" y="671" class="body" text-anchor="middle">JSQ2</text>
+<text x="560" y="671" class="body" text-anchor="middle">→</text>
+<rect x="580" y="647" width="112" height="36" rx="6" fill="#dff3f2" stroke="#428c88"/>
+<text x="636" y="671" class="body" text-anchor="middle">JSQ3</text>
+<text x="710" y="671" class="body" text-anchor="middle">→</text>
+<rect x="730" y="647" width="112" height="36" rx="6" fill="#dff3f2" stroke="#428c88"/>
+<text x="786" y="671" class="body" text-anchor="middle">JSQ4</text>
+<text x="35" y="735" class="body" text-anchor="start">例：JL=2，JSQ4/3/2/1 = 3/3/7/2，则转换通道顺序为 7 → 3 → 3。</text>
+<text x="35" y="778" class="small" text-anchor="start">来源：RM0008 Rev21 §11.5 Figures27–28 p224；§11.12.12 ADC_JSQR p250。</text>
+<text x="35" y="802" class="small" text-anchor="start">此图整理寄存器位与执行顺序；不表示采样时间比例、总线访问宽度或实测波形。</text>
+</svg>

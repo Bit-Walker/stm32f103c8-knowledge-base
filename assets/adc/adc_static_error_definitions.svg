@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1300" height="1030" viewBox="0 0 1300 1030" role="img" aria-labelledby="title desc"><title id="title">ADC 五种静态误差的比较基准</title><desc id="desc">按DS5319图37区分首次与末次门限偏差、码宽误差、实际端点连线与理想曲线的比较。只示意定义，不是器件实测数据。</desc><defs><marker id="a" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0 0L7 3.5L0 7" fill="#4a7185"/></marker><marker id="b" markerWidth="7" markerHeight="7" refX="1" refY="3.5" orient="auto"><path d="M7 0L0 3.5L7 7" fill="#4a7185"/></marker></defs><rect width="1300" height="1030" fill="white"/><g font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" fill="#183a4b">
+<text x="30" y="42" font-size="28" text-anchor="start">ADC 静态误差：先明确比较基准</text>
+<text x="30" y="76" font-size="17" text-anchor="start">依据 DS5319 Rev20 图37；示意门限关系，不是实测曲线，图上距离不代表该器件误差数值。</text>
+<rect x="30" y="105" width="605" height="265" rx="7" fill="#f7fafc" stroke="#bcced8"/>
+<rect x="665" y="105" width="605" height="265" rx="7" fill="#f7fafc" stroke="#bcced8"/>
+<text x="50" y="139" font-size="21" text-anchor="start">EO：第一次实际跳变与第一次理想跳变</text>
+<path d="M90 280H560" fill="none" stroke="#4a7185" stroke-width="2"/>
+<path d="M90 280V170" fill="none" stroke="#4a7185" stroke-width="2"/>
+<text x="75" y="176" font-size="15" text-anchor="end">码</text>
+<text x="548" y="309" font-size="15" text-anchor="end">输入电压</text>
+<path d="M95 267H200V204H535" fill="none" stroke="#7a9db6" stroke-width="2" stroke-dasharray="6 4"/>
+<path d="M95 267H305V204H535" fill="none" stroke="#23605d" stroke-width="3"/>
+<path d="M200 205V315" fill="none" stroke="#7a9db6" stroke-width="2" stroke-dasharray="6 4"/>
+<path d="M305 205V315" fill="none" stroke="#23605d" stroke-width="2" stroke-dasharray="6 4"/>
+<path d="M200 185H305" stroke="#4a7185" stroke-width="1.8" marker-start="url(#b)" marker-end="url(#a)"/>
+<text x="252.5" y="175" font-size="16" text-anchor="middle">EO</text>
+<text x="200" y="335" font-size="16" text-anchor="middle">V₁,ideal</text>
+<text x="305" y="335" font-size="16" text-anchor="middle">V₁,actual</text>
+<text x="470" y="230" font-size="16" text-anchor="middle">0 → 1</text>
+<text x="685" y="139" font-size="21" text-anchor="start">EG：最后一次实际跳变与最后一次理想跳变</text>
+<path d="M710 280H1200" fill="none" stroke="#4a7185" stroke-width="2"/>
+<path d="M710 280V170" fill="none" stroke="#4a7185" stroke-width="2"/>
+<path d="M715 267H850V204H1210" fill="none" stroke="#7a9db6" stroke-width="2" stroke-dasharray="6 4"/>
+<path d="M715 267H960V204H1210" fill="none" stroke="#23605d" stroke-width="3"/>
+<path d="M850 205V315" fill="none" stroke="#7a9db6" stroke-width="2" stroke-dasharray="6 4"/>
+<path d="M960 205V315" fill="none" stroke="#23605d" stroke-width="2" stroke-dasharray="6 4"/>
+<path d="M850 185H960" stroke="#4a7185" stroke-width="1.8" marker-start="url(#b)" marker-end="url(#a)"/>
+<text x="905.0" y="175" font-size="16" text-anchor="middle">EG</text>
+<text x="850" y="335" font-size="16" text-anchor="middle">Vlast,ideal</text>
+<text x="985" y="335" font-size="16" text-anchor="middle">Vlast,actual</text>
+<text x="1110" y="234" font-size="16" text-anchor="middle">4094 → 4095</text>
+<rect x="30" y="390" width="605" height="430" rx="7" fill="#f7fafc" stroke="#bcced8"/>
+<rect x="665" y="390" width="605" height="430" rx="7" fill="#f7fafc" stroke="#bcced8"/>
+<text x="50" y="429" font-size="21" text-anchor="start">ED：一个内部码的宽度与理想 1 LSB</text>
+<path d="M85 670H570" fill="none" stroke="#4a7185" stroke-width="2"/>
+<path d="M85 670V460" fill="none" stroke="#4a7185" stroke-width="2"/>
+<path d="M95 645H210V590H390V535H555" fill="none" stroke="#23605d" stroke-width="3"/>
+<text x="135" y="630" font-size="16" text-anchor="start">k−1</text>
+<text x="290" y="575" font-size="18" text-anchor="start">k</text>
+<text x="465" y="520" font-size="16" text-anchor="start">k+1</text>
+<path d="M210 590V717" fill="none" stroke="#23605d" stroke-width="2" stroke-dasharray="6 4"/>
+<path d="M390 535V717" fill="none" stroke="#23605d" stroke-width="2" stroke-dasharray="6 4"/>
+<path d="M210 704H390" stroke="#4a7185" stroke-width="1.8" marker-start="url(#b)" marker-end="url(#a)"/>
+<text x="300.0" y="694" font-size="16" text-anchor="middle">Wk</text>
+<path d="M210 496H340" stroke="#4a7185" stroke-width="1.8" marker-start="url(#b)" marker-end="url(#a)"/>
+<text x="275.0" y="486" font-size="16" text-anchor="middle">理想宽度 q</text>
+<text x="210" y="744" font-size="16" text-anchor="middle">Vk,actual</text>
+<text x="390" y="744" font-size="16" text-anchor="middle">Vk+1,actual</text>
+<text x="60" y="785" font-size="16" text-anchor="start">ED 的码宽偏差：Wk − q；按 LSB 表示时除以 q。</text>
+<text x="685" y="429" font-size="21" text-anchor="start">EL 与 ET：实际端点线、理想曲线各自比较</text>
+<path d="M735 724H1225" fill="none" stroke="#4a7185" stroke-width="2"/>
+<path d="M735 724V461" fill="none" stroke="#4a7185" stroke-width="2"/>
+<text x="750" y="474" font-size="15" text-anchor="start">门限编号</text>
+<text x="1195" y="752" font-size="15" text-anchor="end">输入电压</text>
+<path d="M778 700L1130 480" fill="none" stroke="#7a9db6" stroke-width="2" stroke-dasharray="6 4"/>
+<path d="M810 700L1190 480" fill="none" stroke="#b68238" stroke-width="2"/>
+<circle cx="810" cy="700" r="5" fill="#23605d"/>
+<circle cx="855" cy="655" r="5" fill="#23605d"/>
+
+<circle cx="1080" cy="541" r="5" fill="#23605d"/>
+<circle cx="1190" cy="480" r="5" fill="#23605d"/>
+<path d="M940 590H1040" fill="none" stroke="#92aaba" stroke-width="2" stroke-dasharray="6 4"/>
+<path d="M954 590V559" fill="none" stroke="#b6c7d0" stroke-width="1" stroke-dasharray="6 4"/>
+<path d="M1000 590V633" fill="none" stroke="#b6c7d0" stroke-width="1" stroke-dasharray="6 4"/>
+<path d="M1040 559V633" fill="none" stroke="#b6c7d0" stroke-width="1" stroke-dasharray="6 4"/>
+<circle cx="1040" cy="590" r="5" fill="#23605d"/>
+<path d="M954 566H1040" stroke="#4a7185" stroke-width="1.8" marker-start="url(#b)" marker-end="url(#a)"/>
+<text x="997.0" y="556" font-size="16" text-anchor="middle">对理想：ET 候选</text>
+<path d="M1000 624H1040" stroke="#4a7185" stroke-width="1.8" marker-start="url(#b)" marker-end="url(#a)"/>
+<text x="1020.0" y="614" font-size="16" text-anchor="middle">EL 候选</text>
+<text x="800" y="774" font-size="15" text-anchor="start">绿点：实际跳变门限；金线：实际首末端点线。</text>
+<text x="800" y="799" font-size="15" text-anchor="start">蓝虚线：理想门限轨迹；最大偏差在全范围取值。</text>
+<text x="30" y="863" font-size="18" text-anchor="start">理想门限 Vk,ideal = VREF− + (k−0.5)q；k = 1…4095，q = (VREF+−VREF−)/4096。</text>
+<text x="30" y="897" font-size="16" text-anchor="start">V 表示门限电压（V）；q 为 1 LSB 电压间隔（V）；Wk 为码宽（V）；k 为无量纲编号；last 为最后一次跳变。</text>
+<text x="30" y="929" font-size="16" text-anchor="start">ideal / actual：理想 / 实际。EL 比较实际端点连线，ET 比较理想转换曲线；图示局部距离不等于全量程最大值。</text>
+<text x="30" y="961" font-size="16" text-anchor="start">EG 沿用此数据手册的末次跳变定义，不自行替换为已扣除偏移后的斜率误差。EO/EG 的符号须声明门限差约定。</text>
+<text x="30" y="998" font-size="16" text-anchor="start">来源：DS5319 Rev20 Figure37（p76）；误差数值与测量条件另见 Tables49–50，本图不新增数值规格。</text>
+</g></svg>

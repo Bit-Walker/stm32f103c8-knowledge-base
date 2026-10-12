@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1360" height="1180" viewBox="0 0 1360 1180" role="img" aria-labelledby="title desc"><title id="title">ADC 同步抢占、功率采样与 UPS 关系</title><desc id="desc">按AN3116图8、12、14整理双规则同时被双注入同时打断、单相与三相成对采样、UPS的不同监测路径。</desc><defs><marker id="a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8" fill="#537789"/></marker></defs><rect width="1360" height="1180" fill="white"/><g font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" fill="#18384a">
+<text x="30" y="42" font-size="27" text-anchor="start">同步采样与组合模式：保留应用中的时间关系</text>
+<text x="30" y="77" font-size="17" text-anchor="start">依据 AN3116 Rev1 的三组图形关系重组；通道改用 C8 有效编号，示意不按时间比例绘制。</text>
+<text x="30" y="120" font-size="22" text-anchor="start">1  规则同时被注入同时打断，两路规则恢复后重做被中断项</text>
+<text x="30" y="200" font-size="17" text-anchor="start">ADC1 规则</text>
+<rect x="160" y="168" width="150" height="52" rx="6" fill="#e9f3f8" stroke="#90acbc"/>
+<text x="235.0" y="200.0" font-size="17" text-anchor="middle">IN0 完成</text>
+<rect x="340" y="168" width="170" height="52" rx="6" fill="#f9e9de" stroke="#90acbc"/>
+<text x="425.0" y="200.0" font-size="17" text-anchor="middle">IN1 被打断</text>
+<rect x="825" y="168" width="210" height="52" rx="6" fill="#e9f3f8" stroke="#90acbc"/>
+<text x="930.0" y="200.0" font-size="17" text-anchor="middle">重做 IN1</text>
+<rect x="1070" y="168" width="240" height="52" rx="6" fill="#e9f3f8" stroke="#90acbc"/>
+<text x="1190.0" y="200.0" font-size="17" text-anchor="middle">继续后续 Rank</text>
+<path d="M310 194H334" fill="none" stroke="#537789" stroke-width="2" marker-end="url(#a)"/>
+<path d="M1035 194H1064" fill="none" stroke="#537789" stroke-width="2" marker-end="url(#a)"/>
+<text x="30" y="269" font-size="17" text-anchor="start">ADC2 规则</text>
+<rect x="160" y="237" width="150" height="52" rx="6" fill="#e9f3f8" stroke="#90acbc"/>
+<text x="235.0" y="269.0" font-size="17" text-anchor="middle">IN4 完成</text>
+<rect x="340" y="237" width="170" height="52" rx="6" fill="#f9e9de" stroke="#90acbc"/>
+<text x="425.0" y="269.0" font-size="17" text-anchor="middle">IN5 被打断</text>
+<rect x="825" y="237" width="210" height="52" rx="6" fill="#e9f3f8" stroke="#90acbc"/>
+<text x="930.0" y="269.0" font-size="17" text-anchor="middle">重做 IN5</text>
+<rect x="1070" y="237" width="240" height="52" rx="6" fill="#e9f3f8" stroke="#90acbc"/>
+<text x="1190.0" y="269.0" font-size="17" text-anchor="middle">继续后续 Rank</text>
+<path d="M310 263H334" fill="none" stroke="#537789" stroke-width="2" marker-end="url(#a)"/>
+<path d="M1035 263H1064" fill="none" stroke="#537789" stroke-width="2" marker-end="url(#a)"/>
+<rect x="550" y="167" width="235" height="121" rx="6" fill=" #e8f4e8" stroke="#90acbc"/>
+<text x="668" y="205" font-size="17" text-anchor="middle">ADC1 注入：IN2 / IN3</text>
+<text x="668" y="250" font-size="17" text-anchor="middle">ADC2 注入：IN6 / IN7</text>
+<path d="M535 144V164" fill="none" stroke="#537789" stroke-width="2" marker-end="url(#a)"/>
+<text x="535" y="137" font-size="16" text-anchor="middle">注入触发</text>
+<path d="M510 194H543" fill="none" stroke="#537789" stroke-width="2" marker-end="url(#a)"/>
+<path d="M510 263H543" fill="none" stroke="#537789" stroke-width="2" marker-end="url(#a)"/>
+<path d="M785 194H820" fill="none" stroke="#537789" stroke-width="2" marker-end="url(#a)"/>
+<path d="M785 263H820" fill="none" stroke="#537789" stroke-width="2" marker-end="url(#a)"/>
+<text x="30" y="325" font-size="16" text-anchor="start">每个同时采样位置两侧采样时间一致；注入结果分别进入两个实例的 JDRx，规则结果走 ADC1_DR 组合路径。</text>
+<text x="30" y="355" font-size="15" text-anchor="start">源关系：AN3116 图12；RM0008 Rev21 §11.9.7（p233）。原图的 CH10–CH15 不作为 C8 接线编号。</text>
+<path d="M30 382H1330" stroke="#cfdee6"/>
+<text x="30" y="424" font-size="22" text-anchor="start">2  功率采样：同一相的电压与电流同步，三相仍逐对扫描</text>
+<rect x="30" y="453" width="510" height="267" rx="6" fill="#f7fafc" stroke="#90acbc"/>
+<text x="52" y="488" font-size="21" text-anchor="start">单相</text>
+<text x="55" y="551" font-size="17" text-anchor="start">ADC1</text>
+<rect x="145" y="520" width="325" height="48" rx="6" fill="#e9f3f8" stroke="#90acbc"/>
+<text x="307.5" y="550.0" font-size="17" text-anchor="middle">u(t)</text>
+<text x="55" y="616" font-size="17" text-anchor="start">ADC2</text>
+<rect x="145" y="585" width="325" height="48" rx="6" fill="#e9f3f8" stroke="#90acbc"/>
+<text x="307.5" y="615.0" font-size="17" text-anchor="middle">i(t)</text>
+<text x="55" y="684" font-size="20" text-anchor="start">p(t) = u(t) × i(t)</text>
+<rect x="575" y="453" width="755" height="267" rx="6" fill="#f7fafc" stroke="#90acbc"/>
+<text x="597" y="488" font-size="21" text-anchor="start">三相</text>
+<text x="600" y="551" font-size="17" text-anchor="start">ADC1</text>
+<rect x="693" y="520" width="180" height="48" rx="6" fill="#e9f3f8" stroke="#90acbc"/>
+<text x="783.0" y="550.0" font-size="17" text-anchor="middle">u1(t1)</text>
+<rect x="891" y="520" width="180" height="48" rx="6" fill="#e9f3f8" stroke="#90acbc"/>
+<text x="981.0" y="550.0" font-size="17" text-anchor="middle">u2(t2)</text>
+<rect x="1089" y="520" width="180" height="48" rx="6" fill="#e9f3f8" stroke="#90acbc"/>
+<text x="1179.0" y="550.0" font-size="17" text-anchor="middle">u3(t3)</text>
+<text x="600" y="616" font-size="17" text-anchor="start">ADC2</text>
+<rect x="693" y="585" width="180" height="48" rx="6" fill="#e9f3f8" stroke="#90acbc"/>
+<text x="783.0" y="615.0" font-size="17" text-anchor="middle">i1(t1)</text>
+<rect x="891" y="585" width="180" height="48" rx="6" fill="#e9f3f8" stroke="#90acbc"/>
+<text x="981.0" y="615.0" font-size="17" text-anchor="middle">i2(t2)</text>
+<rect x="1089" y="585" width="180" height="48" rx="6" fill="#e9f3f8" stroke="#90acbc"/>
+<text x="1179.0" y="615.0" font-size="17" text-anchor="middle">i3(t3)</text>
+<text x="783" y="658" font-size="16" text-anchor="middle">相1同步对</text>
+<text x="981" y="658" font-size="16" text-anchor="middle">相2同步对</text>
+<text x="1179" y="658" font-size="16" text-anchor="middle">相3同步对</text>
+<text x="600" y="695" font-size="18" text-anchor="start">pₙ(tₙ) = uₙ(tₙ) × iₙ(tₙ)；t₁、t₂、t₃依次推进。</text>
+<text x="30" y="754" font-size="16" text-anchor="start">p：瞬时功率（W）；u：电压（V）；i：电流（A）；t：采样时刻（s）；n：相编号。原始码须先换算比例和偏置。</text>
+<text x="30" y="783" font-size="15" text-anchor="start">源关系：AN3116 图8；只保证每对按同步配置采样，不把六个输入称为全同时，也不把原码乘积直接称为瓦特。</text>
+<path d="M30 808H1330" stroke="#cfdee6"/>
+<text x="30" y="850" font-size="22" text-anchor="start">3  原文 UPS 例：电池监测与负载成对测量使用不同采样路径</text>
+<g transform="translate(0 25)">
+<rect x="45" y="892" width="220" height="85" rx="6" fill="#e9f3f8" stroke="#90acbc"/>
+<text x="155.0" y="940.5" font-size="17" text-anchor="middle">电池</text>
+<rect x="430" y="892" width="300" height="85" rx="6" fill="#e9f3f8" stroke="#90acbc"/>
+<text x="580.0" y="940.5" font-size="17" text-anchor="middle">DC → AC 逆变</text>
+<rect x="975" y="892" width="315" height="85" rx="6" fill="#e9f3f8" stroke="#90acbc"/>
+<text x="1132.5" y="940.5" font-size="17" text-anchor="middle">负载</text>
+<path d="M265 934H424" fill="none" stroke="#537789" stroke-width="2" marker-end="url(#a)"/>
+<path d="M730 934H969" fill="none" stroke="#537789" stroke-width="2" marker-end="url(#a)"/>
+<path d="M340 934V878" fill="none" stroke="#537789" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#a)"/>
+<path d="M850 934V878" fill="none" stroke="#537789" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#a)"/>
+<text x="340" y="864" font-size="15" text-anchor="middle">电池电压</text>
+<text x="850" y="864" font-size="15" text-anchor="middle">负载电压 / 电流</text>
+<text x="45" y="1016" font-size="18" text-anchor="start">规则交错：电池电压持续采样 + 模拟看门狗</text>
+<text x="680" y="1016" font-size="18" text-anchor="start">注入同时：负载电压 / 电流同步取样</text>
+<text x="30" y="1055" font-size="16" text-anchor="start">本图保留原文的功能框图，不构成 UPS 功率电路、保护电路或可运行固件设计；原文未附此组合的完整工程。</text>
+<text x="30" y="1093" font-size="15" text-anchor="start">源关系：AN3116 图14及注入同时＋交错用例；抢占后的时间缺口与 /4 恢复8/6周期边界另按 RM0008 §11.9.9。</text>
+<text x="30" y="1140" font-size="16" text-anchor="start">三个部分共同强调：转换组、实例、Rank、采样时刻和数据寄存器须在使用每笔结果前对应清楚。</text>
+</g></g></svg>

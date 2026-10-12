@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1360" height="1100" viewBox="0 0 1360 1100" role="img" aria-labelledby="title desc"><title id="title">ADC采样开关寄生耦合与外加微扰</title><desc id="desc">上部保留NMOS与PMOS并联及互补控制、输入和采样电容、栅极寄生耦合。下部保留数字输出经R1和C串联耦合到模拟输入、原输入经R2连接的微扰电路。两种电路分别解释不同机制。</desc><defs><marker id="arrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0 0L7 3.5L0 7" fill="#537889"/></marker></defs><rect width="1360" height="1100" fill="white"/><g font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" fill="#17394d">
+<text x="30" y="40" font-size="28">采样开关的寄生耦合与外加微扰电路</text>
+<text x="30" y="78" font-size="17">依据 AN2834 Rev10 保留图重组。拓扑框图未指定晶体管尺寸、元件数值或适用采样率。</text>
+<text x="30" y="126" font-size="22">A  互补采样开关与寄生耦合</text>
+<path d="M90 255H340V195H425M340 255V325H425" stroke="#537889" stroke-width="2" fill="none"/>
+<text x="70" y="235" font-size="17">Uin 输入</text>
+<circle cx="340" cy="255" r="4" fill="#537889"/>
+<rect x="425" y="170" width="175" height="50" rx="6" fill="#edf5f8" stroke="#99b4c3"/>
+<text x="439" y="201.0" font-size="17">PMOS 支路</text>
+<rect x="425" y="300" width="175" height="50" rx="6" fill="#edf5f8" stroke="#99b4c3"/>
+<text x="439" y="331.0" font-size="17">NMOS 支路</text>
+<path d="M600 195H720V325H600M720 255H1000" stroke="#537889" stroke-width="2" fill="none"/>
+<circle cx="720" cy="255" r="4" fill="#537889"/>
+<text x="750" y="237" font-size="17">S1：两支路并联</text>
+<path d="M900 255V295" stroke="#537889" stroke-width="2" fill="none"/>
+<circle cx="900" cy="255" r="4" fill="#537889"/>
+<path d="M900 295V315M882 315H918M882 325H918M900 325V350" stroke="#537889" stroke-width="2" fill="none"/>
+<text x="926" y="325" font-size="17">Csh</text>
+<path d="M900 350V375" stroke="#537889" stroke-width="2" fill="none"/>
+<path d="M885 375H915" stroke="#537889" stroke-width="2" fill="none"/>
+<path d="M890 382H910" stroke="#537889" stroke-width="2" fill="none"/>
+<path d="M895 389H905" stroke="#537889" stroke-width="2" fill="none"/>
+<path d="M240 255V295" stroke="#537889" stroke-width="2" fill="none"/>
+<circle cx="240" cy="255" r="4" fill="#537889"/>
+<path d="M240 295V315M222 315H258M222 325H258M240 325V350" stroke="#537889" stroke-width="2" fill="none"/>
+<text x="266" y="325" font-size="17">Cext</text>
+<path d="M240 350V375" stroke="#537889" stroke-width="2" fill="none"/>
+<path d="M225 375H255" stroke="#537889" stroke-width="2" fill="none"/>
+<path d="M230 382H250" stroke="#537889" stroke-width="2" fill="none"/>
+<path d="M235 389H245" stroke="#537889" stroke-width="2" fill="none"/>
+<path d="M515 405V350" stroke="#537889" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
+<text x="510" y="434" font-size="17">H：导通；L：关断</text>
+<path d="M515 405H1120V155H515V164" stroke="#537889" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
+<rect x="1062" y="355" width="115" height="40" rx="6" fill="#edf5f8" stroke="#99b4c3"/>
+<text x="1076" y="381.0" font-size="17">反相控制</text>
+<text x="960" y="143" font-size="15">PMOS 与 NMOS 互补栅极控制</text>
+<path d="M465 160Q375 125 270 222" stroke="#537889" stroke-width="2" fill="none" stroke-dasharray="6 4" marker-end="url(#arrow)"/>
+<text x="135" y="155" font-size="15">栅极寄生电容耦合</text>
+<path d="M455 358Q390 410 275 360" stroke="#537889" stroke-width="2" fill="none" stroke-dasharray="6 4" marker-end="url(#arrow)"/>
+<text x="70" y="417" font-size="15">i：控制边沿的瞬态耦合电流</text>
+<text x="30" y="479" font-size="17">原图以 L→H 开通说明耦合；两支路寄生不对称、残余电荷和漏电均可能扰动输入。</text>
+<text x="30" y="510" font-size="17">Uin：输入电压（V）；Cext / Csh：外部 / 采样电容（F）；i：瞬态电流（A）。</text>
+<path d="M30 548H1330" stroke="#537889" stroke-width="2" fill="none"/>
+<text x="30" y="592" font-size="22">B  数字输出经交流耦合向输入叠加微扰</text>
+<rect x="965" y="650" width="290" height="300" rx="6" fill="#edf5f8" stroke="#99b4c3"/>
+<text x="979" y="806.0" font-size="17">MCU</text>
+<text x="985" y="700" font-size="17">OUT</text>
+<text x="985" y="852" font-size="17">AIN</text>
+<path d="M1110 620V650" stroke="#537889" stroke-width="2" fill="none"/>
+<text x="1130" y="636" font-size="17">VDD</text>
+<path d="M1110 950V970" stroke="#537889" stroke-width="2" fill="none"/>
+<path d="M1095 970H1125" stroke="#537889" stroke-width="2" fill="none"/>
+<path d="M1100 977H1120" stroke="#537889" stroke-width="2" fill="none"/>
+<path d="M1105 984H1115" stroke="#537889" stroke-width="2" fill="none"/>
+<path d="M965 695H755" stroke="#537889" stroke-width="2" fill="none"/>
+<rect x="650" y="676" width="105" height="38" rx="6" fill="#edf5f8" stroke="#99b4c3"/>
+<text x="664" y="701.0" font-size="17">R1</text>
+<path d="M650 695H530V730" stroke="#537889" stroke-width="2" fill="none"/>
+<path d="M530 730V750M512 750H548M512 760H548M530 760V785" stroke="#537889" stroke-width="2" fill="none"/>
+<text x="556" y="760" font-size="17">C</text>
+<path d="M530 785V845H965" stroke="#537889" stroke-width="2" fill="none"/>
+<circle cx="530" cy="845" r="4" fill="#537889"/>
+<path d="M200 845H305" stroke="#537889" stroke-width="2" fill="none"/>
+<rect x="305" y="826" width="105" height="38" rx="6" fill="#edf5f8" stroke="#99b4c3"/>
+<text x="319" y="851.0" font-size="17">R2</text>
+<path d="M410 845H530" stroke="#537889" stroke-width="2" fill="none"/>
+<text x="70" y="850" font-size="17">VIN 原输入</text>
+<path d="M65 645V727H300" stroke="#537889" stroke-width="2" fill="none"/>
+<path d="M75 712H105V670H135V712H165V670H195V712H225V670H255V712H285" stroke="#537889" stroke-width="2" fill="none"/>
+<text x="65" y="635" font-size="15">OUT 方波（示意）</text>
+<path d="M635 895H905" stroke="#537889" stroke-width="2" fill="none" stroke-dasharray="6 4"/>
+<path d="M645 895V880L680 895V910L715 895V880L750 895V910L785 895V880L820 895V910L855 895" stroke="#537889" stroke-width="2" fill="none"/>
+<text x="645" y="947" font-size="15">AIN 围绕 VIN 的准三角微扰</text>
+<text x="30" y="1015" font-size="16">OUT→R1→C→AIN；VIN→R2→AIN。R1、R2：电阻（Ω）；C：电容（F）；VIN、VDD：电压（V）。</text>
+<text x="30" y="1050" font-size="17">原文未给通用元件值；幅度、分布、采样相位、建立时间及输入范围均须按实际电路校核。</text>
+<text x="30" y="1080" font-size="15">来源：AN2834 Rev10 保留的 sampling_switch、parasitic_charge、dither_generator 图；波形不按比例。</text>
+</g></svg>

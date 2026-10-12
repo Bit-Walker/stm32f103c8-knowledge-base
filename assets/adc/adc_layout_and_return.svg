@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1260" viewBox="0 0 1400 1260" role="img" aria-labelledby="title desc"><title id="title">ADC屏蔽、布局与回流关系</title><desc id="desc">保留AN2834接收端屏蔽接地场景、模拟数字布局区域和跨系列星形供电示例，并标明C8封装供电限制。</desc><defs><marker id="a" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0 0L7 3.5L0 7" fill="#547a8c"/></marker></defs><rect width="1400" height="1260" fill="white"/><g font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" fill="#183b50">
+<text x="30" y="42" font-size="27">屏蔽、区域布置与供电回流：保留适用条件</text>
+<text x="30" y="82" font-size="17">AN2834 的场景示例须与器件供电要求、板层和信号返回路径共同使用。</text>
+<text x="30" y="127" font-size="22">A  远端模拟传感器的接收端屏蔽连接</text>
+<rect x="70" y="170" width="170" height="110" rx="6" fill="#eef5f8" stroke="#a4bdc9"/>
+<text x="85" y="200" font-size="17">传感器</text>
+<rect x="1080" y="170" width="220" height="110" rx="6" fill="#eef5f8" stroke="#a4bdc9"/>
+<text x="1095" y="200" font-size="17">ADC 接收端</text>
+<path d="M240 205H1080M240 247H1080" fill="none" stroke="#547a8c" stroke-width="2"/>
+<text x="560" y="196" font-size="16">信号导体</text>
+<text x="545" y="294" font-size="16">独立信号参考回线</text>
+<rect x="350" y="181" width="600" height="87" rx="28" fill="none" stroke="#547a8c" stroke-width="2" stroke-dasharray="7 4"/>
+<text x="545" y="166" font-size="16">电缆屏蔽层</text>
+<path d="M950 268V310H1150V280" fill="none" stroke="#547a8c" stroke-width="2"/>
+<circle cx="1150" cy="310" r="5" fill="#547a8c"/>
+<path d="M1150 310V322" fill="none" stroke="#547a8c" stroke-width="2"/>
+<path d="M1135 322H1165" fill="none" stroke="#547a8c" stroke-width="2"/>
+<path d="M1140 329H1160" fill="none" stroke="#547a8c" stroke-width="2"/>
+<path d="M1145 336H1155" fill="none" stroke="#547a8c" stroke-width="2"/>
+<text x="800" y="339" font-size="16">屏蔽层在接收端连接模拟参考地</text>
+<text x="30" y="385" font-size="17">原图强调避免屏蔽层两端地电位差形成环流；此低频模拟接线场景不规定所有高频/机壳屏蔽方案。</text>
+<path d="M30 415H1370" fill="none" stroke="#547a8c" stroke-width="2"/>
+<text x="30" y="458" font-size="22">B  数字噪声区、模拟敏感区和器件布局</text>
+<rect x="70" y="490" width="1240" height="220" rx="6" fill="#eef5f8" stroke="#a4bdc9"/>
+<text x="85" y="520" font-size="17">布局关系示意</text>
+<rect x="110" y="555" width="380" height="105" rx="6" fill="#eef5f8" stroke="#a4bdc9"/>
+<text x="125" y="585" font-size="17">数字电路 / 噪声源</text>
+<rect x="920" y="555" width="340" height="105" rx="6" fill="#eef5f8" stroke="#a4bdc9"/>
+<text x="935" y="585" font-size="17">模拟前端 / 敏感输入</text>
+<rect x="625" y="565" width="190" height="80" rx="6" fill="#eef5f8" stroke="#a4bdc9"/>
+<text x="640" y="595" font-size="17">STM32</text>
+<rect x="590" y="505" width="260" height="45" rx="6" fill="#eef5f8" stroke="#a4bdc9"/>
+<text x="605" y="535" font-size="17">电源区域</text>
+<path d="M560 540V685" fill="none" stroke="#547a8c" stroke-width="2" stroke-dasharray="6 5"/>
+<path d="M870 540V685" fill="none" stroke="#547a8c" stroke-width="2" stroke-dasharray="6 5"/>
+<text x="120" y="693" font-size="16">数字回流区域</text>
+<text x="960" y="693" font-size="16">模拟参考区域</text>
+<text x="30" y="748" font-size="17">原图展示模拟/数字地分区；整合时保留其隔离干扰电流的目的，不能省略跨区信号的连续返回路径。</text>
+<path d="M30 782H1370" fill="none" stroke="#547a8c" stroke-width="2"/>
+<text x="30" y="825" font-size="22">C  原文跨系列星形供电示例：不直接作为 C8 接线图</text>
+<rect x="70" y="860" width="230" height="100" rx="6" fill="#eef5f8" stroke="#a4bdc9"/>
+<text x="85" y="890" font-size="17">SMPS 开关电源</text>
+<text x="90" y="925" font-size="16">Vout1 / Vout2 / GND</text>
+<rect x="450" y="860" width="200" height="60" rx="6" fill="#eef5f8" stroke="#a4bdc9"/>
+<text x="465" y="890" font-size="17">线性稳压器</text>
+<rect x="800" y="865" width="210" height="70" rx="6" fill="#eef5f8" stroke="#a4bdc9"/>
+<text x="815" y="895" font-size="17">模拟电路</text>
+<rect x="1120" y="860" width="240" height="250" rx="6" fill="#eef5f8" stroke="#a4bdc9"/>
+<text x="1135" y="890" font-size="17">STM32 系列示例</text>
+<text x="1140" y="937" font-size="17">VDDA / VREF+</text>
+<text x="1140" y="997" font-size="17">VDD</text>
+<text x="1140" y="1057" font-size="17">VSSA / VREF−</text>
+<text x="1140" y="1092" font-size="17">VSS</text>
+<path d="M300 880H450" fill="none" stroke="#547a8c" stroke-width="2" marker-end="url(#a)"/>
+<path d="M650 885H765V950H1120" fill="none" stroke="#547a8c" stroke-width="2" marker-end="url(#a)"/>
+<path d="M765 885H800" fill="none" stroke="#547a8c" stroke-width="2" marker-end="url(#a)"/>
+<circle cx="765" cy="885" r="5" fill="#547a8c"/>
+<path d="M300 930H355V990H1113" fill="none" stroke="#547a8c" stroke-width="2" marker-end="url(#a)"/>
+<path d="M185 960V1135H590" fill="none" stroke="#547a8c" stroke-width="2"/>
+<circle cx="590" cy="1135" r="5" fill="#547a8c"/>
+<text x="460" y="1167" font-size="16">公共星形汇接点</text>
+<path d="M550 920V1060L590 1135" fill="none" stroke="#547a8c" stroke-width="2"/>
+<path d="M900 935V1090L590 1135" fill="none" stroke="#547a8c" stroke-width="2"/>
+<path d="M1120 1050H1055V1110L590 1135" fill="none" stroke="#547a8c" stroke-width="2"/>
+<path d="M1120 1085H1080V1190H650L590 1135" fill="none" stroke="#547a8c" stroke-width="2"/>
+<text x="700" y="1214" font-size="16">各地回路在星点汇接；示意线不表示实际走线长度或铜皮形状。</text>
+<text x="30" y="1247" font-size="15">来源：AN2834 Rev10 shielding、layout_separation、star_supply 保留图；C8的VREF±在内部连接VDDA/VSSA。</text>
+</g></svg>

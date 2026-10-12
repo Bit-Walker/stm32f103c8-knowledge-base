@@ -1,0 +1,139 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="940" viewBox="0 0 1200 940" role="img" aria-labelledby="title desc">
+<title id="title">STM32F103C8T6 双 ADC 同时与交错采样</title>
+<desc id="desc">三个时序示例比较规则同时采样、快速交错和慢速交错。横轴单位为ADC时钟周期，绿色为采样，蓝色为12.5周期转换。示例假定无注入抢占。</desc>
+<rect width="1200" height="940" fill="white"/>
+<g font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" fill="#19364a">
+<text x="30" y="43" font-size="27" fill="#19364a" font-weight="bold" text-anchor="start">双 ADC：同时采样与交错采样</text>
+<text x="30" y="73" font-size="17" fill="#19364a" font-weight="normal" text-anchor="start">C8T6 示例；横轴为 ADCCLK 周期。无注入抢占，省略外部触发同步延迟。</text>
+<rect x="30" y="94" width="24" height="17" rx="2" fill="#a5dfc2" stroke="none"/>
+<text x="63" y="108" font-size="15" fill="#19364a" font-weight="normal" text-anchor="start">采样 S</text>
+<rect x="180" y="94" width="24" height="17" rx="2" fill="#d9e9f5" stroke="none"/>
+<text x="213" y="108" font-size="15" fill="#19364a" font-weight="normal" text-anchor="start">转换 12.5 周期</text>
+<rect x="22" y="132" width="1156" height="213" rx="2" fill="#f7fafc" stroke="#d1dfe7"/>
+<rect x="22" y="367" width="1156" height="213" rx="2" fill="#f7fafc" stroke="#d1dfe7"/>
+<rect x="22" y="602" width="1156" height="213" rx="2" fill="#f7fafc" stroke="#d1dfe7"/>
+<text x="40" y="165" font-size="21" fill="#19364a" font-weight="bold" text-anchor="start">规则同时</text>
+<text x="40" y="194" font-size="16" fill="#19364a" font-weight="normal" text-anchor="start">S = 7.5</text>
+<text x="40" y="224" font-size="15" fill="#19364a" font-weight="normal" text-anchor="start">对应 Rank 同时启动</text>
+<text x="40" y="251" font-size="15" fill="#19364a" font-weight="normal" text-anchor="start">使用不同输入通道</text>
+<text x="240" y="216" font-size="16" fill="#19364a" font-weight="normal" text-anchor="start">ADC1</text>
+<text x="240" y="266" font-size="16" fill="#19364a" font-weight="normal" text-anchor="start">ADC2</text>
+<rect x="300" y="193" width="82.5" height="32" rx="2" fill="#a5dfc2" stroke="#397661"/>
+<rect x="382.5" y="193" width="137.5" height="32" rx="2" fill="#d9e9f5" stroke="#5b84a3"/>
+<text x="410.0" y="215" font-size="15" fill="#19364a" font-weight="normal" text-anchor="middle">IN0</text>
+<rect x="300" y="243" width="82.5" height="32" rx="2" fill="#a5dfc2" stroke="#397661"/>
+<rect x="382.5" y="243" width="137.5" height="32" rx="2" fill="#d9e9f5" stroke="#5b84a3"/>
+<text x="410.0" y="265" font-size="15" fill="#19364a" font-weight="normal" text-anchor="middle">IN1</text>
+<rect x="520" y="193" width="82.5" height="32" rx="2" fill="#a5dfc2" stroke="#397661"/>
+<rect x="602.5" y="193" width="137.5" height="32" rx="2" fill="#d9e9f5" stroke="#5b84a3"/>
+<text x="630.0" y="215" font-size="15" fill="#19364a" font-weight="normal" text-anchor="middle">IN2</text>
+<rect x="520" y="243" width="82.5" height="32" rx="2" fill="#a5dfc2" stroke="#397661"/>
+<rect x="602.5" y="243" width="137.5" height="32" rx="2" fill="#d9e9f5" stroke="#5b84a3"/>
+<text x="630.0" y="265" font-size="15" fill="#19364a" font-weight="normal" text-anchor="middle">IN3</text>
+<rect x="740" y="193" width="82.5" height="32" rx="2" fill="#a5dfc2" stroke="#397661"/>
+<rect x="822.5" y="193" width="137.5" height="32" rx="2" fill="#d9e9f5" stroke="#5b84a3"/>
+<text x="850.0" y="215" font-size="15" fill="#19364a" font-weight="normal" text-anchor="middle">IN4</text>
+<rect x="740" y="243" width="82.5" height="32" rx="2" fill="#a5dfc2" stroke="#397661"/>
+<rect x="822.5" y="243" width="137.5" height="32" rx="2" fill="#d9e9f5" stroke="#5b84a3"/>
+<text x="850.0" y="265" font-size="15" fill="#19364a" font-weight="normal" text-anchor="middle">IN5</text>
+<path d="M300,284 L1110,284" stroke="#abc0ca" fill="none"/>
+<path d="M300,284 L300,289" stroke="#abc0ca" fill="none"/>
+<text x="300" y="309" font-size="14" fill="#19364a" font-weight="normal" text-anchor="middle">0</text>
+<path d="M520,284 L520,289" stroke="#abc0ca" fill="none"/>
+<text x="520" y="309" font-size="14" fill="#19364a" font-weight="normal" text-anchor="middle">20</text>
+<path d="M740,284 L740,289" stroke="#abc0ca" fill="none"/>
+<text x="740" y="309" font-size="14" fill="#19364a" font-weight="normal" text-anchor="middle">40</text>
+<path d="M960,284 L960,289" stroke="#abc0ca" fill="none"/>
+<text x="960" y="309" font-size="14" fill="#19364a" font-weight="normal" text-anchor="middle">60</text>
+<text x="1120" y="308" font-size="14" fill="#19364a" font-weight="normal" text-anchor="start">周期</text>
+<text x="300" y="331" font-size="15" fill="#19364a" font-weight="normal" text-anchor="start">同一对采用相同采样时间；例图仅列 3 个 Rank，规则组最多 16 项。</text>
+<text x="40" y="400" font-size="21" fill="#19364a" font-weight="bold" text-anchor="start">快速交错</text>
+<text x="40" y="429" font-size="16" fill="#19364a" font-weight="normal" text-anchor="start">S = 1.5</text>
+<text x="40" y="459" font-size="15" fill="#19364a" font-weight="normal" text-anchor="start">ADC1、ADC2：CONT=1</text>
+<text x="40" y="486" font-size="15" fill="#19364a" font-weight="normal" text-anchor="start">合成间隔 7 周期</text>
+<text x="240" y="451" font-size="16" fill="#19364a" font-weight="normal" text-anchor="start">ADC2</text>
+<text x="240" y="501" font-size="16" fill="#19364a" font-weight="normal" text-anchor="start">ADC1</text>
+<rect x="300" y="428" width="16.5" height="32" rx="2" fill="#a5dfc2" stroke="#397661"/>
+<rect x="316.5" y="428" width="137.5" height="32" rx="2" fill="#d9e9f5" stroke="#5b84a3"/>
+<text x="377.0" y="450" font-size="15" fill="#19364a" font-weight="normal" text-anchor="middle">IN0</text>
+<rect x="377" y="478" width="16.5" height="32" rx="2" fill="#a5dfc2" stroke="#397661"/>
+<rect x="393.5" y="478" width="137.5" height="32" rx="2" fill="#d9e9f5" stroke="#5b84a3"/>
+<text x="454.0" y="500" font-size="15" fill="#19364a" font-weight="normal" text-anchor="middle">IN0</text>
+<rect x="454" y="428" width="16.5" height="32" rx="2" fill="#a5dfc2" stroke="#397661"/>
+<rect x="470.5" y="428" width="137.5" height="32" rx="2" fill="#d9e9f5" stroke="#5b84a3"/>
+<text x="531.0" y="450" font-size="15" fill="#19364a" font-weight="normal" text-anchor="middle">IN0</text>
+<rect x="531" y="478" width="16.5" height="32" rx="2" fill="#a5dfc2" stroke="#397661"/>
+<rect x="547.5" y="478" width="137.5" height="32" rx="2" fill="#d9e9f5" stroke="#5b84a3"/>
+<text x="608.0" y="500" font-size="15" fill="#19364a" font-weight="normal" text-anchor="middle">IN0</text>
+<rect x="608" y="428" width="16.5" height="32" rx="2" fill="#a5dfc2" stroke="#397661"/>
+<rect x="624.5" y="428" width="137.5" height="32" rx="2" fill="#d9e9f5" stroke="#5b84a3"/>
+<text x="685.0" y="450" font-size="15" fill="#19364a" font-weight="normal" text-anchor="middle">IN0</text>
+<rect x="685" y="478" width="16.5" height="32" rx="2" fill="#a5dfc2" stroke="#397661"/>
+<rect x="701.5" y="478" width="137.5" height="32" rx="2" fill="#d9e9f5" stroke="#5b84a3"/>
+<text x="762.0" y="500" font-size="15" fill="#19364a" font-weight="normal" text-anchor="middle">IN0</text>
+<rect x="762" y="428" width="16.5" height="32" rx="2" fill="#a5dfc2" stroke="#397661"/>
+<rect x="778.5" y="428" width="137.5" height="32" rx="2" fill="#d9e9f5" stroke="#5b84a3"/>
+<text x="839.0" y="450" font-size="15" fill="#19364a" font-weight="normal" text-anchor="middle">IN0</text>
+<rect x="839" y="478" width="16.5" height="32" rx="2" fill="#a5dfc2" stroke="#397661"/>
+<rect x="855.5" y="478" width="137.5" height="32" rx="2" fill="#d9e9f5" stroke="#5b84a3"/>
+<text x="916.0" y="500" font-size="15" fill="#19364a" font-weight="normal" text-anchor="middle">IN0</text>
+<path d="M300,519 L1110,519" stroke="#abc0ca" fill="none"/>
+<path d="M300,519 L300,524" stroke="#abc0ca" fill="none"/>
+<text x="300" y="544" font-size="14" fill="#19364a" font-weight="normal" text-anchor="middle">0</text>
+<path d="M377,519 L377,524" stroke="#abc0ca" fill="none"/>
+<text x="377" y="544" font-size="14" fill="#19364a" font-weight="normal" text-anchor="middle">7</text>
+<path d="M454,519 L454,524" stroke="#abc0ca" fill="none"/>
+<text x="454" y="544" font-size="14" fill="#19364a" font-weight="normal" text-anchor="middle">14</text>
+<path d="M531,519 L531,524" stroke="#abc0ca" fill="none"/>
+<text x="531" y="544" font-size="14" fill="#19364a" font-weight="normal" text-anchor="middle">21</text>
+<path d="M608,519 L608,524" stroke="#abc0ca" fill="none"/>
+<text x="608" y="544" font-size="14" fill="#19364a" font-weight="normal" text-anchor="middle">28</text>
+<path d="M685,519 L685,524" stroke="#abc0ca" fill="none"/>
+<text x="685" y="544" font-size="14" fill="#19364a" font-weight="normal" text-anchor="middle">35</text>
+<path d="M762,519 L762,524" stroke="#abc0ca" fill="none"/>
+<text x="762" y="544" font-size="14" fill="#19364a" font-weight="normal" text-anchor="middle">42</text>
+<path d="M839,519 L839,524" stroke="#abc0ca" fill="none"/>
+<text x="839" y="544" font-size="14" fill="#19364a" font-weight="normal" text-anchor="middle">49</text>
+<path d="M916,519 L916,524" stroke="#abc0ca" fill="none"/>
+<text x="916" y="544" font-size="14" fill="#19364a" font-weight="normal" text-anchor="middle">56</text>
+<path d="M993,519 L993,524" stroke="#abc0ca" fill="none"/>
+<text x="993" y="544" font-size="14" fill="#19364a" font-weight="normal" text-anchor="middle">63</text>
+<text x="1120" y="543" font-size="14" fill="#19364a" font-weight="normal" text-anchor="start">周期</text>
+<text x="300" y="566" font-size="15" fill="#19364a" font-weight="normal" text-anchor="start">ADC2 先启动，ADC1 延后 7 周期；同一输入的采样窗口不重叠。</text>
+<text x="40" y="635" font-size="21" fill="#19364a" font-weight="bold" text-anchor="start">慢速交错</text>
+<text x="40" y="664" font-size="16" fill="#19364a" font-weight="normal" text-anchor="start">S = 13.5</text>
+<text x="40" y="694" font-size="15" fill="#19364a" font-weight="normal" text-anchor="start">CONT=0</text>
+<text x="40" y="721" font-size="15" fill="#19364a" font-weight="normal" text-anchor="start">合成间隔 14 周期</text>
+<text x="240" y="686" font-size="16" fill="#19364a" font-weight="normal" text-anchor="start">ADC2</text>
+<text x="240" y="736" font-size="16" fill="#19364a" font-weight="normal" text-anchor="start">ADC1</text>
+<rect x="300" y="663" width="148.5" height="32" rx="2" fill="#a5dfc2" stroke="#397661"/>
+<rect x="448.5" y="663" width="137.5" height="32" rx="2" fill="#d9e9f5" stroke="#5b84a3"/>
+<text x="443.0" y="685" font-size="15" fill="#19364a" font-weight="normal" text-anchor="middle">IN0</text>
+<rect x="454" y="713" width="148.5" height="32" rx="2" fill="#a5dfc2" stroke="#397661"/>
+<rect x="602.5" y="713" width="137.5" height="32" rx="2" fill="#d9e9f5" stroke="#5b84a3"/>
+<text x="597.0" y="735" font-size="15" fill="#19364a" font-weight="normal" text-anchor="middle">IN0</text>
+<rect x="608" y="663" width="148.5" height="32" rx="2" fill="#a5dfc2" stroke="#397661"/>
+<rect x="756.5" y="663" width="137.5" height="32" rx="2" fill="#d9e9f5" stroke="#5b84a3"/>
+<text x="751.0" y="685" font-size="15" fill="#19364a" font-weight="normal" text-anchor="middle">IN0</text>
+<rect x="762" y="713" width="148.5" height="32" rx="2" fill="#a5dfc2" stroke="#397661"/>
+<rect x="910.5" y="713" width="137.5" height="32" rx="2" fill="#d9e9f5" stroke="#5b84a3"/>
+<text x="905.0" y="735" font-size="15" fill="#19364a" font-weight="normal" text-anchor="middle">IN0</text>
+<path d="M300,754 L1110,754" stroke="#abc0ca" fill="none"/>
+<path d="M300,754 L300,759" stroke="#abc0ca" fill="none"/>
+<text x="300" y="779" font-size="14" fill="#19364a" font-weight="normal" text-anchor="middle">0</text>
+<path d="M454,754 L454,759" stroke="#abc0ca" fill="none"/>
+<text x="454" y="779" font-size="14" fill="#19364a" font-weight="normal" text-anchor="middle">14</text>
+<path d="M608,754 L608,759" stroke="#abc0ca" fill="none"/>
+<text x="608" y="779" font-size="14" fill="#19364a" font-weight="normal" text-anchor="middle">28</text>
+<path d="M762,754 L762,759" stroke="#abc0ca" fill="none"/>
+<text x="762" y="779" font-size="14" fill="#19364a" font-weight="normal" text-anchor="middle">42</text>
+<path d="M916,754 L916,759" stroke="#abc0ca" fill="none"/>
+<text x="916" y="779" font-size="14" fill="#19364a" font-weight="normal" text-anchor="middle">56</text>
+<path d="M1048,754 L1048,759" stroke="#abc0ca" fill="none"/>
+<text x="1048" y="779" font-size="14" fill="#19364a" font-weight="normal" text-anchor="middle">68</text>
+<text x="1120" y="778" font-size="14" fill="#19364a" font-weight="normal" text-anchor="start">周期</text>
+<text x="300" y="801" font-size="15" fill="#19364a" font-weight="normal" text-anchor="start">ADC2 于 28 周期后再次启动；单次 26 周期转换不能改写固定启动节拍。</text>
+<text x="30" y="854" font-size="16" fill="#19364a" font-weight="normal" text-anchor="start">数据：ADC1_DR 高 16 位为 ADC2、低 16 位为 ADC1；硬件配对读取要求 ADC1.CR2.DMA=1。</text>
+<text x="30" y="883" font-size="16" fill="#19364a" font-weight="normal" text-anchor="start">交错模式按时间顺序先取 ADC2 半字；同时模式将两半字作为一对。注入抢占后的时序须另核。</text>
+<text x="30" y="917" font-size="15" fill="#19364a" font-weight="normal" text-anchor="start">来源：RM0008 Rev21 §11.9.2–4，图31–33，pp230–232；按 C8T6 可用通道重新编排示例。</text>
+</g></svg>

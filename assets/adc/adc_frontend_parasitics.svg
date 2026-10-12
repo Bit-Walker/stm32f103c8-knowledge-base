@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="650" viewBox="0 0 1400 650" role="img" aria-labelledby="title desc"><title id="title">ADC前端各类寄生与采样负载</title><desc id="desc">区分外部源电阻、外部输入和PCB电容、内部串联寄生、复用后寄生与采样电容；保留控制时钟和数据关系。</desc><defs><marker id="a" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0 0L7 3.5L0 7" fill="#547a8c"/></marker></defs><rect width="1400" height="650" fill="white"/><g font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" fill="#183b50">
+<text x="30" y="42" font-size="28">输入路径：区分外部电容、内部寄生和采样电容</text>
+<text x="30" y="81" font-size="17">按 AN2834 保留图重组；同名或近似符号在不同原图中须按各自模型解释。</text>
+<path d="M470 130V475" fill="none" stroke="#547a8c" stroke-width="2" stroke-dasharray="6 5"/>
+<text x="280" y="145" font-size="18">芯片外部</text>
+<text x="495" y="145" font-size="18">芯片内部：原理分解</text>
+<path d="M50 280H155" fill="none" stroke="#547a8c" stroke-width="2"/>
+<rect x="155" y="260" width="105" height="40" rx="5" fill="#eef5f8" stroke="#a4bdc9"/>
+<text x="167" y="286.0" font-size="17">RAIN</text>
+<path d="M260 280H510" fill="none" stroke="#547a8c" stroke-width="2"/>
+<text x="45" y="256" font-size="17">VAIN</text>
+<path d="M315 280V315M297 315H333M297 325H333M315 325V365" fill="none" stroke="#547a8c" stroke-width="2"/>
+<text x="338" y="328" font-size="16">CAIN</text>
+<path d="M301 365H329M306 373H324M311 381H319" fill="none" stroke="#547a8c" stroke-width="2"/>
+<circle cx="315" cy="280" r="3.5" fill="#547a8c"/>
+<path d="M410 280V315M392 315H428M392 325H428M410 325V365" fill="none" stroke="#547a8c" stroke-width="2"/>
+<text x="433" y="328" font-size="16">CP</text>
+<path d="M396 365H424M401 373H419M406 381H414" fill="none" stroke="#547a8c" stroke-width="2"/>
+<circle cx="410" cy="280" r="3.5" fill="#547a8c"/>
+<rect x="510" y="260" width="105" height="40" rx="5" fill="#eef5f8" stroke="#a4bdc9"/>
+<text x="522" y="286.0" font-size="17">RPAR</text>
+<path d="M615 280H675" fill="none" stroke="#547a8c" stroke-width="2"/>
+<rect x="675" y="205" width="120" height="160" rx="5" fill="#eef5f8" stroke="#a4bdc9"/>
+<text x="687" y="291.0" font-size="17">MUX</text>
+<path d="M646 225H675" fill="none" stroke="#547a8c" stroke-width="2"/>
+<path d="M646 245H675" fill="none" stroke="#547a8c" stroke-width="2"/>
+<path d="M646 265H675" fill="none" stroke="#547a8c" stroke-width="2"/>
+<path d="M646 300H675" fill="none" stroke="#547a8c" stroke-width="2"/>
+<path d="M646 325H675" fill="none" stroke="#547a8c" stroke-width="2"/>
+<path d="M646 345H675" fill="none" stroke="#547a8c" stroke-width="2"/>
+<path d="M795 280H925M925 280L960 255M970 280H1120" fill="none" stroke="#547a8c" stroke-width="2"/>
+<path d="M835 280V315M817 315H853M817 325H853M835 325V365" fill="none" stroke="#547a8c" stroke-width="2"/>
+<text x="858" y="328" font-size="16">CPAR</text>
+<path d="M821 365H849M826 373H844M831 381H839" fill="none" stroke="#547a8c" stroke-width="2"/>
+<circle cx="835" cy="280" r="3.5" fill="#547a8c"/>
+<path d="M1035 280V315M1017 315H1053M1017 325H1053M1035 325V365" fill="none" stroke="#547a8c" stroke-width="2"/>
+<text x="1058" y="328" font-size="16">CADC</text>
+<path d="M1021 365H1049M1026 373H1044M1031 381H1039" fill="none" stroke="#547a8c" stroke-width="2"/>
+<circle cx="1035" cy="280" r="3.5" fill="#547a8c"/>
+<rect x="1120" y="250" width="145" height="60" rx="5" fill="#eef5f8" stroke="#a4bdc9"/>
+<text x="1132" y="286.0" font-size="17">SAR 转换</text>
+<rect x="850" y="155" width="190" height="50" rx="5" fill="#eef5f8" stroke="#a4bdc9"/>
+<text x="862" y="186.0" font-size="17">数字控制</text>
+<path d="M925 205V247" fill="none" stroke="#547a8c" stroke-width="2" marker-end="url(#a)"/>
+<path d="M1040 180H1190V242" fill="none" stroke="#547a8c" stroke-width="2" marker-end="url(#a)"/>
+<path d="M1280 125H945V148" fill="none" stroke="#547a8c" stroke-width="2" marker-end="url(#a)"/>
+<text x="1180" y="112" font-size="16">ADCCLK</text>
+<path d="M1265 280H1360" fill="none" stroke="#547a8c" stroke-width="2" marker-end="url(#a)"/>
+<text x="1250" y="325" font-size="16">输出码</text>
+<text x="30" y="464" font-size="17">外部：RAIN源电阻，CAIN输入电容，CP板级寄生；原图还将外部电容记为CPCB或CAIN。</text>
+<text x="30" y="499" font-size="17">内部：RPAR串联寄生电阻，CPAR复用后寄生电容，CADC采样电容；MUX为通道复用器。</text>
+<text x="30" y="534" font-size="17">R类符号单位Ω，C类符号单位F，VAIN单位V；ADCCLK为转换时钟。本图不给出寄生数值。</text>
+<text x="30" y="569" font-size="17">供电与参考：保留VDDA/VSSA、VDD/VSS及VREF±的功能区分；C8的VREF±已在封装内连接模拟电源/地。</text>
+<text x="30" y="604" font-size="16">来源：AN2834 Rev10 input_parasitics、source_capacitance 保留图；C8连接按DS5319。</text>
+</g></svg>
