@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="1230" viewBox="0 0 1500 1230" role="img" aria-labelledby="title desc"><title id="title">单 MCU 内部的 JTAG TAP 串联</title><desc id="desc">独立关系图。JTDI经5位IR边界扫描TAP，再经4位IR Cortex-M3 TAP，输出JTDO。共用NJTRST；SW-DP选中强制边界扫描TMS高。</desc><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 Z" fill="#245e73"/></marker></defs><rect width="100%" height="100%" fill="#f5f7fa"/>
+<text x="50" y="64" font-family="Noto Sans CJK SC, sans-serif" font-size="36" fill="#183143" font-weight="bold">JTAG：单颗 MCU 内部的两个 TAP</text>
+<text x="50" y="105" font-family="Noto Sans CJK SC, sans-serif" font-size="20" fill="#183143" font-weight="normal">独立重绘 | RM0008 Rev21 §31.5，pp1085–1086；Figure 363 “JTAG TAP connections”</text>
+<rect x="50" y="137" width="1400" height="76" rx="12" fill="#fff5df" stroke="#e0c790" stroke-width="2"/>
+<text x="75" y="184" font-family="Noto Sans CJK SC, sans-serif" font-size="23" fill="#183143" font-weight="normal">这是芯片内部的两级 TAP 连接，不是板上串联两颗 MCU；IR 位宽也不代表外部器件数量。</text>
+<rect x="50" y="242" width="1400" height="400" rx="12" fill="#ffffff" stroke="#245e73" stroke-width="2"/>
+<text x="75" y="285" font-family="Noto Sans CJK SC, sans-serif" font-size="26" fill="#183143" font-weight="bold">STM32 MCU 内部 · JTAG 模式数据串行方向</text>
+<rect x="350" y="355" width="330" height="185" rx="12" fill="#eaf3f6" stroke="#cad6df" stroke-width="2"/>
+<rect x="850" y="355" width="330" height="185" rx="12" fill="#eaf3f6" stroke="#cad6df" stroke-width="2"/>
+<text x="390" y="400" font-family="Noto Sans CJK SC, sans-serif" font-size="29" fill="#183143" font-weight="bold">边界扫描 TAP</text>
+<text x="391" y="445" font-family="Noto Sans CJK SC, sans-serif" font-size="23" fill="#183143" font-weight="normal">指令寄存器 IR：5 位</text>
+<text x="375" y="508" font-family="Noto Sans CJK SC, sans-serif" font-size="22" fill="#183143" font-weight="normal">TDI</text>
+<text x="604" y="508" font-family="Noto Sans CJK SC, sans-serif" font-size="22" fill="#183143" font-weight="normal">TDO</text>
+<text x="887" y="400" font-family="Noto Sans CJK SC, sans-serif" font-size="29" fill="#183143" font-weight="bold">Cortex-M3 TAP</text>
+<text x="891" y="445" font-family="Noto Sans CJK SC, sans-serif" font-size="23" fill="#183143" font-weight="normal">指令寄存器 IR：4 位</text>
+<text x="875" y="508" font-family="Noto Sans CJK SC, sans-serif" font-size="22" fill="#183143" font-weight="normal">TDI</text>
+<text x="1104" y="508" font-family="Noto Sans CJK SC, sans-serif" font-size="22" fill="#183143" font-weight="normal">TDO</text>
+<text x="98" y="455" font-family="Noto Sans CJK SC, sans-serif" font-size="24" fill="#183143" font-weight="normal">JTDI / PA15</text>
+<path d="M100,495 L350,495" fill="none" stroke="#245e73" stroke-width="2.5" marker-end="url(#arrow)"/>
+<path d="M680,495 L850,495" fill="none" stroke="#245e73" stroke-width="2.5" marker-end="url(#arrow)"/>
+<text x="704" y="474" font-family="Noto Sans CJK SC, sans-serif" font-size="20" fill="#183143" font-weight="normal">内部串联</text>
+<path d="M1180,495 L1400,495" fill="none" stroke="#245e73" stroke-width="2.5" marker-end="url(#arrow)"/>
+<text x="1211" y="455" font-family="Noto Sans CJK SC, sans-serif" font-size="24" fill="#183143" font-weight="normal">JTDO / PB3</text>
+<text x="75" y="594" font-family="Noto Sans CJK SC, sans-serif" font-size="21" fill="#183143" font-weight="normal">TDI = 测试数据输入；TDO = 测试数据输出。箭头只表示本链路数据流，不规定移位字的时间位序。</text>
+<text x="60" y="700" font-family="Noto Sans CJK SC, sans-serif" font-size="27" fill="#183143" font-weight="bold">控制线：复位共用，TMS 按模式处理</text>
+<rect x="50" y="722" width="1400" height="195" rx="12" fill="#ffffff" stroke="#cad6df" stroke-width="2"/>
+<text x="75" y="765" font-family="Noto Sans CJK SC, sans-serif" font-size="23" fill="#183143" font-weight="bold">NJTRST / PB4</text>
+<path d="M335,757 L455,757" fill="none" stroke="#245e73" stroke-width="2.5" marker-end="url(#arrow)"/>
+<text x="480" y="765" font-family="Noto Sans CJK SC, sans-serif" font-size="23" fill="#183143" font-weight="normal">边界扫描 TAP.nTRST 与 Cortex-M3 TAP.nTRST</text>
+<text x="75" y="817" font-family="Noto Sans CJK SC, sans-serif" font-size="23" fill="#183143" font-weight="bold">JTMS / PA13</text>
+<path d="M335,809 L455,809" fill="none" stroke="#245e73" stroke-width="2.5" marker-end="url(#arrow)"/>
+<text x="480" y="817" font-family="Noto Sans CJK SC, sans-serif" font-size="22" fill="#183143" font-weight="normal">Cortex-M3 TAP.TMS；边界扫描 TAP.TMS 受 SW-DP 选择控制</text>
+<text x="75" y="870" font-family="Noto Sans CJK SC, sans-serif" font-size="23" fill="#183143" font-weight="normal">SW-DP 选中：边界扫描 TAP 的 TMS 被强制为高，边界扫描 TAP 自动禁用。</text>
+<text x="60" y="971" font-family="Noto Sans CJK SC, sans-serif" font-size="27" fill="#183143" font-weight="bold">调试访问：BYPASS 如何影响扫描长度</text>
+<rect x="50" y="993" width="1400" height="166" rx="12" fill="#eaf3f6" stroke="#cad6df" stroke-width="2"/>
+<text x="75" y="1034" font-family="Noto Sans CJK SC, sans-serif" font-size="23" fill="#183143" font-weight="normal">1. 访问 Cortex-M3 TAP 前，先把边界扫描 TAP 置于 BYPASS 指令。</text>
+<text x="75" y="1075" font-family="Noto Sans CJK SC, sans-serif" font-size="23" fill="#183143" font-weight="normal">2. 每次 IR 移位共 9 位 = 5 + 4；未使用 TAP 的指令必须写入 BYPASS。</text>
+<text x="75" y="1116" font-family="Noto Sans CJK SC, sans-serif" font-size="23" fill="#183143" font-weight="normal">3. 每次数据移位，处于 BYPASS 的未使用 TAP 为数据扫描链增加 1 位。</text>
+<text x="50" y="1198" font-family="Noto Sans CJK SC, sans-serif" font-size="20" fill="#183143" font-weight="normal">图示范围：Figure 363 未画 JTCK；这不表示 JTAG 无需时钟。本图不定义 IR 装载位序或 SWD 切换序列。</text>
+</svg>

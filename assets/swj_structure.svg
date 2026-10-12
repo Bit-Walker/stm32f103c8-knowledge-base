@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="1620" viewBox="0 0 1500 1620" role="img" aria-labelledby="title desc"><title id="title">SWJ 引脚复用与内部路径</title><desc id="desc">独立关系图。RM0008 Rev21 Figure362的信号、输出使能、选择控制和上电复位关系，辅以Table219引脚映射。不是STM32F103C8T6内部Trace实现证明。</desc><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 Z" fill="#245e73"/></marker></defs><rect width="100%" height="100%" fill="#f5f7fa"/>
+<text x="50" y="64" font-family="Noto Sans CJK SC, sans-serif" font-size="36" fill="#183143" font-weight="bold">SWJ：五个引脚，两种调试接口</text>
+<text x="50" y="102" font-family="Noto Sans CJK SC, sans-serif" font-size="20" fill="#183143" font-weight="normal">独立重绘 | RM0008 Rev21 §31.3 Figure 362，p1081；引脚映射：Table 219，p1082</text>
+<rect x="50" y="130" width="1400" height="94" rx="12" fill="#fff5df" stroke="#e0c790" stroke-width="2"/>
+<text x="73" y="167" font-family="Noto Sans CJK SC, sans-serif" font-size="23" fill="#183143" font-weight="bold">适用性边界</text>
+<text x="240" y="167" font-family="Noto Sans CJK SC, sans-serif" font-size="21" fill="#183143" font-weight="normal">下图保全手册的 SWJ 通用逻辑关系；PA/PB 标识是 STM32F10xxx 的对应引脚。</text>
+<text x="73" y="202" font-family="Noto Sans CJK SC, sans-serif" font-size="21" fill="#183143" font-weight="normal">STM32F103C8T6：不据此推定内部 ETM 可用，不增加 LQFP48 未引出的并行 Trace 引脚。</text>
+<text x="60" y="270" font-family="Noto Sans CJK SC, sans-serif" font-size="27" fill="#183143" font-weight="bold">01  引脚与端口路径</text>
+<text x="75" y="313" font-family="Noto Sans CJK SC, sans-serif" font-size="21" fill="#183143" font-weight="bold">外部引脚 / 方向</text>
+<text x="420" y="313" font-family="Noto Sans CJK SC, sans-serif" font-size="21" fill="#183143" font-weight="bold">JTAG-DP 路径</text>
+<text x="945" y="313" font-family="Noto Sans CJK SC, sans-serif" font-size="21" fill="#183143" font-weight="bold">SW-DP / 异步跟踪路径</text>
+<rect x="50" y="330" width="1400" height="114" rx="12" fill="#ffffff" stroke="#cad6df" stroke-width="2"/>
+<text x="75" y="368" font-family="Noto Sans CJK SC, sans-serif" font-size="23" fill="#183143" font-weight="bold">PA13 · JTMS/SWDIO</text>
+<text x="75" y="407" font-family="Noto Sans CJK SC, sans-serif" font-size="20" fill="#183143" font-weight="normal">JTAG 输入；SWD 双向</text>
+<text x="420" y="378" font-family="Noto Sans CJK SC, sans-serif" font-size="22" fill="#183143" font-weight="normal">SWDITMS → 或门 → TMS</text>
+<text x="945" y="372" font-family="Noto Sans CJK SC, sans-serif" font-size="21" fill="#183143" font-weight="normal">SWDITMS → 或门 → DBGDI</text>
+<text x="945" y="409" font-family="Noto Sans CJK SC, sans-serif" font-size="18" fill="#183143" font-weight="normal">DBGDO → SWDO → 三态驱动 → 引脚</text>
+<rect x="50" y="460" width="1400" height="114" rx="12" fill="#ffffff" stroke="#cad6df" stroke-width="2"/>
+<text x="75" y="498" font-family="Noto Sans CJK SC, sans-serif" font-size="23" fill="#183143" font-weight="bold">PA14 · JTCK/SWCLK</text>
+<text x="75" y="537" font-family="Noto Sans CJK SC, sans-serif" font-size="20" fill="#183143" font-weight="normal">输入</text>
+<text x="420" y="508" font-family="Noto Sans CJK SC, sans-serif" font-size="22" fill="#183143" font-weight="normal">SWCLKTCK → TCK</text>
+<text x="945" y="502" font-family="Noto Sans CJK SC, sans-serif" font-size="21" fill="#183143" font-weight="normal">SWCLKTCK → DBGCLK</text>
+<text x="945" y="539" font-family="Noto Sans CJK SC, sans-serif" font-size="18" fill="#183143" font-weight="normal">SWCLKTCK 还送至 SWD/JTAG 选择逻辑</text>
+<rect x="50" y="590" width="1400" height="114" rx="12" fill="#ffffff" stroke="#cad6df" stroke-width="2"/>
+<text x="75" y="628" font-family="Noto Sans CJK SC, sans-serif" font-size="23" fill="#183143" font-weight="bold">PA15 · JTDI</text>
+<text x="75" y="667" font-family="Noto Sans CJK SC, sans-serif" font-size="20" fill="#183143" font-weight="normal">输入</text>
+<text x="420" y="638" font-family="Noto Sans CJK SC, sans-serif" font-size="22" fill="#183143" font-weight="normal">JTDI → TDI</text>
+<text x="945" y="632" font-family="Noto Sans CJK SC, sans-serif" font-size="21" fill="#183143" font-weight="normal">SW-DP 不使用此脚</text>
+<rect x="50" y="720" width="1400" height="114" rx="12" fill="#ffffff" stroke="#cad6df" stroke-width="2"/>
+<text x="75" y="758" font-family="Noto Sans CJK SC, sans-serif" font-size="23" fill="#183143" font-weight="bold">PB4 · NJTRST</text>
+<text x="75" y="797" font-family="Noto Sans CJK SC, sans-serif" font-size="20" fill="#183143" font-weight="normal">输入 / 低有效</text>
+<text x="420" y="768" font-family="Noto Sans CJK SC, sans-serif" font-size="22" fill="#183143" font-weight="normal">NJTRST → nTRST</text>
+<text x="945" y="762" font-family="Noto Sans CJK SC, sans-serif" font-size="21" fill="#183143" font-weight="normal">SW-DP 不使用此脚</text>
+<rect x="50" y="850" width="1400" height="114" rx="12" fill="#ffffff" stroke="#cad6df" stroke-width="2"/>
+<text x="75" y="888" font-family="Noto Sans CJK SC, sans-serif" font-size="23" fill="#183143" font-weight="bold">PB3 · JTDO/TRACESWO</text>
+<text x="75" y="927" font-family="Noto Sans CJK SC, sans-serif" font-size="20" fill="#183143" font-weight="normal">输出</text>
+<text x="420" y="898" font-family="Noto Sans CJK SC, sans-serif" font-size="22" fill="#183143" font-weight="normal">TDO → 输出复用 → JTDO</text>
+<text x="945" y="892" font-family="Noto Sans CJK SC, sans-serif" font-size="21" fill="#183143" font-weight="normal">TRACESWO → 输出复用 → 同一引脚</text>
+<text x="945" y="929" font-family="Noto Sans CJK SC, sans-serif" font-size="18" fill="#183143" font-weight="normal">异步 Trace 与 TDO 复用，见下方注释</text>
+<text x="60" y="1033" font-family="Noto Sans CJK SC, sans-serif" font-size="27" fill="#183143" font-weight="bold">02  选择、隔离与输出使能</text>
+<rect x="50" y="1055" width="1400" height="265" rx="12" fill="#ffffff" stroke="#cad6df" stroke-width="2"/>
+<rect x="75" y="1080" width="300" height="100" rx="12" fill="#eaf3f6" stroke="#cad6df" stroke-width="2"/>
+<text x="95" y="1119" font-family="Noto Sans CJK SC, sans-serif" font-size="24" fill="#183143" font-weight="bold">SWD/JTAG 选择逻辑</text>
+<text x="95" y="1153" font-family="Noto Sans CJK SC, sans-serif" font-size="19" fill="#183143" font-weight="normal">接收共享时钟 SWCLKTCK</text>
+<path d="M390,1105 L520,1105" fill="none" stroke="#245e73" stroke-width="2.5" marker-end="url(#arrow)"/>
+<text x="405" y="1090" font-family="Noto Sans CJK SC, sans-serif" font-size="18" fill="#183143" font-weight="normal">控制</text>
+<text x="540" y="1113" font-family="Noto Sans CJK SC, sans-serif" font-size="22" fill="#183143" font-weight="normal">SWDITMS 与选择控制经或门 → JTAG-DP.TMS</text>
+<path d="M390,1160 L520,1160" fill="none" stroke="#245e73" stroke-width="2.5" marker-end="url(#arrow)"/>
+<text x="540" y="1168" font-family="Noto Sans CJK SC, sans-serif" font-size="22" fill="#183143" font-weight="normal">SWDITMS 与选择控制经或门 → SW-DP.DBGDI</text>
+<text x="75" y="1220" font-family="Noto Sans CJK SC, sans-serif" font-size="22" fill="#183143" font-weight="normal">反馈连接：JTAG-DP、SW-DP 各有一条连线指向选择逻辑（原图未给信号名称）。</text>
+<text x="75" y="1263" font-family="Noto Sans CJK SC, sans-serif" font-size="22" fill="#183143" font-weight="normal">输出使能：SW-DP.DBGDOEN → SWDOEN → SWDIO 三态驱动使能；DBGDO 为输出数据。</text>
+<text x="75" y="1296" font-family="Noto Sans CJK SC, sans-serif" font-size="18" fill="#183143" font-weight="normal">这里用同名端点分段表示连通关系；“选择控制”是关系说明，不是新造的寄存器或信号名。</text>
+<text x="60" y="1364" font-family="Noto Sans CJK SC, sans-serif" font-size="27" fill="#183143" font-weight="bold">03  复位域与原图说明</text>
+<rect x="50" y="1385" width="1400" height="177" rx="12" fill="#eaf3f6" stroke="#cad6df" stroke-width="2"/>
+<text x="75" y="1423" font-family="Noto Sans CJK SC, sans-serif" font-size="23" fill="#183143" font-weight="normal">来自上电复位的 nPOTRST → JTAG-DP.nPOTRST，同时 → SW-DP.DBGRESETn。</text>
+<text x="75" y="1462" font-family="Noto Sans CJK SC, sans-serif" font-size="22" fill="#183143" font-weight="normal">NJTRST → JTAG-DP.nTRST 是另一条复位输入；本图不把两条复位路径合并。</text>
+<text x="75" y="1501" font-family="Noto Sans CJK SC, sans-serif" font-size="21" fill="#183143" font-weight="normal">原图后注：TRACESWO 与 TDO 复用，因此异步 Trace 只能与 SW-DP 配合，不能与 JTAG-DP 配合。</text>
+<text x="75" y="1537" font-family="Noto Sans CJK SC, sans-serif" font-size="20" fill="#183143" font-weight="normal">符号：→ 表示信号方向；双向为输入/输出；或门为逻辑 OR；三态驱动由输出使能控制。</text>
+<text x="50" y="1596" font-family="Noto Sans CJK SC, sans-serif" font-size="19" fill="#183143" font-weight="normal">范围：仅重表达 Figure 362；不是 SWD 协议时序图，也不覆盖 Figure 361 / 364 或 Arm 协议图。</text>
+</svg>
