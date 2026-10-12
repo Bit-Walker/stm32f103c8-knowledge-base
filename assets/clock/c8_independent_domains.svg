@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="1730" viewBox="0 0 1500 1730" role="img" aria-labelledby="title desc"><title id="title">独立域与辅助支路：RTC、IWDG、MCO 和 CSS</title><desc id="desc">RTCSEL选择LSE、LSI或HSE/128，经RTCEN供RTCCLK给备份域RTC核。PCLK1仅供RTC APB1接口；RTCCLK必须不高于PCLK1/4。LSE是备份域时钟，LSI与HSE不在备份域；掉VDD后计时保证需LSE及VBAT。IWDG从LSI供时，启动强制LSI。MCO选择SYSCLK、HSI、HSE或PLL/2到PA8。HSI供Flash编程接口。CSS监测HSE故障，产生NMI及TIM1 break；HSE直接或经PLL供SYSCLK时切HSI。</desc>
+<defs><style>text{font-family:"Noto Sans CJK SC","Microsoft YaHei",sans-serif;fill:#172b3a}.title{font-size:32px;font-weight:700}.heading{font-size:25px;font-weight:700}.body{font-size:23px}.small{font-size:19px}.edge{fill:none;stroke:#366985;stroke-width:3;stroke-linejoin:round}</style><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#366985"/></marker></defs>
+<rect width="1500" height="1730" fill="#fff"/>
+<text x="40" y="55" class="title">独立域与辅助支路：RTC、IWDG、MCO 和 CSS</text>
+<text x="40" y="94" class="small">STM32F103C8T6 · 自主关系图 · 非厂商原图 · 同名信号端口表示同一时钟</text>
+<rect x="30" y="118" width="1440" height="43" rx="7" fill="#173b50"/>
+<text x="47" y="148" class="heading" style="fill:white">F · RTC：核心时钟与 APB1 接口时钟分开 [D2, R3]</text>
+<g id="LSE"><rect x="45" y="180" width="475" height="122" rx="12" fill="#edf4f8" stroke="#91a9b7"/>
+<text x="61" y="213" class="body">LSE：晶体/陶瓷 32.768 kHz</text>
+<text x="61" y="245" class="body">旁路外部时钟：≤1 MHz</text>
+<text x="61" y="277" class="body">LSEBYP 选择；需 LSEON</text>
+</g>
+<g id="RTCSEL"><rect x="650" y="210" width="325" height="122" rx="12" fill="#edf4f8" stroke="#91a9b7"/>
+<text x="666" y="243" class="body">RTCSEL[1:0]</text>
+<text x="666" y="275" class="body">LSE / LSI / HSE÷128</text>
+<text x="666" y="307" class="body">或不选择时钟</text>
+</g>
+<g id="RTC_CORE"><rect x="1100" y="210" width="350" height="122" rx="12" fill="#edf4f8" stroke="#91a9b7"/>
+<text x="1116" y="243" class="body">RTCEN → RTCCLK</text>
+<text x="1116" y="275" class="body">备份域 RTC 核</text>
+<text x="1116" y="307" class="body">预分频 → 计数器</text>
+</g>
+<polyline id="LSE_to_RTCSEL" points="520,240 650,240" class="edge" marker-end="url(#arrow)"/>
+<polyline id="RTCSEL_to_RTC" points="975,260 1100,260" class="edge" marker-end="url(#arrow)"/>
+<g id="LSI"><rect x="45" y="330" width="475" height="90" rx="12" fill="#edf4f8" stroke="#91a9b7"/>
+<text x="61" y="363" class="body">LSI：标称 40 kHz</text>
+<text x="61" y="395" class="body">规格 30–60 kHz [D2]</text>
+</g>
+<polyline id="LSI_to_RTCSEL" points="520,370 590,370 590,272 650,272" class="edge" marker-end="url(#arrow)"/>
+<g id="HSE_DIV128"><rect x="45" y="455" width="475" height="58" rx="12" fill="#edf4f8" stroke="#91a9b7"/>
+<text x="61" y="488" class="body">HSE（与主图同一源）→ 固定 ÷128</text>
+</g>
+<polyline id="HSE128_to_RTCSEL" points="520,485 615,485 615,305 650,305" class="edge" marker-end="url(#arrow)"/>
+<g id="PCLK1_RTC"><rect x="650" y="420" width="325" height="58" rx="12" fill="#edf4f8" stroke="#91a9b7"/>
+<text x="666" y="453" class="body">PCLK1</text>
+</g>
+<g id="RTC_ASYNC"><rect x="1100" y="420" width="350" height="90" rx="12" fill="#edf4f8" stroke="#91a9b7"/>
+<text x="1116" y="453" class="body">RTC 的 APB1 接口</text>
+<text x="1116" y="485" class="body">RTCCLK ≤ PCLK1÷4</text>
+</g>
+<polyline id="PCLK1_to_RTC_interface" points="975,466 1100,466" class="edge" marker-end="url(#arrow)"/>
+<path d="M 1265 420 V 335" fill="none" stroke="#9b752c" stroke-width="3" stroke-dasharray="7 5"/>
+<text x="1290" y="388" class="small">读写/同步</text>
+<text x="45" y="570" class="small">LSE 位于备份域；LSI、HSE 不在备份域。掉 VDD 后持续计时：选择 LSE 且保持 VBAT。</text>
+<text x="45" y="607" class="small">HSE/128 路径须保持 PWR_CR.DBP=1；Stop 停 HSE，此路径不能持续供 RTC 自动唤醒。</text>
+<text x="45" y="644" class="small">RTCSEL 改源需备份域复位；APB1 接口重新运行不等于 RTC 镜像已同步。</text>
+<rect x="30" y="680" width="1440" height="43" rx="7" fill="#173b50"/>
+<text x="47" y="710" class="heading" style="fill:white">G · IWDG 独立供时 [D2, R3, R4]</text>
+<g id="LSI_PORT"><rect x="45" y="750" width="330" height="58" rx="12" fill="#edf4f8" stroke="#91a9b7"/>
+<text x="61" y="783" class="body">LSI（与上方同一源）</text>
+</g>
+<g id="IWDGCLK"><rect x="500" y="735" width="435" height="90" rx="12" fill="#edf4f8" stroke="#91a9b7"/>
+<text x="516" y="768" class="body">IWDGCLK → IWDG</text>
+<text x="516" y="800" class="body">启动后强制 LSI 开启</text>
+</g>
+<g id="IWDG_PR"><rect x="1055" y="735" width="390" height="122" rx="12" fill="#edf4f8" stroke="#91a9b7"/>
+<text x="1071" y="768" class="body">内部 PR → 计数器</text>
+<text x="1071" y="800" class="body">÷{4,8,16,32,64,</text>
+<text x="1071" y="832" class="body">128,256}</text>
+</g>
+<polyline id="LSI_to_IWDG" points="375,780 500,780" class="edge" marker-end="url(#arrow)"/>
+<polyline id="IWDG_to_PR" points="935,780 1055,780" class="edge" marker-end="url(#arrow)"/>
+<text x="45" y="878" class="small">IWDG 不由 PCLK1 给计数器供时；LSI 偏差进入超时预算。Stop/Standby 下仍可工作。</text>
+<text x="45" y="915" class="small">APB 访问与更新标志另有勘误条件，不能用 PR 分频后的计数频率代替 IWDGCLK。</text>
+<rect x="30" y="955" width="1440" height="43" rx="7" fill="#173b50"/>
+<text x="47" y="985" class="heading" style="fill:white">H · 输出与 Flash 编程接口 [D1, D4, R1, R2, R3]</text>
+<g id="MCO_INPUTS"><rect x="45" y="1025" width="490" height="58" rx="12" fill="#edf4f8" stroke="#91a9b7"/>
+<text x="61" y="1058" class="body">SYSCLK / HSI / HSE / PLLCLK÷2</text>
+</g>
+<g id="MCO_SELECT"><rect x="650" y="1009" width="335" height="90" rx="12" fill="#edf4f8" stroke="#91a9b7"/>
+<text x="666" y="1042" class="body">MCO[2:0] 选择</text>
+<text x="666" y="1074" class="body">也可选择无时钟输出</text>
+</g>
+<g id="MCO_PA8"><rect x="1100" y="1009" width="345" height="90" rx="12" fill="#edf4f8" stroke="#91a9b7"/>
+<text x="1116" y="1042" class="body">MCO → PA8 复用输出</text>
+<text x="1116" y="1074" class="body">SYSCLK 输出须 ≤50 MHz</text>
+</g>
+<polyline id="sources_to_MCO" points="535,1055 650,1055" class="edge" marker-end="url(#arrow)"/>
+<polyline id="MCO_to_PA8" points="985,1055 1100,1055" class="edge" marker-end="url(#arrow)"/>
+<g id="HSI_FLASH"><rect x="45" y="1150" width="330" height="58" rx="12" fill="#edf4f8" stroke="#91a9b7"/>
+<text x="61" y="1183" class="body">HSI</text>
+</g>
+<g id="FLITFCLK"><rect x="500" y="1134" width="945" height="90" rx="12" fill="#edf4f8" stroke="#91a9b7"/>
+<text x="516" y="1167" class="body">FLITFCLK → Flash 编程接口（源固定为 HSI）</text>
+<text x="516" y="1199" class="body">与主图的存储器/AHB 访问时钟分别看待</text>
+</g>
+<polyline id="HSI_to_FLITFCLK" points="375,1180 500,1180" class="edge" marker-end="url(#arrow)"/>
+<rect x="30" y="1270" width="1440" height="43" rx="7" fill="#173b50"/>
+<text x="47" y="1300" class="heading" style="fill:white">I · CSS 是故障控制关系，不是另一时钟源 [R5]</text>
+<g id="HSE_CSS"><rect x="45" y="1340" width="330" height="58" rx="12" fill="#edf4f8" stroke="#91a9b7"/>
+<text x="61" y="1373" class="body">HSE</text>
+</g>
+<g id="CSS"><rect x="500" y="1324" width="420" height="90" rx="12" fill="#edf4f8" stroke="#91a9b7"/>
+<text x="516" y="1357" class="body">CSS：使能后监测故障</text>
+<text x="516" y="1389" class="body">故障时关闭 HSE</text>
+</g>
+<g id="CSS_EVENTS"><rect x="1035" y="1324" width="410" height="90" rx="12" fill="#edf4f8" stroke="#91a9b7"/>
+<text x="1051" y="1357" class="body">NMI / CSSI</text>
+<text x="1051" y="1389" class="body">TIM1 break</text>
+</g>
+<polyline id="HSE_to_CSS" points="375,1370 500,1370" class="edge" marker-end="url(#arrow)"/>
+<polyline id="CSS_to_events" points="920,1370 1035,1370" class="edge" marker-end="url(#arrow)"/>
+<text x="45" y="1468" class="small">若故障时 SYSCLK 来自 HSE，或来自以 HSE 为输入的 PLL：硬件把 SYSCLK 切到 HSI。</text>
+<text x="45" y="1505" class="small">后一情形还会关闭 PLL。HPRE/PPRE 不因此复位，不能直接把 HCLK 当作 8 MHz。</text>
+<text x="45" y="1542" class="small">CSSC 清除故障中断；清标志本身不会重建已失效的 USB、通信或软件时基。</text>
+<text x="45" y="1625" class="small">低功耗边界：普通 Stop 停 HSI/HSE/PLL，唤醒后 SYSCLK 选 HSI；调试保持模式另有例外 [R6]。</text>
+<text x="45" y="1663" class="small">来源代号、精度条件、勘误边界与原图脚注见配套核对表。本图不绘制 C8 不具备的 TIM5 等分支。</text>
+<metadata>{&quot;device&quot;: &quot;STM32F103C8T6&quot;, &quot;sources&quot;: [&quot;DS5319 Rev20 Fig2 p12; Tables21,23,25 pp51,53,55&quot;, &quot;RM0008 Rev21 pp93,97–98,101,118–119,483–485,497&quot;], &quot;edges&quot;: [[&quot;LSE&quot;, &quot;RTCSEL&quot;], [&quot;LSI&quot;, &quot;RTCSEL&quot;], [&quot;HSE/128&quot;, &quot;RTCSEL&quot;], [&quot;RTCSEL&quot;, &quot;RTCEN&quot;, &quot;RTCCLK&quot;, &quot;RTC core&quot;], [&quot;PCLK1&quot;, &quot;RTC APB1 interface&quot;], [&quot;LSI&quot;, &quot;IWDGCLK&quot;, &quot;IWDG PR&quot;, &quot;IWDG counter&quot;], [&quot;HSI&quot;, &quot;FLITFCLK&quot;], [&quot;SYSCLK|HSI|HSE|PLLCLK/2&quot;, &quot;MCO&quot;, &quot;PA8&quot;]], &quot;RTC_interface_constraint&quot;: &quot;RTCCLK &lt;= PCLK1/4&quot;}</metadata></svg>
