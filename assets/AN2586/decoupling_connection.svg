@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="740" viewBox="0 0 1100 740" role="img" aria-labelledby="title description">
+<title id="title">VDD/VSS 引脚对的去耦连接关系与局部回路示意</title>
+<desc id="description">自主绘制的连接关系示意，非比例、非确定PCB尺寸。节点：MCU的VDD引脚、MCU的VSS引脚、去耦电容的VDD侧端子和VSS侧端子、VDD过孔、VSS过孔。VDD引脚与电容VDD侧端子及VDD过孔属于同一VDD局部网络；VSS引脚与电容VSS侧端子及VSS过孔属于同一VSS局部网络。电容跨接这两个网络；两网络之间没有导线短接。虚线框只圈出局部连接区域，不是导线、接地边界或实际回路路径。图中未绘制芯片内部电流通路。引脚、电容与相关焊盘、走线、过孔的连接需低阻抗；局部回路面积尽量小。电容应尽量靠近相应引脚，或放在这些引脚对应的PCB背面。事实依据为STMicroelectronics AN2586 Rev8（2022-12）Figure13，第22页及§6.3–6.4，第21页。未指定引脚编号、器件尺寸、电容值、距离、板层数或过孔数量规则。</desc>
+<metadata>{"source_document":"AN2586","revision":"8","date":"2022-12","figure":13,"figure_page":22,"text_sections":["6.3","6.4"],"text_page":21,"representation":"independent conceptual connection diagram; not a PCB template", "nets":{"VDD":["MCU.VDD","C.VDD_side","via.VDD"],"VSS":["MCU.VSS","C.VSS_side","via.VSS"]},"component":{"C":{"terminal_1":"VDD","terminal_2":"VSS"}}}</metadata>
+<defs><style>
+text { font-family: 'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif; fill: #172b3a; }
+.title { font-size: 28px; font-weight: 700; }
+.body { font-size: 22px; }
+.small { font-size: 18px; }
+.net { fill:none; stroke-width:7; stroke-linejoin:round; stroke-linecap:round; }
+</style></defs>
+<rect width="1100" height="740" fill="white"/>
+<text x="45" y="53" class="title">VDD/VSS 引脚对：连接关系与局部回路示意</text>
+<text x="45" y="88" class="small">自主绘制 · 非比例 · 非确定 PCB 尺寸 · 不代表封装引脚顺序</text>
+<!-- A region annotation only: not a conductor or fabricated on-chip connection. -->
+<rect x="324" y="154" width="375" height="310" rx="18" fill="#f5f8fa" stroke="#879aa7" stroke-width="2" stroke-dasharray="7 7"/>
+<text x="335" y="138" class="small">局部连接区域（虚线不是导线）</text>
+<rect x="65" y="163" width="222" height="290" rx="14" fill="#edf2f5" stroke="#334c5e" stroke-width="2"/>
+<text x="176" y="294" class="body" text-anchor="middle">STM32F10xxx</text>
+<text x="176" y="327" class="small" text-anchor="middle">仅示一对电源脚</text>
+<!-- VDD net: pin to capacitor terminal and power via. -->
+<path d="M287 228 H790 M619 228 V291" class="net" stroke="#9a491b"/>
+<rect x="278" y="219" width="36" height="18" fill="#9a491b"/>
+<circle cx="619" cy="228" r="7" fill="#9a491b"/>
+<text x="331" y="211" class="body">VDD 引脚</text>
+<text x="445" y="264" class="small" fill="#9a491b">VDD 局部网络</text>
+<!-- Capacitor symbol: two distinct plates, no conductive short between nets. -->
+<path d="M590 291 H648 M590 319 H648" stroke="#172b3a" stroke-width="5"/>
+<text x="501" y="307" class="body" text-anchor="end">去耦电容</text>
+<text x="501" y="338" class="small" text-anchor="end">跨接 VDD / VSS</text>
+<path d="M287 402 H790 M619 319 V402" class="net" stroke="#17678a"/>
+<rect x="278" y="393" width="36" height="18" fill="#17678a"/>
+<circle cx="619" cy="402" r="7" fill="#17678a"/>
+<text x="331" y="440" class="body">VSS 引脚</text>
+<text x="445" y="382" class="small" fill="#17678a">VSS 局部网络</text>
+<!-- Vias link to their corresponding networks, without assigning board layers. -->
+<circle cx="790" cy="228" r="20" fill="white" stroke="#9a491b" stroke-width="5"/>
+<circle cx="790" cy="228" r="8" fill="white" stroke="#9a491b" stroke-width="2"/>
+<text x="831" y="221" class="body">VDD 过孔</text>
+<text x="831" y="252" class="small">接 VDD 电源网络</text>
+<circle cx="790" cy="402" r="20" fill="white" stroke="#17678a" stroke-width="5"/>
+<circle cx="790" cy="402" r="8" fill="white" stroke="#17678a" stroke-width="2"/>
+<text x="831" y="395" class="body">VSS 过孔</text>
+<text x="831" y="426" class="small">接 VSS 地网络</text>
+<text x="45" y="510" class="body">电容尽量靠近相应引脚，或置于这些引脚对应的 PCB 背面。</text>
+<text x="45" y="547" class="body">检查局部短回路：焊盘、走线、过孔均需低阻抗；回路面积尽量小。</text>
+<text x="45" y="584" class="small">图中未绘芯片内部电流通路；虚线范围不表示完整电流回路。</text>
+<line x1="45" y1="613" x2="1055" y2="613" stroke="#cdd6dc"/>
+<text x="45" y="647" class="small">依据：STMicroelectronics，AN2586 Rev 8（2022-12），Figure 13，p22。</text>
+<text x="45" y="678" class="small">布置与低阻抗要求：同文 §6.3–6.4，p21。此图不是原厂 PCB 图或尺寸模板。</text>
+<text x="45" y="709" class="small">未指定电容值、距离或 PCB 层数；仅表达该引脚对的局部连接关系。</text>
+</svg>
