@@ -11,7 +11,9 @@
 
 输入 TIM 时钟 Hz、CKD 枚举、目标死区 ns；返回 DTG 编码，仅用于 TIM1。硬件可表示的延迟为 0–127、128–254（步长 2）、256–504（步长 8）、512–1008 个 tDTS；不是连续的 0–1023 个 tDTS。必须把返回编码按本章分段公式反算为实际死区，尤其功率开关的最小安全死区不得仅凭请求值判断。
 
-下述计算细节核对 [ST HAL v1.1.4 固定头文件](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_ll_tim.h#L917-L968)，属于该版本宏实现边界，UM1850 只给单位和接口用途。宏先用整数皮秒计算 tDTS，再按所在分段向下量化；请求达到内部 1024×tDTS 边界及以上时返回 0，而不是饱和到最大死区。返回 0 因而既可能表示零/过小请求，也可能表示超范围，不能当成成功状态。TIMCLK 必须非零，CKD 必须为 DIV1/2/4。部分分支在转换成 uint64_t 之前先做 DT×1000U；普通 32 位无符号输入超过 4294967 ns 就存在中间溢出风险，不能用超大请求测试其限幅。
+下述计算细节核对 [ST HAL v1.1.4 固定头文件](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_ll_tim.h#L917-L968)，属于该版本宏实现边界，UM1850 只给单位和接口用途。宏先用整数皮秒近似计算 tDTS，再相对这个近似值按所在分段向下量化；请求达到内部 1024×tDTS 边界及以上时返回 0，而不是饱和到最大死区。返回 0 因而既可能表示零/过小请求，也可能表示超范围，不能当成成功状态。TIMCLK 必须非零，CKD 必须为 DIV1/2/4。部分分支在转换成 uint64_t 之前先做 DT×1000U；普通 32 位无符号输入超过 4294967 ns 就存在中间溢出风险，不能用超大请求测试其限幅。
+
+整数皮秒的截断也须保留：按固定头文件[内部 TIM_CALC_DTS 定义](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_ll_tim.h#L150-L162)，72 MHz、CKD=DIV1时使用13888 ps，而理想时钟周期是13888.888… ps。请求1736 ns时宏返回DTG=125，按理想72 MHz硬件时基反算为1736.111… ns，略高于请求。因此这里的“向下量化”不构成实际死区始终≤请求的保证；同样也不能保证满足最小死区。该数值是依据固定宏和硬件分段式的有理数复算，未包含实际时钟误差、引脚延迟或板端测量。
 
 ### `__LL_TIM_CALC_PSC`
 
