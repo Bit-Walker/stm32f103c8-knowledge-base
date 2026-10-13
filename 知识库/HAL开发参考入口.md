@@ -33,6 +33,7 @@ UM1847 §4.2.1（pp18–20）将工程配置、HAL 启动、时钟配置、MSP�
 
 UM1850 §3.12.3（pp33–36）介绍三种处理模式。每个具体 API 的返回时点、完成事件和数据所有权需要分别判断。
 
+- [SPI 接收与 DMA 启动边界](../参数/HAL_SPI接收与DMA启动边界.md)：主机双线接收、双 DMA 部分启动及停止返回值；尚非完整 SPI 主题。
 - [ADC HAL 接口](../参数/ADC/HAL接口.md)、[轮询边界](../参数/ADC/HAL轮询边界.md)、[初始化边界](../参数/ADC/HAL初始化边界.md)、[DMA 生命周期与恢复](../参数/ADC/DMA生命周期与恢复.md)
 - [TIM HAL 初始化边界](../参数/TIM/HAL初始化边界.md)、[定时器功能与同步](06_定时器PWM与同步.md)
 - [USART HAL 接口索引](../参数/USART/HAL接口索引.md)、[数据宽度与版本边界](../参数/USART/HAL数据宽度与版本边界.md)、[DMA 生命周期](../参数/USART/DMA生命周期.md)、[ReceiveToIdle 事件位置](../参数/USART/ReceiveToIdle与事件位置.md)
