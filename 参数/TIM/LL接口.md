@@ -1258,7 +1258,7 @@ __STATIC_INLINE uint32_t LL_TIM_IsEnabledExternalClock (TIM_TypeDef * TIMx);
 __STATIC_INLINE void LL_TIM_SetClockSource (TIM_TypeDef * TIMx, uint32_t ClockSource);
 ```
 
-设置计数器内部或外部时钟来源。选择外部模式1后还须用 LL_TIM_SetTriggerInput 选择 TRGI；TI捕获输入由 LL_TIM_IC_Config 配置，ETR路径则用 LL_TIM_ConfigETR，不能仅调用本函数就假定引脚/滤波已完成。
+设置计数器内部或外部时钟来源。固定实现的修改掩码同时包含SMCR.SMS与ECE：INTERNAL将两者清零；EXT_MODE1设置SMS=111并清ECE；EXT_MODE2设置ECE并清SMS。因此在已经配置复位/门控/触发从模式后调用它，会覆盖原SMS选择；需要组合时钟与从模式时，应在停止且消费者隔离条件下规划设置次序，再按允许的硬件组合建立最终SMS。选择外部模式1后还须用 LL_TIM_SetTriggerInput 选择 TRGI；TI捕获输入由 LL_TIM_IC_Config 配置，ETR路径则用 LL_TIM_ConfigETR，不能仅调用本函数就假定引脚/滤波已完成。
 
 - `TIMx`：TIM1、TIM2、TIM3 或 TIM4 寄存器实例；高级寄存器功能仅 TIM1。
 - `ClockSource`：内部、外部模式 1 或外部模式 2 的计数时钟。
@@ -1274,7 +1274,7 @@ __STATIC_INLINE void LL_TIM_SetClockSource (TIM_TypeDef * TIMx, uint32_t ClockSo
 __STATIC_INLINE void LL_TIM_SetEncoderMode (TIM_TypeDef * TIMx, uint32_t EncoderMode);
 ```
 
-设置TI1、TI2 或双输入编码器计数方式。
+设置TI1、TI2 或双输入编码器计数方式。固定实现只修改SMCR.SMS，不清ECE；进入编码器模式前须排除遗留外部时钟模式2，不能认为本入口完成全部时钟切换。符号后缀与实际计数输入的历史差异见[编码器符号核查](LL辅助宏.md#编码器-x2-模式的文档符号冲突)。
 
 - `TIMx`：TIM1、TIM2、TIM3 或 TIM4 寄存器实例；高级寄存器功能仅 TIM1。
 - `EncoderMode`：编码器 x2 TI1、x2 TI2 或 x4 TI12。
@@ -1306,7 +1306,7 @@ __STATIC_INLINE void LL_TIM_SetTriggerOutput (TIM_TypeDef * TIMx, uint32_t Timer
 __STATIC_INLINE void LL_TIM_SetSlaveMode (TIM_TypeDef * TIMx, uint32_t SlaveMode);
 ```
 
-设置定时器从模式。
+设置定时器从模式。固定实现只修改SMCR.SMS，保留ECE；选择DISABLED不自动关闭外部时钟模式2，也不单独隔离TIM1的TRGI→COM消费路径。
 
 - `TIMx`：TIM1、TIM2、TIM3 或 TIM4 寄存器实例；高级寄存器功能仅 TIM1。
 - `SlaveMode`：从模式选择。
@@ -1322,7 +1322,7 @@ __STATIC_INLINE void LL_TIM_SetSlaveMode (TIM_TypeDef * TIMx, uint32_t SlaveMode
 __STATIC_INLINE void LL_TIM_SetTriggerInput (TIM_TypeDef * TIMx, uint32_t TriggerInput);
 ```
 
-设置TRGI 触发输入来源。
+设置TRGI触发输入来源。固定实现只修改SMCR.TS，不暂停计数或隔离消费者。RM0008 Rev21 p343要求TS仅在未被使用时改变，以免切换时误检测边沿；SMS=000只是手册给出的例子，TIM1还须核对CCUS控制的TRGI→COM路径。
 
 - `TIMx`：TIM1、TIM2、TIM3 或 TIM4 寄存器实例；高级寄存器功能仅 TIM1。
 - `TriggerInput`：TRGI 来源；ITR 实际连线取决于定时器实例。

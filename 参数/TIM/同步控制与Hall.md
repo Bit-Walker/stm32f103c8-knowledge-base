@@ -13,7 +13,7 @@ STM32F103C8T6，固定来源整合。下文保留原手册模式条件、库实�
 |110 触发|TRGI上升沿启动计数|不自动清CNT，输入变低不会自动停止|
 |111 外部时钟1|合格TRGI事件作为计数源|另经PSC；需要CEN允许；不等同于单次启动触发|
 
-SMS为从模式选择，TRGI为触发输入，CEN为计数器使能，CNT为计数值，PSC为预分频字段；UDIS禁止更新事件，URS选择更新请求来源。复位、门控、触发模式可以使用内部计数时钟；SMS=000并非内部时钟的通用必要条件。ECE为外部时钟模式2使能，须独立按所需计数源设置。
+SMS为从模式选择，TRGI为触发输入，CEN为计数器使能，CNT为计数值，PSC为预分频字段；UDIS禁止更新事件，URS选择更新请求来源。复位、门控、触发模式可以使用内部计数时钟；SMS=000并非内部时钟的通用必要条件。ECE为外部时钟模式2使能，须独立按所需计数源设置。切换TS前须确认其未被使用，以免过渡产生错误边沿；不能只清CEN就认为所有触发消费者已隔离。手册以SMS=000为例，TIM1的CCUS/COM路径仍需另查。固定LL_TIM_SetClockSource同时改SMS与ECE，LL_TIM_SetSlaveMode和LL_TIM_SetEncoderMode只改SMS，配置顺序及遗留位见[LL接口](LL接口.md#ll_tim_setclocksource)。
 
 来源：[RM0008 Rev21 pp334–336](https://www.st.com/resource/en/reference_manual/cd00171190.pdf#page=334)、[SMCR pp342–344](https://www.st.com/resource/en/reference_manual/cd00171190.pdf#page=342)。复位从模式叙述中的URS措辞差异见[时基与更新](计数时基与更新.md)。
 

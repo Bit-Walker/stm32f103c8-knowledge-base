@@ -17,7 +17,7 @@
 <text x="544" y="284" class="small">自由运行计数不在每次捕获复位</text>
 <rect x="1030" y="125" width="435" height="180" rx="8" fill="#edf5fa" stroke="#a5bbc9"/>
 <text x="1044" y="154" class="bold">传输与样本有效性</text>
-<text x="1044" y="184" class="small">TIM2_CH2 → DMA1通道7</text>
+<text x="1044" y="184" class="small">CC2事件（CCDS=0）→ DMA1通道7</text>
 <text x="1044" y="209" class="small">CCR2 → RAM捕获缓冲区</text>
 <text x="1044" y="234" class="small">例1000个uint16_t占2000字节</text>
 <text x="1044" y="259" class="small">正常模式CNDTR=1000，非永久录制</text>
@@ -43,12 +43,13 @@
 <text x="809" y="631" class="small">ARR=65535、fCNT=8MHz：65536拍=8.192ms。</text>
 <text x="809" y="656" class="small">捕获预分频1且无额外回绕：f_in&gt;122.0703125Hz。</text>
 <text x="809" y="681" class="small">源图F302的32位TIM2不能照搬到C8。</text>
-<text x="809" y="706" class="small">ETR 8MHz÷4=2MHz；1kHz输入约2000计数。</text>
+<text x="809" y="706" class="small">ETR 8MHz÷4、PSC=0：1kHz输入约2000计数。</text>
 <text x="809" y="731" class="small">内部8MHz计数同输入约8000计数。</text>
 <text x="809" y="756" class="small">电气频率、滤波与同步约束仍需同时满足。</text>
 <text x="30" y="824" class="small">滤波符号：fCK_INT为内核时钟；fDTS由CKD选择；fS为滤波采样频率（Hz）；N为连续一致样本数；T_S为间隔（s）。</text>
 <text x="30" y="857" class="small">原应用笔记的两级触发器图只说明同步机制；约2～3拍和跨系列频率建议不替代C8的具体频率限制。</text>
 <text x="30" y="890" class="small">原HSI / ETR的ppm统计裁图缺少完整坐标，不能重新构造全分布、断言误差为零或作为本器件实测性能。</text>
-<text x="30" y="953" class="small">来源：RM0008 Rev21输入捕获及DMA映射pp281–282、312–315、342–344；DS5319 Rev20表40；ES096 §§2.6.5–6。</text>
+<text x="30" y="953" class="small">来源：RM0008 Rev21输入捕获及DMA映射pp281–282、312–315、342–344、351、406；DS5319 Rev20表40；ES096 §§2.6.5–6。</text>
 <text x="30" y="987" class="small">应用目标与原数值按保留AN4776图4、7～17裁图整合；完整AN原页未核验，未执行目标板测量。</text>
+<text x="30" y="1021" class="small">捕获对须来自同一连续启用段且IC2PSC未改变；首次捕获先建立时间戳基准，停用CC2E会复位捕获分频。</text>
 </svg>

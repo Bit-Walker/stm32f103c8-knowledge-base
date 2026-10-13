@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1500" height="1110" viewBox="0 0 1500 1110" role="img"><title>TIM1 DMA波形分组：三字段预装载流水</title><rect width="1500" height="1110" fill="white"/><style>text{font-family:Arial,"Noto Sans CJK SC",sans-serif;fill:#17314b}.title{font-size:29px;font-weight:bold}.body{font-size:19px}.small{font-size:17px}.bold{font-size:22px;font-weight:bold}</style><defs><marker id="a" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0 0 L7 3.5 L0 7" fill="#406780"/></marker></defs>
 <text x="30" y="45" class="title">TIM1 DMA波形分组：三字段预装载流水</text>
 <text x="30" y="81" class="body">按C8寄存器语义整理的初始化方案：独占TIM1，向上PWM1，ARPE / OC1PE启用，RCR决定分组边界。</text>
-<text x="30" y="114" class="small">连续循环播放要求OPM=0；初态、总线最坏延迟和组界波形仍需目标验证，不将原F302系统图视为已验证C8工程。</text>
+<text x="30" y="114" class="small">初始化UG之前及连续循环播放要求UDIS=0，循环播放要求OPM=0；初态、总线最坏延迟和组界波形仍需目标验证，不将原F302系统图视为已验证C8工程。</text>
 <rect x="30" y="157" width="420" height="185" rx="8" fill="#edf5fa" stroke="#a5bbc9"/>
 <text x="44" y="186" class="bold">内存表</text>
 <text x="44" y="216" class="small">每组：ARR_i、RCR_i、CCR1_i</text>
@@ -80,7 +80,7 @@
 <text x="809" y="861" class="small">原表C段CCR1=200与图33的2000 / 50%目标不同。</text>
 <text x="809" y="886" class="small">原例32MHz计数不能由72MHz直接整数PSC精确得到。</text>
 <text x="809" y="911" class="small">具体原数值与复算结果保留在正文表。</text>
-<text x="30" y="976" class="small">来源：RM0008 Rev21 DCR/DMAR pp361–362、DMA映射pp281–282、预装载与RCR pp295–307、356–358。</text>
+<text x="30" y="976" class="small">来源：RM0008 Rev21 DCR/DMAR pp361–362、DMA映射pp281–282、预装载与RCR pp295–307、338–339、356–358。</text>
 <text x="30" y="1009" class="small">保留AN4776图28～33目标与来源差异；NDTR / DBL以及控制器burst概念按C8重新限定。</text>
 <text x="30" y="1042" class="small">表中UEV时刻是功能阶段，不表示多个APB/DMA访问零延迟完成；RCR内部重装与首组状态须纳入实测。</text>
 </svg>
