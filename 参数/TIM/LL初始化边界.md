@@ -18,6 +18,8 @@ CEN为计数使能，CKD为采样时钟分频字段，ARR为自动重装，PSC�
 
 来源：[LL TIM实现L168–727](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Src/stm32f1xx_ll_tim.c#L168-L727)、[SetEncoderMode L2529–2532](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_ll_tim.h#L2529-L2532)。更新及TRGO条件见[计数时基与更新](计数时基与更新.md)。
 
+固定LL_TIM_Init先读取CR1，只修改计数模式和CKD，不统一清除原OPM/UDIS，也不选择ARPE。它随后写ARR/PSC并发出UG后返回SUCCESS；原UDIS=1时不能据此认定PSC或已预装载ARR完成更新。需要UG建立新活动配置时，须在发出前允许UEV并隔离触发消费者，发出后才清UDIS不会追溯装载。依据：[固定LL实现L324–366](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Src/stm32f1xx_ll_tim.c#L324-L366)、[RM0008 Rev21 CR1 pp338–339](https://www.st.com/resource/en/reference_manual/cd00171190.pdf#page=338)。
+
 ## 2 Hall初始化的两项历史状态依赖
 
 ### 2.1 MMS通过按位或合入，旧选择可能保留

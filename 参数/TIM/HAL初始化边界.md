@@ -9,7 +9,7 @@
 
 HAL_TIM_Base_Init检查空句柄并执行参数断言；State为RESET时才初始化锁并调用MSP。随后设BUSY、调用TIM_Base_SetConfig，最后设READY并返回HAL_OK。函数本体没有先清CEN、关闭全部通道、停止DMA或隔离TRGO接收端；不能把Init当作活动采集/输出的停止接口。
 
-TIM_Base_SetConfig读取并更新CR1中的DIR/CMS、CKD及ARPE，写ARR、PSC；具备重复计数器的实例还写RCR，最后写EGR.UG。CR1其余状态及SMCR/CR2等既有配置不能假定因此回到复位值。UG的预装载、触发和标志后果仍受现有UDIS、URS、MMS及从模式配置影响。
+TIM_Base_SetConfig读取并更新CR1中的DIR/CMS、CKD及ARPE，写ARR、PSC；具备重复计数器的实例还写RCR，最后写EGR.UG。CR1其余状态及SMCR/CR2等既有配置不能假定因此回到复位值。UG的预装载、触发和标志后果仍受现有UDIS、URS、MMS及从模式配置影响。尤其原UDIS=1会保留PSC以及已启用预装载的ARR/CCRx活动值；返回HAL_OK或读回新PSC，不证明新时基已生效。需要用初始化UG装载时，应在该UG之前建立UDIS=0并隔离下游；仅在函数返回后清UDIS不能追溯补做先前未发生的更新。依据：RM0008 Rev21 CR1，pp338–339。
 
 v1.1.10还将DMABurstState、全部主通道与互补通道软件状态置READY；v1.1.4使用较早的共享状态表示。这些赋值不证明相关DMA或通道已在硬件上静止。需要重配时应先在资源所有权和系统输出保护要求下建立静止边界。
 
