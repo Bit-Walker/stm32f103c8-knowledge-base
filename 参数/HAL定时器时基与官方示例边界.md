@@ -2,7 +2,7 @@
 
 对象：STM32CubeF1 官方 NUCLEO-F103RB 的 HAL_TimeBase_TIM 示例，固定提交 `c7656f1fee178058be2f8ebfc8df9eaf91dc565e`。该例使用 TIM2；迁移到 STM32F103C8T6 时保留下面的资源与版本条件。
 
-另以 HAL 驱动固定提交 `77fbb30b7a1d02533980400083e48c559aae5a4f` 核对核心时基语义。两组来源独立列出；本文未确认该 CubeF1 提交的 HAL 子模块恰为此驱动版本，也未编译或运行示例。
+该 CubeF1 提交的 [HAL 子模块记录](https://api.github.com/repos/STMicroelectronics/STM32CubeF1/contents/Drivers/STM32F1xx_HAL_Driver?ref=c7656f1fee178058be2f8ebfc8df9eaf91dc565e)固定到 `bd368aa335c529641d2e567574885e02deacc64a`；下文采用此匹配提交的核心及头文件。HAL 核心文件与先前独立核验的 v1.1.10 核心 blob 相同，不据单文件相同推断两个提交的全部内容相同。未编译或运行示例。
 
 ## 覆盖函数与实际调用链
 
@@ -24,22 +24,30 @@
 
 ## 暂停与恢复
 
-示例 L119–134 只关闭/打开 TIM 更新中断。[独立固定 HAL 头文件](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/77fbb30b7a1d02533980400083e48c559aae5a4f/Inc/stm32f1xx_hal_tim.h#L1137-L1153)的相应宏只改变 DIER 中指定中断位；`TIM_IT_UPDATE` 对应 UIE。DIER 全称 DMA/interrupt enable register；UIE 为 Update interrupt enable。
+示例 L119–134 只关闭/打开 TIM 更新中断。[匹配 HAL 头文件](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Inc/stm32f1xx_hal_tim.h#L1138-L1154)的相应宏只改变 DIER 中指定中断位；`TIM_IT_UPDATE` 对应 UIE。DIER 全称 DMA/interrupt enable register；UIE 为 Update interrupt enable。
 
 因此在采用这组宏定义时，暂停函数不清 CEN、不清 UIF，也不重置 CNT。CEN 为 Counter enable；UIF 为 Update interrupt flag；CNT 为 Counter。不要把暂停软件 tick 等同为停止计数器，也不能把恢复视为必定从全新完整周期开始。更新事件与标志条件见上述硬件页面。
 
 ## 与核心 tick 配置的配合
 
-[固定 HAL 核心 L293–346](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/77fbb30b7a1d02533980400083e48c559aae5a4f/Src/stm32f1xx_hal.c#L293-L346)中，`HAL_IncTick` 每次增加 `uwTickFreq`；`HAL_SetTickFreq` 更改该值并调用 `HAL_InitTick(uwTickPrio)`。[对应枚举](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/77fbb30b7a1d02533980400083e48c559aae5a4f/Inc/stm32f1xx_hal.h#L45-L61)中 1 kHz、100 Hz、10 Hz 分别对应增量 1、10、100 ms。
+[固定 HAL 核心 L293–346](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal.c#L293-L346)中，`HAL_IncTick` 每次增加 `uwTickFreq`；`HAL_SetTickFreq` 更改该值并调用 `HAL_InitTick(uwTickPrio)`。[对应枚举](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Inc/stm32f1xx_hal.h#L45-L61)中 1 kHz、100 Hz、10 Hz 分别对应增量 1、10、100 ms。
 
-官方示例的覆盖函数始终配置 1 ms，没有读取 `uwTickFreq`。若与上述固定核心组合并成功切换到每次增量 10 ms，实际中断仍每 1 ms 发生，软件时间就会加快；不能只更改枚举而保留原例周期。这里是版本组合条件下的静态推导。
+官方示例的覆盖函数始终配置 1 ms，没有读取 `uwTickFreq`。若在该匹配核心上成功切换到每次增量 10 ms，实际中断仍每 1 ms 发生，软件时间就会加快；不能只更改枚举而保留原例周期。这里是固定示例与其匹配驱动在更改 tick 频率条件下的静态推导；原例没有主动调用 HAL_SetTickFreq。
 
 同一覆盖函数未写 `uwTickPrio`，而核心默认实现会在接受优先级后保存它；使用 `HAL_GetTickPrio` 或再次重设时基前，还需核对覆盖函数与核心状态变量的一致性。
 
-固定核心的 `HAL_Init` 调用 `HAL_InitTick` 后未检查返回值，最后仍返回 `HAL_OK`（[L142–166](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/77fbb30b7a1d02533980400083e48c559aae5a4f/Src/stm32f1xx_hal.c#L142-L166)）。不能仅据这个外层返回值证明自定义时基初始化成功。
+固定核心的 `HAL_Init` 调用 `HAL_InitTick` 后未检查返回值，最后仍返回 `HAL_OK`（[L142–166](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal.c#L142-L166)）。不能仅据这个外层返回值证明自定义时基初始化成功。
 
 ## 中断内等待与移植范围
 
 官方 readme 要求，在外设 ISR 中使用 `HAL_Delay` 时，TIM2 时基中断必须能以更高抢占优先级执行。若 tick 被暂停或中断被屏蔽，延时与依赖该计数的超时等待也不能据墙上时间自然结束；具体失败分支需看所调用 API。
 
-该例包含 Nucleo BSP、按键、LED 和板级时钟配置；其 main.c 不能直接作为 C8T6 时钟模板。该文件的 72 MHz 注释、PLL 配置和未显式设置的时钟字段尚需与项目编译宏、外部时钟和匹配驱动共同复核，本页不宣称原例实际运行频率。迁移时以[C8 时钟主题](../知识库/02_时钟复位与低功耗.md)和实际电路为准。
+该例包含 Nucleo BSP、按键、LED 和板级时钟配置；其 main.c 不能直接作为 C8T6 时钟模板。已核该固定 MDK 项目选择 STM32F103RB，预处理定义未覆盖 HSE_VALUE；配置头默认取 8 MHz，而 main.c 设置 PLL_MUL16。即便显式选择合法的 HSE /1 或 /2，算术结果也分别为 128 MHz 或 64 MHz，不能支持其 72 MHz 注释。更重要的是，本地 RCC_OscInitStruct 未整体初始化且 HSEPredivValue 未赋值，而匹配 RCC 驱动在 HSE→PLL 配置路径使用该字段。因此不能依据原例确定实际工作频率；复制前应重建符合板卡和芯片限制的时钟配置，并初始化全部使用字段。此处为固定 MDK 配置的静态核查，未覆盖其他工具链或测量外部时钟。迁移时以[C8 时钟主题](../知识库/02_时钟复位与低功耗.md)和实际电路为准。
+
+### 板级时钟证据定位
+
+- [MDK 项目预处理宏与源文件列表](https://github.com/STMicroelectronics/STM32CubeF1/blob/c7656f1fee178058be2f8ebfc8df9eaf91dc565e/Projects/STM32F103RB-Nucleo/Examples/HAL/HAL_TimeBase_TIM/MDK-ARM/Project.uvprojx#L336-L450)
+- [main.c 的局部结构与 PLL 设置](https://github.com/STMicroelectronics/STM32CubeF1/blob/c7656f1fee178058be2f8ebfc8df9eaf91dc565e/Projects/STM32F103RB-Nucleo/Examples/HAL/HAL_TimeBase_TIM/Src/main.c#L125-L152)；[配置头中的 HSE_VALUE](https://github.com/STMicroelectronics/STM32CubeF1/blob/c7656f1fee178058be2f8ebfc8df9eaf91dc565e/Projects/STM32F103RB-Nucleo/Examples/HAL/HAL_TimeBase_TIM/Inc/stm32f1xx_hal_conf.h#L72-L86)
+- [匹配 RCC 读取 HSEPredivValue 的路径](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_rcc.c#L683-L731)；[RCCEx 中的 /1、/2 定义](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Inc/stm32f1xx_hal_rcc_ex.h#L449-L471)
+
+128 MHz 的条件算术结果不构成允许的工作点；C8T6 系统时钟上限仍为 72 MHz，并须满足电源、Flash 延迟与总线等条件。HSE_VALUE 是软件计算常量，不能代替外部时钟测量。
