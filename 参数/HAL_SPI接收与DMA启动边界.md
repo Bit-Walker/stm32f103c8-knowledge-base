@@ -71,7 +71,7 @@ DMAStop 本身不关闭 SPI、不清传输计数、不清 OVR，也不等待 BSY
 
 Rx TE 经 SPI_DMAError 则会清两路 SPI DMA 请求，记录 SPI DMA 错误、置 SPI READY 并调用错误回调；这个外层函数本身不显式中止对端 Tx DMA，也不清 SPI 传输计数。
 
-RM0008 Rev21 §13.3.5 p280 说明 DMA 传输错误由硬件清除故障通道 EN 并置 TEIF；仅在 TEIE 使能时产生该错误中断。硬件这一动作不等于同时清理两路 DMA、SPI 请求和从设备事务。故障取证需区分 SPI 状态、两个 DMA 状态、请求位及实际线路，不宜只用是否收到 SPI ErrorCallback 判断健康。
+RM0008 Rev21 §13.3.5 p280 说明 DMA 传输错误由硬件清除故障通道 EN 并置 TEIF；仅在 TEIE 使能时产生该错误中断。还须叠加 ES096 Rev15 §2.4.1 的例外：活动通道的全局 GIF 清除若与传输错误在同一时钟周期发生，自动禁用可能失败且 TEIF 不置位；活动期间应使用各事件的专用清除位。详见[DMA 标志与勘误约束](DMA参数与HAL接口.md)。硬件的一般错误处理动作不等于同时清理两路 DMA、SPI 请求和从设备事务。故障取证需区分 SPI 状态、两个 DMA 状态、请求位及实际线路，不宜只用是否收到 SPI ErrorCallback 判断健康。
 
 来源：[回调赋值](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_spi.c#L1970-L2012)、[DMA IRQ](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_dma.c#L602-L680)、[SPI DMA 错误回调](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_spi.c#L3031-L3047)。DMA1 固定映射及共享请求条件复用[DMA 参数与 HAL 接口](DMA参数与HAL接口.md)；RM0008 Rev21 §13.3.7 Table78 p282 中 SPI1 Rx/Tx 分别为 Ch2/Ch3，SPI2 Rx/Tx 分别为 Ch4/Ch5，不能把同通道的多个请求视为独立队列。
 
