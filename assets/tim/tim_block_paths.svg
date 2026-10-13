@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="1080" viewBox="0 0 1500 1080" role="img"><title>TIM1～TIM4：计数、捕获、输出和请求的公共结构</title><rect width="1500" height="1080" fill="white"/><style>text{font-family:Arial,"Noto Sans CJK SC",sans-serif;fill:#17314b}.title{font-size:29px;font-weight:bold}.body{font-size:19px}.small{font-size:17px}.bold{font-size:22px;font-weight:bold}</style><defs><marker id="a" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0 0 L7 3.5 L0 7" fill="#406780"/></marker></defs>
+<text x="30" y="45" class="title">TIM1～TIM4：计数、捕获、输出和请求的公共结构</text>
+<text x="30" y="81" class="body">功能通路按C8资源整合；箭头表示依赖和数据方向，不表示全部内部门电路或固定延迟。</text>
+<rect x="30" y="120" width="415" height="190" rx="8" fill="#edf5fa" stroke="#a5bbc9"/>
+<text x="44" y="149" class="bold">时钟与触发输入</text>
+<text x="44" y="179" class="small">内部RCC时钟、TI1 / TI2、ETR、ITR</text>
+<text x="44" y="204" class="small">ETR：极性→ETPS→滤波</text>
+<text x="44" y="229" class="small">TI：滤波 / 极性；可选TI1F_ED</text>
+<text x="44" y="254" class="small">SMS / ECE按实际模式选CK_PSC</text>
+<text x="44" y="279" class="small">TRGI还用于复位、门控、启动或COM</text>
+<rect x="530" y="120" width="420" height="190" rx="8" fill="#edf5fa" stroke="#a5bbc9"/>
+<text x="544" y="149" class="bold">公共时基</text>
+<text x="544" y="179" class="small">CK_PSC → PSC → CK_CNT → CNT</text>
+<text x="544" y="204" class="small">PSC、CNT、ARR有效宽度均16位</text>
+<text x="544" y="229" class="small">ARR限定计数端点，DIR / CMS选方向</text>
+<text x="544" y="254" class="small">TIM1：8位RCR控制周期UEV间隔</text>
+<text x="544" y="279" class="small">TIM2～TIM4：无RCR</text>
+<rect x="1035" y="120" width="430" height="190" rx="8" fill="#edf5fa" stroke="#a5bbc9"/>
+<text x="1049" y="149" class="bold">更新和主触发</text>
+<text x="1049" y="179" class="small">UG / 计数边界 / 从模式更新</text>
+<text x="1049" y="204" class="small">UDIS、URS、RCR分别影响对应分支</text>
+<text x="1049" y="229" class="small">UEV装入已启用的数值预装载</text>
+<text x="1049" y="254" class="small">MMS选择TRGO来源送其它消费者</text>
+<text x="1049" y="279" class="small">消费者时钟 / 路由须单独核对</text>
+<path d="M445 207 H530" fill="none" stroke="#406780" stroke-width="2" marker-end="url(#a)"/>
+<path d="M950 207 H1035" fill="none" stroke="#406780" stroke-width="2" marker-end="url(#a)"/>
+<rect x="30" y="380" width="670" height="205" rx="8" fill="#edf5fa" stroke="#a5bbc9"/>
+<text x="44" y="409" class="bold">输入捕获支路：TI1～TI4</text>
+<text x="44" y="439" class="small">滤波与极性 → 直接 / 交叉 / TRC选择 → ICxPSC</text>
+<text x="44" y="464" class="small">ICxPSC每1 / 2 / 4 / 8个合格边沿捕获一次CNT到CCRx</text>
+<text x="44" y="489" class="small">CH1 / CH2另有触发支路；该支路在捕获预分频之前</text>
+<text x="44" y="514" class="small">TI1S可将CH1 / CH2 / CH3异或到TI1，供Hall接口</text>
+<text x="44" y="539" class="small">CCxIF / CCxOF与CCR读取副作用、勘误另查</text>
+<rect x="785" y="380" width="680" height="205" rx="8" fill="#edf5fa" stroke="#a5bbc9"/>
+<text x="799" y="409" class="bold">输出比较支路：四个CCRx</text>
+<text x="799" y="439" class="small">CNT与CCRx比较 → OCxM决定OCxREF</text>
+<text x="799" y="464" class="small">OCxPE启用时，CCRx数值由UEV装入活动比较值</text>
+<text x="799" y="489" class="small">TIM1 CH1～CH3：主 / N输出、死区及高级输出控制</text>
+<text x="799" y="514" class="small">TIM1 CH4：只有主输出，仍受适用的MOE/Break控制</text>
+<text x="799" y="539" class="small">TIM2～TIM4：只有主输出，无BDTR、N端和RCR</text>
+<path d="M620 310 V345 H365 V380" fill="none" stroke="#406780" stroke-width="2" marker-end="url(#a)"/>
+<path d="M850 310 V345 H1120 V380" fill="none" stroke="#406780" stroke-width="2" marker-end="url(#a)"/>
+<rect x="30" y="650" width="670" height="160" rx="8" fill="#edf5fa" stroke="#a5bbc9"/>
+<text x="44" y="679" class="bold">事件到中断 / DMA</text>
+<text x="44" y="709" class="small">更新、捕获比较、触发、TIM1 COM等各有请求控制</text>
+<text x="44" y="734" class="small">逻辑事件箭头不保证每个实例 / 通道都有独立DMA线路</text>
+<text x="44" y="759" class="small">DMA1通道映射按C8表核对；TIM1 Break没有BDE</text>
+<text x="44" y="784" class="small">标志、请求使能、DMA配置和完成状态分别管理</text>
+<rect x="785" y="650" width="680" height="160" rx="8" fill="#fff4dc" stroke="#a5bbc9"/>
+<text x="799" y="679" class="bold">高级输出保护与控制</text>
+<text x="799" y="709" class="small">TIM1 BKIN / CSS / 软件BG可引发Break</text>
+<text x="799" y="734" class="small">AOE决定符合条件的UEV是否恢复MOE</text>
+<text x="799" y="759" class="small">CCPC / COM装入CH1～CH3的模式 / 使能控制</text>
+<text x="799" y="784" class="small">控制位COM装载与数值UEV装载互相独立</text>
+<path d="M365 585 V650" fill="none" stroke="#406780" stroke-width="2" marker-end="url(#a)"/>
+<path d="M1120 585 V650" fill="none" stroke="#406780" stroke-width="2" marker-end="url(#a)"/>
+<text x="30" y="861" class="small">C8范围：TIM1在APB2，TIM2～TIM4在APB1；不存在TIM5、TIM8、DAC以及新系列的额外触发/输出通路。</text>
+<text x="30" y="894" class="small">CCRx：捕获/比较寄存器；CNT：计数器；PSC：计数预分频；ARR：自动重装；RCR：重复计数；UEV：更新事件。</text>
+<text x="30" y="927" class="small">TRGI / TRGO：触发输入/输出；ITR：定时器间触发；OCxREF：内部参考；N：互补端；COM：控制更新事件。</text>
+<text x="30" y="982" class="small">来源：RM0008 Rev21图52/100，pp294/367；DMA映射pp281–282；具体CCxS、SMS、BDTR及CCER字段。</text>
+<text x="30" y="1015" class="small">输入、预分频、预装载、输出真值表和捕获数据传送分别在配套图展开；本图没有用通用系列框图扩展C8能力。</text>
+</svg>

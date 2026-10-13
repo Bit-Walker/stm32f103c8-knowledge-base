@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1540" height="1020" viewBox="0 0 1540 1020" role="img" aria-labelledby="title desc"><title id="title">STM32F103C8T6 定时器计数时钟路径</title><desc id="desc">内部、TI2外部模式一、ETR外部模式二和编码器四类来源分别进入计数时基预分频器，捕获预分频不在计数触发支路。</desc>
+<rect width="1540" height="1020" fill="white"/>
+<style>text{font-family:Arial,"Noto Sans CJK SC",sans-serif;fill:#17314b}.title{font-size:29px;font-weight:bold}.body{font-size:19px}.small{font-size:17px}.bold{font-size:21px;font-weight:bold}</style>
+<defs><marker id="a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="#406780"/></marker></defs>
+<text x="35" y="48" class="title">计数时钟：外部选路仍经过时基 PSC</text>
+<text x="35" y="85" class="body">STM32F103C8T6 · 四类功能路径分行表示，不表示可同时使能；传播延迟不按图形比例。</text>
+<rect x="35" y="125" width="330" height="110" rx="9" fill="#edf5fa" stroke="#a5bbc9"/>
+<text x="50" y="157" class="bold">内部 CK_INT</text>
+<text x="50" y="188" class="small">独立例子：SMS=000、ECE=0</text>
+<rect x="425" y="125" width="660" height="110" rx="9" fill="#edf5fa" stroke="#a5bbc9"/>
+<text x="440" y="157" class="bold">内部计数 + 模式控制</text>
+<text x="440" y="188" class="small">复位 / 门控 / 触发模式也可使用内部时钟。</text>
+<text x="440" y="214" class="small">根据模式，CEN 与从控制器共同决定是否推进计数。</text>
+<path d="M365 180 L425 180" fill="none" stroke="#406780" stroke-width="2.2" marker-end="url(#a)"/>
+<rect x="35" y="275" width="330" height="140" rx="9" fill="#edf5fa" stroke="#a5bbc9"/>
+<text x="50" y="307" class="bold">TI2 输入支路</text>
+<text x="50" y="338" class="small">IC2F 滤波 → CC2P 极性</text>
+<text x="50" y="364" class="small">本例 CC2S=01、CC2P=0</text>
+<text x="50" y="390" class="small">输出 TI2FP2</text>
+<rect x="425" y="275" width="660" height="140" rx="9" fill="#edf5fa" stroke="#a5bbc9"/>
+<text x="440" y="307" class="bold">外部时钟模式 1：SMS=111</text>
+<text x="440" y="338" class="small">TS=110：选择 TI2FP2；其他 TS 可选择 ITR、TI1 或 ETRF。</text>
+<text x="440" y="364" class="small">CEN=1 时，合格 TRGI 事件送入计数时基。</text>
+<text x="440" y="390" class="small">IC2PSC 捕获分频不参与这个触发 / 计数路径。</text>
+<path d="M365 345 L425 345" fill="none" stroke="#406780" stroke-width="2.2" marker-end="url(#a)"/>
+<rect x="35" y="455" width="330" height="165" rx="9" fill="#edf5fa" stroke="#a5bbc9"/>
+<text x="50" y="487" class="bold">ETR 输入支路</text>
+<text x="50" y="518" class="small">ETP 极性 → ETPS 分频</text>
+<text x="50" y="544" class="small">÷1 / ÷2 / ÷4 / ÷8</text>
+<text x="50" y="570" class="small">再经同步 / ETF 滤波 → ETRF</text>
+<text x="50" y="596" class="small">ETF 采样按字段表选择</text>
+<rect x="425" y="455" width="660" height="165" rx="9" fill="#edf5fa" stroke="#a5bbc9"/>
+<text x="440" y="487" class="bold">外部时钟模式 2：ECE=1</text>
+<text x="440" y="518" class="small">ETRF 作为外部计数源；CEN 仍须允许计数。</text>
+<text x="440" y="544" class="small">可与复位 / 门控 / 触发从模式组合。</text>
+<text x="440" y="570" class="small">不能与外部时钟模式1或编码器模式组合。</text>
+<text x="440" y="596" class="small">ETRP 频率、输入电气与滤波限制须分别满足。</text>
+<path d="M365 535 L425 535" fill="none" stroke="#406780" stroke-width="2.2" marker-end="url(#a)"/>
+<rect x="35" y="660" width="330" height="140" rx="9" fill="#edf5fa" stroke="#a5bbc9"/>
+<text x="50" y="692" class="bold">TI1FP1 与 TI2FP2</text>
+<text x="50" y="723" class="small">两路滤波和极性处理后</text>
+<text x="50" y="749" class="small">参与编码器边沿 / 相位判定</text>
+<rect x="425" y="660" width="660" height="140" rx="9" fill="#edf5fa" stroke="#a5bbc9"/>
+<text x="440" y="692" class="bold">编码器模式：SMS=001 / 010 / 011</text>
+<text x="440" y="723" class="small">001：TI2；010：TI1；011：两路有效跳变计数。</text>
+<text x="440" y="749" class="small">另一信号电平决定方向；两路不得同时跳变。</text>
+<text x="440" y="775" class="small">CEN 允许计数；DIR 由硬件根据相位关系更新。</text>
+<path d="M365 725 L425 725" fill="none" stroke="#406780" stroke-width="2.2" marker-end="url(#a)"/>
+<rect x="1280" y="290" width="225" height="360" rx="9" fill="#fff4dc" stroke="#a5bbc9"/>
+<text x="1295" y="322" class="bold">共同计数时基</text>
+<text x="1295" y="353" class="small">选定计数源 CK_PSC</text>
+<text x="1295" y="379" class="small">↓</text>
+<text x="1295" y="405" class="small">PSC：除以 PSC+1</text>
+<text x="1295" y="431" class="small">↓</text>
+<text x="1295" y="457" class="small">计数时钟 CK_CNT</text>
+<text x="1295" y="483" class="small">↓</text>
+<text x="1295" y="509" class="small">CNT：按计数方向推进</text>
+<text x="1295" y="535" class="small">PSC 的新值由 UEV 装载。</text>
+<rect x="1120" y="125" width="80" height="675" rx="9" fill="#f0f2f6" stroke="#a5bbc9"/>
+<text x="1139" y="430" class="small">模式</text>
+<text x="1139" y="458" class="small">选路</text>
+<path d="M1085 180 L1120 180" fill="none" stroke="#406780" stroke-width="2.2" marker-end="url(#a)"/>
+<path d="M1085 345 L1120 345" fill="none" stroke="#406780" stroke-width="2.2" marker-end="url(#a)"/>
+<path d="M1085 535 L1120 535" fill="none" stroke="#406780" stroke-width="2.2" marker-end="url(#a)"/>
+<path d="M1085 725 L1120 725" fill="none" stroke="#406780" stroke-width="2.2" marker-end="url(#a)"/>
+<path d="M1200 335 L1280 335" fill="none" stroke="#406780" stroke-width="2.2" marker-end="url(#a)"/>
+<rect x="35" y="838" width="1465" height="138" rx="9" fill="#f1f5ef"/>
+<text x="53" y="870" class="small">CK_INT / CK_PSC / CK_CNT：内部时钟 / 时基预分频前时钟 / 计数时钟；频率单位均为 Hz。</text>
+<text x="53" y="899" class="small">ETPS 是 ETR 前级分频，ICxPSC 是捕获事件分频，PSC 是计数时基分频；三者的位置与作用不能互换。</text>
+<text x="53" y="928" class="small">原图 77 / 124 的末级 CK_INT 标注不作为外部事件与内部时钟相等的依据；本图按寄存器定义区分。</text>
+<text x="53" y="957" class="small">来源：RM0008 Rev21 pp308–311、329–330、336–337、379–383、407–409。完整滤波编码与输入上限见正文。</text>
+</svg>

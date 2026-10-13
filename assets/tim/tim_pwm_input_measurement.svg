@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="780" viewBox="0 0 1400 780" role="img" aria-labelledby="title desc"><title id="title">TI1 PWM输入测量的两个捕获边沿</title><desc id="desc">上升沿由CCR1捕获周期并复位计数，下降沿由CCR2捕获高电平宽度；首次数据和跨通道配对需要有效性检查。</desc><rect width="1400" height="780" fill="white"/><style>text{font-family:Arial,"Noto Sans CJK SC",sans-serif;fill:#17314b}.title{font-size:29px;font-weight:bold}.body{font-size:19px}.small{font-size:17px}.bold{font-size:22px;font-weight:bold}</style><defs><marker id="a" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto-start-reverse"><path d="M0 0 L7 3.5 L0 7" fill="#406780"/></marker></defs>
+<text x="30" y="45" class="title">PWM 输入：周期与高电平宽度分别捕获</text>
+<text x="30" y="81" class="body">TI1 路由：CC1S=01、CC1P=0；CC2S=10、CC2P=1；TS=101、SMS=100。</text>
+<text x="30" y="113" class="small">CEN=1且两路捕获使能；两路 ICxPSC 均为 DIV1。横轴示意输入相位，不规定同步 / 滤波延迟。</text>
+<text x="30" y="210" class="body">TI1</text>
+<path d="M150 225 H320 V175 H660 V225 H1040 V175 H1345" fill="none" stroke="#176f9e" stroke-width="3"/>
+<path d="M320 151 V310" fill="none" stroke="#aab9c3" stroke-dasharray="5 5"/>
+<path d="M660 151 V310" fill="none" stroke="#aab9c3" stroke-dasharray="5 5"/>
+<path d="M1040 151 V310" fill="none" stroke="#aab9c3" stroke-dasharray="5 5"/>
+<path d="M320 265 H660" fill="none" stroke="#406780" stroke-width="1.5" marker-start="url(#a)" marker-end="url(#a)"/>
+<text x="450.0" y="253" class="body">t_H</text>
+<path d="M320 310 H1040" fill="none" stroke="#406780" stroke-width="1.5" marker-start="url(#a)" marker-end="url(#a)"/>
+<text x="640.0" y="298" class="body">T</text>
+<rect x="30" y="355" width="400" height="155" rx="8" fill="#edf5fa" stroke="#a5bbc9"/>
+<text x="44" y="385" class="bold">上升沿：开始当前测量周期</text>
+<text x="44" y="415" class="small">CCR1 捕获此前计数值；CNT 随后复位。</text>
+<text x="44" y="440" class="small">首次值可能来自启动前残留计数，</text>
+<text x="44" y="465" class="small">不能自动当作完整周期。</text>
+<rect x="475" y="355" width="400" height="155" rx="8" fill="#edf5fa" stroke="#a5bbc9"/>
+<text x="489" y="385" class="bold">下降沿：捕获高电平宽度</text>
+<text x="489" y="415" class="small">CCR2 ← 当前 CNT，得到 C_H。</text>
+<text x="489" y="440" class="small">对应起点为前一个上升沿复位；</text>
+<text x="489" y="465" class="small">此处不重新开始整个周期。</text>
+<rect x="920" y="355" width="450" height="155" rx="8" fill="#edf5fa" stroke="#a5bbc9"/>
+<text x="934" y="385" class="bold">下一上升沿：捕获周期</text>
+<text x="934" y="415" class="small">CCR1 ← 当前 CNT，得到 C_T；</text>
+<text x="934" y="440" class="small">再复位 CNT，开始下一周期。</text>
+<text x="934" y="465" class="small">跨通道读取须确认两值属于同一周期。</text>
+<path d="M320 320 L320 355" fill="none" stroke="#406780" stroke-width="2" marker-end="url(#a)"/>
+<path d="M660 320 L660 355" fill="none" stroke="#406780" stroke-width="2" marker-end="url(#a)"/>
+<path d="M1040 320 L1040 355" fill="none" stroke="#406780" stroke-width="2" marker-end="url(#a)"/>
+<rect x="30" y="545" width="1340" height="115" rx="8" fill="#f1f5ed"/>
+<text x="48" y="578" class="body">计数刻度换算：T ≈ C_T / fCNT；t_H ≈ C_H / fCNT；fIN ≈ fCNT / C_T；D_H ≈ C_H / C_T。</text>
+<text x="48" y="611" class="small">T / t_H：周期 / 高电平时间（s）；fCNT / fIN：计数 / 输入频率（Hz）；C_T / C_H：无量纲计数值。</text>
+<text x="48" y="642" class="small">D_H 为高电平时间比例；C_T&gt;0。换算需同周期有效数据、无回绕 / 漏采 / 额外复位，并计入量化与滤波误差。</text>
+<text x="30" y="701" class="small">这种自动复位测量使用 CH1 / CH2 的从模式触发支路。切换 TI2 或有效极性时，CCR 的时间含义须重新对应。</text>
+<text x="30" y="733" class="small">原图示意 C_T=0004、C_H=0002；本图用符号表示同一关系，不按横向长度表达数值或测量精度。</text>
+<text x="30" y="763" class="small">来源：RM0008 Rev21 图82 / 128及脚注，pp315 / 385；数据竞争限制另见 ES096 Rev15 §§2.6.5–6。</text>
+</svg>

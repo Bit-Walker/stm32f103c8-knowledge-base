@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="920" viewBox="0 0 1500 920" role="img"><title>输出比较翻转：活动CCR改写与下一次真实匹配</title><rect width="1500" height="920" fill="white"/><style>text{font-family:Arial,"Noto Sans CJK SC",sans-serif;fill:#17314b}.title{font-size:29px;font-weight:bold}.body{font-size:19px}.small{font-size:17px}.bold{font-size:22px;font-weight:bold}</style><defs><marker id="a" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0 0 L7 3.5 L0 7" fill="#406780"/></marker></defs>
+<text x="30" y="45" class="title">输出比较翻转：活动CCR改写与下一次真实匹配</text>
+<text x="30" y="81" class="body">向上计数，CC1S=00、OC1M=011、OC1PE=0；图中仅示意内部OC1REF，不保证实际GPIO状态。</text>
+<text x="30" y="114" class="small">初始参考取0；不包含回绕、额外复位、模式切换或保护动作。中间省略的计数区间不能按横向长度估算时间。</text>
+<text x="30" y="213" class="body">CNT</text>
+<rect x="250" y="180" width="150" height="55" fill="#edf5fa" stroke="#b0c1ce"/>
+<text x="276" y="215" class="body">0x0039</text>
+<rect x="400" y="180" width="150" height="55" fill="#edf5fa" stroke="#b0c1ce"/>
+<text x="426" y="215" class="body">0x003A</text>
+<rect x="550" y="180" width="150" height="55" fill="#edf5fa" stroke="#b0c1ce"/>
+<text x="576" y="215" class="body">0x003B</text>
+<rect x="700" y="180" width="150" height="55" fill="#edf5fa" stroke="#b0c1ce"/>
+<text x="726" y="215" class="body">…</text>
+<rect x="850" y="180" width="150" height="55" fill="#edf5fa" stroke="#b0c1ce"/>
+<text x="876" y="215" class="body">0xB200</text>
+<rect x="1000" y="180" width="150" height="55" fill="#edf5fa" stroke="#b0c1ce"/>
+<text x="1026" y="215" class="body">0xB201</text>
+<rect x="1150" y="180" width="150" height="55" fill="#edf5fa" stroke="#b0c1ce"/>
+<text x="1176" y="215" class="body">0xB202</text>
+<text x="30" y="298" class="body">活动CCR1</text>
+<text x="250" y="298" class="body">0x003A</text>
+<text x="750" y="298" class="body">软件写0xB201后，新值直接进入活动比较路径</text>
+<path d="M250 315 H700 V278 H1300" stroke="#406780" stroke-width="2" fill="none"/>
+<text x="30" y="395" class="body">OC1REF</text>
+<path d="M200 420 H400 V370 H1000 V420 H1400" stroke="#176f9e" stroke-width="3" fill="none"/>
+<path d="M400 155 V470" stroke="#acbcc8" stroke-dasharray="5 5"/>
+<text x="372" y="496" class="small">匹配→翻转</text>
+<path d="M1000 155 V470" stroke="#acbcc8" stroke-dasharray="5 5"/>
+<text x="972" y="496" class="small">匹配→翻转</text>
+<rect x="30" y="550" width="690" height="160" rx="8" fill="#edf5fa" stroke="#a5bbc9"/>
+<text x="44" y="579" class="bold">非预装载比较值的意义</text>
+<text x="44" y="609" class="small">OC1PE=0时，新写值不等待UEV进入活动比较路径。</text>
+<text x="44" y="634" class="small">第一次匹配0x003A，之后目标改为0xB201。</text>
+<text x="44" y="659" class="small">原图83/129以断裂区间展示两次匹配，非相邻节拍。</text>
+<text x="44" y="684" class="small">匹配标志CC1IF保持至按规则清除，不是输出波形。</text>
+<rect x="795" y="550" width="670" height="160" rx="8" fill="#fff4dc" stroke="#a5bbc9"/>
+<text x="809" y="579" class="bold">不得省略的条件</text>
+<text x="809" y="609" class="small">CC1E、极性、GPIO；TIM1还需MOE等输出控制。</text>
+<text x="809" y="634" class="small">原图CC1R标签应按CCR1寄存器定位。</text>
+<text x="809" y="659" class="small">ES096 §2.6.3限制相邻节拍动态比较情况。</text>
+<text x="809" y="684" class="small">CCR&gt;ARR的边界标志不能当作真实匹配翻转。</text>
+<text x="30" y="762" class="small">CCRx：捕获/比较寄存器；OCxM：输出比较模式；OCxPE：比较值预装载使能；UEV：更新事件。</text>
+<text x="30" y="798" class="small">固定CCR且每个周期恰有一次真实匹配时，翻转方波周期包含两个计数周期；动态改CCR例子不具有此固定周期保证。</text>
+<text x="30" y="852" class="small">来源：RM0008 Rev21图83/129，pp317/387；输出比较字段pp349–350；ES096 Rev15 §2.6.3。</text>
+<text x="30" y="885" class="small">计数值与事件顺序按原图整合；写入时刻只表示发生在两次匹配之间，不提供总线写入延迟或最窄脉冲保证。</text>
+</svg>

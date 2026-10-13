@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1360" height="1040" viewBox="0 0 1360 1040" role="img" aria-labelledby="title desc"><title id="title">TIM1互补输出死区和短脉冲消失</title><desc id="desc">三个相对时间波形分别表示普通互补死区、负参考脉冲短于死区导致N脉冲消失、正参考脉冲短于死区导致主脉冲消失。</desc><rect width="1360" height="1040" fill="white"/><style>text{font-family:Arial,"Noto Sans CJK SC",sans-serif;fill:#17314b}.title{font-size:29px;font-weight:bold}.body{font-size:19px}.small{font-size:17px}.bold{font-size:22px;font-weight:bold}</style><defs><marker id="a" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto-start-reverse"><path d="M0 0 L6 3 L0 6" fill="#805b30"/></marker></defs>
+<text x="30" y="46" class="title">TIM1 死区：延迟开通与短脉冲消失</text>
+<text x="30" y="82" class="body">条件：CCxE=CCxNE=MOE=1，CCxP=CCxNP=0，保护路径未禁止输出；x=1、2、3。</text>
+<text x="30" y="112" class="small">横轴仅表示相对时间；DT 为死区时间（s），图中长度不代表某个实际纳秒数。</text>
+<rect x="25" y="155" width="1305" height="235" rx="10" fill="#f4f7fa"/>
+<text x="45" y="190" class="bold">A  正常互补：两侧开通分别延迟 DT</text>
+<text x="45" y="233" class="body">OCxREF</text>
+<text x="45" y="279" class="body">OCx 主输出</text>
+<text x="45" y="325" class="body">OCxN 互补输出</text>
+<rect x="25" y="420" width="1305" height="235" rx="10" fill="#f4f7fa"/>
+<text x="45" y="455" class="bold">B  参考低脉冲短于 DT：N 输出脉冲消失</text>
+<text x="45" y="498" class="body">OCxREF</text>
+<text x="45" y="544" class="body">OCx 主输出</text>
+<text x="45" y="590" class="body">OCxN 互补输出</text>
+<rect x="25" y="685" width="1305" height="235" rx="10" fill="#f4f7fa"/>
+<text x="45" y="720" class="bold">C  参考高脉冲短于 DT：主输出脉冲消失</text>
+<text x="45" y="763" class="body">OCxREF</text>
+<text x="45" y="809" class="body">OCx 主输出</text>
+<text x="45" y="855" class="body">OCxN 互补输出</text>
+<path d="M480 207 V337" stroke="#aab9c3" stroke-dasharray="5 5"/>
+<path d="M570 207 V337" stroke="#aab9c3" stroke-dasharray="5 5"/>
+<path d="M860 207 V337" stroke="#aab9c3" stroke-dasharray="5 5"/>
+<path d="M950 207 V337" stroke="#aab9c3" stroke-dasharray="5 5"/>
+<path d="M250 206 H480 V230 H860 V206 H1285" fill="none" stroke="#234765" stroke-width="3"/>
+<path d="M250 252 H480 V276 H950 V252 H1285" fill="none" stroke="#176f9e" stroke-width="3"/>
+<path d="M250 322 H570 V298 H860 V322 H1285" fill="none" stroke="#a15d24" stroke-width="3"/>
+<path d="M480 348 H570" fill="none" stroke="#805b30" stroke-width="1.6" marker-start="url(#a)" marker-end="url(#a)"/>
+<text x="513.0" y="373" class="small">DT</text>
+<path d="M860 348 H950" fill="none" stroke="#805b30" stroke-width="1.6" marker-start="url(#a)" marker-end="url(#a)"/>
+<text x="893.0" y="373" class="small">DT</text>
+<path d="M560 472 V602" stroke="#aab9c3" stroke-dasharray="5 5"/>
+<path d="M630 472 V602" stroke="#aab9c3" stroke-dasharray="5 5"/>
+<path d="M760 472 V602" stroke="#aab9c3" stroke-dasharray="5 5"/>
+<path d="M250 471 H560 V495 H630 V471 H1285" fill="none" stroke="#234765" stroke-width="3"/>
+<path d="M250 517 H560 V541 H760 V517 H1285" fill="none" stroke="#176f9e" stroke-width="3"/>
+<path d="M250 587 H1285" fill="none" stroke="#a15d24" stroke-width="3"/>
+<path d="M630 613 H760" fill="none" stroke="#805b30" stroke-width="1.6" marker-start="url(#a)" marker-end="url(#a)"/>
+<text x="683.0" y="638" class="small">DT</text>
+<text x="920" y="574" class="small">OCxN 持续无效</text>
+<path d="M560 737 V867" stroke="#aab9c3" stroke-dasharray="5 5"/>
+<path d="M630 737 V867" stroke="#aab9c3" stroke-dasharray="5 5"/>
+<path d="M760 737 V867" stroke="#aab9c3" stroke-dasharray="5 5"/>
+<path d="M250 760 H560 V736 H630 V760 H1285" fill="none" stroke="#234765" stroke-width="3"/>
+<path d="M250 806 H1285" fill="none" stroke="#176f9e" stroke-width="3"/>
+<path d="M250 828 H560 V852 H760 V828 H1285" fill="none" stroke="#a15d24" stroke-width="3"/>
+<path d="M630 878 H760" fill="none" stroke="#805b30" stroke-width="1.6" marker-start="url(#a)" marker-end="url(#a)"/>
+<text x="683.0" y="903" class="small">DT</text>
+<text x="920" y="792" class="small">OCx 持续无效</text>
+<text x="30" y="956" class="small">波形表示手册的有效高条件；实际功率器件是否关断仍取决于驱动器极性、延迟和外部电路。</text>
+<text x="30" y="986" class="small">共用 DTG 编码按四个分段换算，时基为 CKD 选定的 tDTS，不能用计数 PSC 分频直接替代。</text>
+<text x="30" y="1016" class="small">来源：RM0008 Rev21 图86～88，pp321–322；BDTR.DTG字段p361。此图不代表板端测量。</text>
+</svg>

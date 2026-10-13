@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="1030" viewBox="0 0 1500 1030" role="img"><title>TIM1 Break：异步关断、空闲状态与恢复</title><rect width="1500" height="1030" fill="white"/><style>text{font-family:Arial,"Noto Sans CJK SC",sans-serif;fill:#17314b}.title{font-size:29px;font-weight:bold}.body{font-size:19px}.small{font-size:17px}.bold{font-size:22px;font-weight:bold}</style><defs><marker id="a" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0 0 L7 3.5 L0 7" fill="#406780"/></marker></defs>
+<text x="30" y="45" class="title">TIM1 Break：异步关断、空闲状态与恢复</text>
+<text x="30" y="81" class="body">以下是控制阶段图，具体高低电平须结合通道、极性、使能与表83；各阶段宽度不表示时间比例。</text>
+<rect x="30" y="128" width="415" height="165" rx="8" fill="#edf5fa" stroke="#a5bbc9"/>
+<text x="44" y="157" class="bold">Break来源与响应</text>
+<text x="44" y="187" class="small">BKIN受BKE / BKP控制</text>
+<text x="44" y="212" class="small">CSS系统故障或软件EGR.BG</text>
+<text x="44" y="237" class="small">有效Break异步清MOE</text>
+<text x="44" y="262" class="small">BIF与BIE控制的中断另行处理</text>
+<rect x="530" y="128" width="420" height="165" rx="8" fill="#edf5fa" stroke="#a5bbc9"/>
+<text x="544" y="157" class="bold">先进入无效状态</text>
+<text x="544" y="187" class="small">主/N端按对应极性与控制条件处理</text>
+<text x="544" y="212" class="small">该第一阶段不等待中断程序</text>
+<text x="544" y="237" class="small">内部时钟停止时仍需核对后续阶段</text>
+<text x="544" y="262" class="small">MOE软件读回的同步延迟独立存在</text>
+<rect x="1035" y="128" width="430" height="165" rx="8" fill="#edf5fa" stroke="#a5bbc9"/>
+<text x="1049" y="157" class="bold">再处理空闲态</text>
+<text x="1049" y="187" class="small">OSSI=1时按适用条件进入OIS</text>
+<text x="1049" y="212" class="small">互补CH1～CH3遵守死区相关阶段</text>
+<text x="1049" y="237" class="small">CH4无N路径，不照搬成对死区阶段</text>
+<text x="1049" y="262" class="small">OSSI=0可释放输出控制</text>
+<path d="M445 211 H530" fill="none" stroke="#406780" stroke-width="2" marker-end="url(#a)"/>
+<path d="M950 211 H1035" fill="none" stroke="#406780" stroke-width="2" marker-end="url(#a)"/>
+<rect x="30" y="365" width="690" height="190" rx="8" fill="#edf5fa" stroke="#a5bbc9"/>
+<text x="44" y="394" class="bold">故障解除：AOE=0</text>
+<text x="44" y="424" class="small">MOE维持关闭，由软件决定何时重新开放。</text>
+<text x="44" y="449" class="small">确认故障源、输出配置、时钟与系统状态后恢复。</text>
+<text x="44" y="474" class="small">清BIF本身不重新使能MOE。</text>
+<text x="44" y="499" class="small">停止CNT、清中断使能或清标志各有不同作用。</text>
+<text x="44" y="524" class="small">任何实际功率级安全状态还取决于外部电路。</text>
+<rect x="795" y="365" width="670" height="190" rx="8" fill="#fff4dc" stroke="#a5bbc9"/>
+<text x="809" y="394" class="bold">故障解除：AOE=1</text>
+<text x="809" y="424" class="small">符合条件的UEV可自动把MOE重新置1。</text>
+<text x="809" y="449" class="small">软件先清MOE也不能据此保证一直关闭。</text>
+<text x="809" y="474" class="small">更新节奏受当前计数模式、RCR、UDIS等影响。</text>
+<text x="809" y="499" class="small">不把AOE当作必须先检测到Break才起作用。</text>
+<text x="809" y="524" class="small">CSS未锁存的器件限制另按ES096核对。</text>
+<path d="M1245 293 V329 H365 V365" fill="none" stroke="#406780" stroke-width="2" marker-end="url(#a)"/>
+<path d="M1245 329 H1120 V365" fill="none" stroke="#406780" stroke-width="2" marker-end="url(#a)"/>
+<rect x="30" y="625" width="1435" height="155" rx="8" fill="#edf5fa" stroke="#a5bbc9"/>
+<text x="44" y="654" class="bold">原图89的九种情况：按正文状态表逐项保留</text>
+<text x="44" y="684" class="small">四种无互补端情况：主端极性与OIS的组合；五种成对情况：使能 / 极性 / OIS改变先无效再空闲的电平。</text>
+<text x="44" y="709" class="small">表83的OIS表达有“不对应两路同时有效”的前提；同为高电平不等于两路同时有效，必须先看各端有效极性。</text>
+<text x="44" y="734" class="small">原图把某些OIS=00或11画在同一行，不能据此增加通用优先级规则。完整条件表与本阶段图合用。</text>
+<text x="44" y="759" class="small">单独禁用通道、强制参考无效或停止计数，都不能省略完整输出状态表与GPIO配置。</text>
+<text x="30" y="828" class="small">MOE：主输出总使能；AOE：自动输出使能；OSSI：空闲关闭态选择；OIS：空闲电平；BIF / BIE：刹车标志 / 中断使能。</text>
+<text x="30" y="861" class="small">CCxP / CCxNP规定有效极性；CCxE / CCxNE规定主/N使能。x=1～3的互补路径与CH4需分开。</text>
+<text x="30" y="914" class="small">来源：RM0008 Rev21 Break说明pp323～325、图89 p325、表83 p355、BDTR字段pp359～361。</text>
+<text x="30" y="947" class="small">ES096 Rev15 §2.6.1：CSS等系统Break未锁存，AOE可能使PWM随后以异常频率恢复；需要故障锁停时单独设计恢复流程。</text>
+<text x="30" y="990" class="small">本图与表格是文档条件整合；未作功率级、首尾脉冲、保护延迟或故障注入的板端验证。</text>
+</svg>

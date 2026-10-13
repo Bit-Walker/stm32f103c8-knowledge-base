@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1480" height="1030" viewBox="0 0 1480 1030" role="img" aria-labelledby="title desc"><title id="title">捕获比较寄存器两种模式的数据方向</title><desc id="desc">输入捕获把计数锁存后送到总线可读寄存器，输出比较把软件写入的预装载按更新条件送入活动比较值。数值预装载与COM控制位预装载分开。</desc><rect width="1480" height="1030" fill="white"/><style>text{font-family:Arial,"Noto Sans CJK SC",sans-serif;fill:#17314b}.title{font-size:29px;font-weight:bold}.body{font-size:19px}.small{font-size:17px}.bold{font-size:22px;font-weight:bold}</style><defs><marker id="a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="#406780"/></marker></defs>
+<text x="30" y="46" class="title">CCRx：输入捕获与输出比较的数据传送方向</text>
+<text x="30" y="84" class="body">TIM1～TIM4 · 总线可见值、内部活动值与CPU访问副作用分开理解；功能关系不表示固定延迟。</text>
+<text x="30" y="142" class="bold">A  输入模式：把计数值带到总线可读侧</text>
+<rect x="30" y="170" width="320" height="155" rx="8" fill="#edf5fa" stroke="#a5bbc9"/>
+<text x="44" y="201" class="bold">CNT 当前计数</text>
+<text x="44" y="231" class="small">合格输入捕获事件：</text>
+<text x="44" y="256" class="small">ICxPS 且 CCxE 允许</text>
+<text x="44" y="281" class="small">输入模式下 CCxG 也可触发</text>
+<rect x="420" y="170" width="400" height="155" rx="8" fill="#edf5fa" stroke="#a5bbc9"/>
+<text x="434" y="201" class="bold">内部捕获 / 比较 shadow</text>
+<text x="434" y="231" class="small">捕获时锁存 CNT</text>
+<text x="434" y="256" class="small">再按输入模式及传送条件</text>
+<text x="434" y="281" class="small">送到总线可见寄存器</text>
+<rect x="890" y="170" width="555" height="155" rx="8" fill="#edf5fa" stroke="#a5bbc9"/>
+<text x="904" y="201" class="bold">总线可见 CCRx</text>
+<text x="904" y="231" class="small">CPU / DMA 从这里取得捕获值。</text>
+<text x="904" y="256" class="small">输入模式读 CCRx 可清 CCxIF；CCxOF另行处理。</text>
+<text x="904" y="281" class="small">读传送竞争受 ES096 限制，不能据标志单独保证无丢样。</text>
+<path d="M350 245 H420" fill="none" stroke="#406780" stroke-width="2" marker-end="url(#a)"/>
+<path d="M820 245 H890" fill="none" stroke="#406780" stroke-width="2" marker-end="url(#a)"/>
+<rect x="420" y="360" width="1025" height="110" rx="8" fill="#f1f5ed" stroke="#a5bbc9"/>
+<text x="434" y="391" class="bold">输入侧传送与原图命名</text>
+<text x="434" y="421" class="small">原图用 read_in_progress 表示读过程对传送的影响；“preload / shadow”不是两个可直接读取的样本队列。</text>
+<text x="434" y="446" class="small">CCRx 的输入捕获路径与输出比较路径共用寄存器结构，软件可见接口不变。</text>
+<path d="M1160 325 V360" fill="none" stroke="#406780" stroke-width="2" marker-end="url(#a)"/>
+<text x="30" y="524" class="bold">B  输出模式：把写入值按装载条件送到比较器</text>
+<rect x="30" y="552" width="320" height="155" rx="8" fill="#edf5fa" stroke="#a5bbc9"/>
+<text x="44" y="583" class="bold">CPU / DMA 写 CCRx</text>
+<text x="44" y="613" class="small">写入总线可见 preload</text>
+<text x="44" y="638" class="small">CPU写访问按半字或字规则</text>
+<text x="44" y="663" class="small">不照搬图中高 / 低字节画法</text>
+<rect x="420" y="552" width="400" height="155" rx="8" fill="#edf5fa" stroke="#a5bbc9"/>
+<text x="434" y="583" class="bold">比较值装载控制</text>
+<text x="434" y="613" class="small">CCxS=00，按写访问传送条件：</text>
+<text x="434" y="638" class="small">OCxPE=0：直接更新活动比较值</text>
+<text x="434" y="663" class="small">OCxPE=1：等待 UEV 装载</text>
+<rect x="890" y="552" width="555" height="155" rx="8" fill="#edf5fa" stroke="#a5bbc9"/>
+<text x="904" y="583" class="bold">活动比较值 shadow</text>
+<text x="904" y="613" class="small">与 CNT 比较，得到相等 / 大小关系。</text>
+<text x="904" y="638" class="small">输出参考由 OCxM 决定；实际引脚还有极性 / 使能 / 保护。</text>
+<text x="904" y="663" class="small">软件读回 CCRx 不等同于证明新活动值已经装入。</text>
+<path d="M350 625 H420" fill="none" stroke="#406780" stroke-width="2" marker-end="url(#a)"/>
+<path d="M820 625 H890" fill="none" stroke="#406780" stroke-width="2" marker-end="url(#a)"/>
+<rect x="30" y="752" width="1415" height="150" rx="8" fill="#fff4dc" stroke="#a5bbc9"/>
+<text x="44" y="783" class="bold">两套预装载：数值与控制位</text>
+<text x="44" y="813" class="small">CCRx 数值：OCxPE控制，启用时由UEV装载；PSC / ARR另按各自预装载规则。</text>
+<text x="44" y="838" class="small">TIM1 CH1～CH3控制位：CCPC控制OCxM、CCxE、CCxNE的预装载，由COM装载；CH4没有此互补控制预装载。</text>
+<text x="44" y="863" class="small">CCUS决定COM仅由软件COMG，或也由TRGI上升沿产生；COM不自动等同于一次UEV。</text>
+<text x="30" y="946" class="small">CCRx：捕获 / 比较寄存器；CNT：计数器；UEV：更新事件；COM：捕获 / 比较控制更新事件。</text>
+<text x="30" y="977" class="small">来源：RM0008 Rev21 图79 / 126，pp312 / 383；CR2与CCMR字段pp340–352；TIM2～4访问规则p404。</text>
+<text x="30" y="1007" class="small">传送逻辑按原图与字段整合；C8实际寄存器宽度、标志竞争及DMA请求映射仍须分别核查。</text>
+</svg>

@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1480" height="1050" viewBox="0 0 1480 1050" role="img" aria-labelledby="title desc"><title id="title">上数下数和中心计数的端点与分频</title><desc id="desc">同一PSC后的计数节拍中，上下边沿周期包含ARR加1个节拍，中心周期包含2ARR个。边界事件与UIF锁存标志不同。</desc><rect width="1480" height="1050" fill="white"/><style>text{font-family:Arial,"Noto Sans CJK SC",sans-serif;fill:#17314b}.title{font-size:29px;font-weight:bold}.body{font-size:19px}.small{font-size:17px}.bold{font-size:22px;font-weight:bold}</style><defs><marker id="a" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto-start-reverse"><path d="M0 0 L7 3.5 L0 7" fill="#406780"/></marker></defs>
+<text x="30" y="45" class="title">计数端点：边沿周期与中心往返</text>
+<text x="30" y="81" class="body">下列采用ARR=3重画计数关系，每格是一段PSC后的计数节拍。固定ARR、连续计数，无额外复位或门控。</text>
+<text x="30" y="160" class="bold">向上计数</text>
+<rect x="250" y="128" width="95" height="50" fill="#fff0d5" stroke="#abc1cf"/>
+<text x="289" y="161" class="body">0</text>
+<rect x="345" y="128" width="95" height="50" fill="#edf5fa" stroke="#abc1cf"/>
+<text x="384" y="161" class="body">1</text>
+<rect x="440" y="128" width="95" height="50" fill="#edf5fa" stroke="#abc1cf"/>
+<text x="479" y="161" class="body">2</text>
+<rect x="535" y="128" width="95" height="50" fill="#fff0d5" stroke="#abc1cf"/>
+<text x="574" y="161" class="body">3</text>
+<rect x="630" y="128" width="95" height="50" fill="#fff0d5" stroke="#abc1cf"/>
+<text x="669" y="161" class="body">0</text>
+<rect x="725" y="128" width="95" height="50" fill="#edf5fa" stroke="#abc1cf"/>
+<text x="764" y="161" class="body">1</text>
+<rect x="820" y="128" width="95" height="50" fill="#edf5fa" stroke="#abc1cf"/>
+<text x="859" y="161" class="body">2</text>
+<rect x="915" y="128" width="95" height="50" fill="#fff0d5" stroke="#abc1cf"/>
+<text x="954" y="161" class="body">3</text>
+<path d="M630 185 V219" stroke="#a56224" stroke-width="2" marker-start="url(#a)"/>
+<text x="606" y="241" class="small">溢出</text>
+<path d="M1010 185 V219" stroke="#a56224" stroke-width="2" marker-start="url(#a)"/>
+<text x="986" y="241" class="small">溢出</text>
+<text x="250" y="274" class="small">0、1、2、3各占一个节拍；完整周期为ARR+1=4个节拍。</text>
+<text x="30" y="341" class="bold">向下计数</text>
+<rect x="250" y="309" width="95" height="50" fill="#fff0d5" stroke="#abc1cf"/>
+<text x="289" y="342" class="body">3</text>
+<rect x="345" y="309" width="95" height="50" fill="#edf5fa" stroke="#abc1cf"/>
+<text x="384" y="342" class="body">2</text>
+<rect x="440" y="309" width="95" height="50" fill="#edf5fa" stroke="#abc1cf"/>
+<text x="479" y="342" class="body">1</text>
+<rect x="535" y="309" width="95" height="50" fill="#fff0d5" stroke="#abc1cf"/>
+<text x="574" y="342" class="body">0</text>
+<rect x="630" y="309" width="95" height="50" fill="#fff0d5" stroke="#abc1cf"/>
+<text x="669" y="342" class="body">3</text>
+<rect x="725" y="309" width="95" height="50" fill="#edf5fa" stroke="#abc1cf"/>
+<text x="764" y="342" class="body">2</text>
+<rect x="820" y="309" width="95" height="50" fill="#edf5fa" stroke="#abc1cf"/>
+<text x="859" y="342" class="body">1</text>
+<rect x="915" y="309" width="95" height="50" fill="#fff0d5" stroke="#abc1cf"/>
+<text x="954" y="342" class="body">0</text>
+<path d="M630 366 V400" stroke="#a56224" stroke-width="2" marker-start="url(#a)"/>
+<text x="606" y="422" class="small">下溢</text>
+<path d="M1010 366 V400" stroke="#a56224" stroke-width="2" marker-start="url(#a)"/>
+<text x="986" y="422" class="small">下溢</text>
+<text x="250" y="455" class="small">3、2、1、0各占一个节拍；下溢后装入ARR，完整周期仍为4个节拍。</text>
+<text x="30" y="522" class="bold">中心对齐</text>
+<rect x="250" y="490" width="95" height="50" fill="#fff0d5" stroke="#abc1cf"/>
+<text x="289" y="523" class="body">0</text>
+<rect x="345" y="490" width="95" height="50" fill="#edf5fa" stroke="#abc1cf"/>
+<text x="384" y="523" class="body">1</text>
+<rect x="440" y="490" width="95" height="50" fill="#edf5fa" stroke="#abc1cf"/>
+<text x="479" y="523" class="body">2</text>
+<rect x="535" y="490" width="95" height="50" fill="#fff0d5" stroke="#abc1cf"/>
+<text x="574" y="523" class="body">3</text>
+<rect x="630" y="490" width="95" height="50" fill="#edf5fa" stroke="#abc1cf"/>
+<text x="669" y="523" class="body">2</text>
+<rect x="725" y="490" width="95" height="50" fill="#edf5fa" stroke="#abc1cf"/>
+<text x="764" y="523" class="body">1</text>
+<rect x="820" y="490" width="95" height="50" fill="#fff0d5" stroke="#abc1cf"/>
+<text x="859" y="523" class="body">0</text>
+<rect x="915" y="490" width="95" height="50" fill="#edf5fa" stroke="#abc1cf"/>
+<text x="954" y="523" class="body">1</text>
+<rect x="1010" y="490" width="95" height="50" fill="#edf5fa" stroke="#abc1cf"/>
+<text x="1049" y="523" class="body">2</text>
+<rect x="1105" y="490" width="95" height="50" fill="#fff0d5" stroke="#abc1cf"/>
+<text x="1144" y="523" class="body">3</text>
+<rect x="1200" y="490" width="95" height="50" fill="#edf5fa" stroke="#abc1cf"/>
+<text x="1239" y="523" class="body">2</text>
+<rect x="1295" y="490" width="95" height="50" fill="#edf5fa" stroke="#abc1cf"/>
+<text x="1334" y="523" class="body">1</text>
+<path d="M535 547 V581" stroke="#a56224" stroke-width="2" marker-start="url(#a)"/>
+<text x="511" y="603" class="small">峰</text>
+<path d="M820 547 V581" stroke="#a56224" stroke-width="2" marker-start="url(#a)"/>
+<text x="796" y="603" class="small">谷</text>
+<path d="M1105 547 V581" stroke="#a56224" stroke-width="2" marker-start="url(#a)"/>
+<text x="1081" y="603" class="small">峰</text>
+<path d="M1390 547 V581" stroke="#a56224" stroke-width="2" marker-start="url(#a)"/>
+<text x="1366" y="603" class="small">谷</text>
+<text x="250" y="636" class="small">端点0和ARR均不重复停留两格；完整往返为2ARR=6个节拍。</text>
+<rect x="30" y="688" width="685" height="160" rx="8" fill="#edf5fa" stroke="#a5bbc9"/>
+<text x="44" y="717" class="bold">PSC改变每格的物理时间</text>
+<text x="44" y="747" class="small">D=PSC+1，D在1～65536；t_tick=D/fCK_PSC。</text>
+<text x="44" y="772" class="small">PSC=0/1/3分别对应内部时钟÷1/÷2/÷4。</text>
+<text x="44" y="797" class="small">D为无量纲分频因子，t_tick单位s，fCK_PSC单位Hz。</text>
+<text x="44" y="822" class="small">原÷N图的断裂表示省略中间周期，不能按图宽求N。</text>
+<rect x="745" y="688" width="695" height="160" rx="8" fill="#fff4dc" stroke="#a5bbc9"/>
+<text x="759" y="717" class="bold">边界、UEV和UIF分别核对</text>
+<text x="759" y="747" class="small">箭头表示计数边界；周期UEV还受UDIS与RCR控制。</text>
+<text x="759" y="772" class="small">TIM1有RCR；TIM2～TIM4没有RCR。</text>
+<text x="759" y="797" class="small">UIF是锁存状态，事件之后可一直为1，需按规则清除。</text>
+<text x="759" y="822" class="small">CMS规定比较标志方向，不能直接当作UIF方向选择。</text>
+<text x="30" y="893" class="small">原手册数值：ARR=0x36时，边沿周期55格、中心往返108格；图66另用ARR=0x6，中心往返12格。</text>
+<text x="30" y="926" class="small">输入内部时钟与PSC后计数时钟分开；PSC预装载改变须在UEV装入，见预装载图。ARR=0不适用上述周期计算。</text>
+<text x="30" y="969" class="small">来源：RM0008 Rev21 图55～58、61～69，pp297～305；TIM2～4对应图103～106、109～117，pp370～377。</text>
+<text x="30" y="1001" class="small">本图按字段关系重组，未复制原图的时钟/标志绘制偏移作为固定延迟；原模式脚注与参数差异保留在正文。</text>
+</svg>

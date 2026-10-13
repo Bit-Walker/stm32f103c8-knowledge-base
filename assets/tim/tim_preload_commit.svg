@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1260" height="900" viewBox="0 0 1260 900">
+<rect width="1260" height="900" fill="white"/>
+<style>text{font-family:Arial,"Noto Sans CJK SC",sans-serif;fill:#17314b}.title{font-size:27px;font-weight:bold}.body{font-size:18px}.small{font-size:16px}.bold{font-size:19px;font-weight:bold}</style>
+<text x="30" y="43" class="title">预装载：软件写值与活动配置的不同生效时刻</text>
+<text x="30" y="76" class="body">STM32F103C8T6 · 功能时间顺序，不按真实总线延迟或计数节拍绘制</text>
+<text x="448" y="103" class="small">软件写新值</text>
+<text x="815" y="103" class="small">有效 UEV</text>
+<line x1="500" y1="150" x2="500" y2="250" stroke="#b58a36" stroke-width="2" stroke-dasharray="5 5"/>
+<line x1="850" y1="150" x2="850" y2="250" stroke="#53866c" stroke-width="2" stroke-dasharray="5 5"/>
+<line x1="500" y1="342" x2="500" y2="442" stroke="#b58a36" stroke-width="2" stroke-dasharray="5 5"/>
+<line x1="850" y1="342" x2="850" y2="442" stroke="#53866c" stroke-width="2" stroke-dasharray="5 5"/>
+<line x1="500" y1="533" x2="500" y2="632" stroke="#b58a36" stroke-width="2" stroke-dasharray="5 5"/>
+<line x1="850" y1="533" x2="850" y2="632" stroke="#53866c" stroke-width="2" stroke-dasharray="5 5"/>
+<text x="30" y="144" class="bold">A  PSC：始终经过预装载</text>
+<text x="45" y="187" class="small">软件可读写的 PSC</text>
+<rect x="335" y="163" width="165" height="36" fill="#e9eff3" stroke="#a5bbc9"/><rect x="500" y="163" width="660" height="36" fill="#def0e6" stroke="#80b39b"/>
+<text x="350" y="187" class="small">0</text>
+<text x="516" y="187" class="small">1（÷2）或 3（÷4）</text>
+<text x="45" y="234" class="small">内部活动分频值</text>
+<rect x="335" y="210" width="515" height="36" fill="#e9eff3" stroke="#a5bbc9"/><rect x="850" y="210" width="310" height="36" fill="#def0e6" stroke="#80b39b"/>
+<text x="350" y="234" class="small">0：仍按 ÷1</text>
+<text x="866" y="234" class="small">装入 1 或 3</text>
+<text x="45" y="283" class="small">写 PSC 本身不改变当前分频；UEV 后才使用新比率。对应原图53 / 54。</text>
+<text x="30" y="335" class="bold">B  ARR：ARPE=1</text>
+<text x="45" y="378" class="small">软件可读写的 ARR</text>
+<rect x="335" y="354" width="165" height="36" fill="#e9eff3" stroke="#a5bbc9"/><rect x="500" y="354" width="660" height="36" fill="#def0e6" stroke="#80b39b"/>
+<text x="350" y="378" class="small">0xF5</text>
+<text x="516" y="378" class="small">0x36</text>
+<text x="45" y="425" class="small">内部活动 ARR</text>
+<rect x="335" y="401" width="515" height="36" fill="#e9eff3" stroke="#a5bbc9"/><rect x="850" y="401" width="310" height="36" fill="#def0e6" stroke="#80b39b"/>
+<text x="350" y="425" class="small">0xF5：旧计数边界</text>
+<text x="866" y="425" class="small">0x36：新边界</text>
+<text x="45" y="474" class="small">原图60先到旧值 0xF5，再在回绕更新时装入 0x36。输入值均为十六进制。</text>
+<text x="30" y="526" class="bold">C  ARR：ARPE=0</text>
+<text x="45" y="569" class="small">软件可读写的 ARR</text>
+<rect x="335" y="545" width="165" height="36" fill="#e9eff3" stroke="#a5bbc9"/><rect x="500" y="545" width="660" height="36" fill="#def0e6" stroke="#80b39b"/>
+<text x="350" y="569" class="small">0xFF</text>
+<text x="516" y="569" class="small">0x36</text>
+<text x="45" y="616" class="small">内部活动 ARR</text>
+<rect x="335" y="592" width="165" height="36" fill="#e9eff3" stroke="#a5bbc9"/><rect x="500" y="592" width="660" height="36" fill="#def0e6" stroke="#80b39b"/>
+<text x="350" y="616" class="small">0xFF</text>
+<text x="516" y="616" class="small">0x36：不等待下一次 UEV</text>
+<text x="45" y="665" class="small">原图59在 CNT 尚未到 0x36 时改值，使本次上数在 0x36 后回绕；不是任意改值的安全保证。</text>
+<rect x="30" y="716" width="1200" height="106" rx="9" fill="#fff5df" stroke="#cfbd94"/>
+<text x="46" y="746" class="bold">更新事件必须真正发生</text>
+<text x="46" y="776" class="small">UDIS=1 阻止 UEV；TIM1 RCR 改变周期性 UEV 节奏；URS 控制更新请求，不直接禁止装载。</text>
+<text x="46" y="801" class="small">UG 可强制初始化并触发相应装载，但同时改变 CNT / 分频计数及可能的下游触发。</text>
+<text x="30" y="858" class="small">来源：RM0008 Rev21 pp295–307，图53 / 54 / 59 / 60；其他上下数与中心边界见配套表。</text>
+<text x="30" y="883" class="small">PSC：计数预分频；ARR：自动重装值；ARPE：ARR预装载使能；UEV：更新事件。</text>
+</svg>

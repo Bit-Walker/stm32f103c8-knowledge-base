@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="800" viewBox="0 0 1280 800">
+<rect width="1280" height="800" fill="white"/>
+<style>text{font-family:Arial,"Noto Sans CJK SC",sans-serif;fill:#17314b}.title{font-size:27px;font-weight:bold}.body{font-size:18px}.small{font-size:16px}.bold{font-size:19px;font-weight:bold}</style>
+<defs><marker id="a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="#406780"/></marker></defs>
+<text x="30" y="45" class="title">输入捕获：计数时基、捕获分频和从模式触发</text>
+<text x="30" y="79" class="body">STM32F103C8T6 · 以 CH1 的 TI1 直连捕获支路为例；功能关系图，不表示传播延迟</text>
+<rect x="30" y="155" width="255" height="130" rx="9" fill="#edf5fa" stroke="#a5bbc9"/>
+<text x="44" y="184" class="bold">TI1 → 滤波与边沿选择</text>
+<text x="44" y="213" class="small">IC1F：采样频率及连续样本</text>
+<text x="44" y="237" class="small">CC1P：上升 / 下降沿</text>
+<text x="44" y="261" class="small">得到 TI1FP1</text>
+<rect x="355" y="155" width="240" height="130" rx="9" fill="#edf5fa" stroke="#a5bbc9"/>
+<text x="369" y="184" class="bold">CC1S 输入选择</text>
+<text x="369" y="213" class="small">01：选择 TI1 直连</text>
+<text x="369" y="237" class="small">10：TI2 交叉输入</text>
+<text x="369" y="261" class="small">11：TRC（核对触发路由）</text>
+<rect x="665" y="155" width="225" height="130" rx="9" fill="#edf5fa" stroke="#a5bbc9"/>
+<text x="679" y="184" class="bold">IC1PSC 捕获分频</text>
+<text x="679" y="213" class="small">每 1 / 2 / 4 / 8 事件捕获</text>
+<text x="679" y="237" class="small">CC1E=0 时分频器复位</text>
+<text x="679" y="261" class="small">CC1E 控制捕获使能</text>
+<rect x="960" y="155" width="285" height="130" rx="9" fill="#edf5fa" stroke="#a5bbc9"/>
+<text x="974" y="184" class="bold">CNT → CCR1 锁存</text>
+<text x="974" y="213" class="small">捕获时置 CC1IF</text>
+<text x="974" y="237" class="small">读输入 CCR1 可清 CC1IF</text>
+<text x="974" y="261" class="small">过捕获另看 CC1OF 与勘误</text>
+<path d="M285 220 L355 220" fill="none" stroke="#406780" stroke-width="2" marker-end="url(#a)"/>
+<path d="M595 220 L665 220" fill="none" stroke="#406780" stroke-width="2" marker-end="url(#a)"/>
+<path d="M890 220 L960 220" fill="none" stroke="#406780" stroke-width="2" marker-end="url(#a)"/>
+<rect x="30" y="365" width="565" height="125" rx="9" fill="#fff5df" stroke="#a5bbc9"/>
+<text x="44" y="394" class="bold">从模式控制器支路：在 IC1PSC 之前分出</text>
+<text x="44" y="423" class="small">TS 可选择 TI1FP1；另有独立的 TI1F_ED 双边沿检测支路。</text>
+<text x="44" y="447" class="small">IC1PSC 不会给这些触发 / 复位 / 外部计数支路作同样分频。</text>
+<path d="M320 220 L320 365" fill="none" stroke="#406780" stroke-width="2" marker-end="url(#a)"/>
+<rect x="665" y="365" width="580" height="125" rx="9" fill="#edf5fa" stroke="#a5bbc9"/>
+<text x="679" y="394" class="bold">计数时基另由 PSC 控制</text>
+<text x="679" y="423" class="small">计数源 → PSC → CNT；PSC 新值由 UEV 装载。</text>
+<text x="679" y="447" class="small">捕获的是此刻 CNT；捕获分频不改变每一个计数刻度。</text>
+<path d="M1100 365 L1100 285" fill="none" stroke="#406780" stroke-width="2" marker-end="url(#a)"/>
+<rect x="30" y="540" width="1215" height="125" rx="9" fill="#f2f5ed" stroke="#a5bbc9"/>
+<text x="44" y="569" class="bold">数字滤波时钟的来源差异与适用边界</text>
+<text x="44" y="598" class="small">IC1F=0001 / 0010 / 0011：fSAMPLING=fCK_INT，N=2 / 4 / 8；其他档按字段表选择 fDTS 分频。</text>
+<text x="44" y="622" class="small">RM0008 p314 示例把 0011 称为 fDTS；p351 字段表为 fCK_INT。CKD=00 时二者相等。</text>
+<text x="44" y="646" class="small">本图只表达普通单边沿捕获。通用 BOTHEDGE 常量与 TI1F_ED 路由不能互相代替。</text>
+<text x="30" y="710" class="small">来源：RM0008 Rev21 pp311–315、351、353–355、417–418；ES096 Rev15 §2.6.5 / §2.6.6。</text>
+<text x="30" y="740" class="small">TRC：触发控制信号；UEV：更新事件；N：连续样本数；fSAMPLING / fCK_INT / fDTS 均为频率（Hz）。</text>
+<text x="30" y="770" class="small">状态位无法单独保证无漏采；该图不取代完整的 CCR 输入/输出缓冲结构及寄存器访问约束。</text>
+</svg>

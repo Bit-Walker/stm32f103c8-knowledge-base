@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="780" viewBox="0 0 1200 780">
+<rect width="1200" height="780" fill="#fff"/>
+<style>text{font-family:Arial,"Noto Sans CJK SC",sans-serif;fill:#17314b}.title{font-size:26px;font-weight:bold}.body{font-size:18px}.small{font-size:15px}.bold{font-size:19px;font-weight:bold}</style>
+<defs><marker id="a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="#406780"/></marker></defs>
+<text x="32" y="44" class="title">软件 UG 的多条作用路径</text>
+<text x="32" y="76" class="body">STM32F103C8T6 · 概念关系示意，不表示时序比例或全部更新来源</text>
+<rect x="32" y="116" width="200" height="120" rx="10" fill="#edf5fa" stroke="#a5bbc9"/>
+<text x="48" y="145" class="bold">软件写 EGR.UG</text>
+<text x="48" y="174" class="small">要求定时器时钟可用</text>
+<text x="48" y="199" class="small">重新初始化的动作源</text>
+<rect x="300" y="116" width="860" height="120" rx="10" fill="#edf5fa" stroke="#a5bbc9"/>
+<text x="316" y="145" class="bold">CNT 与预分频计数重新初始化</text>
+<text x="316" y="174" class="small">UDIS=1 时这条作用仍存在；向上/中心对齐 CNT 归零，向下计数 CNT 装入 ARR。</text>
+<text x="316" y="199" class="small">这里的“预分频计数”与 PSC 缓冲值装载是不同对象。</text>
+<path d="M232,176 L300,176" stroke="#406780" stroke-width="2" fill="none" marker-end="url(#a)"/>
+<rect x="32" y="284" width="200" height="114" rx="10" fill="#edf5fa" stroke="#a5bbc9"/>
+<text x="48" y="313" class="bold">UDIS=0</text>
+<text x="48" y="342" class="small">允许 UG 产生 UEV</text>
+<text x="48" y="367" class="small">UDIS=1 阻止这条 UEV</text>
+<rect x="300" y="284" width="395" height="114" rx="10" fill="#edf5fa" stroke="#a5bbc9"/>
+<text x="316" y="313" class="bold">UEV：装载与周期状态</text>
+<text x="316" y="342" class="small">PSC、已启用预装载的 ARR/CCR</text>
+<text x="316" y="367" class="small">TIM1 重复计数器重新装载</text>
+<rect x="765" y="284" width="395" height="114" rx="10" fill="#edf5fa" stroke="#a5bbc9"/>
+<text x="781" y="313" class="bold">URS=0 时的 UG 更新请求</text>
+<text x="781" y="342" class="small">UIF 标志；UIE/UDE 再控制</text>
+<text x="781" y="367" class="small">更新中断 / DMA 请求使能</text>
+<path d="M130,236 L130,284" stroke="#406780" stroke-width="2" fill="none" marker-end="url(#a)"/>
+<path d="M232,341 L300,341" stroke="#406780" stroke-width="2" fill="none" marker-end="url(#a)"/>
+<path d="M695,341 L765,341" stroke="#406780" stroke-width="2" fill="none" marker-end="url(#a)"/>
+<rect x="32" y="452" width="536" height="122" rx="10" fill="#fff5df" stroke="#a5bbc9"/>
+<text x="48" y="481" class="bold">MMS=000：UG 作为 TRGO</text>
+<text x="48" y="510" class="small">独立检查这条下游触发选择。</text>
+<text x="48" y="535" class="small">URS=1 不能作为屏蔽 TRGO 的通用开关。</text>
+<rect x="624" y="452" width="536" height="122" rx="10" fill="#fff5df" stroke="#a5bbc9"/>
+<text x="640" y="481" class="bold">MMS=010：UEV 作为 TRGO</text>
+<text x="640" y="510" class="small">此选择随 UEV 是否生成而变化。</text>
+<text x="640" y="535" class="small">其他 MMS 还可选择使能、比较脉冲、OCxREF。</text>
+<text x="32" y="622" class="bold">阅读边界</text>
+<text x="32" y="652" class="small">本图只追踪软件 UG。溢出/下溢、从模式复位、TIM1 RCR 和 COM 需分别按对应条件判断。</text>
+<text x="32" y="679" class="small">UIF 为锁存标志；清 UIF 不撤销已经发生的装载或触发。实际输出还受通道、MOE 和保护配置影响。</text>
+<text x="32" y="721" class="small">来源：RM0008 Rev21 pp297–307、338–340；UDIS / URS / UG / MMS 字段交叉核对。</text>
+<text x="32" y="748" class="small">UEV：更新事件；TRGO：触发输出；UIE / UDE：更新中断 / DMA 请求使能。</text>
+</svg>

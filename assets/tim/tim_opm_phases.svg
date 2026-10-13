@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1480" height="1020" viewBox="0 0 1480 1020" role="img" aria-labelledby="title desc"><title id="title">单脉冲等待、延时、脉宽与停止</title><desc id="desc">正常极性的向上PWM2在触发后延时CCR个计数节拍，高有效到ARR结束后回零停止。RCR将最终更新延后到N个周期。物理输出另受输出级约束。</desc><rect width="1480" height="1020" fill="white"/><style>text{font-family:Arial,"Noto Sans CJK SC",sans-serif;fill:#17314b}.title{font-size:29px;font-weight:bold}.body{font-size:19px}.small{font-size:17px}.bold{font-size:22px;font-weight:bold}</style><defs><marker id="a" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto-start-reverse"><path d="M0 0 L7 3.5 L0 7" fill="#406780"/></marker></defs>
+<text x="30" y="45" class="title">OPM：触发后启动，最终更新时停止计数</text>
+<text x="30" y="81" class="body">TIM1示意：SMS=110；上数CNT初值0、PWM2、CC1P=0、OC1FE=0、OPM=1、UDIS=0、RCR=0。</text>
+<text x="30" y="114" class="small">0&lt;CCR1≤ARR；时钟稳定，无额外复位 / UG / 清参考 / Break。CNT斜线为离散计数包络，横距不规定同步延迟。</text>
+<path d="M330 145 V495" fill="none" stroke="#aab9c3" stroke-dasharray="5 5"/>
+<path d="M650 145 V495" fill="none" stroke="#aab9c3" stroke-dasharray="5 5"/>
+<path d="M1110 145 V495" fill="none" stroke="#aab9c3" stroke-dasharray="5 5"/>
+<text x="30" y="180" class="body">TRGI</text>
+<path d="M180 195 H285 V160 H305 V195 H1410" fill="none" stroke="#176f9e" stroke-width="3"/>
+<text x="345" y="175" class="small">内部同步后启动；未定义固定相位延迟</text>
+<text x="30" y="260" class="body">CEN</text>
+<path d="M180 275 H330 V235 H1110 V275 H1410" fill="none" stroke="#176f9e" stroke-width="3"/>
+<text x="30" y="345" class="body">CNT</text>
+<path d="M180 365 H330 L1080 300 H1110 V365 H1410" fill="none" stroke="#176f9e" stroke-width="3"/>
+<text x="655" y="327" class="small">CCR1</text>
+<text x="1045" y="290" class="small">ARR</text>
+<text x="1220" y="346" class="small">回到0并保持</text>
+<text x="30" y="420" class="body">OC1REF</text>
+<path d="M180 435 H650 V395 H1110 V435 H1410" fill="none" stroke="#176f9e" stroke-width="3"/>
+<text x="30" y="485" class="body">UEV</text>
+<path d="M180 490 H1110 V460 H1130 V490 H1410" fill="none" stroke="#b96122" stroke-width="2"/>
+<path d="M330 531 H650" stroke="#406780" stroke-width="1.5" marker-start="url(#a)" marker-end="url(#a)"/>
+<text x="430.0" y="522" class="small">CCR1个计数节拍</text>
+<path d="M650 531 H1110" stroke="#406780" stroke-width="1.5" marker-start="url(#a)" marker-end="url(#a)"/>
+<text x="820.0" y="522" class="small">ARR+1−CCR1个计数节拍</text>
+<rect x="30" y="568" width="1410" height="125" rx="8" fill="#edf5fa" stroke="#a5bbc9"/>
+<text x="44" y="597" class="bold">参考波形的换算</text>
+<text x="44" y="627" class="small">t_delay≈CCR1/fCNT；t_pulse≈(ARR+1−CCR1)/fCNT；完整计数周期T=(ARR+1)/fCNT。</text>
+<text x="44" y="652" class="small">t_delay / t_pulse / T：延时 / 脉宽 / 周期，单位s；fCNT：PSC后计数频率，单位Hz；ARR / CCR1：无量纲寄存器整数。</text>
+<text x="44" y="677" class="small">近似式不包含输入同步、输出级及GPIO传播延迟。OC1FE启用后不能继续套用同一触发到有效沿的延时模型。</text>
+<rect x="30" y="725" width="685" height="160" rx="8" fill="#edf5fa" stroke="#a5bbc9"/>
+<text x="44" y="754" class="bold">TIM1：重复N个周期再停止</text>
+<text x="44" y="784" class="small">N在1～256，RCR=N−1；预先UG装入内部重复状态。</text>
+<text x="44" y="809" class="small">例如N=5：前4个周期边界不形成最终UEV，</text>
+<text x="44" y="834" class="small">第5个周期边界形成UEV并清CEN。</text>
+<text x="44" y="859" class="small">普通TIM2～TIM4没有RCR，不能直接套此配置。</text>
+<rect x="745" y="725" width="695" height="160" rx="8" fill="#fff4dc" stroke="#a5bbc9"/>
+<text x="759" y="754" class="bold">停止后的输出状态</text>
+<text x="759" y="784" class="small">OPM清CEN，不自动清CC1E / CC1NE / MOE。</text>
+<text x="759" y="809" class="small">图中PWM2参考回到无效；实际引脚仍受极性、</text>
+<text x="759" y="834" class="small">互补选择、死区、关闭态、GPIO和驱动器影响。</text>
+<text x="759" y="859" class="small">有限计数周期数不单独证明外部合格脉冲数。</text>
+<text x="30" y="927" class="small">参考与引脚分开：图中画OC1REF；CC1P=0且主通道正常放行时主引脚才跟随该参考关系。</text>
+<text x="30" y="959" class="small">来源：RM0008 Rev21 pp328–329 / 390–391，图92 / 132；RCR pp306–307；保留AN4776图19–20裁图。</text>
+<text x="30" y="991" class="small">原图的参考 / 引脚反相标注差异与AN来源边界保留于正文；本图为按寄存器条件整合的示意，未经板端测量。</text>
+</svg>

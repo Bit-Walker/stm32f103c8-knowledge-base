@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="1110" viewBox="0 0 1500 1110" role="img"><title>TIM1 DMA波形分组：三字段预装载流水</title><rect width="1500" height="1110" fill="white"/><style>text{font-family:Arial,"Noto Sans CJK SC",sans-serif;fill:#17314b}.title{font-size:29px;font-weight:bold}.body{font-size:19px}.small{font-size:17px}.bold{font-size:22px;font-weight:bold}</style><defs><marker id="a" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0 0 L7 3.5 L0 7" fill="#406780"/></marker></defs>
+<text x="30" y="45" class="title">TIM1 DMA波形分组：三字段预装载流水</text>
+<text x="30" y="81" class="body">按C8寄存器语义整理的初始化方案：独占TIM1，向上PWM1，ARPE / OC1PE启用，RCR决定分组边界。</text>
+<text x="30" y="114" class="small">连续循环播放要求OPM=0；初态、总线最坏延迟和组界波形仍需目标验证，不将原F302系统图视为已验证C8工程。</text>
+<rect x="30" y="157" width="420" height="185" rx="8" fill="#edf5fa" stroke="#a5bbc9"/>
+<text x="44" y="186" class="bold">内存表</text>
+<text x="44" y="216" class="small">每组：ARR_i、RCR_i、CCR1_i</text>
+<text x="44" y="241" class="small">ARR_i=n_on,i+n_off,i−1</text>
+<text x="44" y="266" class="small">RCR_i=N_i−1；CCR1_i=n_on,i</text>
+<text x="44" y="291" class="small">A / B / C三组目标重复数为2 / 1 / 3</text>
+<text x="44" y="316" class="small">三个字段必须在下一装载前准备好</text>
+<rect x="530" y="157" width="415" height="185" rx="8" fill="#edf5fa" stroke="#a5bbc9"/>
+<text x="544" y="186" class="bold">DMA1通道5</text>
+<text x="544" y="216" class="small">TIM1_UP触发，内存→外设</text>
+<text x="544" y="241" class="small">CPAR固定为TIM1_DMAR，PINC=0</text>
+<text x="544" y="266" class="small">MINC=1；表布局须匹配数据宽度</text>
+<text x="544" y="291" class="small">uint16_t表按半字访问</text>
+<text x="544" y="316" class="small">9项循环表：CNDTR=9</text>
+<rect x="1030" y="157" width="435" height="185" rx="8" fill="#edf5fa" stroke="#a5bbc9"/>
+<text x="1044" y="186" class="bold">TIM1 DCR / DMAR</text>
+<text x="1044" y="216" class="small">DBA=11，对应ARR偏移0x2C</text>
+<text x="1044" y="241" class="small">DBL=2，展开3次寄存器访问</text>
+<text x="1044" y="266" class="small">ARR 0x2C → RCR 0x30 → CCR1 0x34</text>
+<text x="1044" y="291" class="small">DMA外设地址不随该内部遍历增加</text>
+<text x="1044" y="316" class="small">TIM2～4无RCR，不能复制三字段窗口</text>
+<path d="M450 247 H530" fill="none" stroke="#406780" stroke-width="2" marker-end="url(#a)"/>
+<path d="M945 247 H1030" fill="none" stroke="#406780" stroke-width="2" marker-end="url(#a)"/>
+<text x="30" y="398" class="body">初始化：UDE / DMA保持关闭，先写A并UG使其活动；再预写B，DMA循环表按C → A → B排列。</text>
+<rect x="30" y="430" width="235" height="55" fill="#e3eef6" stroke="#b4c4ce"/>
+<text x="44" y="465" class="body">时刻</text>
+<rect x="265" y="430" width="230" height="55" fill="#e3eef6" stroke="#b4c4ce"/>
+<text x="279" y="465" class="body">活动配置</text>
+<rect x="495" y="430" width="305" height="55" fill="#e3eef6" stroke="#b4c4ce"/>
+<text x="509" y="465" class="body">已准备预装载</text>
+<rect x="800" y="430" width="665" height="55" fill="#e3eef6" stroke="#b4c4ce"/>
+<text x="814" y="465" class="body">接下来发生的动作</text>
+<rect x="30" y="485" width="235" height="55" fill="#f8fafc" stroke="#b4c4ce"/>
+<text x="44" y="520" class="small">开始前</text>
+<rect x="265" y="485" width="230" height="55" fill="#f8fafc" stroke="#b4c4ce"/>
+<text x="279" y="520" class="small">A</text>
+<rect x="495" y="485" width="305" height="55" fill="#f8fafc" stroke="#b4c4ce"/>
+<text x="509" y="520" class="small">B</text>
+<rect x="800" y="485" width="665" height="55" fill="#f8fafc" stroke="#b4c4ce"/>
+<text x="814" y="520" class="small">放行DMA请求与计数/输出</text>
+<rect x="30" y="540" width="235" height="55" fill="#f8fafc" stroke="#b4c4ce"/>
+<text x="44" y="575" class="small">A末UEV</text>
+<rect x="265" y="540" width="230" height="55" fill="#f8fafc" stroke="#b4c4ce"/>
+<text x="279" y="575" class="small">B</text>
+<rect x="495" y="540" width="305" height="55" fill="#f8fafc" stroke="#b4c4ce"/>
+<text x="509" y="575" class="small">DMA写C</text>
+<rect x="800" y="540" width="665" height="55" fill="#f8fafc" stroke="#b4c4ce"/>
+<text x="814" y="575" class="small">B开始后逐项准备C</text>
+<rect x="30" y="595" width="235" height="55" fill="#f8fafc" stroke="#b4c4ce"/>
+<text x="44" y="630" class="small">B末UEV</text>
+<rect x="265" y="595" width="230" height="55" fill="#f8fafc" stroke="#b4c4ce"/>
+<text x="279" y="630" class="small">C</text>
+<rect x="495" y="595" width="305" height="55" fill="#f8fafc" stroke="#b4c4ce"/>
+<text x="509" y="630" class="small">DMA写A</text>
+<rect x="800" y="595" width="665" height="55" fill="#f8fafc" stroke="#b4c4ce"/>
+<text x="814" y="630" class="small">C开始后逐项准备A</text>
+<rect x="30" y="650" width="235" height="55" fill="#f8fafc" stroke="#b4c4ce"/>
+<text x="44" y="685" class="small">C末UEV</text>
+<rect x="265" y="650" width="230" height="55" fill="#f8fafc" stroke="#b4c4ce"/>
+<text x="279" y="685" class="small">A</text>
+<rect x="495" y="650" width="305" height="55" fill="#f8fafc" stroke="#b4c4ce"/>
+<text x="509" y="685" class="small">DMA写B</text>
+<rect x="800" y="650" width="665" height="55" fill="#f8fafc" stroke="#b4c4ce"/>
+<text x="814" y="685" class="small">循环继续</text>
+<rect x="30" y="752" width="690" height="172" rx="8" fill="#edf5fa" stroke="#a5bbc9"/>
+<text x="44" y="781" class="bold">完成边界</text>
+<text x="44" y="811" class="small">UEV先装入已准备值，再发请求准备后续组。</text>
+<text x="44" y="836" class="small">DMA逐项写入并非同时原子提交。</text>
+<text x="44" y="861" class="small">DMA TC表示表传输边界，不代表最后输出周期结束。</text>
+<text x="44" y="886" class="small">UG位自行清零也不证明DMA已经写完。</text>
+<text x="44" y="911" class="small">请求、传输错误、计数/输出停止分别核对。</text>
+<rect x="795" y="752" width="670" height="172" rx="8" fill="#fff4dc" stroke="#a5bbc9"/>
+<text x="809" y="781" class="bold">数值与原例差异</text>
+<text x="809" y="811" class="small">n_on / n_off为高 / 低刻度整数；N为周期数，均无量纲。</text>
+<text x="809" y="836" class="small">物理时间应先乘计数频率换成刻度，再计算寄存器值。</text>
+<text x="809" y="861" class="small">原表C段CCR1=200与图33的2000 / 50%目标不同。</text>
+<text x="809" y="886" class="small">原例32MHz计数不能由72MHz直接整数PSC精确得到。</text>
+<text x="809" y="911" class="small">具体原数值与复算结果保留在正文表。</text>
+<text x="30" y="976" class="small">来源：RM0008 Rev21 DCR/DMAR pp361–362、DMA映射pp281–282、预装载与RCR pp295–307、356–358。</text>
+<text x="30" y="1009" class="small">保留AN4776图28～33目标与来源差异；NDTR / DBL以及控制器burst概念按C8重新限定。</text>
+<text x="30" y="1042" class="small">表中UEV时刻是功能阶段，不表示多个APB/DMA访问零延迟完成；RCR内部重装与首组状态须纳入实测。</text>
+</svg>

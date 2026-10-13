@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1450" height="800" viewBox="0 0 1450 800" role="img" aria-labelledby="title desc"><title id="title">编码器相位与单路极性反转</title><desc id="desc">TI1和TI2正交序列经过前进、来回抖动、后退、来回抖动和前进；反转CC1P会反转相同物理边沿序列的计数方向。</desc><rect width="1450" height="800" fill="white"/><style>text{font-family:Arial,"Noto Sans CJK SC",sans-serif;fill:#17314b}.title{font-size:29px;font-weight:bold}.body{font-size:19px}.small{font-size:17px}</style>
+<rect x="310" y="155" width="256" height="450" fill="#edf6f3"/>
+<text x="318" y="180" class="small">前进</text>
+<rect x="566" y="155" width="128" height="450" fill="#fff3dd"/>
+<text x="574" y="180" class="small">来回抖动</text>
+<rect x="694" y="155" width="256" height="450" fill="#edf3fa"/>
+<text x="702" y="180" class="small">后退</text>
+<rect x="950" y="155" width="128" height="450" fill="#fff3dd"/>
+<text x="958" y="180" class="small">来回抖动</text>
+<rect x="1078" y="155" width="256" height="450" fill="#edf6f3"/>
+<text x="1086" y="180" class="small">前进</text>
+<text x="30" y="45" class="title">编码器：相位决定方向，反转一路极性会交换计数方向</text>
+<text x="30" y="82" class="body">TIM1～TIM4 · SMS=011、CC1S=CC2S=01、IC1F=IC2F=0、CEN=1；本示意取 PSC=0。</text>
+<text x="30" y="115" class="small">TI1 / TI2 画物理输入；两路不同时跳变。台阶仅表示 CNT 增减，不表示机械位移量或时序规格。</text>
+<text x="32" y="237" class="body">TI1 物理输入</text>
+<path d="M310 247 H374 V217 H438 V217 H502 V247 H566 V247 H630 V217 H694 V247 H758 V247 H822 V217 H886 V217 H950 V247 H1014 V217 H1078 V247 H1142 V217 H1206 V217 H1270 V247 H1334 V247 H1374" fill="none" stroke="#234765" stroke-width="3"/>
+<text x="32" y="310" class="body">TI2 物理输入</text>
+<path d="M310 320 H374 V320 H438 V290 H502 V290 H566 V320 H630 V320 H694 V320 H758 V290 H822 V290 H886 V320 H950 V320 H1014 V320 H1078 V320 H1142 V320 H1206 V290 H1270 V290 H1334 V320 H1374" fill="none" stroke="#56768d" stroke-width="3"/>
+<text x="32" y="409" class="body">CNT：CC1P=CC2P=0</text>
+<path d="M310 443 H374 V426 H438 V409 H502 V392 H566 V375 H630 V358 H694 V375 H758 V392 H822 V409 H886 V426 H950 V443 H1014 V426 H1078 V443 H1142 V426 H1206 V409 H1270 V392 H1334 V375 H1374" fill="none" stroke="#167993" stroke-width="3"/>
+<text x="32" y="531" class="body">CNT：仅 CC1P=1</text>
+<path d="M310 510 H374 V527 H438 V544 H502 V561 H566 V578 H630 V595 H694 V578 H758 V561 H822 V544 H886 V527 H950 V510 H1014 V527 H1078 V510 H1142 V527 H1206 V544 H1270 V561 H1334 V578 H1374" fill="none" stroke="#ac672b" stroke-width="3"/>
+<text x="30" y="632" class="small">前提：有效边沿逐个进入编码器逻辑，未发生计数范围回绕，也未插入复位或其他计数控制。</text>
+<text x="30" y="665" class="small">两次相反的有效边沿可使计数来回一步；这不保证任意噪声、同时跳变或超过输入能力的信号均可抵消。</text>
+<text x="30" y="698" class="small">SMS=001 只在 TI2 的有效跳变计数；SMS=010 只在 TI1 计数；另一信号的电平仍参与方向判断。</text>
+<text x="30" y="731" class="small">本图依据方向表重组相位序列，对照图93/94与图134/135的前进、抖动、后退和极性反转关系；未作硬件测量。</text>
+<text x="30" y="764" class="small">来源：RM0008 Rev21 §14.3.16、表81及图93～94，pp329–331；§15.3.12及图134～135，pp392–394。</text>
+</svg>

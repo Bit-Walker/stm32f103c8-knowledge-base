@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1480" height="1130" viewBox="0 0 1480 1130" role="img" aria-labelledby="title desc"><title id="title">Hall捕获、延迟触发与COM换相</title><desc id="desc">三个Hall信号异或形成边沿，接口定时器捕获间隔并复位，OC2REF延迟上升触发TIM1换相；控制预装载和数值预装载的装载事件不同。</desc><rect width="1480" height="1130" fill="white"/><style>text{font-family:Arial,"Noto Sans CJK SC",sans-serif;fill:#17314b}.title{font-size:29px;font-weight:bold}.body{font-size:19px}.small{font-size:17px}.bold{font-size:22px;font-weight:bold}</style><defs><marker id="a" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0 0 L7 3.5 L0 7" fill="#406780"/></marker></defs>
+<text x="30" y="45" class="title">Hall 接口：间隔捕获、延迟触发和控制位换相</text>
+<text x="30" y="81" class="body">C8使用一个接口定时器与TIM1高级输出级；先按实例查ITR连接。图示不规定外部电机接线或安全换相表。</text>
+<rect x="30" y="125" width="420" height="165" rx="8" fill="#edf5fa" stroke="#a5bbc9"/>
+<text x="44" y="154" class="bold">三路数字输入</text>
+<text x="44" y="184" class="small">CH1 / CH2 / CH3 → XOR</text>
+<text x="44" y="209" class="small">CR2.TI1S=1；转换送TI1输入链</text>
+<text x="44" y="234" class="small">TI1F_ED检测两个方向的转换</text>
+<text x="44" y="259" class="small">同时转换、噪声和滤波另需核对</text>
+<rect x="525" y="125" width="420" height="165" rx="8" fill="#edf5fa" stroke="#a5bbc9"/>
+<text x="539" y="154" class="bold">接口定时器</text>
+<text x="539" y="184" class="small">TS=100，SMS=100：边沿复位CNT</text>
+<text x="539" y="209" class="small">CC1S=11：TRC捕获间隔到CCR1</text>
+<text x="539" y="234" class="small">CH2 PWM2：以CCR2安排延迟</text>
+<text x="539" y="259" class="small">MMS=101：OC2REF送到TRGO</text>
+<rect x="1020" y="125" width="420" height="165" rx="8" fill="#edf5fa" stroke="#a5bbc9"/>
+<text x="1034" y="154" class="bold">TIM1换相消费者</text>
+<text x="1034" y="184" class="small">选择来自接口TIM的对应ITR</text>
+<text x="1034" y="209" class="small">CCPC=1：预装载控制位</text>
+<text x="1034" y="234" class="small">CCUS=1：TRGI上升沿产生COM</text>
+<text x="1034" y="259" class="small">输出保护和引脚配置独立落实</text>
+<path d="M450 206 H525" fill="none" stroke="#406780" stroke-width="2" marker-end="url(#a)"/>
+<path d="M945 206 H1020" fill="none" stroke="#406780" stroke-width="2" marker-end="url(#a)"/>
+<rect x="30" y="330" width="1410" height="110" rx="8" fill="#f1f5ed" stroke="#a5bbc9"/>
+<text x="44" y="359" class="bold">每个合格转换的时序关系</text>
+<text x="44" y="389" class="small">Hall转换 → 捕获此前间隔并重新开始计数 → CNT达到CCR2，OC2REF上升 → TIM1产生COM，装入本步控制。</text>
+<text x="44" y="414" class="small">软件在本次COM之后准备下一步OCxM / CCxE / CCxNE，须赶在下次COM之前；CCR数值预装载仍按UEV装载。</text>
+<text x="30" y="489" class="bold">原图95的六次捕获值与六个输出区间</text>
+<text x="30" y="520" class="small">以下仅复述原图顺序，既不推定机械角度，也不把内部参考示意当作真实门极安全测试。</text>
+<rect x="30" y="550" width="220" height="53" fill="#e3eef6" stroke="#b4c4ce"/>
+<text x="44" y="584" class="body">区间</text>
+<rect x="250" y="550" width="198" height="53" fill="#e3eef6" stroke="#b4c4ce"/>
+<text x="264" y="584" class="body">1</text>
+<rect x="448" y="550" width="198" height="53" fill="#e3eef6" stroke="#b4c4ce"/>
+<text x="462" y="584" class="body">2</text>
+<rect x="646" y="550" width="198" height="53" fill="#e3eef6" stroke="#b4c4ce"/>
+<text x="660" y="584" class="body">3</text>
+<rect x="844" y="550" width="198" height="53" fill="#e3eef6" stroke="#b4c4ce"/>
+<text x="858" y="584" class="body">4</text>
+<rect x="1042" y="550" width="198" height="53" fill="#e3eef6" stroke="#b4c4ce"/>
+<text x="1056" y="584" class="body">5</text>
+<rect x="1240" y="550" width="200" height="53" fill="#e3eef6" stroke="#b4c4ce"/>
+<text x="1254" y="584" class="body">6</text>
+<rect x="30" y="603" width="220" height="53" fill="#f8fafc" stroke="#b4c4ce"/>
+<text x="44" y="637" class="small">COM起点CCR1</text>
+<rect x="250" y="603" width="198" height="53" fill="#f8fafc" stroke="#b4c4ce"/>
+<text x="264" y="637" class="small">0xC7A3</text>
+<rect x="448" y="603" width="198" height="53" fill="#f8fafc" stroke="#b4c4ce"/>
+<text x="462" y="637" class="small">0xC7A8</text>
+<rect x="646" y="603" width="198" height="53" fill="#f8fafc" stroke="#b4c4ce"/>
+<text x="660" y="637" class="small">0xC794</text>
+<rect x="844" y="603" width="198" height="53" fill="#f8fafc" stroke="#b4c4ce"/>
+<text x="858" y="637" class="small">0xC7A5</text>
+<rect x="1042" y="603" width="198" height="53" fill="#f8fafc" stroke="#b4c4ce"/>
+<text x="1056" y="637" class="small">0xC7AB</text>
+<rect x="1240" y="603" width="200" height="53" fill="#f8fafc" stroke="#b4c4ce"/>
+<text x="1254" y="637" class="small">0xC796</text>
+<rect x="30" y="656" width="220" height="53" fill="#f8fafc" stroke="#b4c4ce"/>
+<text x="44" y="690" class="small">PWM主通道</text>
+<rect x="250" y="656" width="198" height="53" fill="#f8fafc" stroke="#b4c4ce"/>
+<text x="264" y="690" class="small">OC1</text>
+<rect x="448" y="656" width="198" height="53" fill="#f8fafc" stroke="#b4c4ce"/>
+<text x="462" y="690" class="small">OC1</text>
+<rect x="646" y="656" width="198" height="53" fill="#f8fafc" stroke="#b4c4ce"/>
+<text x="660" y="690" class="small">OC2</text>
+<rect x="844" y="656" width="198" height="53" fill="#f8fafc" stroke="#b4c4ce"/>
+<text x="858" y="690" class="small">OC2</text>
+<rect x="1042" y="656" width="198" height="53" fill="#f8fafc" stroke="#b4c4ce"/>
+<text x="1056" y="690" class="small">OC3</text>
+<rect x="1240" y="656" width="200" height="53" fill="#f8fafc" stroke="#b4c4ce"/>
+<text x="1254" y="690" class="small">OC3</text>
+<rect x="30" y="709" width="220" height="53" fill="#f8fafc" stroke="#b4c4ce"/>
+<text x="44" y="743" class="small">保持高的N端</text>
+<rect x="250" y="709" width="198" height="53" fill="#f8fafc" stroke="#b4c4ce"/>
+<text x="264" y="743" class="small">OC2N</text>
+<rect x="448" y="709" width="198" height="53" fill="#f8fafc" stroke="#b4c4ce"/>
+<text x="462" y="743" class="small">OC3N</text>
+<rect x="646" y="709" width="198" height="53" fill="#f8fafc" stroke="#b4c4ce"/>
+<text x="660" y="743" class="small">OC3N</text>
+<rect x="844" y="709" width="198" height="53" fill="#f8fafc" stroke="#b4c4ce"/>
+<text x="858" y="743" class="small">OC1N</text>
+<rect x="1042" y="709" width="198" height="53" fill="#f8fafc" stroke="#b4c4ce"/>
+<text x="1056" y="743" class="small">OC1N</text>
+<rect x="1240" y="709" width="200" height="53" fill="#f8fafc" stroke="#b4c4ce"/>
+<text x="1254" y="743" class="small">OC2N</text>
+<text x="30" y="799" class="small">其余输出在该原图区间画为低。区间边界是延迟后的COM，并不与此前Hall转换在同一时刻。</text>
+<rect x="30" y="833" width="685" height="166" rx="8" fill="#edf5fa" stroke="#a5bbc9"/>
+<text x="44" y="862" class="bold">COM与软件预写</text>
+<text x="44" y="892" class="small">预写OCxM、CCxE、CCxNE不应立即改活动控制；</text>
+<text x="44" y="917" class="small">COM才成组装入，适用TIM1 CH1～CH3。</text>
+<text x="44" y="942" class="small">原图91部分左侧标签未区分活动/预装载，</text>
+<text x="44" y="967" class="small">必须结合字段定义理解，不据标签补造规律。</text>
+<rect x="745" y="833" width="695" height="166" rx="8" fill="#fff4dc" stroke="#a5bbc9"/>
+<text x="759" y="862" class="bold">捕获与时钟限制</text>
+<text x="759" y="892" class="small">CCR1数值为示例计数，不是固定转速或角度。</text>
+<text x="759" y="917" class="small">最长转换间隔应小于可测量计数范围。</text>
+<text x="759" y="942" class="small">需要计算速度时另外确定极对数、每电周期转换数。</text>
+<text x="759" y="967" class="small">固定HAL与LL的初始化覆盖范围见接口章节。</text>
+<text x="30" y="1044" class="small">XOR：异或；TRC：输入捕获选择中的内部触发路径；COM：捕获/比较控制更新事件；UEV：更新事件。</text>
+<text x="30" y="1077" class="small">来源：RM0008 Rev21 §§14.3.16–17、图91/95，pp327、332–333；CCPC/CCUS与TI1S字段pp340–341。</text>
+<text x="30" y="1108" class="small">保留AN4013的Hall裁图仅提供传感器与相序示意；其位置角度不能直接替代具体电机的机械/电角度关系。</text>
+</svg>

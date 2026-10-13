@@ -1,0 +1,148 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="1030" viewBox="0 0 1500 1030" role="img" aria-labelledby="title desc"><title id="title">TIM1重复计数器的更新边界</title><desc id="desc">RCR零到三对应每一二三四个计数边界更新。中心模式峰谷各为边界，奇数RCR有峰谷两种更新相位。软件UG重新建立重复计数相位。</desc><rect width="1500" height="1030" fill="white"/><style>text{font-family:Arial,"Noto Sans CJK SC",sans-serif;fill:#17314b}.title{font-size:29px;font-weight:bold}.body{font-size:19px}.small{font-size:17px}.bold{font-size:22px;font-weight:bold}</style><defs><marker id="a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="#406780"/></marker></defs>
+<text x="30" y="46" class="title">TIM1 RCR：边沿与中心对齐的更新节奏</text>
+<text x="30" y="83" class="body">正常连续计数、ARR&gt;0、UDIS=0、无额外复位 / UG；横轴为边界序号，不共用时间尺度。</text>
+<text x="30" y="115" class="small">以一个已发生的周期性 UEV 作为相位起点；此图不保证启动后的第一次 UEV 出现时刻。</text>
+<rect x="210" y="148" width="640" height="450" rx="10" fill="#f0f6f8"/><rect x="900" y="148" width="550" height="450" rx="10" fill="#f4f7ef"/>
+<text x="235" y="184" class="bold">中心对齐：峰和谷各算一个边界</text>
+<text x="925" y="184" class="bold">边沿对齐：每个完整周期一个边界</text>
+<text x="925" y="214" class="small">向上为上溢；向下为下溢。</text>
+<text x="263" y="216" class="small">谷</text>
+<path d="M270 235 L270 575" fill="none" stroke="#c4cfd7" stroke-width="1.5" stroke-dasharray="4 4"/>
+<text x="308" y="216" class="small">峰</text>
+<path d="M315 235 L315 575" fill="none" stroke="#c4cfd7" stroke-width="1.5" stroke-dasharray="4 4"/>
+<text x="353" y="216" class="small">谷</text>
+<path d="M360 235 L360 575" fill="none" stroke="#c4cfd7" stroke-width="1.5" stroke-dasharray="4 4"/>
+<text x="398" y="216" class="small">峰</text>
+<path d="M405 235 L405 575" fill="none" stroke="#c4cfd7" stroke-width="1.5" stroke-dasharray="4 4"/>
+<text x="443" y="216" class="small">谷</text>
+<path d="M450 235 L450 575" fill="none" stroke="#c4cfd7" stroke-width="1.5" stroke-dasharray="4 4"/>
+<text x="488" y="216" class="small">峰</text>
+<path d="M495 235 L495 575" fill="none" stroke="#c4cfd7" stroke-width="1.5" stroke-dasharray="4 4"/>
+<text x="533" y="216" class="small">谷</text>
+<path d="M540 235 L540 575" fill="none" stroke="#c4cfd7" stroke-width="1.5" stroke-dasharray="4 4"/>
+<text x="578" y="216" class="small">峰</text>
+<path d="M585 235 L585 575" fill="none" stroke="#c4cfd7" stroke-width="1.5" stroke-dasharray="4 4"/>
+<text x="623" y="216" class="small">谷</text>
+<path d="M630 235 L630 575" fill="none" stroke="#c4cfd7" stroke-width="1.5" stroke-dasharray="4 4"/>
+<text x="668" y="216" class="small">峰</text>
+<path d="M675 235 L675 575" fill="none" stroke="#c4cfd7" stroke-width="1.5" stroke-dasharray="4 4"/>
+<text x="713" y="216" class="small">谷</text>
+<path d="M720 235 L720 575" fill="none" stroke="#c4cfd7" stroke-width="1.5" stroke-dasharray="4 4"/>
+<text x="758" y="216" class="small">峰</text>
+<path d="M765 235 L765 575" fill="none" stroke="#c4cfd7" stroke-width="1.5" stroke-dasharray="4 4"/>
+<text x="803" y="216" class="small">谷</text>
+<path d="M810 235 L810 575" fill="none" stroke="#c4cfd7" stroke-width="1.5" stroke-dasharray="4 4"/>
+<text x="966" y="242" class="small">0</text>
+<path d="M973 254 L973 575" fill="none" stroke="#c4cfd7" stroke-width="1.5" stroke-dasharray="4 4"/>
+<text x="1018" y="242" class="small">1</text>
+<path d="M1025 254 L1025 575" fill="none" stroke="#c4cfd7" stroke-width="1.5" stroke-dasharray="4 4"/>
+<text x="1070" y="242" class="small">2</text>
+<path d="M1077 254 L1077 575" fill="none" stroke="#c4cfd7" stroke-width="1.5" stroke-dasharray="4 4"/>
+<text x="1122" y="242" class="small">3</text>
+<path d="M1129 254 L1129 575" fill="none" stroke="#c4cfd7" stroke-width="1.5" stroke-dasharray="4 4"/>
+<text x="1174" y="242" class="small">4</text>
+<path d="M1181 254 L1181 575" fill="none" stroke="#c4cfd7" stroke-width="1.5" stroke-dasharray="4 4"/>
+<text x="1226" y="242" class="small">5</text>
+<path d="M1233 254 L1233 575" fill="none" stroke="#c4cfd7" stroke-width="1.5" stroke-dasharray="4 4"/>
+<text x="1278" y="242" class="small">6</text>
+<path d="M1285 254 L1285 575" fill="none" stroke="#c4cfd7" stroke-width="1.5" stroke-dasharray="4 4"/>
+<text x="1330" y="242" class="small">7</text>
+<path d="M1337 254 L1337 575" fill="none" stroke="#c4cfd7" stroke-width="1.5" stroke-dasharray="4 4"/>
+<text x="1382" y="242" class="small">8</text>
+<path d="M1389 254 L1389 575" fill="none" stroke="#c4cfd7" stroke-width="1.5" stroke-dasharray="4 4"/>
+<text x="30" y="286" class="body">RCR=0：每 1 边界</text>
+<path d="M245 280 L830 280" fill="none" stroke="#c4cfd7" stroke-width="1.5"/>
+<path d="M950 280 L1410 280" fill="none" stroke="#c4cfd7" stroke-width="1.5"/>
+<circle cx="270" cy="280" r="6" fill="#176f9e" stroke="#176f9e" stroke-width="2"/>
+<circle cx="315" cy="280" r="6" fill="#176f9e" stroke="#176f9e" stroke-width="2"/>
+<circle cx="360" cy="280" r="6" fill="#176f9e" stroke="#176f9e" stroke-width="2"/>
+<circle cx="405" cy="280" r="6" fill="#176f9e" stroke="#176f9e" stroke-width="2"/>
+<circle cx="450" cy="280" r="6" fill="#176f9e" stroke="#176f9e" stroke-width="2"/>
+<circle cx="495" cy="280" r="6" fill="#176f9e" stroke="#176f9e" stroke-width="2"/>
+<circle cx="540" cy="280" r="6" fill="#176f9e" stroke="#176f9e" stroke-width="2"/>
+<circle cx="585" cy="280" r="6" fill="#176f9e" stroke="#176f9e" stroke-width="2"/>
+<circle cx="630" cy="280" r="6" fill="#176f9e" stroke="#176f9e" stroke-width="2"/>
+<circle cx="675" cy="280" r="6" fill="#176f9e" stroke="#176f9e" stroke-width="2"/>
+<circle cx="720" cy="280" r="6" fill="#176f9e" stroke="#176f9e" stroke-width="2"/>
+<circle cx="765" cy="280" r="6" fill="#176f9e" stroke="#176f9e" stroke-width="2"/>
+<circle cx="810" cy="280" r="6" fill="#176f9e" stroke="#176f9e" stroke-width="2"/>
+<circle cx="973" cy="280" r="6" fill="#176f9e" stroke="#176f9e" stroke-width="2"/>
+<circle cx="1025" cy="280" r="6" fill="#176f9e" stroke="#176f9e" stroke-width="2"/>
+<circle cx="1077" cy="280" r="6" fill="#176f9e" stroke="#176f9e" stroke-width="2"/>
+<circle cx="1129" cy="280" r="6" fill="#176f9e" stroke="#176f9e" stroke-width="2"/>
+<circle cx="1181" cy="280" r="6" fill="#176f9e" stroke="#176f9e" stroke-width="2"/>
+<circle cx="1233" cy="280" r="6" fill="#176f9e" stroke="#176f9e" stroke-width="2"/>
+<circle cx="1285" cy="280" r="6" fill="#176f9e" stroke="#176f9e" stroke-width="2"/>
+<circle cx="1337" cy="280" r="6" fill="#176f9e" stroke="#176f9e" stroke-width="2"/>
+<circle cx="1389" cy="280" r="6" fill="#176f9e" stroke="#176f9e" stroke-width="2"/>
+<text x="30" y="376" class="body">RCR=1：每 2 边界</text>
+<path d="M245 370 L830 370" fill="none" stroke="#c4cfd7" stroke-width="1.5"/>
+<path d="M950 370 L1410 370" fill="none" stroke="#c4cfd7" stroke-width="1.5"/>
+<circle cx="270" cy="370" r="6" fill="#176f9e" stroke="#176f9e" stroke-width="2"/>
+<circle cx="315" cy="370" r="6" fill="white" stroke="#176f9e" stroke-width="2"/>
+<circle cx="360" cy="370" r="6" fill="#176f9e" stroke="#176f9e" stroke-width="2"/>
+<circle cx="405" cy="370" r="6" fill="white" stroke="#176f9e" stroke-width="2"/>
+<circle cx="450" cy="370" r="6" fill="#176f9e" stroke="#176f9e" stroke-width="2"/>
+<circle cx="495" cy="370" r="6" fill="white" stroke="#176f9e" stroke-width="2"/>
+<circle cx="540" cy="370" r="6" fill="#176f9e" stroke="#176f9e" stroke-width="2"/>
+<circle cx="585" cy="370" r="6" fill="white" stroke="#176f9e" stroke-width="2"/>
+<circle cx="630" cy="370" r="6" fill="#176f9e" stroke="#176f9e" stroke-width="2"/>
+<circle cx="675" cy="370" r="6" fill="white" stroke="#176f9e" stroke-width="2"/>
+<circle cx="720" cy="370" r="6" fill="#176f9e" stroke="#176f9e" stroke-width="2"/>
+<circle cx="765" cy="370" r="6" fill="white" stroke="#176f9e" stroke-width="2"/>
+<circle cx="810" cy="370" r="6" fill="#176f9e" stroke="#176f9e" stroke-width="2"/>
+<circle cx="973" cy="370" r="6" fill="#176f9e" stroke="#176f9e" stroke-width="2"/>
+<circle cx="1077" cy="370" r="6" fill="#176f9e" stroke="#176f9e" stroke-width="2"/>
+<circle cx="1181" cy="370" r="6" fill="#176f9e" stroke="#176f9e" stroke-width="2"/>
+<circle cx="1285" cy="370" r="6" fill="#176f9e" stroke="#176f9e" stroke-width="2"/>
+<circle cx="1389" cy="370" r="6" fill="#176f9e" stroke="#176f9e" stroke-width="2"/>
+<text x="30" y="466" class="body">RCR=2：每 3 边界</text>
+<path d="M245 460 L830 460" fill="none" stroke="#c4cfd7" stroke-width="1.5"/>
+<path d="M950 460 L1410 460" fill="none" stroke="#c4cfd7" stroke-width="1.5"/>
+<circle cx="270" cy="460" r="6" fill="#176f9e" stroke="#176f9e" stroke-width="2"/>
+<circle cx="405" cy="460" r="6" fill="#176f9e" stroke="#176f9e" stroke-width="2"/>
+<circle cx="540" cy="460" r="6" fill="#176f9e" stroke="#176f9e" stroke-width="2"/>
+<circle cx="675" cy="460" r="6" fill="#176f9e" stroke="#176f9e" stroke-width="2"/>
+<circle cx="810" cy="460" r="6" fill="#176f9e" stroke="#176f9e" stroke-width="2"/>
+<circle cx="973" cy="460" r="6" fill="#176f9e" stroke="#176f9e" stroke-width="2"/>
+<circle cx="1129" cy="460" r="6" fill="#176f9e" stroke="#176f9e" stroke-width="2"/>
+<circle cx="1285" cy="460" r="6" fill="#176f9e" stroke="#176f9e" stroke-width="2"/>
+<text x="30" y="556" class="body">RCR=3：每 4 边界</text>
+<path d="M245 550 L830 550" fill="none" stroke="#c4cfd7" stroke-width="1.5"/>
+<path d="M950 550 L1410 550" fill="none" stroke="#c4cfd7" stroke-width="1.5"/>
+<circle cx="270" cy="550" r="6" fill="#176f9e" stroke="#176f9e" stroke-width="2"/>
+<circle cx="315" cy="550" r="6" fill="white" stroke="#176f9e" stroke-width="2"/>
+<circle cx="450" cy="550" r="6" fill="#176f9e" stroke="#176f9e" stroke-width="2"/>
+<circle cx="495" cy="550" r="6" fill="white" stroke="#176f9e" stroke-width="2"/>
+<circle cx="630" cy="550" r="6" fill="#176f9e" stroke="#176f9e" stroke-width="2"/>
+<circle cx="675" cy="550" r="6" fill="white" stroke="#176f9e" stroke-width="2"/>
+<circle cx="810" cy="550" r="6" fill="#176f9e" stroke="#176f9e" stroke-width="2"/>
+<circle cx="973" cy="550" r="6" fill="#176f9e" stroke="#176f9e" stroke-width="2"/>
+<circle cx="1181" cy="550" r="6" fill="#176f9e" stroke="#176f9e" stroke-width="2"/>
+<circle cx="1389" cy="550" r="6" fill="#176f9e" stroke="#176f9e" stroke-width="2"/>
+<circle cx="42" cy="637" r="6" fill="#176f9e" stroke="#176f9e" stroke-width="2"/>
+<text x="60" y="643" class="small">实心点：选定相位的 UEV。</text>
+<circle cx="440" cy="637" r="6" fill="white" stroke="#176f9e" stroke-width="2"/>
+<text x="459" y="643" class="small">空心点：奇数 RCR 的另一峰 / 谷相位；与实心点属于不同运行情形。</text>
+<text x="30" y="678" class="small">RCR=255：边沿最多每 256 个完整周期更新；中心最多每 256 个半周期边界，即 128 个完整周期。</text>
+<text x="30" y="721" class="bold">软件重新同步：以 RCR=3 为例，且 UDIS=0</text>
+<rect x="30" y="751" width="290" height="145" rx="8" fill="#edf5fa" stroke="#a5bbc9"/>
+<text x="43" y="781" class="bold">重复计数尚未结束</text>
+<text x="43" y="811" class="small">当前还未累计满 4 个边界</text>
+<text x="43" y="836" class="small">旧相位下的下一周期性</text>
+<text x="43" y="861" class="small">UEV 尚未到来</text>
+<rect x="375" y="751" width="475" height="145" rx="8" fill="#fff4dc" stroke="#a5bbc9"/>
+<text x="388" y="781" class="bold">软件写 UG</text>
+<text x="388" y="811" class="small">立即产生 UEV，并重新初始化 CNT / PSC 计数；</text>
+<text x="388" y="836" class="small">内部重复计数重新装入 RCR=3。</text>
+<text x="388" y="861" class="small">URS 继续决定更新中断 / DMA 请求的来源。</text>
+<rect x="905" y="751" width="550" height="145" rx="8" fill="#edf5fa" stroke="#a5bbc9"/>
+<text x="918" y="781" class="bold">按重新建立的计数相位继续</text>
+<text x="918" y="811" class="small">继续计数时，每 4 个新计数边界产生周期性 UEV。</text>
+<text x="918" y="836" class="small">中心模式的首次峰 / 谷相位须核对初始化和写入顺序。</text>
+<text x="918" y="861" class="small">UEV 与 UIF、中断 / DMA 请求仍由各自条件区分。</text>
+<path d="M320 823 H375" stroke="#406780" stroke-width="2" marker-end="url(#a)" fill="none"/><path d="M850 823 H905" stroke="#406780" stroke-width="2" marker-end="url(#a)" fill="none"/>
+<text x="30" y="945" class="small">UEV：更新事件；RCR：重复计数寄存器（C8仅TIM1具备，8位）；CNT：计数器；PSC：时基预分频器。</text>
+<text x="30" y="977" class="small">本图重组原图72的RCR=0/1/2/3及软件重新同步情形，不给出中断执行时刻或实板延迟。</text>
+<text x="30" y="1008" class="small">来源：RM0008 Rev21 §14.3.3及图72，pp306–307；RCR字段p357。TIM2～TIM4没有RCR。</text>
+</svg>

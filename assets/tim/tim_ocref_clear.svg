@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="1010" viewBox="0 0 1500 1010" role="img"><title>OCxREF清除：输入释放与下一次更新分开</title><rect width="1500" height="1010" fill="white"/><style>text{font-family:Arial,"Noto Sans CJK SC",sans-serif;fill:#17314b}.title{font-size:29px;font-weight:bold}.body{font-size:19px}.small{font-size:17px}.bold{font-size:22px;font-weight:bold}</style><defs><marker id="a" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0 0 L7 3.5 L0 7" fill="#406780"/></marker></defs>
+<text x="30" y="45" class="title">OCxREF清除：输入释放与下一次更新分开</text>
+<text x="30" y="81" class="body">正常向上PWM1，0&lt;CCRx≤ARR；OCxCE=1、ETPS=00、ECE=0，更新允许且RCR=0。</text>
+<text x="30" y="114" class="small">图中表示参考波形，不包含输出级极性 / 死区 / Break。ETRF是已经处理过的内部信号，横距不规定响应延迟。</text>
+<path d="M250 151 V621" stroke="#acbcc8" stroke-dasharray="5 5"/>
+<path d="M500 151 V621" stroke="#acbcc8" stroke-dasharray="5 5"/>
+<path d="M750 151 V621" stroke="#acbcc8" stroke-dasharray="5 5"/>
+<path d="M1000 151 V621" stroke="#acbcc8" stroke-dasharray="5 5"/>
+<path d="M1250 151 V621" stroke="#acbcc8" stroke-dasharray="5 5"/>
+<text x="228" y="148" class="small">UEV0</text>
+<text x="478" y="148" class="small">UEV1</text>
+<text x="728" y="148" class="small">UEV2</text>
+<text x="978" y="148" class="small">UEV3</text>
+<text x="1228" y="148" class="small">UEV4</text>
+<text x="30" y="210" class="body">CNT</text>
+<path d="M250 245 L500 195 V245 L750 195 V245 L1000 195 V245 L1250 195 V245 L1400 215" stroke="#176f9e" stroke-width="3" fill="none"/>
+<text x="30" y="320" class="body">ETRF</text>
+<path d="M200 340 H570 V300 H820 V340 H1400" stroke="#176f9e" stroke-width="3" fill="none"/>
+<text x="30" y="425" class="body">原PWM1参考</text>
+<path d="M200 450 H250 V410 H400 V450 H500 V410 H650 V450 H750 V410 H900 V450 H1000 V410 H1150 V450 H1250 V410 H1400" stroke="#176f9e" stroke-width="3" fill="none"/>
+<text x="30" y="540" class="body">清除后的参考</text>
+<path d="M200 565 H250 V525 H400 V565 H500 V525 H570 V565 H1000 V525 H1150 V565 H1250 V525 H1400" stroke="#176f9e" stroke-width="3" fill="none"/>
+<text x="585" y="596" class="small">ETRF变高截短此脉冲</text>
+<text x="825" y="625" class="small">ETRF回低后，仍等待下一UEV</text>
+<rect x="30" y="674" width="690" height="170" rx="8" fill="#edf5fa" stroke="#a5bbc9"/>
+<text x="44" y="703" class="bold">三个边界</text>
+<text x="44" y="733" class="small">1. ETRF变高，参考被清为无效。</text>
+<text x="44" y="758" class="small">2. ETRF跨过下一UEV仍高，该周期继续保持无效。</text>
+<text x="44" y="783" class="small">3. ETRF回低后，在之后UEV才恢复正常PWM关系。</text>
+<text x="44" y="808" class="small">原始ETR到ETRF还可能经过滤波，未画为零延迟。</text>
+<rect x="795" y="674" width="670" height="170" rx="8" fill="#fff4dc" stroke="#a5bbc9"/>
+<text x="809" y="703" class="bold">适用限制</text>
+<text x="809" y="733" class="small">清参考不自动等于两个互补引脚都低。</text>
+<text x="809" y="758" class="small">强制模式、100%参考与外部复位组合需另查。</text>
+<text x="809" y="783" class="small">ES096 §2.6.7：CCR&gt;ARR清除后的恢复限制。</text>
+<text x="809" y="808" class="small">ES096 §2.6.4：外部复位组合的额外关闭周期。</text>
+<text x="30" y="891" class="small">OCxREF：通道x内部参考；OCxCE：清参考使能；ETRF：滤波后的外部触发；UEV：更新事件。</text>
+<text x="30" y="924" class="small">ETPS：ETR预分频；ECE：外部时钟模式2使能；RCR：TIM1重复计数值，普通TIM2～4没有此寄存器。</text>
+<text x="30" y="970" class="small">来源：RM0008 Rev21图90/133，pp326/392；保留AN4776图22裁图；ES096 Rev15 §§2.6.4/2.6.7。</text>
+</svg>

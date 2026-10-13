@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="1110" viewBox="0 0 1500 1110" role="img"><title>频率测量：参考时钟、输入同步、捕获和DMA</title><rect width="1500" height="1110" fill="white"/><style>text{font-family:Arial,"Noto Sans CJK SC",sans-serif;fill:#17314b}.title{font-size:29px;font-weight:bold}.body{font-size:19px}.small{font-size:17px}.bold{font-size:22px;font-weight:bold}</style><defs><marker id="a" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0 0 L7 3.5 L0 7" fill="#406780"/></marker></defs>
+<text x="30" y="45" class="title">频率测量：参考时钟、输入同步、捕获和DMA</text>
+<text x="30" y="81" class="body">C8示例选择TIM2，PA1为CH2捕获；默认PA0可提供ETR参考。引脚重映射与GPIO配置按具体硬件核对。</text>
+<rect x="30" y="125" width="420" height="180" rx="8" fill="#edf5fa" stroke="#a5bbc9"/>
+<text x="44" y="154" class="bold">计数源二选一</text>
+<text x="44" y="184" class="small">内部：RCC定时器时钟 → PSC</text>
+<text x="44" y="209" class="small">外部：PA0 ETR → ETPS → 滤波 / 同步</text>
+<text x="44" y="234" class="small">外部路径仍需要内部定时器时钟</text>
+<text x="44" y="259" class="small">ETRP频率上限按C8的fTIM/4限制</text>
+<text x="44" y="284" class="small">最终CK_PSC还经PSC进入CNT</text>
+<rect x="530" y="125" width="415" height="180" rx="8" fill="#edf5fa" stroke="#a5bbc9"/>
+<text x="544" y="154" class="bold">被测输入</text>
+<text x="544" y="184" class="small">PA1 / TIM2_CH2</text>
+<text x="544" y="209" class="small">输入同步 / 滤波 / 极性</text>
+<text x="544" y="234" class="small">IC2PSC取1 / 2 / 4 / 8分频</text>
+<text x="544" y="259" class="small">合格捕获事件锁存CNT到CCR2</text>
+<text x="544" y="284" class="small">自由运行计数不在每次捕获复位</text>
+<rect x="1030" y="125" width="435" height="180" rx="8" fill="#edf5fa" stroke="#a5bbc9"/>
+<text x="1044" y="154" class="bold">传输与样本有效性</text>
+<text x="1044" y="184" class="small">TIM2_CH2 → DMA1通道7</text>
+<text x="1044" y="209" class="small">CCR2 → RAM捕获缓冲区</text>
+<text x="1044" y="234" class="small">例1000个uint16_t占2000字节</text>
+<text x="1044" y="259" class="small">正常模式CNDTR=1000，非永久录制</text>
+<text x="1044" y="284" class="small">TC / CCxOF单独不能证明无丢样</text>
+<path d="M450 214 H530" fill="none" stroke="#406780" stroke-width="2" marker-end="url(#a)"/>
+<path d="M945 214 H1030" fill="none" stroke="#406780" stroke-width="2" marker-end="url(#a)"/>
+<rect x="30" y="362" width="1435" height="150" rx="8" fill="#f1f5ed" stroke="#a5bbc9"/>
+<text x="44" y="391" class="bold">两个时间戳的条件化换算</text>
+<text x="44" y="421" class="small">M=ARR+1；ΔC=(C2−C1) mod M；T_in≈ΔC/(K_IC fCNT)；f_in≈K_IC fCNT/ΔC。</text>
+<text x="44" y="446" class="small">C1、C2、ΔC、M为计数整数；K_IC为每次捕获跨过的同极性输入周期数；fCNT / f_in单位Hz，T_in单位s。</text>
+<text x="44" y="471" class="small">要求同极性周期输入、固定时基、ΔC&gt;0、无漏样或额外复位，实际捕获间隔严格小于M/fCNT。</text>
+<text x="44" y="496" class="small">仅凭C2&lt;C1不能判断跨过了几圈；C1=C2也不能单独解释成零周期。</text>
+<rect x="30" y="572" width="690" height="200" rx="8" fill="#edf5fa" stroke="#a5bbc9"/>
+<text x="44" y="601" class="bold">数字滤波的原示例</text>
+<text x="44" y="631" class="small">fCK_INT=1MHz，CKD=01 → fDTS=500kHz</text>
+<text x="44" y="656" class="small">ETF=0100：fS=fDTS/2=250kHz，N=6</text>
+<text x="44" y="681" class="small">采样间隔T_S=4µs；六个间隔为24µs。</text>
+<text x="44" y="706" class="small">六个采样点之间仅跨五个采样间隔，</text>
+<text x="44" y="731" class="small">通过 / 拒绝边界还受信号相位与实际同步路径影响。</text>
+<text x="44" y="756" class="small">不能把24µs当作与相位无关的硬件脉宽门限。</text>
+<rect x="795" y="572" width="670" height="200" rx="8" fill="#fff4dc" stroke="#a5bbc9"/>
+<text x="809" y="601" class="bold">C8数值与跨系列边界</text>
+<text x="809" y="631" class="small">ARR=65535、fCNT=8MHz：65536拍=8.192ms。</text>
+<text x="809" y="656" class="small">捕获预分频1且无额外回绕：f_in&gt;122.0703125Hz。</text>
+<text x="809" y="681" class="small">源图F302的32位TIM2不能照搬到C8。</text>
+<text x="809" y="706" class="small">ETR 8MHz÷4=2MHz；1kHz输入约2000计数。</text>
+<text x="809" y="731" class="small">内部8MHz计数同输入约8000计数。</text>
+<text x="809" y="756" class="small">电气频率、滤波与同步约束仍需同时满足。</text>
+<text x="30" y="824" class="small">滤波符号：fCK_INT为内核时钟；fDTS由CKD选择；fS为滤波采样频率（Hz）；N为连续一致样本数；T_S为间隔（s）。</text>
+<text x="30" y="857" class="small">原应用笔记的两级触发器图只说明同步机制；约2～3拍和跨系列频率建议不替代C8的具体频率限制。</text>
+<text x="30" y="890" class="small">原HSI / ETR的ppm统计裁图缺少完整坐标，不能重新构造全分布、断言误差为零或作为本器件实测性能。</text>
+<text x="30" y="953" class="small">来源：RM0008 Rev21输入捕获及DMA映射pp281–282、312–315、342–344；DS5319 Rev20表40；ES096 §§2.6.5–6。</text>
+<text x="30" y="987" class="small">应用目标与原数值按保留AN4776图4、7～17裁图整合；完整AN原页未核验，未执行目标板测量。</text>
+</svg>

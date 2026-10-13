@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="1180" viewBox="0 0 1500 1180" role="img"><title>从模式：复位、门控、启动与外部事件计数</title><rect width="1500" height="1180" fill="white"/><style>text{font-family:Arial,"Noto Sans CJK SC",sans-serif;fill:#17314b}.title{font-size:29px;font-weight:bold}.body{font-size:19px}.small{font-size:17px}.bold{font-size:22px;font-weight:bold}</style><defs><marker id="a" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0 0 L7 3.5 L0 7" fill="#406780"/></marker></defs>
+<text x="30" y="45" class="title">从模式：复位、门控、启动与外部事件计数</text>
+<text x="30" y="81" class="body">以下输入为选路和极性处理后的TRGI。原始TI引脚高/低与TRGI高/低可能相反；不同模式分别配置。</text>
+<rect x="30" y="128" width="560" height="166" rx="8" fill="#edf5fa" stroke="#a5bbc9"/>
+<text x="44" y="157" class="bold">复位 · SMS=100</text>
+<path d="M65 226 H155 V192 H315 V226 H395 V192 H485" stroke="#176f9e" stroke-width="3" fill="none"/>
+<text x="65" y="270" class="small">TRGI示意，不规定同步 / 滤波延迟</text>
+<rect x="665" y="128" width="800" height="166" rx="8" fill="#edf5fa" stroke="#a5bbc9"/>
+<text x="679" y="157" class="bold">计数行为</text>
+<text x="679" y="187" class="small">TRGI上升沿重新初始化CNT及预分频计数。</text>
+<text x="679" y="212" class="small">内部时钟可继续推进；不是只在高窗口计数。</text>
+<text x="679" y="237" class="small">更新事件、请求与装载分别受UDIS / URS等约束。</text>
+<path d="M590 213 H665" fill="none" stroke="#406780" stroke-width="2" marker-end="url(#a)"/>
+<rect x="30" y="328" width="560" height="166" rx="8" fill="#edf5fa" stroke="#a5bbc9"/>
+<text x="44" y="357" class="bold">门控 · SMS=101</text>
+<path d="M65 426 H155 V392 H315 V426 H395 V392 H485" stroke="#176f9e" stroke-width="3" fill="none"/>
+<text x="65" y="470" class="small">TRGI示意，不规定同步 / 滤波延迟</text>
+<rect x="665" y="328" width="800" height="166" rx="8" fill="#edf5fa" stroke="#a5bbc9"/>
+<text x="679" y="357" class="bold">计数行为</text>
+<text x="679" y="387" class="small">先由软件允许CEN；TRGI高时计数，低时暂停。</text>
+<text x="679" y="412" class="small">关闭窗口保持CNT，不自动回零。</text>
+<text x="679" y="437" class="small">原低电平TI1门控例用CC1P=1形成内部高门控。</text>
+<path d="M590 413 H665" fill="none" stroke="#406780" stroke-width="2" marker-end="url(#a)"/>
+<rect x="30" y="528" width="560" height="166" rx="8" fill="#edf5fa" stroke="#a5bbc9"/>
+<text x="44" y="557" class="bold">触发 · SMS=110</text>
+<path d="M65 626 H155 V592 H315 V626 H395 V592 H485" stroke="#176f9e" stroke-width="3" fill="none"/>
+<text x="65" y="670" class="small">TRGI示意，不规定同步 / 滤波延迟</text>
+<rect x="665" y="528" width="800" height="166" rx="8" fill="#edf5fa" stroke="#a5bbc9"/>
+<text x="679" y="557" class="bold">计数行为</text>
+<text x="679" y="587" class="small">TRGI上升沿启动；保留已有CNT，不自动清零。</text>
+<text x="679" y="612" class="small">TRGI回低后继续计数，直到其它停止条件生效。</text>
+<text x="679" y="637" class="small">原例从0x34继续0x35、0x36，不是从0起算。</text>
+<path d="M590 613 H665" fill="none" stroke="#406780" stroke-width="2" marker-end="url(#a)"/>
+<rect x="30" y="728" width="560" height="166" rx="8" fill="#edf5fa" stroke="#a5bbc9"/>
+<text x="44" y="757" class="bold">外部时钟1 · SMS=111</text>
+<path d="M65 826 H155 V792 H315 V826 H395 V792 H485" stroke="#176f9e" stroke-width="3" fill="none"/>
+<text x="65" y="870" class="small">TRGI示意，不规定同步 / 滤波延迟</text>
+<rect x="665" y="728" width="800" height="166" rx="8" fill="#edf5fa" stroke="#a5bbc9"/>
+<text x="679" y="757" class="bold">计数行为</text>
+<text x="679" y="787" class="small">TRGI合格上升沿送入计数预分频器PSC。</text>
+<text x="679" y="812" class="small">CEN须允许；PSC=0时才每个事件推进一次CNT。</text>
+<text x="679" y="837" class="small">相邻事件间无新输入时，不按内部时钟自行计数。</text>
+<path d="M590 813 H665" fill="none" stroke="#406780" stroke-width="2" marker-end="url(#a)"/>
+<rect x="30" y="931" width="1435" height="124" rx="8" fill="#fff4dc" stroke="#a5bbc9"/>
+<text x="44" y="960" class="bold">ETR外部时钟2与触发模式可组合</text>
+<text x="44" y="990" class="small">ECE=1以ETR路径提供计数源，SMS=110以TI1路径启动；TI1启动后由ETR事件继续计数，TI1回低不会停机。</text>
+<text x="44" y="1015" class="small">图99/139取ETP=0、ETPS=00、ETF=0000、TS=101、CC1P=0，PSC=0；初值0x34保留后继续0x35、0x36。</text>
+<text x="44" y="1040" class="small">门控模式不选TI1F_ED；模式2与模式1 / 编码器的组合限制，以及ETR不能重复占用的建议，见正文。</text>
+<text x="30" y="1097" class="small">TIF是锁存标志，原门控图含开启/关闭边沿置位与软件清除；图示延迟不构成固定的中断响应保证。</text>
+<text x="30" y="1133" class="small">来源：RM0008 Rev21图96～99，pp334～337；对应图136～139，pp395～398；SMCR字段pp342～344、407～409。</text>
+</svg>

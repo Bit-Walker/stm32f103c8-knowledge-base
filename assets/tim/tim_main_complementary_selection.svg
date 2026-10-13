@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="670" viewBox="0 0 1200 670">
+<rect width="1200" height="670" fill="white"/>
+<style>text{font-family:Arial,"Noto Sans CJK SC",sans-serif;fill:#17314b}.title{font-size:25px;font-weight:bold}.body{font-size:17px}.small{font-size:15px}.bold{font-size:19px;font-weight:bold}</style>
+<text x="30" y="42" class="title">主 / N 使能组合会改变 N 输出的参考关系</text>
+<text x="30" y="75" class="small">TIM1 CH1～3 · MOE=1，CCxP=CCxNP=0，OSSR=0，输出模式；GPIO/AFIO已配置</text>
+<rect x="30" y="109" width="550" height="345" rx="12" fill="#f4f8fb" stroke="#afc4d2"/>
+<text x="48" y="140" class="bold">CCxE=1，CCxNE=1</text>
+<text x="48" y="168" class="small">主 / N：互补关系，开通边沿加入死区</text>
+<text x="48" y="222" class="body">OCxREF</text>
+<path d="M133,202 L273,202 L273,236 L423,236 L423,202 L563,202" fill="none" stroke="#38546e" stroke-width="3"/>
+<text x="48" y="302" class="body">主 OCx</text>
+<text x="48" y="382" class="body">N OCxN</text>
+<path d="M133,282 L273,282 L273,316 L453,316 L453,282 L563,282" fill="none" stroke="#087f8c" stroke-width="3"/>
+<path d="M133,396 L303,396 L303,362 L423,362 L423,396 L563,396" fill="none" stroke="#a45622" stroke-width="3"/>
+<text x="148" y="432" class="small">死区宽度仅作示意，不代表具体纳秒数。</text>
+<rect x="620" y="109" width="550" height="345" rx="12" fill="#f4f8fb" stroke="#afc4d2"/>
+<text x="638" y="140" class="bold">CCxE=0，CCxNE=1</text>
+<text x="638" y="168" class="small">N：跟随 OCxREF，不再取互补参考</text>
+<text x="638" y="222" class="body">OCxREF</text>
+<path d="M723,202 L863,202 L863,236 L1013,236 L1013,202 L1153,202" fill="none" stroke="#38546e" stroke-width="3"/>
+<text x="638" y="302" class="body">主 OCx</text>
+<text x="638" y="382" class="body">N OCxN</text>
+<line x1="723" y1="302" x2="1153" y2="302" stroke="#7c8c97" stroke-width="2" stroke-dasharray="5,6"/>
+<text x="793" y="286" class="small">定时器不驱动此主输出</text>
+<path d="M723,362 L863,362 L863,396 L1013,396 L1013,362 L1153,362" fill="none" stroke="#a45622" stroke-width="3"/>
+<text x="738" y="432" class="small">虚线不表示固定低电平，也不保证引脚高阻。</text>
+<text x="30" y="501" class="body">两个面板表示不同稳态配置；不表示动态切换的精确传播延迟。</text>
+<text x="30" y="535" class="small">CCPC=0时，单独清主CCxE可立即改变这一选择关系。CCPC=1时还要考虑COM预装载更新。</text>
+<text x="30" y="565" class="small">单个主通道Stop不能直接作为主/N两端总关断；先建立系统已验证的安全态，再回收输出与DMA资源。</text>
+<text x="30" y="612" class="small">依据：RM0008 Rev21 p321–322、p355表83；HAL条件式MOE/CEN关闭另按固定版本核对。</text>
+<text x="30" y="640" class="small">仅限上述条件；MOE=0、OSSR=1、反相极性及外部驱动电路的行为须查完整控制组合。</text>
+</svg>

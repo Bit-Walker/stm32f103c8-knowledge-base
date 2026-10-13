@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="1200" viewBox="0 0 1500 1200" role="img"><title>TIM1 → TIM2：六种同步连接的作用</title><rect width="1500" height="1200" fill="white"/><style>text{font-family:Arial,"Noto Sans CJK SC",sans-serif;fill:#17314b}.title{font-size:29px;font-weight:bold}.body{font-size:19px}.small{font-size:17px}.bold{font-size:22px;font-weight:bold}</style><defs><marker id="a" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0 0 L7 3.5 L0 7" fill="#406780"/></marker></defs>
+<text x="30" y="45" class="title">TIM1 → TIM2：六种同步连接的作用</text>
+<text x="30" y="81" class="body">公共连接：TIM1_TRGO → TIM2_ITR0，TIM2.TS=000。每端单独配置时钟、PSC、CNT与装载初态。</text>
+<text x="30" y="149" class="bold">图140 · 事件级联</text>
+<rect x="285" y="120" width="450" height="117" rx="8" fill="#edf5fa" stroke="#a5bbc9"/>
+<text x="299" y="149" class="bold">TIM1 MMS=010：UEV</text>
+<rect x="815" y="120" width="650" height="117" rx="8" fill="#edf5fa" stroke="#a5bbc9"/>
+<text x="829" y="149" class="bold">TIM2 SMS=111：外部时钟1</text>
+<text x="829" y="179" class="small">主UEV送从PSC；PSC=0时才每事件使从CNT推进一次。</text>
+<text x="829" y="204" class="small">主RCR、UDIS和额外UG会改变事件节奏。</text>
+<path d="M735 175 H815" fill="none" stroke="#406780" stroke-width="2" marker-end="url(#a)"/>
+<text x="30" y="294" class="bold">图141 · 参考门控</text>
+<rect x="285" y="265" width="450" height="117" rx="8" fill="#edf5fa" stroke="#a5bbc9"/>
+<text x="299" y="294" class="bold">TIM1 MMS=100：OC1REF</text>
+<rect x="815" y="265" width="650" height="117" rx="8" fill="#edf5fa" stroke="#a5bbc9"/>
+<text x="829" y="294" class="bold">TIM2 SMS=101：门控</text>
+<text x="829" y="324" class="small">主参考高窗口内从计数；从CEN必须允许。</text>
+<text x="829" y="349" class="small">原例两端PSC=2，未初始化从预分频相位，不保证对齐。</text>
+<path d="M735 320 H815" fill="none" stroke="#406780" stroke-width="2" marker-end="url(#a)"/>
+<text x="30" y="439" class="bold">图142 · 使能门控</text>
+<rect x="285" y="410" width="450" height="117" rx="8" fill="#edf5fa" stroke="#a5bbc9"/>
+<text x="299" y="439" class="bold">TIM1 MMS=001：CNT_EN</text>
+<rect x="815" y="410" width="650" height="117" rx="8" fill="#edf5fa" stroke="#a5bbc9"/>
+<text x="829" y="439" class="bold">TIM2 SMS=101：门控</text>
+<text x="829" y="469" class="small">主使能关断则从暂停，保留从CNT。</text>
+<text x="829" y="494" class="small">原例先UG再将从CNT写为0xE7；不是自动清零。</text>
+<path d="M735 465 H815" fill="none" stroke="#406780" stroke-width="2" marker-end="url(#a)"/>
+<text x="30" y="584" class="bold">图143 · 更新启动</text>
+<rect x="285" y="555" width="450" height="117" rx="8" fill="#edf5fa" stroke="#a5bbc9"/>
+<text x="299" y="584" class="bold">TIM1 MMS=010：UEV</text>
+<rect x="815" y="555" width="650" height="117" rx="8" fill="#edf5fa" stroke="#a5bbc9"/>
+<text x="829" y="584" class="bold">TIM2 SMS=110：触发</text>
+<text x="829" y="614" class="small">主更新启动从当前CNT；从之后独立继续计数。</text>
+<text x="829" y="639" class="small">原例从0x45开始到0x46 / 0x47 / 0x48，双方PSC=2。</text>
+<path d="M735 610 H815" fill="none" stroke="#406780" stroke-width="2" marker-end="url(#a)"/>
+<text x="30" y="729" class="bold">图144 · 使能启动</text>
+<rect x="285" y="700" width="450" height="117" rx="8" fill="#edf5fa" stroke="#a5bbc9"/>
+<text x="299" y="729" class="bold">TIM1 MMS=001：CNT_EN</text>
+<rect x="815" y="700" width="650" height="117" rx="8" fill="#edf5fa" stroke="#a5bbc9"/>
+<text x="829" y="729" class="bold">TIM2 SMS=110：触发</text>
+<text x="829" y="759" class="small">主使能上升沿启动从；主关闭不会自动停从。</text>
+<text x="829" y="784" class="small">原例从初值0xE7继续至0xEA，区别于门控。</text>
+<path d="M735 755 H815" fill="none" stroke="#406780" stroke-width="2" marker-end="url(#a)"/>
+<text x="30" y="874" class="bold">图145 · 协调外部启动</text>
+<rect x="285" y="845" width="450" height="117" rx="8" fill="#edf5fa" stroke="#a5bbc9"/>
+<text x="299" y="874" class="bold">TIM1接外部触发，MSM=1</text>
+<rect x="815" y="845" width="650" height="117" rx="8" fill="#edf5fa" stroke="#a5bbc9"/>
+<text x="829" y="874" class="bold">MMS=001 → TIM2 SMS=110</text>
+<text x="829" y="904" class="small">主插入协调延迟，使例中两个计数从0x00一起推进。</text>
+<text x="829" y="929" class="small">不保证所有CEN、TIF边沿都同时，也不代替初态配置。</text>
+<path d="M735 900 H815" fill="none" stroke="#406780" stroke-width="2" marker-end="url(#a)"/>
+<rect x="30" y="1015" width="1435" height="103" rx="8" fill="#fff4dc" stroke="#a5bbc9"/>
+<text x="44" y="1044" class="bold">初始化隔离与原文差异</text>
+<text x="44" y="1074" class="small">MMS=000仍可把UG导出TRGO；初始UG期间应确保接收端不消费触发 / COM。接收端时钟需先打开。</text>
+<text x="44" y="1099" class="small">图142旁MMS=100文字与使能门控关系不符；图145旁TS=100表示双边沿，不能按“TI1仅上升沿”解释。</text>
+<text x="30" y="1158" class="small">来源：RM0008 Rev21图140～145，pp398～403；具体初值、分频与原文交叉引用差异在正文逐项保留。</text>
+</svg>

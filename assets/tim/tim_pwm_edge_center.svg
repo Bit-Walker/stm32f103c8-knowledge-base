@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="880" viewBox="0 0 1200 880">
+<rect width="1200" height="880" fill="white"/>
+<style>text{font-family:Arial,"Noto Sans CJK SC",sans-serif;fill:#17314b}.title{font-size:25px;font-weight:bold}.body{font-size:18px}.small{font-size:15px}.bold{font-size:20px;font-weight:bold}</style>
+<text x="32" y="42" class="title">ARR=8：边沿与中心对齐的 PWM1 参考波形</text>
+<text x="32" y="77" class="small">同一计数节拍横向宽度相同 · 固定 ARR/CCR · 只画内部 OCxREF，不含死区与输出极性</text>
+<text x="32" y="120" class="bold">向上边沿：一个周期9拍</text>
+<text x="38" y="164" class="body">CNT</text>
+<rect x="220" y="140" width="45" height="34" fill="#f0f5f9" stroke="#b7c7d0"/>
+<text x="237" y="163" class="small">0</text>
+<rect x="265" y="140" width="45" height="34" fill="#f0f5f9" stroke="#b7c7d0"/>
+<text x="282" y="163" class="small">1</text>
+<rect x="310" y="140" width="45" height="34" fill="#f0f5f9" stroke="#b7c7d0"/>
+<text x="327" y="163" class="small">2</text>
+<rect x="355" y="140" width="45" height="34" fill="#f0f5f9" stroke="#b7c7d0"/>
+<text x="372" y="163" class="small">3</text>
+<rect x="400" y="140" width="45" height="34" fill="#f0f5f9" stroke="#b7c7d0"/>
+<text x="417" y="163" class="small">4</text>
+<rect x="445" y="140" width="45" height="34" fill="#f0f5f9" stroke="#b7c7d0"/>
+<text x="462" y="163" class="small">5</text>
+<rect x="490" y="140" width="45" height="34" fill="#f0f5f9" stroke="#b7c7d0"/>
+<text x="507" y="163" class="small">6</text>
+<rect x="535" y="140" width="45" height="34" fill="#f0f5f9" stroke="#b7c7d0"/>
+<text x="552" y="163" class="small">7</text>
+<rect x="580" y="140" width="45" height="34" fill="#f0f5f9" stroke="#b7c7d0"/>
+<text x="597" y="163" class="small">8</text>
+<text x="38" y="209" class="body">CCR=4</text>
+<path d="M220,195 L265,195 L265,195 L310,195 L310,195 L355,195 L355,195 L400,195 L400,217 L445,217 L445,217 L490,217 L490,217 L535,217 L535,217 L580,217 L580,217 L625,217" stroke="#087f8c" stroke-width="3" fill="none"/>
+<text x="649" y="210" class="small">D=4/9</text>
+<text x="38" y="259" class="body">CCR=8</text>
+<path d="M220,245 L265,245 L265,245 L310,245 L310,245 L355,245 L355,245 L400,245 L400,245 L445,245 L445,245 L490,245 L490,245 L535,245 L535,245 L580,245 L580,267 L625,267" stroke="#087f8c" stroke-width="3" fill="none"/>
+<text x="649" y="260" class="small">D=8/9</text>
+<text x="38" y="309" class="body">CCR&gt;8</text>
+<path d="M220,295 L265,295 L265,295 L310,295 L310,295 L355,295 L355,295 L400,295 L400,295 L445,295 L445,295 L490,295 L490,295 L535,295 L535,295 L580,295 L580,295 L625,295" stroke="#087f8c" stroke-width="3" fill="none"/>
+<text x="649" y="310" class="small">恒有效</text>
+<text x="38" y="359" class="body">CCR=0</text>
+<path d="M220,367 L265,367 L265,367 L310,367 L310,367 L355,367 L355,367 L400,367 L400,367 L445,367 L445,367 L490,367 L490,367 L535,367 L535,367 L580,367 L580,367 L625,367" stroke="#087f8c" stroke-width="3" fill="none"/>
+<text x="649" y="360" class="small">恒无效</text>
+<text x="32" y="410" class="bold">中心对齐：一个完整往返16拍</text>
+<text x="38" y="454" class="body">CNT</text>
+<rect x="220" y="430" width="45" height="34" fill="#f0f5f9" stroke="#b7c7d0"/>
+<text x="237" y="453" class="small">0</text>
+<rect x="265" y="430" width="45" height="34" fill="#f0f5f9" stroke="#b7c7d0"/>
+<text x="282" y="453" class="small">1</text>
+<rect x="310" y="430" width="45" height="34" fill="#f0f5f9" stroke="#b7c7d0"/>
+<text x="327" y="453" class="small">2</text>
+<rect x="355" y="430" width="45" height="34" fill="#f0f5f9" stroke="#b7c7d0"/>
+<text x="372" y="453" class="small">3</text>
+<rect x="400" y="430" width="45" height="34" fill="#f0f5f9" stroke="#b7c7d0"/>
+<text x="417" y="453" class="small">4</text>
+<rect x="445" y="430" width="45" height="34" fill="#f0f5f9" stroke="#b7c7d0"/>
+<text x="462" y="453" class="small">5</text>
+<rect x="490" y="430" width="45" height="34" fill="#f0f5f9" stroke="#b7c7d0"/>
+<text x="507" y="453" class="small">6</text>
+<rect x="535" y="430" width="45" height="34" fill="#f0f5f9" stroke="#b7c7d0"/>
+<text x="552" y="453" class="small">7</text>
+<rect x="580" y="430" width="45" height="34" fill="#f0f5f9" stroke="#b7c7d0"/>
+<text x="597" y="453" class="small">8</text>
+<rect x="625" y="430" width="45" height="34" fill="#f0f5f9" stroke="#b7c7d0"/>
+<text x="642" y="453" class="small">7</text>
+<rect x="670" y="430" width="45" height="34" fill="#f0f5f9" stroke="#b7c7d0"/>
+<text x="687" y="453" class="small">6</text>
+<rect x="715" y="430" width="45" height="34" fill="#f0f5f9" stroke="#b7c7d0"/>
+<text x="732" y="453" class="small">5</text>
+<rect x="760" y="430" width="45" height="34" fill="#f0f5f9" stroke="#b7c7d0"/>
+<text x="777" y="453" class="small">4</text>
+<rect x="805" y="430" width="45" height="34" fill="#f0f5f9" stroke="#b7c7d0"/>
+<text x="822" y="453" class="small">3</text>
+<rect x="850" y="430" width="45" height="34" fill="#f0f5f9" stroke="#b7c7d0"/>
+<text x="867" y="453" class="small">2</text>
+<rect x="895" y="430" width="45" height="34" fill="#f0f5f9" stroke="#b7c7d0"/>
+<text x="912" y="453" class="small">1</text>
+<text x="38" y="499" class="body">CCR=4</text>
+<path d="M220,485 L265,485 L265,485 L310,485 L310,485 L355,485 L355,485 L400,485 L400,507 L445,507 L445,507 L490,507 L490,507 L535,507 L535,507 L580,507 L580,507 L625,507 L625,507 L670,507 L670,507 L715,507 L715,507 L760,507 L760,485 L805,485 L805,485 L850,485 L850,485 L895,485 L895,485 L940,485" stroke="#087f8c" stroke-width="3" fill="none"/>
+<text x="964" y="500" class="small">D=4/8</text>
+<text x="38" y="549" class="body">CCR=7</text>
+<path d="M220,535 L265,535 L265,535 L310,535 L310,535 L355,535 L355,535 L400,535 L400,535 L445,535 L445,535 L490,535 L490,535 L535,535 L535,557 L580,557 L580,557 L625,557 L625,535 L670,535 L670,535 L715,535 L715,535 L760,535 L760,535 L805,535 L805,535 L850,535 L850,535 L895,535 L895,535 L940,535" stroke="#087f8c" stroke-width="3" fill="none"/>
+<text x="964" y="550" class="small">D=7/8</text>
+<text x="38" y="599" class="body">CCR=8</text>
+<path d="M220,585 L265,585 L265,585 L310,585 L310,585 L355,585 L355,585 L400,585 L400,585 L445,585 L445,585 L490,585 L490,585 L535,585 L535,585 L580,585 L580,585 L625,585 L625,585 L670,585 L670,585 L715,585 L715,585 L760,585 L760,585 L805,585 L805,585 L850,585 L850,585 L895,585 L895,585 L940,585" stroke="#087f8c" stroke-width="3" fill="none"/>
+<text x="964" y="600" class="small">恒有效</text>
+<text x="38" y="649" class="body">CCR&gt;8</text>
+<path d="M220,635 L265,635 L265,635 L310,635 L310,635 L355,635 L355,635 L400,635 L400,635 L445,635 L445,635 L490,635 L490,635 L535,635 L535,635 L580,635 L580,635 L625,635 L625,635 L670,635 L670,635 L715,635 L715,635 L760,635 L760,635 L805,635 L805,635 L850,635 L850,635 L895,635 L895,635 L940,635" stroke="#087f8c" stroke-width="3" fill="none"/>
+<text x="964" y="650" class="small">恒有效</text>
+<text x="38" y="699" class="body">CCR=0</text>
+<path d="M220,707 L265,707 L265,707 L310,707 L310,707 L355,707 L355,707 L400,707 L400,707 L445,707 L445,707 L490,707 L490,707 L535,707 L535,707 L580,707 L580,707 L625,707 L625,707 L670,707 L670,707 L715,707 L715,707 L760,707 L760,707 L805,707 L805,707 L850,707 L850,707 L895,707 L895,707 L940,707" stroke="#087f8c" stroke-width="3" fill="none"/>
+<text x="964" y="700" class="small">恒无效</text>
+<text x="32" y="758" class="small">CMS=01/10/11的参考波形相同，比较标志的方向与端点条件不同；CCxIF详情见正文边界表。</text>
+<text x="32" y="788" class="small">D为参考有效时间比例。水平高/低线表示OCxREF=1/0，不代表实际驱动引脚电平。</text>
+<text x="32" y="833" class="small">按RM0008 Rev21 p318图84、p320图85整合；保留两图的全部CCR情形，未表示动态改值暂态。</text>
+</svg>
