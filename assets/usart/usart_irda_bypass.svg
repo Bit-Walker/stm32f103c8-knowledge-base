@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="850" viewBox="0 0 1400 850" role="img" aria-labelledby="title desc">
+<title id="title">USART 与 IrDA 的旁路及编解码选择</title><desc id="desc">普通发送旁路、IrDA发送编码、普通接收旁路和IrDA接收译码选择。源图SIREN对应正文IREN控制。</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#176f85"/></marker></defs>
+<style>text{font-family:"Noto Sans CJK SC","Microsoft YaHei",sans-serif;font-size:22px;fill:#163347}.title{font-size:32px;font-weight:700}.small{font-size:19px}.line{fill:none;stroke:#176f85;stroke-width:3;marker-end:url(#arrow)}.control{fill:none;stroke:#975129;stroke-width:2.5;stroke-dasharray:8 5}.box{fill:#edf5f8;stroke:#91adb9;stroke-width:2}</style>
+<rect width="1400" height="850" fill="white"/>
+<text x="36" y="48" class="title">IrDA：普通 USART 旁路与 SIR 编解码路径</text>
+<text x="36" y="84" class="small">依据 RM0008 Rev21 pp810–812，图295；功能关系重绘，非晶体管级实现图。</text>
+<rect x="45" y="130" width="220" height="475" rx="12" class="box"/><text x="99" y="330">USART</text><text x="91" y="364" class="small">内部逻辑侧</text>
+<rect x="915" y="135" width="125" height="85" rx="8" class="box"/><text x="952" y="185">OR</text>
+<path d="M265 165H915" class="line"/><text x="305" y="151">TX</text><path d="M1040 177H1260" class="line"/><text x="1110" y="153">USART_TX</text>
+<rect x="600" y="265" width="230" height="100" rx="8" class="box"/><text x="640" y="304">SIR 发送编码</text><text x="644" y="339" class="small">逻辑0 → 高脉冲</text>
+<path d="M440 165V315H600" class="line"/><path d="M830 315H1260" class="line"/><text x="1105" y="298">IrDA_OUT</text>
+<text x="293" y="239" fill="#975129">SIREN（源图名）</text><path d="M265 252H875V204H915" class="control"/>
+<path d="M515 252V485" class="control"/><text x="536" y="422" class="small">接收选择控制</text>
+<rect x="895" y="440" width="230" height="100" rx="8" class="box"/><text x="937" y="480">SIR 接收译码</text><text x="939" y="513" class="small">低脉冲 → 逻辑0</text>
+<path d="M1260 490H1125" class="line"/><text x="1160" y="470">IrDA_IN</text>
+<path d="M600 455L600 605L470 560L470 500Z" class="box"/><text x="488" y="536">选择</text>
+<path d="M895 490H600" class="line"/><text x="720" y="476" class="small">译码数据</text>
+<path d="M1260 625H735V575H600" class="line"/><text x="1140" y="611">USART_RX</text><text x="795" y="650" class="small">普通接收旁路</text>
+<path d="M470 530H265" class="line"/><text x="305" y="515">RX</text>
+<text x="36" y="712" class="small">源图 SIREN 是使能信号标注；正文配置位为 USART_CR3.IREN，不增加名为 SIREN 的寄存器位。</text>
+<text x="36" y="748" class="small">IREN=0 使用普通路径；IREN=1 使用 IrDA 编解码路径。图中名称为功能信号，不表示新增封装引脚。</text>
+<text x="36" y="784" class="small">IrDA 为半双工；发送与接收不可同时进行。各线路长度不代表传播时延，实际复用与管脚见器件定义。</text>
+</svg>

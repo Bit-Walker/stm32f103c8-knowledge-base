@@ -1,0 +1,184 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1150" viewBox="0 0 1400 1150" role="img" aria-labelledby="title desc">
+<title id="title">LIN Break 检测：11位门限的三种情况</title>
+<desc id="desc">低位不足、门限满足后立即出现分隔符、门限满足后等待分隔符；显示RX、采样组、状态、样值及LBD。</desc>
+<style>text{font-family:"Noto Sans CJK SC","Microsoft YaHei",sans-serif;font-size:21px;fill:#163347}.title{font-size:32px;font-weight:700}.small{font-size:18px}.line{fill:none;stroke:#176f85;stroke-width:3}.box{fill:#edf5f8;stroke:#91adb9}.flag{fill:none;stroke:#b74637;stroke-width:3}</style>
+<rect width="1400" height="1150" fill="#fff"/>
+<text x="36" y="48" class="title">LIN Break：满足低位门限后，还要确认分隔符</text>
+<text x="36" y="83" class="small">LBDL=1（11个连续低位）；RE=1。依据 RM0008 Rev21 pp803–804，图287。</text>
+<text x="36" y="127" class="">① 低位不足：第11位读到1，取消本次检测</text>
+<text x="40" y="185" class="">RX</text>
+<polyline class="line" points="190,159 225,159 225,185 945.0,185 945.0,159 1328,159"/>
+<text x="40" y="231" class="">捕获示意</text>
+<polyline class="line" points="190,231 1328,231"/>
+<polyline class="line" points="261.0,231 261.0,213 262.0,231"/>
+<polyline class="line" points="333.0,231 333.0,213 334.0,231"/>
+<polyline class="line" points="405.0,231 405.0,213 406.0,231"/>
+<polyline class="line" points="477.0,231 477.0,213 478.0,231"/>
+<polyline class="line" points="549.0,231 549.0,213 550.0,231"/>
+<polyline class="line" points="621.0,231 621.0,213 622.0,231"/>
+<polyline class="line" points="693.0,231 693.0,213 694.0,231"/>
+<polyline class="line" points="765.0,231 765.0,213 766.0,231"/>
+<polyline class="line" points="837.0,231 837.0,213 838.0,231"/>
+<polyline class="line" points="909.0,231 909.0,213 910.0,231"/>
+<polyline class="line" points="981.0,231 981.0,213 982.0,231"/>
+<text x="40" y="278" class="">检测状态</text>
+<rect x="180" y="253" width="45" height="38" class="box"/>
+<text x="185" y="278" class="small">Idle</text>
+<rect x="225" y="253" width="72" height="38" class="box"/>
+<text x="235" y="278" class="small">B0</text>
+<rect x="297" y="253" width="72" height="38" class="box"/>
+<text x="307" y="278" class="small">B1</text>
+<rect x="369" y="253" width="72" height="38" class="box"/>
+<text x="379" y="278" class="small">B2</text>
+<rect x="441" y="253" width="72" height="38" class="box"/>
+<text x="451" y="278" class="small">B3</text>
+<rect x="513" y="253" width="72" height="38" class="box"/>
+<text x="523" y="278" class="small">B4</text>
+<rect x="585" y="253" width="72" height="38" class="box"/>
+<text x="595" y="278" class="small">B5</text>
+<rect x="657" y="253" width="72" height="38" class="box"/>
+<text x="667" y="278" class="small">B6</text>
+<rect x="729" y="253" width="72" height="38" class="box"/>
+<text x="739" y="278" class="small">B7</text>
+<rect x="801" y="253" width="72" height="38" class="box"/>
+<text x="811" y="278" class="small">B8</text>
+<rect x="873" y="253" width="72" height="38" class="box"/>
+<text x="883" y="278" class="small">B9</text>
+<rect x="945" y="253" width="72" height="38" class="box"/>
+<text x="955" y="278" class="small">B10</text>
+<rect x="1017" y="253" width="311" height="38" class="box"/>
+<text x="1027" y="278" class="small">Idle</text>
+<text x="40" y="322" class="">样值</text>
+<text x="255" y="322" class="">0</text>
+<text x="327" y="322" class="">0</text>
+<text x="399" y="322" class="">0</text>
+<text x="471" y="322" class="">0</text>
+<text x="543" y="322" class="">0</text>
+<text x="615" y="322" class="">0</text>
+<text x="687" y="322" class="">0</text>
+<text x="759" y="322" class="">0</text>
+<text x="831" y="322" class="">0</text>
+<text x="903" y="322" class="">0</text>
+<text x="975" y="322" class="">1</text>
+<text x="40" y="358" class="">LBD</text>
+<polyline class="flag" points="190,358 1328,358"/>
+<text x="36" y="421" class="">② 门限刚满足：第11位读到0，随后立即有分隔符</text>
+<text x="40" y="479" class="">RX</text>
+<polyline class="line" points="190,453 225,453 225,479 996.84,479 996.84,453 1328,453"/>
+<text x="40" y="525" class="">捕获示意</text>
+<polyline class="line" points="190,525 1328,525"/>
+<polyline class="line" points="261.0,525 261.0,507 262.0,525"/>
+<polyline class="line" points="333.0,525 333.0,507 334.0,525"/>
+<polyline class="line" points="405.0,525 405.0,507 406.0,525"/>
+<polyline class="line" points="477.0,525 477.0,507 478.0,525"/>
+<polyline class="line" points="549.0,525 549.0,507 550.0,525"/>
+<polyline class="line" points="621.0,525 621.0,507 622.0,525"/>
+<polyline class="line" points="693.0,525 693.0,507 694.0,525"/>
+<polyline class="line" points="765.0,525 765.0,507 766.0,525"/>
+<polyline class="line" points="837.0,525 837.0,507 838.0,525"/>
+<polyline class="line" points="909.0,525 909.0,507 910.0,525"/>
+<polyline class="line" points="981.0,525 981.0,507 982.0,525"/>
+<text x="40" y="572" class="">检测状态</text>
+<rect x="180" y="547" width="45" height="38" class="box"/>
+<text x="185" y="572" class="small">Idle</text>
+<rect x="225" y="547" width="72" height="38" class="box"/>
+<text x="235" y="572" class="small">B0</text>
+<rect x="297" y="547" width="72" height="38" class="box"/>
+<text x="307" y="572" class="small">B1</text>
+<rect x="369" y="547" width="72" height="38" class="box"/>
+<text x="379" y="572" class="small">B2</text>
+<rect x="441" y="547" width="72" height="38" class="box"/>
+<text x="451" y="572" class="small">B3</text>
+<rect x="513" y="547" width="72" height="38" class="box"/>
+<text x="523" y="572" class="small">B4</text>
+<rect x="585" y="547" width="72" height="38" class="box"/>
+<text x="595" y="572" class="small">B5</text>
+<rect x="657" y="547" width="72" height="38" class="box"/>
+<text x="667" y="572" class="small">B6</text>
+<rect x="729" y="547" width="72" height="38" class="box"/>
+<text x="739" y="572" class="small">B7</text>
+<rect x="801" y="547" width="72" height="38" class="box"/>
+<text x="811" y="572" class="small">B8</text>
+<rect x="873" y="547" width="72" height="38" class="box"/>
+<text x="883" y="572" class="small">B9</text>
+<rect x="945" y="547" width="51.839999999999996" height="38" class="box"/>
+<text x="955" y="572" class="small">B10</text>
+<rect x="996.84" y="547" width="331.15999999999997" height="38" class="box"/>
+<text x="1006.84" y="572" class="small">Idle</text>
+<text x="40" y="616" class="">样值</text>
+<text x="255" y="616" class="">0</text>
+<text x="327" y="616" class="">0</text>
+<text x="399" y="616" class="">0</text>
+<text x="471" y="616" class="">0</text>
+<text x="543" y="616" class="">0</text>
+<text x="615" y="616" class="">0</text>
+<text x="687" y="616" class="">0</text>
+<text x="759" y="616" class="">0</text>
+<text x="831" y="616" class="">0</text>
+<text x="903" y="616" class="">0</text>
+<text x="975" y="616" class="">0</text>
+<text x="40" y="652" class="">LBD</text>
+<polyline class="flag" points="190,652 1008.84,652 1008.84,628 1328,628"/>
+<text x="36" y="715" class="">③ 低位足够长：计满后继续等待分隔符</text>
+<text x="40" y="773" class="">RX</text>
+<polyline class="line" points="190,747 225,747 225,773 1161.0,773 1161.0,747 1328,747"/>
+<text x="40" y="819" class="">捕获示意</text>
+<polyline class="line" points="190,819 1328,819"/>
+<polyline class="line" points="261.0,819 261.0,801 262.0,819"/>
+<polyline class="line" points="333.0,819 333.0,801 334.0,819"/>
+<polyline class="line" points="405.0,819 405.0,801 406.0,819"/>
+<polyline class="line" points="477.0,819 477.0,801 478.0,819"/>
+<polyline class="line" points="549.0,819 549.0,801 550.0,819"/>
+<polyline class="line" points="621.0,819 621.0,801 622.0,819"/>
+<polyline class="line" points="693.0,819 693.0,801 694.0,819"/>
+<polyline class="line" points="765.0,819 765.0,801 766.0,819"/>
+<polyline class="line" points="837.0,819 837.0,801 838.0,819"/>
+<polyline class="line" points="909.0,819 909.0,801 910.0,819"/>
+<polyline class="line" points="981.0,819 981.0,801 982.0,819"/>
+<text x="40" y="866" class="">检测状态</text>
+<rect x="180" y="841" width="45" height="38" class="box"/>
+<text x="185" y="866" class="small">Idle</text>
+<rect x="225" y="841" width="72" height="38" class="box"/>
+<text x="235" y="866" class="small">B0</text>
+<rect x="297" y="841" width="72" height="38" class="box"/>
+<text x="307" y="866" class="small">B1</text>
+<rect x="369" y="841" width="72" height="38" class="box"/>
+<text x="379" y="866" class="small">B2</text>
+<rect x="441" y="841" width="72" height="38" class="box"/>
+<text x="451" y="866" class="small">B3</text>
+<rect x="513" y="841" width="72" height="38" class="box"/>
+<text x="523" y="866" class="small">B4</text>
+<rect x="585" y="841" width="72" height="38" class="box"/>
+<text x="595" y="866" class="small">B5</text>
+<rect x="657" y="841" width="72" height="38" class="box"/>
+<text x="667" y="866" class="small">B6</text>
+<rect x="729" y="841" width="72" height="38" class="box"/>
+<text x="739" y="866" class="small">B7</text>
+<rect x="801" y="841" width="72" height="38" class="box"/>
+<text x="811" y="866" class="small">B8</text>
+<rect x="873" y="841" width="72" height="38" class="box"/>
+<text x="883" y="866" class="small">B9</text>
+<rect x="945" y="841" width="72" height="38" class="box"/>
+<text x="955" y="866" class="small">B10</text>
+<rect x="1017" y="841" width="144.0" height="38" class="box"/>
+<text x="1029" y="866" class="small">等分隔符</text>
+<rect x="1161.0" y="841" width="167.0" height="38" class="box"/>
+<text x="1171.0" y="866" class="small">Idle</text>
+<text x="40" y="910" class="">样值</text>
+<text x="255" y="910" class="">0</text>
+<text x="327" y="910" class="">0</text>
+<text x="399" y="910" class="">0</text>
+<text x="471" y="910" class="">0</text>
+<text x="543" y="910" class="">0</text>
+<text x="615" y="910" class="">0</text>
+<text x="687" y="910" class="">0</text>
+<text x="759" y="910" class="">0</text>
+<text x="831" y="910" class="">0</text>
+<text x="903" y="910" class="">0</text>
+<text x="975" y="910" class="">0</text>
+<text x="40" y="946" class="">LBD</text>
+<polyline class="flag" points="190,946 1173.0,946 1173.0,922 1328,922"/>
+<text x="36" y="1035" class="small">B0–B10 为检测状态序号；短竖线对应源图 Capture Strobe，未展开全部过采样时钟。</text>
+<text x="36" y="1070" class="small">图示强调采样值与状态顺序；线段长度不定义门限边缘、分隔符或LBD的额外传播延迟。</text>
+<text x="36" y="1105" class="small">LBDL=0 时门限为10个连续低位；低位数量满足后仍需确认RX返回高电平。</text>
+</svg>

@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="740" viewBox="0 0 1400 740" role="img"><title>LIN Break 与帧错误：两个接收起点</title><rect width="100%" height="100%" fill="white"/><style>text{font-family:"Noto Sans CJK SC","Microsoft YaHei",sans-serif;font-size:21px;fill:#163347}.title{font-size:30px;font-weight:700}.small{font-size:18px}.wave{fill:none;stroke:#176f85;stroke-width:3}.flag{fill:none;stroke:#b74637;stroke-width:3}.box{fill:#edf5f8;stroke:#91adb9}</style>
+<text x="35" y="45" class="title">LIN：帧错误与 Break 检测的时间关系</text>
+<text x="35" y="82" class="small">LBDL=1，M=0；依据 RM0008 Rev21 p805 图288。</text>
+<text x="35" y="130" class="">① Break 出现在空闲之后</text>
+<rect x="235" y="158" width="150" height="44" class="box"/>
+<text x="245" y="187" class="">前一数据</text>
+<rect x="385" y="158" width="105" height="44" class="box"/>
+<text x="395" y="187" class="">空闲</text>
+<rect x="490" y="158" width="385" height="44" class="box"/>
+<text x="500" y="187" class="">BREAK</text>
+<rect x="875" y="158" width="195" height="44" class="box"/>
+<text x="885" y="187" class="">0x55</text>
+<rect x="1070" y="158" width="275" height="44" class="box"/>
+<text x="1080" y="187" class="">后续头部</text>
+<text x="35" y="187" class="">RX区段</text>
+<text x="35" y="270" class="">RXNE / FE</text>
+<polyline class="flag" points="235,270 730,270 730,245 1345,245"/>
+<text x="35" y="326" class="">LBD</text>
+<polyline class="flag" points="235,326 880,326 880,301 1345,301"/>
+<text x="500" y="236" class="small">从当前接收帧起点计一帧时间</text>
+<line x1="730" y1="203" x2="730" y2="326" stroke="#91adb9" stroke-dasharray="5 5"/>
+<line x1="880" y1="203" x2="880" y2="326" stroke="#91adb9" stroke-dasharray="5 5"/>
+<text x="35" y="375" class="">② Break 出现在数据接收期间</text>
+<rect x="235" y="403" width="150" height="44" class="box"/>
+<text x="245" y="432" class="">前一数据</text>
+<rect x="385" y="403" width="105" height="44" class="box"/>
+<text x="395" y="432" class="">接收中</text>
+<rect x="490" y="403" width="385" height="44" class="box"/>
+<text x="500" y="432" class="">BREAK</text>
+<rect x="875" y="403" width="195" height="44" class="box"/>
+<text x="885" y="432" class="">0x55</text>
+<rect x="1070" y="403" width="275" height="44" class="box"/>
+<text x="1080" y="432" class="">后续头部</text>
+<text x="35" y="432" class="">RX区段</text>
+<text x="35" y="515" class="">RXNE / FE</text>
+<polyline class="flag" points="235,515 625,515 625,490 1345,490"/>
+<text x="35" y="571" class="">LBD</text>
+<polyline class="flag" points="235,571 880,571 880,546 1345,546"/>
+<text x="390" y="481" class="small">从当前接收帧起点计一帧时间</text>
+<line x1="625" y1="448" x2="625" y2="571" stroke="#91adb9" stroke-dasharray="5 5"/>
+<line x1="880" y1="448" x2="880" y2="571" stroke="#91adb9" stroke-dasharray="5 5"/>
+<text x="35" y="652" class="small">普通接收的停止位读到0会产生FE；Break检测独立计低位并等待分隔符确认LBD。</text>
+<text x="35" y="684" class="small">RXNE/FE合并线沿用原图事件示意；不表示清标志操作，也不规定两类标志的恒定间隔。</text>
+<text x="35" y="716" class="small">区段宽度仅用于展示顺序；FE起点取决于Break发生时普通接收器已经走到的帧位置。</text>
+</svg>
