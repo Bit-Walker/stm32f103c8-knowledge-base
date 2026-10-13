@@ -8,7 +8,7 @@
 |---|---|---|
 |LL_TIM_Init|修改计数模式、CKD、ARR、PSC及适用实例的RCR，调用GenerateEvent_UPDATE，最终SUCCESS|函数不先停止CEN，不隔离TRGO；SUCCESS不证明输出安全、更新事件无副作用或所有写入均被硬件接受|
 |LL_TIM_OC_Init|CH1～CH4分别分派到OC1Config～OC4Config；未匹配通道返回ERROR|有效通道助手最终SUCCESS；assert_param检查与硬件回读是不同机制|
-|LL_TIM_IC_Init|CH1～CH4分别分派到IC1Config～IC4Config；未匹配通道返回ERROR|助手先禁用对应CCxE，配置后再次启用；不能把调用结束当作通道仍关闭|
+|LL_TIM_IC_Init|CH1～CH4分别分派到IC1Config～IC4Config；未匹配通道返回ERROR|助手先禁用对应CCxE，配置后再次启用；这会重新开始该捕获分频器的事件计数，不能沿用跨初始化边界的固定分频捕获对，也不能把调用结束当作通道仍关闭|
 |LL_TIM_ENCODER_Init|暂时关闭CC1E/CC2E，配置两个输入与SMS，最后启用CC1E/CC2E，SUCCESS|未先停止CEN；SetEncoderMode仅以SMS为修改掩码，没有清除ECE的调用|
 |LL_TIM_HALLSENSOR_Init|配置TI1异或、TI1F_ED复位从模式、CH1捕获和CH2延时参考，启用CC1E/CC2E，SUCCESS|复用已有配置时有MMS与CC2S残留条件，见下一节|
 |LL_TIM_BDTR_Init|以临时值构造BDTR，调用寄存器写入，最终SUCCESS|未回读验证LOCK限制下的字段是否接受写入；不能以SUCCESS证明保护配置已生效|
