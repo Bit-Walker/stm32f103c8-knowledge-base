@@ -30,3 +30,7 @@ void HAL_SYSTICK_CLKSourceConfig (uint32_t CLKSource);
 
 
 [UM1850 §10.1.1；§10.1.4；§10.2.1，p114,115,117,119,120](../来源/UM1850.md#src-um1850-r3-cortex)；[core_cm3_cmsis590.h 对应来源副本行号](../来源/驱动实现.md#src-cmsis590-cm3)；[stm32f1xx_hal_cortex.c 对应来源副本行号](../来源/驱动实现.md#src-hal-cortex-snapshot)
+
+## HAL 软件时基
+
+[HAL 毫秒计数与阻塞延时](HAL毫秒计数与阻塞延时.md)说明软件计数、tick 步长及 HAL_Delay 的返回条件；硬件 SysTick 配置成功不能独自证明软件计数持续推进。
