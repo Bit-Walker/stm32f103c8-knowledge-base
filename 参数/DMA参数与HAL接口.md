@@ -284,8 +284,8 @@ UM1850 Rev 3 §14.2.5 pp151–154列出的12个API及参数保留如下；实际
 |[HAL_DMA_Start_IT(hdma, SrcAddress, DstAddress, DataLength)](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_dma.c#L361-L407)|同上；TC/TE使能，HT仅在半完成回调非空时使能|
 |[HAL_DMA_Abort(hdma)](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_dma.c#L415-L448)|BUSY才禁用与清理，成功READY/OK；非BUSY返回ERROR+NO_XFER且未禁用|
 |[HAL_DMA_Abort_IT(hdma)](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_dma.c#L456-L491)|BUSY路径在本调用同步执行非空Abort回调，回调可以早于返回；不保证另一次IRQ|
-|[HAL_DMA_PollForTransfer(hdma, CompleteLevel, Timeout)](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_dma.c#L501-L594)|CompleteLevel为HAL_DMA_FULL_TRANSFER或HAL_DMA_HALF_TRANSFER；Timeout为ms、0立即检查、HAL_MAX_DELAY无限等；TE/超时均ERROR而非必然HAL_TIMEOUT；超时READY不清EN|
-|[HAL_DMA_IRQHandler(hdma)](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_dma.c#L602-L680)|void；HT、TC、TE分支及对应中断使能门控；循环HT/TC保持BUSY；TE置READY/错误|
+|[HAL_DMA_PollForTransfer(hdma, CompleteLevel, Timeout)](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_dma.c#L501-L594)|CompleteLevel为HAL_DMA_FULL_TRANSFER或HAL_DMA_HALF_TRANSFER；Timeout为ms、0立即检查、HAL_MAX_DELAY无限等；执行到TE/超时分支时均ERROR而非HAL_TIMEOUT；目标完成标志已置位时跳过等待循环内的TE/超时检查；超时READY不清EN|
+|[HAL_DMA_IRQHandler(hdma)](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_dma.c#L602-L680)|void；HT、TC、TE分支及对应中断使能门控；循环HT/TC保持BUSY；执行到TE分支才置READY/错误|
 |[HAL_DMA_RegisterCallback(hdma, CallbackID, pCallback)](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_dma.c#L692-L733)|READY、有效ID方可修改；NULL未被专门拒绝，意味着不调用；返回HAL_StatusTypeDef|
 |[HAL_DMA_UnRegisterCallback(hdma, CallbackID)](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_dma.c#L743-L791)|支持单个或ALL；READY、合法ID成功OK，非READY或非法ID显式返回ERROR；锁宏展开尚未核验|
 |[HAL_DMA_GetState(hdma)](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_dma.c#L819-L823)|HAL_DMA_StateTypeDef，仅软件状态|
@@ -294,6 +294,16 @@ UM1850 Rev 3 §14.2.5 pp151–154列出的12个API及参数保留如下；实际
 固定dma.c实际使用的状态标识为HAL_DMA_STATE_RESET、HAL_DMA_STATE_READY、HAL_DMA_STATE_BUSY；完整HAL_DMA_StateTypeDef枚举定义尚未按对应固定头文件核验，不能据此断言其他枚举不存在。Poll超时实际写入READY。错误位名：HAL_DMA_ERROR_NONE、TE、NO_XFER、TIMEOUT、NOT_SUPPORTED。回调ID完整名：HAL_DMA_XFER_CPLT_CB_ID、HAL_DMA_XFER_HALFCPLT_CB_ID、HAL_DMA_XFER_ERROR_CB_ID、HAL_DMA_XFER_ABORT_CB_ID、HAL_DMA_XFER_ALL_CB_ID（最后者用于解除全部）。TIM句柄索引为TIM_DMA_ID_UPDATE/CC1/CC2/CC3/CC4/COMMUTATION/TRIGGER，不是DMA硬件通道号。
 
 普通模式HT成功轮询仍BUSY，完整完成轮询READY；循环模式Poll返回ERROR+NOT_SUPPORTED。主函数返回、句柄状态、硬件EN和CNDTR必须分别解释。固定IRQ实现按HT、else-if TC、else-if TE分派；同时挂起不是一次调用全部分发。这里是源码事实，不能据此承诺丢失的多轮HT/TC事件可恢复。
+
+### 完成标志与错误分支的检查顺序
+
+固定bd368aa实现的PollForTransfer仅在目标HT/TC标志尚未置位的while循环内检查TE和超时。若检查循环条件时目标完成标志已经置位，该调用跳过循环内的错误/超时判断，清选定完成标志并走HAL_OK路径；这不能额外证明所有错误位均为0。Timeout=0表示不继续等待，目标已经完成时仍可返回OK。有限超时还依赖HAL_GetTick正常推进；函数内的毫秒比较不构成包含中断抢占及调度延迟的硬实时返回上限。此处说明源码分支顺序，不据此认定任意HT/TC/TE组合必然可在硅片同一周期出现。
+
+IRQ入口分别读取一次ISR与CCR快照，随后按已允许的HT、TC、TE依次作if/else-if选择。若进入时HT与TE均挂起且对应中断均已使能，会先处理HT及其非空半完成回调，本次不会继续进入TE分支。半完成回调因此不构成“错误已经优先处理”或“DMA仍在活动”的保证；新发生的事件也不能靠这次旧快照全部分发。原参数表的HT→TC→TE次序继续适用。
+
+故障记录还须在再次操作句柄前保存：本版本Abort和Abort_IT在非BUSY分支直接把ErrorCode赋为HAL_DMA_ERROR_NO_XFER，覆盖原错误位图；它们没有在这一分支实际禁用通道。若Poll先因超时置READY、留下EN，再调用Abort，原TIMEOUT诊断可能被NO_XFER替换。不要以此手改State解锁，应保留原始错误、请求及通道状态，再走本事务明确拥有的停止路径。
+
+来源：[固定PollForTransfer L501–594](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_dma.c#L501-L594)、[IRQ L602–680](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_dma.c#L602-L680)、[Abort/Abort_IT L415–491](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_dma.c#L415-L491)。以上是固定源码静态核查，未执行固件、故障注入或完整并发验证。
 
 ### 原厂证据边界
 

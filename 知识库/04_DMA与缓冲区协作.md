@@ -67,7 +67,7 @@ T_half 是按稳定数据项速率计算的半缓冲名义填充时间，单位 
 
 活动通道只写 CHTIF、CTCIF、CTEIF 清具体标志，不能用 CGIF 全清。它与传输错误同周期发生时，可能漏 TEIF 并阻止自动禁用。全局清除留在通道停用后。[ES096 Rev 15，§2.4.1 DMA disable failure and error flag omission upon simultaneous transfer error and global flag clear，印刷页 3,13](https://www.st.com/resource/en/errata_sheet/es096-stm32f101x8b-stm32f102x8b-and-stm32f103x8b-mediumdensity-device-limitations-stmicroelectronics.pdf#page=3)
 
-无搬运先查固定映射、EN、外设请求使能和实际触发；搬运完成却无回调查 NVIC、IRQ、回调关联；元素错位查两端宽度/地址步长和帧边界；长时间后失真查半区覆盖及多通道竞争。TE 与“没有 TE”都不能替代外设丢样判断，ADC 尤其没有可兜底的硬件 OVR 标志。
+无搬运先查固定映射、EN、外设请求使能和实际触发；搬运完成却无回调查 NVIC、IRQ、回调关联；元素错位查两端宽度/地址步长和帧边界；长时间后失真查半区覆盖及多通道竞争。TE 与“没有 TE”都不能替代外设丢样判断，ADC 尤其没有可兜底的硬件 OVR 标志。固定HAL的完成/错误检查有顺序：轮询在目标完成标志已置位时跳过循环内TE检查；IRQ按HT→TC→TE分支，不保证错误回调先于半完成回调。恢复动作还可能覆盖先前ErrorCode，需先保存诊断，见[检查顺序与错误保存](../参数/DMA参数与HAL接口.md#完成标志与错误分支的检查顺序)。
 
 联调至少分别施加 CPU 高频 SRAM 访问、APB 访问和其他 DMA 流，记录时钟、通道 PL、CNDTR、外设状态及处理时间。故障后明确丢弃哪一段不完整帧，再按启动流程重建；不要在仍活动的硬件上仅把 HAL State 改成 READY。HAL/LL 切换同样需先收回外设、IRQ 和缓冲区所有权。[UM1850 Rev 3，§5 Cohabiting of HAL and LL，印刷页 46](https://www.st.com/resource/en/user_manual/um1850-description-of-stm32f1-hal-and-lowlayer-drivers-stmicroelectronics.pdf#page=46)
 
