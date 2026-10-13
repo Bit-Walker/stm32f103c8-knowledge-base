@@ -2,6 +2,8 @@
 
 适用 STM32F103C8T6，固定实现为 ST 官方 stm32f1xx-hal-driver 提交 `bd368aa335c529641d2e567574885e02deacc64a`。本文核查接收入口、双 DMA 启动及停止分支；不代表完整 SPI 手册，不包含编译或实机验收。
 
+硬件状态与正常收尾见[SPI 状态标志与停机边界](SPI状态标志与停机边界.md)，包含清标志副作用及 CRC 器件勘误。
+
 ## 主机双线接收会发送缓冲区内容
 
 在 `SPI_MODE_MASTER` 且 `SPI_DIRECTION_2LINES` 时，HAL_SPI_Receive 将状态置为 BUSY_RX，并调用 HAL_SPI_TransmitReceive，同一个 pData 同时作为发送与接收缓冲区。中断版 Receive_IT 和 DMA 版 Receive_DMA 使用相同的转交方式。

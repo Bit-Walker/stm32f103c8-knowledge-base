@@ -65,9 +65,10 @@
 - [Smartcard/IrDA数据宽度与初始化](参数/USART/Smartcard与IrDA数据宽度及初始化.md) · [专用DMA边界](参数/USART/Smartcard与IrDA_DMA边界.md)
 - [USART硅勘误](参数/USART/硅勘误.md) · [图形关系与来源](参数/USART/图形关系与来源.md)
 
-## SPI HAL 专项核查
+## SPI 状态与 HAL 专项核查
 
-- [SPI 接收与 DMA 启动边界](参数/HAL_SPI接收与DMA启动边界.md)：仅覆盖固定 HAL 实现的所列调用路径，完整 SPI 硬件及协议主题尚未展开。
+- [SPI 状态标志与停机边界](参数/SPI状态标志与停机边界.md)：正常收尾、错误清除、CRC 勘误和原文差异。
+- [SPI 接收与 DMA 启动边界](参数/HAL_SPI接收与DMA启动边界.md)：仅覆盖固定 HAL 实现的所列调用路径，完整 SPI 协议、寄存器及图表尚未覆盖。
 
 ## 查阅依据
 
