@@ -34,7 +34,7 @@ HAL_ADC_Start_DMA和HAL_ADCEx_MultiModeStart_DMA会覆盖关联DMA句柄的完�
 
 ## 4 数据格式和恢复条件
 
-组合字高半字ADC2、低半字ADC1，半字内部仍按各自ALIGN解释。两路右对齐时各取低12位；左对齐时先在各自16位半字内右移4位。采用外设/存储器word宽度时，一个DMA项为4字节，容量至少4×Length字节；Length为无量纲项数。组合字不能直接传入单ADC电压宏。
+组合字高半字ADC2、低半字ADC1，半字内部仍按各自ALIGN解释。两路右对齐时各取低12位；左对齐时先在各自16位半字内右移4位。采用外设/存储器word宽度时，一个DMA项为4字节；以MINC=1写入连续数组、保留整段结果时，容量至少4×Length字节，Length为无量纲项数。MINC=0会重复覆盖同一个内存字，不能保存Length项历史结果。地址递增和容量条件见[DMA缓冲区契约](../../知识库/04_DMA与缓冲区协作.md#1-dma1资源通道和数据项)。组合字不能直接传入单ADC电压宏。
 
 HAL_ADC_Init并不清State.ERROR_DMA；真实TE后单靠Stop→Init→重配模式→Start仍可保留错误回调分支。成功DeInit重置传入ADC句柄，但DMA、另一ADC及GPIO/NVIC回收取决于MSP和应用所有权。
 

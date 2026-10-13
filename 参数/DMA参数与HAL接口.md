@@ -196,7 +196,7 @@ bit31:0 MA 为 rw 存储器端基址，EN=1 时禁止写。MSIZE=01 时忽略 MA
 |`__HAL_DMA_ENABLE(h)` / `__HAL_DMA_DISABLE(h)`|置位／清除通道使能；无返回，不自动维护完整父外设状态|
 |`__HAL_DMA_ENABLE_IT(h,it)` / `__HAL_DMA_DISABLE_IT(h,it)`|it 可组合 `DMA_IT_TC`、`DMA_IT_HT`、`DMA_IT_TE`；无返回|
 |`__HAL_DMA_GET_IT_SOURCE(h,it)`|检查指定源是否使能，返回 SET/RESET 语义|
-|`__HAL_DMA_GET_COUNTER(h)`|返回 CNDTR 剩余数据项数；计数单位始终为项，换算存储器端所占字节数时再乘 MSIZE 对应的 1、2 或 4 字节|
+|`__HAL_DMA_GET_COUNTER(h)`|返回 CNDTR 剩余数据项数；乘 MSIZE 对应的 1、2 或 4 字节得到剩余项对应的内存端搬运量。连续数组容量还须满足 MINC=1；MINC=0 重复访问同一内存项，不能据该乘积推断独立地址覆盖范围|
 
 ### DMA1各通道完整标志
 
