@@ -84,4 +84,4 @@ HAL接口按异步UART、同步USART及Smartcard/IrDA专用模块分别保存固
 
 - [Smartcard与IrDA HAL接口索引](../参数/USART/Smartcard与IrDA_HAL接口索引.md)：60个不同接口名称、两版120条声明的原型/定义位置和回调条件；单列ReInit声明与实现差异
 
-- [Smartcard与IrDA配置字段及宏](../参数/USART/Smartcard与IrDA配置字段及宏.md)：Init字段、配置编码、PSC时钟来源、标志读取/清除和中断使能宏边界
+- [Smartcard与IrDA配置、句柄及宏](../参数/USART/Smartcard与IrDA配置字段及宏.md)：Init/句柄字段、状态与回调ID、配置编码、PSC时钟来源、标志读取/清除和中断使能宏边界

@@ -1,4 +1,4 @@
-# Smartcard 与 IrDA：配置字段、符号与控制宏
+# Smartcard 与 IrDA：配置、句柄、回调与控制宏
 来源为固定 HAL F1 v1.1.4 / v1.1.10 的专用头文件。Smartcard两版Init结构均11个uint32_t字段；IrDA两版均6个字段，其中Prescaler为uint8_t，其余为uint32_t。字段集合、类型和顺序已逐项对照。
 
 ## 初始化字段
@@ -73,6 +73,101 @@ IrDA结构没有StopBits成员；SetConfig和Init清STOP，采用1停止位。�
 
 Smartcard预分频符号SMARTCARD_PRESCALER_SYSCLK_DIV2、DIV4、…、DIV62共31项，依次对应PSC=1、2、…、31，两版逐项核对一致。完整符号中的SYSCLK保留官方命名，时钟来源仍按前文PCLK解释。
 
+## 句柄成员
+
+|字段|类型或版本差异|含义/限制|
+|---|---|---|
+|Instance|USART_TypeDef *|器件寄存器实例|
+|Init|对应SMARTCARD_InitTypeDef / IRDA_InitTypeDef|两模块配置布局不同|
+|pTxBuffPtr|旧uint8_t *；新const uint8_t *|指向发送数据；const限定数据，不禁止驱动移动指针成员|
+|TxXferSize|uint16_t|发送长度；单位与CPU/DMA路径条件分别核对|
+|TxXferCount|__IO uint16_t|路径维护的发送计数；初始化/更新依具体函数，不替代DMA CNDTR读数|
+|pRxBuffPtr|uint8_t *|接收数据指针|
+|RxXferSize|uint16_t|接收长度；不自动表示已分配字节数|
+|RxXferCount|__IO uint16_t|接收计数；须按具体启动路径确认初始化与更新|
+|hdmatx|DMA_HandleTypeDef *|发送DMA关联|
+|hdmarx|DMA_HandleTypeDef *|接收DMA关联|
+|Lock|HAL_LockTypeDef|软件句柄锁字段；不等于DMA资源状态|
+|gState|__IO HAL_SMARTCARD_StateTypeDef / __IO HAL_IRDA_StateTypeDef|全局管理与TX状态|
+|RxState|对应的__IO状态枚举类型|接收状态|
+|ErrorCode|__IO uint32_t|驱动错误码；清除/按位累加/覆盖因路径而异|
+
+### 条件回调成员
+
+当对应USE_HAL_*_REGISTER_CALLBACKS==1时，两个句柄都有TxCpltCallback、RxCpltCallback、ErrorCallback、AbortCpltCallback、AbortTransmitCpltCallback、AbortReceiveCpltCallback、MspInitCallback、MspDeInitCallback；IrDA再有TxHalfCpltCallback和RxHalfCpltCallback。每个成员返回void并接受对应模块句柄指针。注册宏取值会改变结构成员集合，工程与库须使用一致的编译配置。
+
+## 状态枚举
+
+下表后缀分别加HAL_SMARTCARD_STATE_或HAL_IRDA_STATE_，两模块两版数值一致；允许写入对象取自固定头文件注释。
+
+|后缀|值|允许对象/解释|
+|---|---|---|
+|RESET|0x00|gState、RxState|
+|READY|0x20|gState、RxState|
+|BUSY|0x24|仅gState，内部处理|
+|BUSY_TX|0x21|仅gState|
+|BUSY_RX|0x22|仅RxState|
+|BUSY_TX_RX|0x23|合成结果，不应直接写为gState或RxState|
+|TIMEOUT|0xA0|仅gState|
+|ERROR|0xE0|仅gState|
+
+GetState依次读取gState和RxState后按位或返回；函数本体没有对两次读取提供一致快照保护。它反映软件句柄，不读取TC或DMA EN/CNDTR，也不证明IrDA半双工限制已解除。GetError直接返回ErrorCode。
+
+## 错误码
+
+后缀分别加HAL_SMARTCARD_ERROR_或HAL_IRDA_ERROR_；两模块两版位值相同。INVALID_CALLBACK仅对应回调注册配置为1时定义。
+
+|后缀|值|含义|
+|---|---|---|
+|NONE|0x00|无错误码|
+|PE|0x01|校验错误|
+|NE|0x02|噪声错误|
+|FE|0x04|帧错误|
+|ORE|0x08|溢出错误|
+|DMA|0x10|DMA错误|
+|INVALID_CALLBACK|0x20|回调参数/状态不允许|
+
+## 回调ID
+
+两模块的回调ID不能只按相同数字互换；应使用对应模块的完整符号。以下每个模块的两版值相同。
+
+### Smartcard
+
+|符号|ID|
+|---|---|
+|`HAL_SMARTCARD_TX_COMPLETE_CB_ID`|0x00|
+|`HAL_SMARTCARD_RX_COMPLETE_CB_ID`|0x01|
+|`HAL_SMARTCARD_ERROR_CB_ID`|0x02|
+|`HAL_SMARTCARD_ABORT_COMPLETE_CB_ID`|0x03|
+|`HAL_SMARTCARD_ABORT_TRANSMIT_COMPLETE_CB_ID`|0x04|
+|`HAL_SMARTCARD_ABORT_RECEIVE_COMPLETE_CB_ID`|0x05|
+|`HAL_SMARTCARD_MSPINIT_CB_ID`|0x08|
+|`HAL_SMARTCARD_MSPDEINIT_CB_ID`|0x09|
+
+### IrDA
+
+|符号|ID|
+|---|---|
+|`HAL_IRDA_TX_HALFCOMPLETE_CB_ID`|0x00|
+|`HAL_IRDA_TX_COMPLETE_CB_ID`|0x01|
+|`HAL_IRDA_RX_HALFCOMPLETE_CB_ID`|0x02|
+|`HAL_IRDA_RX_COMPLETE_CB_ID`|0x03|
+|`HAL_IRDA_ERROR_CB_ID`|0x04|
+|`HAL_IRDA_ABORT_COMPLETE_CB_ID`|0x05|
+|`HAL_IRDA_ABORT_TRANSMIT_COMPLETE_CB_ID`|0x06|
+|`HAL_IRDA_ABORT_RECEIVE_COMPLETE_CB_ID`|0x07|
+|`HAL_IRDA_MSPINIT_CB_ID`|0x08|
+|`HAL_IRDA_MSPDEINIT_CB_ID`|0x09|
+
+## 注册与注销的状态/版本条件
+
+- RegisterCallback检查pCallback非空；空指针会记录INVALID_CALLBACK并返回HAL_ERROR。
+- gState=READY允许注册本模块支持的回调ID；gState=RESET只允许MSP Init/DeInit回调，其余状态/不支持ID按错误路径处理。UnRegisterCallback采用同样状态分支，并恢复对应弱默认回调。
+- 这四个函数都不检查RxState。只有RX忙而gState保持READY的情形，不会因RxState=BUSY_RX自动被状态分支拒绝；不能把注册成功当作当前收发均已空闲的证明。
+- 固定v1.1.4四个Register/UnRegister函数含__HAL_LOCK与__HAL_UNLOCK调用；v1.1.10相应调用已移除。去掉注释/空白及这两类调用后，四对函数体逐对相同。不推断改动动机，也不把旧句柄锁当作中断并发安全证明。
+- 更换活动接收将调用的回调，需由应用协调传输生命周期与中断执行；函数的gState检查没有提供完整的接收回调更换同步协议。
+
+
 ## 宏语义
 - RESET_HANDLE_STATE只把gState、RxState置RESET；回调注册配置为1时还清MspInitCallback/MspDeInitCallback。它不停止DMA、不清锁、不清错误码、不释放缓冲，也不清全部事件回调。
 - FLUSH_DRREGISTER直接读取DR；与软件缓冲指针、计数、DMA状态无关。读取副作用依USART寄存器规定，不能作为缓冲资源交还证明。
@@ -124,6 +219,11 @@ ENABLE/DISABLE围绕UE操作；Smartcard的DMA_REQUEST_ENABLE/DISABLE围绕CR3�
 
 ## 固定来源
 
+- [Smartcard旧版注册/注销L463–663](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Src/stm32f1xx_hal_smartcard.c#L463-L663)、[新版L466–658](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/77fbb30b7a1d02533980400083e48c559aae5a4f/Src/stm32f1xx_hal_smartcard.c#L466-L658)。
+- [IrDA旧版注册/注销L457–672](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Src/stm32f1xx_hal_irda.c#L457-L672)、[新版L460–666](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/77fbb30b7a1d02533980400083e48c559aae5a4f/Src/stm32f1xx_hal_irda.c#L460-L666)。
+- [Smartcard GetState/GetError](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/77fbb30b7a1d02533980400083e48c559aae5a4f/Src/stm32f1xx_hal_smartcard.c#L1775-L1797)、[IrDA GetState/GetError](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/77fbb30b7a1d02533980400083e48c559aae5a4f/Src/stm32f1xx_hal_irda.c#L2025-L2046)。
+
+
 - [Smartcard v1.1.4头文件](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_hal_smartcard.h)、[v1.1.10头文件](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/77fbb30b7a1d02533980400083e48c559aae5a4f/Inc/stm32f1xx_hal_smartcard.h)。
 - [IrDA v1.1.4头文件](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_hal_irda.h)、[v1.1.10头文件](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/77fbb30b7a1d02533980400083e48c559aae5a4f/Inc/stm32f1xx_hal_irda.h)。
 - [Smartcard SetConfig固定新版](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/77fbb30b7a1d02533980400083e48c559aae5a4f/Src/stm32f1xx_hal_smartcard.c#L2256-L2333)。
@@ -132,4 +232,6 @@ ENABLE/DISABLE围绕UE操作；Smartcard的DMA_REQUEST_ENABLE/DISABLE围绕CR3�
 
 配套：[初始化顺序与CPU访问边界](Smartcard与IrDA数据宽度及初始化.md)、[DMA生命周期](Smartcard与IrDA_DMA边界.md)、[HAL函数接口索引](Smartcard与IrDA_HAL接口索引.md)、[硬件寄存器](寄存器与访问副作用.md)。
 
-范围：已覆盖这两份固定专用头文件的Init成员、所列配置符号与30个__HAL控制宏；句柄完整成员、状态/回调枚举、全部私有校验宏和基础宏依赖未在本页逐项列完。没有新增固件执行或实机验证。
+范围：已覆盖这两份固定专用头文件的Init成员、所列配置符号与30个__HAL控制宏；另已核对两模块各14个常规句柄字段、条件回调成员、状态/错误码及回调ID；全部私有校验宏与基础宏依赖未在本页逐项列完。没有新增固件执行或实机验证。
+
+句柄版本比较：两版成员名称、顺序及类型逐项核对，pTxBuffPtr从uint8_t *变为const uint8_t *，其余已列成员类型一致。启用回调成员时Smartcard共22字段、IrDA共24字段；数字是成员计数，不是结构字节数。
