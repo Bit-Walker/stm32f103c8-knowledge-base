@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="860" viewBox="0 0 1180 860"><title>STM32F103C8 USART中断条件合并</title><desc>各事件与对应使能相与后，所有分支相或进入同一USART中断请求。DMA错误分支需要EIE和DMAR同时使能；ORE另可通过RXNEIE。</desc><defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="#346078"/></marker></defs><rect width="1180" height="860" fill="#f7fafc"/><g font-family="Noto Sans CJK SC, sans-serif" fill="#18384a"><text x="40" y="44" font-size="26" font-weight="bold">USART事件如何合入同一个IRQ</text><text x="40" y="74" font-size="15">RM0008 Rev21 Table196 / Figure302，pp816–817 · 逻辑关系重绘</text><text x="40" y="114" font-size="16">状态条件</text><text x="270" y="114" font-size="16">使能条件（与状态条件相与）</text><text x="630" y="114" font-size="16">含义</text>
+<rect x="32" y="132" width="827" height="50" rx="8" fill="white" stroke="#cad9e3"/>
+<text x="46" y="163" font-size="17">TXE</text>
+<text x="269" y="163" font-size="17">CR1.TXEIE</text>
+<text x="630" y="162" font-size="13">发送数据寄存器空</text>
+<path d="M859 157 H908" stroke="#346078" fill="none"/>
+<rect x="32" y="196" width="827" height="50" rx="8" fill="white" stroke="#cad9e3"/>
+<text x="46" y="227" font-size="17">TC</text>
+<text x="269" y="227" font-size="17">CR1.TCIE</text>
+<text x="630" y="226" font-size="13">线路发送完成；Smartcard另有GT</text>
+<path d="M859 221 H908" stroke="#346078" fill="none"/>
+<rect x="32" y="260" width="827" height="50" rx="8" fill="white" stroke="#cad9e3"/>
+<text x="46" y="291" font-size="17">CTS</text>
+<text x="269" y="291" font-size="17">CR3.CTSIE</text>
+<text x="630" y="290" font-size="13">CTS输入发生翻转</text>
+<path d="M859 285 H908" stroke="#346078" fill="none"/>
+<rect x="32" y="324" width="827" height="50" rx="8" fill="white" stroke="#cad9e3"/>
+<text x="46" y="355" font-size="17">RXNE</text>
+<text x="269" y="355" font-size="17">CR1.RXNEIE</text>
+<text x="630" y="354" font-size="13">接收数据可读</text>
+<path d="M859 349 H908" stroke="#346078" fill="none"/>
+<rect x="32" y="388" width="827" height="50" rx="8" fill="white" stroke="#cad9e3"/>
+<text x="46" y="419" font-size="17">ORE</text>
+<text x="269" y="419" font-size="17">CR1.RXNEIE</text>
+<text x="630" y="418" font-size="13">接收覆盖错误，RXNE可已清除</text>
+<path d="M859 413 H908" stroke="#346078" fill="none"/>
+<rect x="32" y="452" width="827" height="50" rx="8" fill="white" stroke="#cad9e3"/>
+<text x="46" y="483" font-size="17">IDLE</text>
+<text x="269" y="483" font-size="17">CR1.IDLEIE</text>
+<text x="630" y="482" font-size="13">检测到空闲帧</text>
+<path d="M859 477 H908" stroke="#346078" fill="none"/>
+<rect x="32" y="516" width="827" height="50" rx="8" fill="white" stroke="#cad9e3"/>
+<text x="46" y="547" font-size="17">PE</text>
+<text x="269" y="547" font-size="17">CR1.PEIE</text>
+<text x="630" y="546" font-size="13">校验错误</text>
+<path d="M859 541 H908" stroke="#346078" fill="none"/>
+<rect x="32" y="580" width="827" height="50" rx="8" fill="white" stroke="#cad9e3"/>
+<text x="46" y="611" font-size="17">LBD</text>
+<text x="269" y="611" font-size="17">CR2.LBDIE</text>
+<text x="630" y="610" font-size="13">LIN Break与delimiter条件满足</text>
+<path d="M859 605 H908" stroke="#346078" fill="none"/>
+<rect x="32" y="644" width="827" height="50" rx="8" fill="white" stroke="#cad9e3"/>
+<text x="46" y="675" font-size="17">FE ∨ NE ∨ ORE</text>
+<text x="269" y="675" font-size="17">CR3.EIE ∧ CR3.DMAR</text>
+<text x="630" y="674" font-size="13">DMA接收错误分支</text>
+<path d="M859 669 H908" stroke="#346078" fill="none"/>
+<path d="M908 157 V669 M908 413 H965" stroke="#346078" stroke-width="2" fill="none" marker-end="url(#arrow)"/><rect x="965" y="366" width="175" height="94" rx="12" fill="#e3f1f9" stroke="#346078"/><text x="994" y="398" font-size="22">任一分支成立</text><text x="991" y="432" font-size="18">USART IRQ请求</text><text x="40" y="757" font-size="16">∧ 表示逻辑与，∨ 表示逻辑或。ORE在两条分支出现，两种使能途径均需保留。</text><text x="40" y="791" font-size="16">这里只画外设请求条件；NVIC屏蔽、优先级、CPU执行和HAL处理顺序不在本图中。</text><text x="40" y="825" font-size="16">同一USART的事件共用向量；仅清NVIC pending不会消除仍成立的外设请求条件。</text></g></svg>

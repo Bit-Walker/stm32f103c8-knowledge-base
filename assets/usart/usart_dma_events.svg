@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1260" height="1120" viewBox="0 0 1260 1120"><title>USART DMA与线路完成的事件顺序</title><desc>三项正常DMA发送及接收的逻辑事件表。发送DMA计数先到零，USART的最后一帧仍须等待TC。接收DMA计数到零不等于协议结束或IDLE。</desc><rect width="1260" height="1120" fill="#f7fafc"/><g font-family="Noto Sans CJK SC, sans-serif" fill="#18384a"><text x="36" y="44" font-size="26" font-weight="bold">三个数据项：DMA何时完成，线路何时完成</text><text x="36" y="76" font-size="15">RM0008 Rev21 Figure282（p793）、Figures297–298（pp813–814）· 原时间轴按逻辑事件合并</text><text x="36" y="110" font-size="16">正常DMA，初始计数3；发送前清USART.TC。下面取连续流水的一种顺序，不表示固定总线延迟。</text><text x="36" y="150" font-size="21" font-weight="bold">发送：TXE触发DMA写USART_DR；TCIF与USART.TC分属两个外设</text>
+<text x="42" y="184" font-size="16" font-weight="bold">事件</text>
+<text x="474" y="184" font-size="16" font-weight="bold">TXE</text>
+<text x="553" y="184" font-size="16" font-weight="bold">TC</text>
+<text x="639" y="184" font-size="16" font-weight="bold">DMA剩余项</text>
+<text x="802" y="184" font-size="16" font-weight="bold">数据所在位置 / 完成层级</text>
+<rect x="32" y="199" width="1195" height="43" rx="5" fill="white" stroke="#cad9e3"/>
+<text x="42" y="227" font-size="15">DMA将F1写入TDR</text>
+<text x="490" y="227" font-size="15">0</text>
+<text x="560" y="227" font-size="15">0</text>
+<text x="683" y="227" font-size="15">2</text>
+<text x="802" y="227" font-size="15">F1等待移入发送移位寄存器</text>
+<rect x="32" y="248" width="1195" height="43" rx="5" fill="white" stroke="#cad9e3"/>
+<text x="42" y="276" font-size="15">F1从TDR移入移位寄存器</text>
+<text x="490" y="276" font-size="15">1</text>
+<text x="560" y="276" font-size="15">0</text>
+<text x="683" y="276" font-size="15">2</text>
+<text x="802" y="276" font-size="15">F1在线路上发送，TDR可接受F2</text>
+<rect x="32" y="297" width="1195" height="43" rx="5" fill="white" stroke="#cad9e3"/>
+<text x="42" y="325" font-size="15">DMA将F2写入TDR</text>
+<text x="490" y="325" font-size="15">0</text>
+<text x="560" y="325" font-size="15">0</text>
+<text x="683" y="325" font-size="15">1</text>
+<text x="802" y="325" font-size="15">F1继续发送，F2保留在TDR</text>
+<rect x="32" y="346" width="1195" height="43" rx="5" fill="white" stroke="#cad9e3"/>
+<text x="42" y="374" font-size="15">F1结束，F2移入移位寄存器</text>
+<text x="490" y="374" font-size="15">1</text>
+<text x="560" y="374" font-size="15">0</text>
+<text x="683" y="374" font-size="15">1</text>
+<text x="802" y="374" font-size="15">F2在线路上发送，TDR可接受F3</text>
+<rect x="32" y="395" width="1195" height="43" rx="5" fill="#fff0d8" stroke="#cad9e3"/>
+<text x="42" y="423" font-size="15">DMA将最后一项F3写入TDR</text>
+<text x="490" y="423" font-size="15">0</text>
+<text x="560" y="423" font-size="15">0</text>
+<text x="683" y="423" font-size="15">0</text>
+<text x="802" y="423" font-size="15">DMA TCIF置位；F3尚未完成线上发送</text>
+<rect x="32" y="444" width="1195" height="43" rx="5" fill="white" stroke="#cad9e3"/>
+<text x="42" y="472" font-size="15">F2结束，F3移入移位寄存器</text>
+<text x="490" y="472" font-size="15">1</text>
+<text x="560" y="472" font-size="15">0</text>
+<text x="683" y="472" font-size="15">0</text>
+<text x="802" y="472" font-size="15">TDR已空，最后一帧F3仍在发送</text>
+<rect x="32" y="493" width="1195" height="43" rx="5" fill="white" stroke="#cad9e3"/>
+<text x="42" y="521" font-size="15">F3停止位结束，且无待发项</text>
+<text x="490" y="521" font-size="15">1</text>
+<text x="560" y="521" font-size="15">1</text>
+<text x="683" y="521" font-size="15">0</text>
+<text x="802" y="521" font-size="15">此处才满足普通模式的USART发送完成</text>
+<text x="36" y="580" font-size="21" font-weight="bold">接收：RXNE触发DMA读USART_DR；计数的是搬运项</text>
+<text x="42" y="614" font-size="16" font-weight="bold">事件</text>
+<text x="474" y="614" font-size="16" font-weight="bold">RXNE</text>
+<text x="625" y="614" font-size="16" font-weight="bold">DMA剩余项</text>
+<text x="802" y="614" font-size="16" font-weight="bold">数据 / 边界</text>
+<rect x="32" y="631" width="1195" height="46" rx="5" fill="white" stroke="#cad9e3"/>
+<text x="42" y="661" font-size="15">完整F1数据进入RDR</text>
+<text x="474" y="661" font-size="15">1</text>
+<text x="675" y="661" font-size="15">3</text>
+<text x="802" y="661" font-size="15">RDR含F1，尚待DMA取走</text>
+<rect x="32" y="683" width="1195" height="46" rx="5" fill="white" stroke="#cad9e3"/>
+<text x="42" y="713" font-size="15">DMA读取F1并写入内存</text>
+<text x="474" y="713" font-size="15">0</text>
+<text x="675" y="713" font-size="15">2</text>
+<text x="802" y="713" font-size="15">F1已完成搬运</text>
+<rect x="32" y="735" width="1195" height="46" rx="5" fill="white" stroke="#cad9e3"/>
+<text x="42" y="765" font-size="15">完整F2数据进入RDR，再被DMA取走</text>
+<text x="474" y="765" font-size="15">1 → 0</text>
+<text x="675" y="765" font-size="15">1</text>
+<text x="802" y="765" font-size="15">F2完成搬运后剩1项</text>
+<rect x="32" y="787" width="1195" height="46" rx="5" fill="white" stroke="#cad9e3"/>
+<text x="42" y="817" font-size="15">完整F3数据进入RDR</text>
+<text x="474" y="817" font-size="15">1</text>
+<text x="675" y="817" font-size="15">1</text>
+<text x="802" y="817" font-size="15">F3仍在RDR，DMA尚未读走</text>
+<rect x="32" y="839" width="1195" height="46" rx="5" fill="#e2f1e8" stroke="#cad9e3"/>
+<text x="42" y="869" font-size="15">DMA读取F3并写入内存</text>
+<text x="474" y="869" font-size="15">0</text>
+<text x="675" y="869" font-size="15">0</text>
+<text x="802" y="869" font-size="15">DMA TCIF置位；不据此推断协议报文结束</text>
+<text x="36" y="941" font-size="16">计数列指相应搬运已经完成后的概念状态；不承诺CPU可在任意时刻原子读到表内全部字段。</text><text x="36" y="977" font-size="16">TCIF是DMA硬件标志，DMA IRQ、HAL回调可能更晚执行；通道状态/锁的收尾还须服务对应IRQ。</text><text x="36" y="1013" font-size="16">USART.TC须结合所用模式：Smartcard另有GT保护时间。接收IDLE及DMA计数快照也不是锁存帧长。</text><text x="36" y="1050" font-size="16">原图中的SPI_DR残留标注在这里按USART_DR表达；发送写DR，接收读DR，依据相邻正文核对。</text><text x="36" y="1086" font-size="16">错误、溢出、暂停、循环与重新启动不在此连续三项例子内，需按各自的硬件及驱动分支处理。</text></g></svg>

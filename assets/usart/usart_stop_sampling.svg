@@ -1,0 +1,130 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="800" viewBox="0 0 1180 800"><title>USART停止位长度与采样</title><desc>普通1停止位和2停止位在第一位第8、9、10样本检查；0.5停止位不采样；Smartcard1.5停止位在第16、17、18样本检查。</desc><rect width="1180" height="800" fill="#f7fafc"/><g font-family="Noto Sans CJK SC, sans-serif" fill="#18384a"><text x="36" y="44" font-size="26" font-weight="bold">停止区：长度、检查位置与接收完成</text><text x="36" y="77" font-size="15">RM0008 Rev21 Figure281（p792）、停止位说明（pp791–792）及Figure294（p810）</text><text x="36" y="111" font-size="16">每个位时间分为16个采样周期。停止区长度按位时间标注；圆点给出手册采样编号，非绝对相位规格。</text>
+<text x="36" y="181" font-size="18">STOP=00（1位）</text>
+<rect x="250" y="156" width="352" height="40" fill="#e3f1f9" stroke="#668394"/>
+<path d="M250 196 v10" stroke="#8ba1ae"/>
+<path d="M272 196 v5" stroke="#8ba1ae"/>
+<path d="M294 196 v5" stroke="#8ba1ae"/>
+<path d="M316 196 v5" stroke="#8ba1ae"/>
+<path d="M338 196 v5" stroke="#8ba1ae"/>
+<path d="M360 196 v5" stroke="#8ba1ae"/>
+<path d="M382 196 v5" stroke="#8ba1ae"/>
+<path d="M404 196 v5" stroke="#8ba1ae"/>
+<path d="M426 196 v10" stroke="#8ba1ae"/>
+<path d="M448 196 v5" stroke="#8ba1ae"/>
+<path d="M470 196 v5" stroke="#8ba1ae"/>
+<path d="M492 196 v5" stroke="#8ba1ae"/>
+<path d="M514 196 v5" stroke="#8ba1ae"/>
+<path d="M536 196 v5" stroke="#8ba1ae"/>
+<path d="M558 196 v5" stroke="#8ba1ae"/>
+<path d="M580 196 v5" stroke="#8ba1ae"/>
+<path d="M602 196 v10" stroke="#8ba1ae"/>
+<circle cx="404" cy="176" r="5" fill="#ba5f27"/>
+<text x="404" y="148" font-size="13" text-anchor="middle">8</text>
+<circle cx="426" cy="176" r="5" fill="#ba5f27"/>
+<text x="426" y="148" font-size="13" text-anchor="middle">9</text>
+<circle cx="448" cy="176" r="5" fill="#ba5f27"/>
+<text x="448" y="148" font-size="13" text-anchor="middle">10</text>
+<text x="250" y="226" font-size="14" text-anchor="middle">0位</text>
+<text x="426" y="226" font-size="14" text-anchor="middle">0.5位</text>
+<text x="602" y="226" font-size="14" text-anchor="middle">1位</text>
+<text x="250" y="256" font-size="16">普通1停止位：检查第8/9/10样本</text>
+<text x="36" y="313" font-size="18">STOP=10（2位）</text>
+<rect x="250" y="288" width="704" height="40" fill="#e3f1f9" stroke="#668394"/>
+<path d="M250 328 v10" stroke="#8ba1ae"/>
+<path d="M272 328 v5" stroke="#8ba1ae"/>
+<path d="M294 328 v5" stroke="#8ba1ae"/>
+<path d="M316 328 v5" stroke="#8ba1ae"/>
+<path d="M338 328 v5" stroke="#8ba1ae"/>
+<path d="M360 328 v5" stroke="#8ba1ae"/>
+<path d="M382 328 v5" stroke="#8ba1ae"/>
+<path d="M404 328 v5" stroke="#8ba1ae"/>
+<path d="M426 328 v10" stroke="#8ba1ae"/>
+<path d="M448 328 v5" stroke="#8ba1ae"/>
+<path d="M470 328 v5" stroke="#8ba1ae"/>
+<path d="M492 328 v5" stroke="#8ba1ae"/>
+<path d="M514 328 v5" stroke="#8ba1ae"/>
+<path d="M536 328 v5" stroke="#8ba1ae"/>
+<path d="M558 328 v5" stroke="#8ba1ae"/>
+<path d="M580 328 v5" stroke="#8ba1ae"/>
+<path d="M602 328 v10" stroke="#8ba1ae"/>
+<path d="M624 328 v5" stroke="#8ba1ae"/>
+<path d="M646 328 v5" stroke="#8ba1ae"/>
+<path d="M668 328 v5" stroke="#8ba1ae"/>
+<path d="M690 328 v5" stroke="#8ba1ae"/>
+<path d="M712 328 v5" stroke="#8ba1ae"/>
+<path d="M734 328 v5" stroke="#8ba1ae"/>
+<path d="M756 328 v5" stroke="#8ba1ae"/>
+<path d="M778 328 v10" stroke="#8ba1ae"/>
+<path d="M800 328 v5" stroke="#8ba1ae"/>
+<path d="M822 328 v5" stroke="#8ba1ae"/>
+<path d="M844 328 v5" stroke="#8ba1ae"/>
+<path d="M866 328 v5" stroke="#8ba1ae"/>
+<path d="M888 328 v5" stroke="#8ba1ae"/>
+<path d="M910 328 v5" stroke="#8ba1ae"/>
+<path d="M932 328 v5" stroke="#8ba1ae"/>
+<path d="M954 328 v10" stroke="#8ba1ae"/>
+<circle cx="404" cy="308" r="5" fill="#ba5f27"/>
+<text x="404" y="280" font-size="13" text-anchor="middle">8</text>
+<circle cx="426" cy="308" r="5" fill="#ba5f27"/>
+<text x="426" y="280" font-size="13" text-anchor="middle">9</text>
+<circle cx="448" cy="308" r="5" fill="#ba5f27"/>
+<text x="448" y="280" font-size="13" text-anchor="middle">10</text>
+<text x="250" y="358" font-size="14" text-anchor="middle">0位</text>
+<text x="426" y="358" font-size="14" text-anchor="middle">0.5位</text>
+<text x="602" y="358" font-size="14" text-anchor="middle">1位</text>
+<text x="778" y="358" font-size="14" text-anchor="middle">1.5位</text>
+<text x="954" y="358" font-size="14" text-anchor="middle">2位</text>
+<text x="250" y="388" font-size="16">普通2停止位：仅检查第1位；RXNE在第1位结束时置位</text>
+<text x="36" y="445" font-size="18">STOP=01（0.5位）</text>
+<rect x="250" y="420" width="176.0" height="40" fill="#e3f1f9" stroke="#668394"/>
+<path d="M250 460 v10" stroke="#8ba1ae"/>
+<path d="M272 460 v5" stroke="#8ba1ae"/>
+<path d="M294 460 v5" stroke="#8ba1ae"/>
+<path d="M316 460 v5" stroke="#8ba1ae"/>
+<path d="M338 460 v5" stroke="#8ba1ae"/>
+<path d="M360 460 v5" stroke="#8ba1ae"/>
+<path d="M382 460 v5" stroke="#8ba1ae"/>
+<path d="M404 460 v5" stroke="#8ba1ae"/>
+<path d="M426 460 v10" stroke="#8ba1ae"/>
+<text x="250" y="490" font-size="14" text-anchor="middle">0位</text>
+<text x="426" y="490" font-size="14" text-anchor="middle">0.5位</text>
+<text x="250" y="520" font-size="16">Smartcard接收0.5停止位：不采样，不能检测FE或Break</text>
+<text x="36" y="577" font-size="18">STOP=11（1.5位）</text>
+<rect x="250" y="552" width="528.0" height="40" fill="#e3f1f9" stroke="#668394"/>
+<path d="M250 592 v10" stroke="#8ba1ae"/>
+<path d="M272 592 v5" stroke="#8ba1ae"/>
+<path d="M294 592 v5" stroke="#8ba1ae"/>
+<path d="M316 592 v5" stroke="#8ba1ae"/>
+<path d="M338 592 v5" stroke="#8ba1ae"/>
+<path d="M360 592 v5" stroke="#8ba1ae"/>
+<path d="M382 592 v5" stroke="#8ba1ae"/>
+<path d="M404 592 v5" stroke="#8ba1ae"/>
+<path d="M426 592 v10" stroke="#8ba1ae"/>
+<path d="M448 592 v5" stroke="#8ba1ae"/>
+<path d="M470 592 v5" stroke="#8ba1ae"/>
+<path d="M492 592 v5" stroke="#8ba1ae"/>
+<path d="M514 592 v5" stroke="#8ba1ae"/>
+<path d="M536 592 v5" stroke="#8ba1ae"/>
+<path d="M558 592 v5" stroke="#8ba1ae"/>
+<path d="M580 592 v5" stroke="#8ba1ae"/>
+<path d="M602 592 v10" stroke="#8ba1ae"/>
+<path d="M624 592 v5" stroke="#8ba1ae"/>
+<path d="M646 592 v5" stroke="#8ba1ae"/>
+<path d="M668 592 v5" stroke="#8ba1ae"/>
+<path d="M690 592 v5" stroke="#8ba1ae"/>
+<path d="M712 592 v5" stroke="#8ba1ae"/>
+<path d="M734 592 v5" stroke="#8ba1ae"/>
+<path d="M756 592 v5" stroke="#8ba1ae"/>
+<path d="M778 592 v10" stroke="#8ba1ae"/>
+<circle cx="580" cy="572" r="5" fill="#ba5f27"/>
+<text x="580" y="544" font-size="13" text-anchor="middle">16</text>
+<circle cx="602" cy="572" r="5" fill="#ba5f27"/>
+<text x="602" y="544" font-size="13" text-anchor="middle">17</text>
+<circle cx="624" cy="572" r="5" fill="#ba5f27"/>
+<text x="624" y="544" font-size="13" text-anchor="middle">18</text>
+<text x="250" y="622" font-size="14" text-anchor="middle">0位</text>
+<text x="426" y="622" font-size="14" text-anchor="middle">0.5位</text>
+<text x="602" y="622" font-size="14" text-anchor="middle">1位</text>
+<text x="778" y="622" font-size="14" text-anchor="middle">1.5位</text>
+<text x="250" y="652" font-size="16">Smartcard1.5停止位：先等待0.5位，再检查NACK；须启用接收器</text>
+<text x="36" y="728" font-size="16">高电平是普通停止区的期望值；Smartcard接收方可拉低数据线发NACK，发送方据此检查FE。</text><text x="36" y="763" font-size="16">本图为采样位置示意，不表示固定绝对传播延迟；波特率改变时，位时间及各采样间隔同步改变。</text></g></svg>

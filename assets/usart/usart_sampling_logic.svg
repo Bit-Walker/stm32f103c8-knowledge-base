@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1260" height="930" viewBox="0 0 1260 930"><title>USART起始验证与数据多数判决</title><desc>起始位使用3、5、7与8、9、10两个样本组，每组至少两个0。数据位使用8、9、10样本多数判决，不一致置NE。</desc><rect width="1260" height="930" fill="#f7fafc"/><g font-family="Noto Sans CJK SC, sans-serif" fill="#18384a"><text x="36" y="44" font-size="26" font-weight="bold">起始验证与噪声多数判决</text><text x="36" y="76" font-size="15">RM0008 Rev21 Figure283（p794）、Figure284（p796）及Table191（p797）· 判决逻辑整合</text><text x="36" y="115" font-size="19" font-weight="bold">1 起始检测需要下降沿，以及两组均通过</text><text x="36" y="148" font-size="16">原文无噪声样本序列：1 1 1 0 X 0 X 0 X 0 0 0 0；X表示该位置不限定。</text>
+<rect x="54" y="172" width="475" height="104" rx="9" fill="white" stroke="#cad9e3"/>
+<text x="72" y="203" font-size="18">第一组</text>
+<rect x="208" y="188" width="78" height="43" rx="5" fill="#e3f1f9"/><text x="247" y="216" font-size="17" text-anchor="middle">样本3</text>
+<rect x="305" y="188" width="78" height="43" rx="5" fill="#e3f1f9"/><text x="344" y="216" font-size="17" text-anchor="middle">样本5</text>
+<rect x="402" y="188" width="78" height="43" rx="5" fill="#e3f1f9"/><text x="441" y="216" font-size="17" text-anchor="middle">样本7</text>
+<text x="72" y="256" font-size="16">三次采样中至少两个为0</text>
+<rect x="584" y="172" width="475" height="104" rx="9" fill="white" stroke="#cad9e3"/>
+<text x="602" y="203" font-size="18">第二组</text>
+<rect x="738" y="188" width="78" height="43" rx="5" fill="#e3f1f9"/><text x="777" y="216" font-size="17" text-anchor="middle">样本8</text>
+<rect x="835" y="188" width="78" height="43" rx="5" fill="#e3f1f9"/><text x="874" y="216" font-size="17" text-anchor="middle">样本9</text>
+<rect x="932" y="188" width="78" height="43" rx="5" fill="#e3f1f9"/><text x="971" y="216" font-size="17" text-anchor="middle">样本10</text>
+<text x="602" y="256" font-size="16">三次采样中至少两个为0</text>
+<text x="36" y="317" font-size="17">两组都为000 → 起始有效，无噪声；两组均通过但有组仅两个0 → 起始有效并置NE。</text><text x="36" y="352" font-size="17">任意一组不足两个0 → 放弃本次起始检测，回到空闲，等待新的下降沿。</text><text x="36" y="396" font-size="15" fill="#995026">原图注中RXNE的表述须结合完整字符接收与DR定义解释；起始验证不表示DR已收到整字。</text><text x="36" y="449" font-size="19" font-weight="bold">2 数据位：第8、9、10样本三取二；不一致时NE=1</text>
+<text x="69" y="484" font-size="17" font-weight="bold">第8/9/10样本</text>
+<text x="290" y="484" font-size="17" font-weight="bold">接收值</text>
+<text x="447" y="484" font-size="17" font-weight="bold">NE</text>
+<rect x="54" y="501" width="536" height="46" fill="white" stroke="#cad9e3"/>
+<text x="122" y="531" font-size="19" text-anchor="middle">000</text>
+<text x="318" y="531" font-size="19" text-anchor="middle">0</text>
+<text x="461" y="531" font-size="19" text-anchor="middle">0</text>
+<rect x="54" y="556" width="536" height="46" fill="white" stroke="#cad9e3"/>
+<text x="122" y="586" font-size="19" text-anchor="middle">001</text>
+<text x="318" y="586" font-size="19" text-anchor="middle">0</text>
+<text x="461" y="586" font-size="19" text-anchor="middle">1</text>
+<rect x="54" y="611" width="536" height="46" fill="white" stroke="#cad9e3"/>
+<text x="122" y="641" font-size="19" text-anchor="middle">010</text>
+<text x="318" y="641" font-size="19" text-anchor="middle">0</text>
+<text x="461" y="641" font-size="19" text-anchor="middle">1</text>
+<rect x="54" y="666" width="536" height="46" fill="white" stroke="#cad9e3"/>
+<text x="122" y="696" font-size="19" text-anchor="middle">011</text>
+<text x="318" y="696" font-size="19" text-anchor="middle">1</text>
+<text x="461" y="696" font-size="19" text-anchor="middle">1</text>
+<text x="649" y="484" font-size="17" font-weight="bold">第8/9/10样本</text>
+<text x="870" y="484" font-size="17" font-weight="bold">接收值</text>
+<text x="1027" y="484" font-size="17" font-weight="bold">NE</text>
+<rect x="634" y="501" width="536" height="46" fill="white" stroke="#cad9e3"/>
+<text x="702" y="531" font-size="19" text-anchor="middle">100</text>
+<text x="898" y="531" font-size="19" text-anchor="middle">0</text>
+<text x="1041" y="531" font-size="19" text-anchor="middle">1</text>
+<rect x="634" y="556" width="536" height="46" fill="white" stroke="#cad9e3"/>
+<text x="702" y="586" font-size="19" text-anchor="middle">101</text>
+<text x="898" y="586" font-size="19" text-anchor="middle">1</text>
+<text x="1041" y="586" font-size="19" text-anchor="middle">1</text>
+<rect x="634" y="611" width="536" height="46" fill="white" stroke="#cad9e3"/>
+<text x="702" y="641" font-size="19" text-anchor="middle">110</text>
+<text x="898" y="641" font-size="19" text-anchor="middle">1</text>
+<text x="1041" y="641" font-size="19" text-anchor="middle">1</text>
+<rect x="634" y="666" width="536" height="46" fill="white" stroke="#cad9e3"/>
+<text x="702" y="696" font-size="19" text-anchor="middle">111</text>
+<text x="898" y="696" font-size="19" text-anchor="middle">1</text>
+<text x="1041" y="696" font-size="19" text-anchor="middle">0</text>
+<text x="36" y="768" font-size="17">NE提示样本不一致；多数判决的数据仍进入接收数据路径，应用须决定是否接受该字符。</text><text x="36" y="805" font-size="17">本图仅表达样本组和逻辑关系；起始同步后的相位窗口、误差预算与停止位采样另行核对。</text><text x="36" y="843" font-size="17">停止位使用何处采样取决于STOP编码；普通数据的三取二规则不能直接替代Smartcard NACK时序。</text><text x="36" y="888" font-size="16">图中NE是寄存器噪声标志；部分误差容差表写作NF，需按相同噪声判决含义对应。</text></g></svg>

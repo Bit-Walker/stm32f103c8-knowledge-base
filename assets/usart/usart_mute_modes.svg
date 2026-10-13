@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="780" viewBox="0 0 1180 780"><title>USART静默与地址唤醒</title><desc>WAKE0由空闲帧退出静默但不置IDLE；WAKE1由匹配地址退出，匹配地址自身产生RXNE，非匹配地址不产生RXNE或DMA请求。</desc><rect width="1180" height="780" fill="#f7fafc"/><g font-family="Noto Sans CJK SC, sans-serif" fill="#18384a"><text x="36" y="44" font-size="26" font-weight="bold">静默接收：哪些字符会交给软件</text><text x="36" y="76" font-size="15">RM0008 Rev21 Figures285–286，pp801–802 · 按事件、状态和接收通知整合</text><text x="36" y="119" font-size="20" font-weight="bold">1 WAKE=0：检测到空闲帧，退出静默</text><text x="36" y="150" font-size="16">软件置RWU=1后进入下列序列；空闲唤醒的前置条件见正文与CR1.RWU说明。</text>
+<rect x="190" y="174" width="177" height="43" fill="#e3f1f9" stroke="#bdcfd9"/>
+<text x="278" y="202" text-anchor="middle" font-size="17">数据3</text>
+<rect x="190" y="222" width="177" height="43" fill="#fff0d8" stroke="#bdcfd9"/>
+<text x="278" y="250" text-anchor="middle" font-size="17">保持1</text>
+<rect x="190" y="270" width="177" height="43" fill="#e2f1e8" stroke="#bdcfd9"/>
+<text x="278" y="298" text-anchor="middle" font-size="17">无</text>
+<rect x="375" y="174" width="177" height="43" fill="#e3f1f9" stroke="#bdcfd9"/>
+<text x="463" y="202" text-anchor="middle" font-size="17">数据4</text>
+<rect x="375" y="222" width="177" height="43" fill="#fff0d8" stroke="#bdcfd9"/>
+<text x="463" y="250" text-anchor="middle" font-size="17">保持1</text>
+<rect x="375" y="270" width="177" height="43" fill="#e2f1e8" stroke="#bdcfd9"/>
+<text x="463" y="298" text-anchor="middle" font-size="17">无</text>
+<rect x="560" y="174" width="177" height="43" fill="#e3f1f9" stroke="#bdcfd9"/>
+<text x="648" y="202" text-anchor="middle" font-size="17">完整空闲帧</text>
+<rect x="560" y="222" width="177" height="43" fill="#fff0d8" stroke="#bdcfd9"/>
+<text x="648" y="250" text-anchor="middle" font-size="17">1 → 0</text>
+<rect x="560" y="270" width="177" height="43" fill="#e2f1e8" stroke="#bdcfd9"/>
+<text x="648" y="298" text-anchor="middle" font-size="17">不置IDLE</text>
+<rect x="745" y="174" width="177" height="43" fill="#e3f1f9" stroke="#bdcfd9"/>
+<text x="833" y="202" text-anchor="middle" font-size="17">数据5</text>
+<rect x="745" y="222" width="177" height="43" fill="#fff0d8" stroke="#bdcfd9"/>
+<text x="833" y="250" text-anchor="middle" font-size="17">保持0</text>
+<rect x="745" y="270" width="177" height="43" fill="#e2f1e8" stroke="#bdcfd9"/>
+<text x="833" y="298" text-anchor="middle" font-size="17">RXNE</text>
+<rect x="930" y="174" width="177" height="43" fill="#e3f1f9" stroke="#bdcfd9"/>
+<text x="1018" y="202" text-anchor="middle" font-size="17">数据6</text>
+<rect x="930" y="222" width="177" height="43" fill="#fff0d8" stroke="#bdcfd9"/>
+<text x="1018" y="250" text-anchor="middle" font-size="17">保持0</text>
+<rect x="930" y="270" width="177" height="43" fill="#e2f1e8" stroke="#bdcfd9"/>
+<text x="1018" y="298" text-anchor="middle" font-size="17">RXNE</text>
+<text x="36" y="202" font-size="17">线路事件</text>
+<text x="36" y="250" font-size="17">RWU变化</text>
+<text x="36" y="298" font-size="17">接收通知</text>
+<text x="36" y="357" font-size="16">静默期间不设置接收状态标志，接收中断被抑制；此处用于退出静默的空闲帧不报告IDLE。</text><text x="36" y="412" font-size="20" font-weight="bold">2 WAKE=1：地址低4位与ADD比较，本例ADD=1</text><text x="36" y="443" font-size="16">起始状态RWU=1。地址标记采用最高有效数据位，不采用校验位。</text>
+<rect x="190" y="467" width="99" height="43" fill="#e3f1f9" stroke="#bdcfd9"/>
+<text x="239" y="495" text-anchor="middle" font-size="16">地址0</text>
+<rect x="190" y="515" width="99" height="43" fill="#fff0d8" stroke="#bdcfd9"/>
+<text x="239" y="543" text-anchor="middle" font-size="16">保持1</text>
+<rect x="190" y="563" width="99" height="43" fill="#e2f1e8" stroke="#bdcfd9"/>
+<text x="239" y="591" text-anchor="middle" font-size="16">无</text>
+<rect x="294" y="467" width="99" height="43" fill="#e3f1f9" stroke="#bdcfd9"/>
+<text x="343" y="495" text-anchor="middle" font-size="16">数据1</text>
+<rect x="294" y="515" width="99" height="43" fill="#fff0d8" stroke="#bdcfd9"/>
+<text x="343" y="543" text-anchor="middle" font-size="16">保持1</text>
+<rect x="294" y="563" width="99" height="43" fill="#e2f1e8" stroke="#bdcfd9"/>
+<text x="343" y="591" text-anchor="middle" font-size="16">无</text>
+<rect x="398" y="467" width="99" height="43" fill="#e3f1f9" stroke="#bdcfd9"/>
+<text x="447" y="495" text-anchor="middle" font-size="16">数据2</text>
+<rect x="398" y="515" width="99" height="43" fill="#fff0d8" stroke="#bdcfd9"/>
+<text x="447" y="543" text-anchor="middle" font-size="16">保持1</text>
+<rect x="398" y="563" width="99" height="43" fill="#e2f1e8" stroke="#bdcfd9"/>
+<text x="447" y="591" text-anchor="middle" font-size="16">无</text>
+<rect x="502" y="467" width="99" height="43" fill="#e3f1f9" stroke="#bdcfd9"/>
+<text x="551" y="495" text-anchor="middle" font-size="16">空闲</text>
+<rect x="502" y="515" width="99" height="43" fill="#fff0d8" stroke="#bdcfd9"/>
+<text x="551" y="543" text-anchor="middle" font-size="16">保持1</text>
+<rect x="502" y="563" width="99" height="43" fill="#e2f1e8" stroke="#bdcfd9"/>
+<text x="551" y="591" text-anchor="middle" font-size="16">无</text>
+<rect x="606" y="467" width="99" height="43" fill="#e3f1f9" stroke="#bdcfd9"/>
+<text x="655" y="495" text-anchor="middle" font-size="16">地址1</text>
+<rect x="606" y="515" width="99" height="43" fill="#fff0d8" stroke="#bdcfd9"/>
+<text x="655" y="543" text-anchor="middle" font-size="16">1 → 0</text>
+<rect x="606" y="563" width="99" height="43" fill="#e2f1e8" stroke="#bdcfd9"/>
+<text x="655" y="591" text-anchor="middle" font-size="16">RXNE</text>
+<rect x="710" y="467" width="99" height="43" fill="#e3f1f9" stroke="#bdcfd9"/>
+<text x="759" y="495" text-anchor="middle" font-size="16">数据3</text>
+<rect x="710" y="515" width="99" height="43" fill="#fff0d8" stroke="#bdcfd9"/>
+<text x="759" y="543" text-anchor="middle" font-size="16">保持0</text>
+<rect x="710" y="563" width="99" height="43" fill="#e2f1e8" stroke="#bdcfd9"/>
+<text x="759" y="591" text-anchor="middle" font-size="16">RXNE</text>
+<rect x="814" y="467" width="99" height="43" fill="#e3f1f9" stroke="#bdcfd9"/>
+<text x="863" y="495" text-anchor="middle" font-size="16">数据4</text>
+<rect x="814" y="515" width="99" height="43" fill="#fff0d8" stroke="#bdcfd9"/>
+<text x="863" y="543" text-anchor="middle" font-size="16">保持0</text>
+<rect x="814" y="563" width="99" height="43" fill="#e2f1e8" stroke="#bdcfd9"/>
+<text x="863" y="591" text-anchor="middle" font-size="16">RXNE</text>
+<rect x="918" y="467" width="99" height="43" fill="#e3f1f9" stroke="#bdcfd9"/>
+<text x="967" y="495" text-anchor="middle" font-size="16">地址2</text>
+<rect x="918" y="515" width="99" height="43" fill="#fff0d8" stroke="#bdcfd9"/>
+<text x="967" y="543" text-anchor="middle" font-size="16">0 → 1</text>
+<rect x="918" y="563" width="99" height="43" fill="#e2f1e8" stroke="#bdcfd9"/>
+<text x="967" y="591" text-anchor="middle" font-size="16">无</text>
+<rect x="1022" y="467" width="99" height="43" fill="#e3f1f9" stroke="#bdcfd9"/>
+<text x="1071" y="495" text-anchor="middle" font-size="16">数据5</text>
+<rect x="1022" y="515" width="99" height="43" fill="#fff0d8" stroke="#bdcfd9"/>
+<text x="1071" y="543" text-anchor="middle" font-size="16">保持1</text>
+<rect x="1022" y="563" width="99" height="43" fill="#e2f1e8" stroke="#bdcfd9"/>
+<text x="1071" y="591" text-anchor="middle" font-size="16">无</text>
+<text x="36" y="495" font-size="17">线路事件</text>
+<text x="36" y="543" font-size="17">RWU变化</text>
+<text x="36" y="591" font-size="17">接收通知</text>
+<text x="36" y="651" font-size="16">匹配地址本身产生RXNE；非匹配地址不产生RXNE、中断或DMA请求。软件改RWU须满足RXNE=0。</text><text x="36" y="692" font-size="16">CR2.ADD为4位地址；普通数据最高有效位为0，地址字符该位为1。</text><text x="36" y="738" font-size="16" fill="#995026">C8勘误：静默地址唤醒可漏报该地址的PE；空闲检测也有时钟偏差限制（ES096 §2.9.2 / §2.9.4）。</text></g></svg>

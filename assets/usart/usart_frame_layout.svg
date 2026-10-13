@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="670" viewBox="0 0 1180 670"><title>USART字长、校验与帧结构</title><desc>四种M与PCE组合。校验占据所选8位或9位字长的最高位置；起始和停止不计入M字长。</desc><rect width="1180" height="670" fill="#f7fafc"/><g font-family="Noto Sans CJK SC, sans-serif" fill="#18384a"><text x="36" y="45" font-size="26" font-weight="bold">字长与校验：有效数据占哪些位</text><text x="36" y="76" font-size="15">RM0008 Rev21 Figure280（p790）、Table195（p802）· 按字段整合重绘</text><text x="36" y="111" font-size="16">起始位与停止位在字长之外；数据按LSB先发。下图停止位只作区域示意。</text>
+<text x="36" y="183" font-size="18">M=0, PCE=0</text>
+<rect x="222" y="152" width="77" height="52" fill="#e4e9f0" stroke="#668394"/>
+<text x="260.5" y="185" text-anchor="middle" font-size="17">起始0</text>
+<rect x="299" y="152" width="77" height="52" fill="#dff1e7" stroke="#668394"/>
+<text x="337.5" y="185" text-anchor="middle" font-size="17">D0</text>
+<rect x="376" y="152" width="77" height="52" fill="#dff1e7" stroke="#668394"/>
+<text x="414.5" y="185" text-anchor="middle" font-size="17">D1</text>
+<rect x="453" y="152" width="77" height="52" fill="#dff1e7" stroke="#668394"/>
+<text x="491.5" y="185" text-anchor="middle" font-size="17">D2</text>
+<rect x="530" y="152" width="77" height="52" fill="#dff1e7" stroke="#668394"/>
+<text x="568.5" y="185" text-anchor="middle" font-size="17">D3</text>
+<rect x="607" y="152" width="77" height="52" fill="#dff1e7" stroke="#668394"/>
+<text x="645.5" y="185" text-anchor="middle" font-size="17">D4</text>
+<rect x="684" y="152" width="77" height="52" fill="#dff1e7" stroke="#668394"/>
+<text x="722.5" y="185" text-anchor="middle" font-size="17">D5</text>
+<rect x="761" y="152" width="77" height="52" fill="#dff1e7" stroke="#668394"/>
+<text x="799.5" y="185" text-anchor="middle" font-size="17">D6</text>
+<rect x="838" y="152" width="77" height="52" fill="#dff1e7" stroke="#668394"/>
+<text x="876.5" y="185" text-anchor="middle" font-size="17">D7</text>
+<rect x="915" y="152" width="77" height="52" fill="#e4e9f0" stroke="#668394"/>
+<text x="953.5" y="185" text-anchor="middle" font-size="17">停止1</text>
+<text x="222" y="228" font-size="15">有效数据8位；无校验</text>
+<text x="36" y="278" font-size="18">M=0, PCE=1</text>
+<rect x="222" y="247" width="77" height="52" fill="#e4e9f0" stroke="#668394"/>
+<text x="260.5" y="280" text-anchor="middle" font-size="17">起始0</text>
+<rect x="299" y="247" width="77" height="52" fill="#dff1e7" stroke="#668394"/>
+<text x="337.5" y="280" text-anchor="middle" font-size="17">D0</text>
+<rect x="376" y="247" width="77" height="52" fill="#dff1e7" stroke="#668394"/>
+<text x="414.5" y="280" text-anchor="middle" font-size="17">D1</text>
+<rect x="453" y="247" width="77" height="52" fill="#dff1e7" stroke="#668394"/>
+<text x="491.5" y="280" text-anchor="middle" font-size="17">D2</text>
+<rect x="530" y="247" width="77" height="52" fill="#dff1e7" stroke="#668394"/>
+<text x="568.5" y="280" text-anchor="middle" font-size="17">D3</text>
+<rect x="607" y="247" width="77" height="52" fill="#dff1e7" stroke="#668394"/>
+<text x="645.5" y="280" text-anchor="middle" font-size="17">D4</text>
+<rect x="684" y="247" width="77" height="52" fill="#dff1e7" stroke="#668394"/>
+<text x="722.5" y="280" text-anchor="middle" font-size="17">D5</text>
+<rect x="761" y="247" width="77" height="52" fill="#dff1e7" stroke="#668394"/>
+<text x="799.5" y="280" text-anchor="middle" font-size="17">D6</text>
+<rect x="838" y="247" width="77" height="52" fill="#ffebce" stroke="#668394"/>
+<text x="876.5" y="280" text-anchor="middle" font-size="17">校验P</text>
+<rect x="915" y="247" width="77" height="52" fill="#e4e9f0" stroke="#668394"/>
+<text x="953.5" y="280" text-anchor="middle" font-size="17">停止1</text>
+<text x="222" y="323" font-size="15">有效数据7位；最高字长位置由校验占用</text>
+<text x="36" y="373" font-size="18">M=1, PCE=0</text>
+<rect x="222" y="342" width="77" height="52" fill="#e4e9f0" stroke="#668394"/>
+<text x="260.5" y="375" text-anchor="middle" font-size="17">起始0</text>
+<rect x="299" y="342" width="77" height="52" fill="#dff1e7" stroke="#668394"/>
+<text x="337.5" y="375" text-anchor="middle" font-size="17">D0</text>
+<rect x="376" y="342" width="77" height="52" fill="#dff1e7" stroke="#668394"/>
+<text x="414.5" y="375" text-anchor="middle" font-size="17">D1</text>
+<rect x="453" y="342" width="77" height="52" fill="#dff1e7" stroke="#668394"/>
+<text x="491.5" y="375" text-anchor="middle" font-size="17">D2</text>
+<rect x="530" y="342" width="77" height="52" fill="#dff1e7" stroke="#668394"/>
+<text x="568.5" y="375" text-anchor="middle" font-size="17">D3</text>
+<rect x="607" y="342" width="77" height="52" fill="#dff1e7" stroke="#668394"/>
+<text x="645.5" y="375" text-anchor="middle" font-size="17">D4</text>
+<rect x="684" y="342" width="77" height="52" fill="#dff1e7" stroke="#668394"/>
+<text x="722.5" y="375" text-anchor="middle" font-size="17">D5</text>
+<rect x="761" y="342" width="77" height="52" fill="#dff1e7" stroke="#668394"/>
+<text x="799.5" y="375" text-anchor="middle" font-size="17">D6</text>
+<rect x="838" y="342" width="77" height="52" fill="#dff1e7" stroke="#668394"/>
+<text x="876.5" y="375" text-anchor="middle" font-size="17">D7</text>
+<rect x="915" y="342" width="77" height="52" fill="#dff1e7" stroke="#668394"/>
+<text x="953.5" y="375" text-anchor="middle" font-size="17">D8</text>
+<rect x="992" y="342" width="77" height="52" fill="#e4e9f0" stroke="#668394"/>
+<text x="1030.5" y="375" text-anchor="middle" font-size="17">停止1</text>
+<text x="222" y="418" font-size="15">有效数据9位；无校验</text>
+<text x="36" y="468" font-size="18">M=1, PCE=1</text>
+<rect x="222" y="437" width="77" height="52" fill="#e4e9f0" stroke="#668394"/>
+<text x="260.5" y="470" text-anchor="middle" font-size="17">起始0</text>
+<rect x="299" y="437" width="77" height="52" fill="#dff1e7" stroke="#668394"/>
+<text x="337.5" y="470" text-anchor="middle" font-size="17">D0</text>
+<rect x="376" y="437" width="77" height="52" fill="#dff1e7" stroke="#668394"/>
+<text x="414.5" y="470" text-anchor="middle" font-size="17">D1</text>
+<rect x="453" y="437" width="77" height="52" fill="#dff1e7" stroke="#668394"/>
+<text x="491.5" y="470" text-anchor="middle" font-size="17">D2</text>
+<rect x="530" y="437" width="77" height="52" fill="#dff1e7" stroke="#668394"/>
+<text x="568.5" y="470" text-anchor="middle" font-size="17">D3</text>
+<rect x="607" y="437" width="77" height="52" fill="#dff1e7" stroke="#668394"/>
+<text x="645.5" y="470" text-anchor="middle" font-size="17">D4</text>
+<rect x="684" y="437" width="77" height="52" fill="#dff1e7" stroke="#668394"/>
+<text x="722.5" y="470" text-anchor="middle" font-size="17">D5</text>
+<rect x="761" y="437" width="77" height="52" fill="#dff1e7" stroke="#668394"/>
+<text x="799.5" y="470" text-anchor="middle" font-size="17">D6</text>
+<rect x="838" y="437" width="77" height="52" fill="#dff1e7" stroke="#668394"/>
+<text x="876.5" y="470" text-anchor="middle" font-size="17">D7</text>
+<rect x="915" y="437" width="77" height="52" fill="#ffebce" stroke="#668394"/>
+<text x="953.5" y="470" text-anchor="middle" font-size="17">校验P</text>
+<rect x="992" y="437" width="77" height="52" fill="#e4e9f0" stroke="#668394"/>
+<text x="1030.5" y="470" text-anchor="middle" font-size="17">停止1</text>
+<text x="222" y="513" font-size="15">有效数据8位；最高字长位置由校验占用</text>
+<text x="36" y="577" font-size="17">D0为最低有效数据位；P为奇偶校验位。PS=0选择偶校验，PS=1选择奇校验。</text><text x="36" y="612" font-size="17">字长M=0时共8个数据/校验位置，M=1时共9个。有效数据长度还取决于PCE。</text><text x="36" y="646" font-size="16">STOP字段独立选择停止区长度；0.5/1.5停止位用于Smartcard，另见停止位采样图。</text></g></svg>

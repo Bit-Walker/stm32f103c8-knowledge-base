@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="850" viewBox="0 0 1180 850"><title>LIN Break检测与FE</title><desc>达到低位数量还不够，必须随后检测到高电平分隔符才置LBD。普通接收器在LIN模式发现FE后暂停，直到Break检测器看到提前的高电平或有效delimiter。</desc><rect width="1180" height="850" fill="#f7fafc"/><g font-family="Noto Sans CJK SC, sans-serif" fill="#18384a"><text x="36" y="44" font-size="26" font-weight="bold">LIN Break：低位计数与分隔符共同决定LBD</text><text x="36" y="76" font-size="15">RM0008 Rev21 Figures287–288，pp804–805；检测条件见p803 · 按三种边界与接收协作整合</text><text x="36" y="112" font-size="16">RE=1才检测；LBDL=0要求10个连续低位，LBDL=1要求11个。下图采用LBDL=1。</text>
+<text x="36" y="178" font-size="18" font-weight="bold">1 不足11个低位</text>
+<path d="M303 163 H335 V207 H765 V163 H1060" fill="none" stroke="#346078" stroke-width="3"/>
+<text x="270" y="188" font-size="16">RX</text>
+<path d="M808 148 V230" stroke="#ad7340" stroke-dasharray="4 5"/>
+<text x="808" y="139" font-size="14" text-anchor="middle">11个低位门限</text>
+<text x="774" y="201" font-size="13">高</text>
+<text x="335" y="249" font-size="16">提前采到1：放弃此次Break，不置LBD</text>
+<text x="36" y="329" font-size="18" font-weight="bold">2 恰好11个低位</text>
+<path d="M303 314 H335 V358 H808 V314 H1060" fill="none" stroke="#346078" stroke-width="3"/>
+<text x="270" y="339" font-size="16">RX</text>
+<path d="M808 299 V381" stroke="#ad7340" stroke-dasharray="4 5"/>
+<text x="808" y="290" font-size="14" text-anchor="middle">11个低位门限</text>
+<text x="817" y="352" font-size="13">高</text>
+<text x="335" y="400" font-size="16">达到计数后立即出现delimiter：置LBD</text>
+<text x="808" y="309" font-size="13" text-anchor="end">delimiter</text>
+<text x="36" y="480" font-size="18" font-weight="bold">3 超过11个低位</text>
+<path d="M303 465 H335 V509 H937 V465 H1060" fill="none" stroke="#346078" stroke-width="3"/>
+<text x="270" y="490" font-size="16">RX</text>
+<path d="M808 450 V532" stroke="#ad7340" stroke-dasharray="4 5"/>
+<text x="808" y="441" font-size="14" text-anchor="middle">11个低位门限</text>
+<text x="946" y="503" font-size="13">高</text>
+<text x="335" y="551" font-size="16">达到计数后继续等待；到delimiter时才置LBD</text>
+<text x="937" y="460" font-size="13" text-anchor="end">delimiter</text>
+<rect x="34" y="603" width="1110" height="158" rx="10" fill="white" stroke="#cad9e3"/><text x="58" y="635" font-size="20" font-weight="bold">Break检测器与普通字符接收器并行</text><text x="58" y="670" font-size="16">Break可从空闲开始，也可在接收字符中途出现；检测器与普通数据接收逻辑独立。</text><text x="58" y="703" font-size="16">LINEN=1时，普通接收发现FE便暂停，直到检测器看到提前的1，或完整Break后的delimiter。</text><text x="58" y="736" font-size="16">FE表示停止位错误，不能单独认证有效Break；LBD清除需软件写0，LBDIE决定是否请求中断。</text><text x="36" y="805" font-size="16">发送侧：LINEN=1、M=0时，SBK产生13个低位，随后1个高位。图中较长低区仅是检测边界示例。</text></g></svg>

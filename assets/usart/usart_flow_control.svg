@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="960" viewBox="0 0 1180 960"><title>USART RTS CTS接线和帧边界</title><desc>交叉连接TX RX与RTS CTS。RTS反映接收数据寄存器空间；CTS高不会中断当前发送帧，但阻止下一帧开始。</desc><defs><marker id="arr" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="#346078"/></marker></defs><rect width="1180" height="960" fill="#f7fafc"/><g font-family="Noto Sans CJK SC, sans-serif" fill="#18384a"><text x="36" y="44" font-size="26" font-weight="bold">RTS / CTS：接线、缓冲和帧边界</text><text x="36" y="76" font-size="15">RM0008 Rev21 Figures299–301，pp815–816 · 按连接和事件顺序整合；时长不按比例</text><rect x="34" y="101" width="1110" height="274" rx="12" fill="white" stroke="#cad9e3"/><text x="60" y="132" font-size="20" font-weight="bold">1 两端交叉连接，RTSE与CTSE独立启用</text><text x="252" y="164" font-size="18">USART A</text><text x="758" y="164" font-size="18">USART B</text>
+<text x="245" y="202" font-size="18">TX输出</text>
+<text x="753" y="202" font-size="18">RX输入</text>
+<path d="M360 196 H727" stroke="#346078" stroke-width="2" marker-end="url(#arr)"/>
+<text x="245" y="243" font-size="18">CTS输入</text>
+<text x="753" y="243" font-size="18">RTS输出</text>
+<path d="M727 237 H360" stroke="#346078" stroke-width="2" marker-end="url(#arr)"/>
+<text x="245" y="284" font-size="18">RX输入</text>
+<text x="753" y="284" font-size="18">TX输出</text>
+<path d="M727 278 H360" stroke="#346078" stroke-width="2" marker-end="url(#arr)"/>
+<text x="245" y="325" font-size="18">RTS输出</text>
+<text x="753" y="325" font-size="18">CTS输入</text>
+<path d="M360 319 H727" stroke="#346078" stroke-width="2" marker-end="url(#arr)"/>
+<rect x="34" y="394" width="1110" height="218" rx="12" fill="white" stroke="#cad9e3"/><text x="60" y="426" font-size="20" font-weight="bold">2 RTS低有效：接收数据寄存器空间</text>
+<rect x="65" y="454" width="315" height="82" rx="8" fill="#e3f1f9"/>
+<text x="83" y="485" font-size="17">RTS=0：准备接收</text>
+<text x="83" y="515" font-size="15">RDR空，允许对端发新字符</text>
+<path d="M383 496 h31" stroke="#346078" stroke-width="2" marker-end="url(#arr)"/>
+<rect x="420" y="454" width="315" height="82" rx="8" fill="#e3f1f9"/>
+<text x="438" y="485" font-size="17">收到字符，RXNE=1</text>
+<text x="438" y="515" font-size="15">RDR满，RTS转高</text>
+<path d="M738 496 h31" stroke="#346078" stroke-width="2" marker-end="url(#arr)"/>
+<rect x="775" y="454" width="315" height="82" rx="8" fill="#e3f1f9"/>
+<text x="793" y="485" font-size="17">读走RDR数据</text>
+<text x="793" y="515" font-size="15">空间恢复，RTS可再次为低</text>
+<text x="65" y="572" font-size="16">RTS不了解软件环形缓冲剩余容量。对端必须遵守握手，且本机仍须及时服务RDR。</text><rect x="34" y="630" width="1110" height="221" rx="12" fill="white" stroke="#cad9e3"/><text x="60" y="661" font-size="20" font-weight="bold">3 CTS高只阻止下一帧；TDR可保留待发数据</text>
+<rect x="65" y="689" width="315" height="82" rx="8" fill="#e2f1e8"/>
+<text x="77" y="720" font-size="16">正在发送A，CTS变高</text>
+<text x="77" y="750" font-size="14">A帧仍发完；不会截断当前帧</text>
+<path d="M383 731 h31" stroke="#346078" stroke-width="2" marker-end="url(#arr)"/>
+<rect x="420" y="689" width="315" height="82" rx="8" fill="#e2f1e8"/>
+<text x="432" y="720" font-size="16">A结束，CTS仍高</text>
+<text x="432" y="750" font-size="14">B可等待在TDR；不开始B帧</text>
+<path d="M738 731 h31" stroke="#346078" stroke-width="2" marker-end="url(#arr)"/>
+<rect x="775" y="689" width="315" height="82" rx="8" fill="#e2f1e8"/>
+<text x="787" y="720" font-size="16">CTS恢复低，且有待发B</text>
+<text x="787" y="750" font-size="14">B转入发送；TDR腾空后TXE置位</text>
+<text x="65" y="810" font-size="16">CTSE=1时，CTS输入翻转置SR.CTS；CTSIE可触发中断。标志表示变化，不等于当前电平。</text><text x="36" y="891" font-size="16" fill="#995026">C8勘误：SBK发送Break不受CTS阻止；对端违反RTS后可能出现RTS错误变低与ORE。</text><text x="36" y="927" font-size="16">上述例外按ES096 Rev15 §2.9.5–2.9.6（pp21–22）处理，不能从理想握手图推定其不存在。</text></g></svg>

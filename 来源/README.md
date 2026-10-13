@@ -68,8 +68,9 @@ DMA来源按真实文档与固定源码归并，18条支持范围分别使用唯
 - [AN4013模式与同步](AN4013.md) · [AN4776测量与波形应用](AN4776.md)
 
 
-## USART驱动安全专题来源
+## USART硬件与驱动来源
 
 - [固定HAL/LL实现与完整文件身份](驱动实现.md#src-usart-fixed-safety-boundaries)
 - [ES096 USART六条限制](ES096.md#src-es096-r15-usart-boundaries)
-- 硬件条件及寄存器含义按各专题内RM0008 Rev21页码定位，完整USART硬件图表整合尚未发布。
+- [RM0008硬件、24幅图与8张表](RM0008.md#src-rm0008-r21-usart-hardware)
+- [主题图形关系与范围](../参数/USART/图形关系与来源.md)
