@@ -47,6 +47,34 @@ DMAStop 本身不关闭 SPI、不清传输计数、不清 OVR，也不等待 BSY
 
 来源：[SPI DMAStop](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_spi.c#L2401-L2435)、[阻塞与中断 DMA Abort](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_dma.c#L415-L491)。
 
+## 完成回调、循环模式与传输错误
+
+以下继续限定于上述固定版本的双 DMA 接收／收发路径。
+
+| 接收 DMA 配置 | 完成回调路径的动作 | 使用边界 |
+|---|---|---|
+| 普通模式，接收入口 | 关闭 SPI ERR 中断、处理所启用的 CRC、撤销相应 DMA 请求、检查终结条件、清 Rx 计数、置 READY；有错误时转错误回调 | 主机双线会撤销两路 DMA 请求；该接收完成路径只清 RxXferCount，不能单凭 TxXferCount 残值判定仍在传输 |
+| 普通模式，收发入口 | 关闭 ERR 中断、处理所启用的 CRC、检查终结条件、撤销两路请求、清 Tx/Rx 计数、置 READY；有错误时转错误回调 | 回调结果仍需结合错误状态与从设备协议 |
+| 循环模式 | 跳过上述普通模式清理块，调用相应完成回调 | 一次回调不表示停机、请求关闭或软件状态 READY；缓冲区会继续参与传输 |
+
+这里以接收 DMA 通道 CCR 的 CIRC 位选择分支。它不证明任意 Tx/Rx 模式组合都有效；配对配置与应用缓冲区所有权仍须一致。
+
+普通收发终结助手先等待 TXE 置位，再等待 BSY 复位。接收终结助手在主机单线或双线 RXONLY 时关闭 SPI；主机 RXONLY 等待 RXNE 复位，其余分支等待 BSY 复位。此版本等待助手除 HAL_GetTick 检查外，还设有软件递减计数兜底；Timeout 不等于 HAL_MAX_DELAY 时，计数归零会令后续检查退出超时。因此不能把默认 HAL_Delay 的时基停滞行为直接套到这个助手，也不能把软件循环次数当作精确毫秒计时保证。
+
+来源：[接收完成](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_spi.c#L2788-L2877)、[收发完成](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_spi.c#L2887-L2972)、[终结条件](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_spi.c#L3571-L3695)。
+
+### Tx 与 Rx 的 DMA 错误上报不对称
+
+该收发启动路径给 Rx DMA 安装 SPI_DMAError，却把 Tx DMA 的 XferErrorCallback 置为 NULL。匹配 HAL_DMA_IRQHandler 在实际进入 TE 分支时，先关闭故障通道的 DMA 中断、清标志、记录 DMA 错误并置 DMA READY、解锁，再调用非空的错误回调。
+
+因此单独处理 Tx DMA TE，不会通过这一空回调链调用 SPI_DMAError 或用户 SPI 错误回调。这里不能扩大为“所有发送错误都不会通知”：其他 SPI 中断和应用监测仍可能发现异常。DMA IRQ 的 HT、TC、TE 使用 if/else-if 顺序，也不能假设多个标志同时存在时 TE 总在第一次进入 IRQ 时优先处理。
+
+Rx TE 经 SPI_DMAError 则会清两路 SPI DMA 请求，记录 SPI DMA 错误、置 SPI READY 并调用错误回调；这个外层函数本身不显式中止对端 Tx DMA，也不清 SPI 传输计数。
+
+RM0008 Rev21 §13.3.5 p280 说明 DMA 传输错误由硬件清除故障通道 EN 并置 TEIF；仅在 TEIE 使能时产生该错误中断。硬件这一动作不等于同时清理两路 DMA、SPI 请求和从设备事务。故障取证需区分 SPI 状态、两个 DMA 状态、请求位及实际线路，不宜只用是否收到 SPI ErrorCallback 判断健康。
+
+来源：[回调赋值](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_spi.c#L1970-L2012)、[DMA IRQ](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_dma.c#L602-L680)、[SPI DMA 错误回调](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_spi.c#L3031-L3047)。DMA1 固定映射及共享请求条件复用[DMA 参数与 HAL 接口](DMA参数与HAL接口.md)；RM0008 Rev21 §13.3.7 Table78 p282 中 SPI1 Rx/Tx 分别为 Ch2/Ch3，SPI2 Rx/Tx 分别为 Ch4/Ch5，不能把同通道的多个请求视为独立队列。
+
 ## 术语与来源身份
 
 - SPI：Serial Peripheral Interface，串行外设接口。
