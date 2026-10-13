@@ -48,3 +48,7 @@ Smartcard：gState BUSY → PSC/GT → SetConfig → 清 LINEN、IREN/HDSEL → 
 两个 Init / SetConfig 的四对固定版本函数体去注释、空白后逐对相同。本文未闭合所有基础宏与编译配置；不据未闭合定义发布 IrDA BRR 二次初始化的数值故障结论。
 
 参见[专用DMA启动、完成与错误边界](Smartcard与IrDA_DMA边界.md)、[UART/USART数据宽度](HAL数据宽度与版本边界.md)、[固定来源身份](../../来源/驱动实现.md#src-usart-dedicated-fixed-boundaries)。
+
+## 接口声明与实际实现
+
+两版专用头文件的HAL函数原型、定义位置、const变化及回调条件见[Smartcard与IrDA HAL接口索引](Smartcard与IrDA_HAL接口索引.md)。其中HAL_SMARTCARD_ReInit虽有头文件声明，对应两份固定模块C文件未见定义，不能当作本页已验证的重初始化入口。

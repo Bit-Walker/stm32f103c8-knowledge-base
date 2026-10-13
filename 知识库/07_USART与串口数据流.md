@@ -49,7 +49,7 @@ C8正常时钟约束下PCLK2最高72 MHz，PCLK1最高36 MHz；USART波特率时
 
 ## 3 固定HAL与LL接口
 
-HAL接口索引覆盖异步UART模块与同步USART模块；Smartcard、IrDA专用驱动另有CPU访问、初始化和DMA边界专题，尚未完成全部接口及状态交错核查。硬件支持某模式或头文件含某个STOP编码，不表示仅改初始化字段即可切换为该模式。
+HAL接口按异步UART、同步USART及Smartcard/IrDA专用模块分别保存固定版本原型；专用模块另有CPU访问、初始化和DMA边界专题。接口声明核对不表示全部函数语义及状态交错均已完成审查。硬件支持某模式或头文件含某个STOP编码，不表示仅改初始化字段即可切换为该模式。
 
 - [HAL配置、句柄与状态编码](../参数/USART/HAL配置句柄与状态.md)：完整字段、两套状态枚举、错误码及回调ID
 - [HAL接口索引](../参数/USART/HAL接口索引.md)：UART与同步USART分别按两版保存参数类型、顺序及回调条件
@@ -81,3 +81,5 @@ HAL接口索引覆盖异步UART模块与同步USART模块；Smartcard、IrDA专�
 
 - [数据宽度与初始化](../参数/USART/Smartcard与IrDA数据宽度及初始化.md)：两版CPU访问差异、参数校验与重初始化边界
 - [DMA启动、完成与错误边界](../参数/USART/Smartcard与IrDA_DMA边界.md)：RX错误方向的句柄访问、启动返回值、循环模式差异及回调资源条件
+
+- [Smartcard与IrDA HAL接口索引](../参数/USART/Smartcard与IrDA_HAL接口索引.md)：60个不同接口名称、两版120条声明的原型/定义位置和回调条件；单列ReInit声明与实现差异

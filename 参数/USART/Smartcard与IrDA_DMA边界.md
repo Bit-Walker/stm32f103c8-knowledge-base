@@ -60,3 +60,33 @@ DMA IRQ错误分支处理的是触发该IRQ的DMA句柄；其清中断、置READ
 配套：[CPU数据宽度与初始化](Smartcard与IrDA数据宽度及初始化.md)、[UART/USART DMA生命周期](DMA生命周期.md)、[来源身份](../../来源/驱动实现.md#src-usart-dedicated-fixed-boundaries)。
 
 IrDA启动路径来源：[TX/RX DMA L1040–1170](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/77fbb30b7a1d02533980400083e48c559aae5a4f/Src/stm32f1xx_hal_irda.c#L1040-L1170)。
+
+## 严格前提下的回调重启接收路径
+
+以下进一步追踪固定v1.1.10两模块，属于静态控制流分析，没有新增固件执行或实机故障复现。
+
+### 需要同时满足的前提
+- 调用 HAL_*_Abort_IT 前 DMAT=1、DMAR=0。
+- TX DMA 句柄有效且 State=BUSY；RX DMA 是另一个有效、可启动的句柄，外层handle及Parent正确。
+- 原用户 Abort 完成回调同步调用 HAL_*_Receive_DMA，并成功启动新的RX DMA；回调结束前DMAR仍为1、RX DMA仍BUSY。
+- 不存在其它抢占、用户回调或寄存器写入改变以下路径；若新RX已完成、失败或被别处中止，不能套用本轨迹。
+
+### 控制流顺序
+1. 外层 Abort_IT 初始化回调：TX安装TxAbortCallback，因旧DMAR=0而将RX Abort回调置NULL。
+2. 外层清DMAT并调用 HAL_DMA_Abort_IT(TX)。
+3. DMA Abort_IT在原调用栈内关闭该DMA并置READY，调用TX Abort回调。
+4. 模块TX Abort回调清自身回调，看到RX Abort回调为NULL，将串口两状态置READY，然后调用用户Abort完成回调。
+5. 用户立即启动新RX，接收入口设置RxState=BUSY_RX，启动RX DMA并置DMAR。
+   - IrDA Receive_DMA把RX Abort回调置NULL。
+   - Smartcard Receive_DMA误清TX Abort回调；RX仍保留步骤1的NULL。
+6. 用户回调返回，TX DMA Abort_IT返回HAL_OK，外层AbortCplt置0。
+7. 外层随后重新读取DMAR，看到新RX的请求位，清DMAR并Abort新RX DMA。
+8. 新RX DMA Abort成功，因其XferAbortCallback为NULL，不再调用模块RX Abort辅助函数；外层AbortCplt仍0，跳过最终状态恢复块而返回。
+9. 在这些严格前提下，静态路径留下RX DMA READY、DMAR=0，但串口RxState仍BUSY_RX。具体硬件数据已搬运多少未由本分析确定。
+
+此轨迹说明在“完成回调”内立即重启不一定跨越了外层函数的资源操作边界。应用需将新传输启动延后到外层Abort调用返回之后，并以本应用对传输代次、句柄和缓冲所有权的同步规则确认；此建议仅排除本条同步嵌套路径，不能代替完整中断并发证明。
+
+
+来源：[Smartcard TX Abort回调 L2120–2153](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/77fbb30b7a1d02533980400083e48c559aae5a4f/Src/stm32f1xx_hal_smartcard.c#L2120-L2153)、[IrDA TX Abort回调 L2321–2355](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/77fbb30b7a1d02533980400083e48c559aae5a4f/Src/stm32f1xx_hal_irda.c#L2321-L2355)；外层Abort与DMA同步回调来源见上一节；Receive_DMA来源见启动边界节。
+
+[专用HAL接口与版本原型](Smartcard与IrDA_HAL接口索引.md)。
