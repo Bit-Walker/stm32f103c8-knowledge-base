@@ -57,7 +57,7 @@
 - [帧格式波特率与接收错误](参数/USART/帧格式波特率与接收错误.md) · [工作模式流控与中断](参数/USART/工作模式流控与中断.md)
 - [寄存器与访问副作用](参数/USART/寄存器与访问副作用.md) · [HAL配置句柄与状态](参数/USART/HAL配置句柄与状态.md)
 - [HAL接口索引](参数/USART/HAL接口索引.md) · [LL接口与配置符号](参数/USART/LL接口与配置符号.md)
-- [Smartcard/IrDA HAL接口索引](参数/USART/Smartcard与IrDA_HAL接口索引.md)
+- [Smartcard/IrDA HAL接口索引](参数/USART/Smartcard与IrDA_HAL接口索引.md) · [专用配置字段及宏](参数/USART/Smartcard与IrDA配置字段及宏.md)
 - [Smartcard/IrDA数据宽度与初始化](参数/USART/Smartcard与IrDA数据宽度及初始化.md) · [专用DMA边界](参数/USART/Smartcard与IrDA_DMA边界.md)
 - [USART硅勘误](参数/USART/硅勘误.md) · [图形关系与来源](参数/USART/图形关系与来源.md)
 

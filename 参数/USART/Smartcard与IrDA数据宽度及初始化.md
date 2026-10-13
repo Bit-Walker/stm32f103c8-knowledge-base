@@ -52,3 +52,5 @@ Smartcard：gState BUSY → PSC/GT → SetConfig → 清 LINEN、IREN/HDSEL → 
 ## 接口声明与实际实现
 
 两版专用头文件的HAL函数原型、定义位置、const变化及回调条件见[Smartcard与IrDA HAL接口索引](Smartcard与IrDA_HAL接口索引.md)。其中HAL_SMARTCARD_ReInit虽有头文件声明，对应两份固定模块C文件未见定义，不能当作本页已验证的重初始化入口。
+
+初始化结构17个字段、两版一致的配置符号、PSC命名与实际时钟来源，以及控制宏的寄存器/软件状态边界，见[配置字段及宏](Smartcard与IrDA配置字段及宏.md)。

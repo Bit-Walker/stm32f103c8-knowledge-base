@@ -693,3 +693,5 @@ uint32_t HAL_IRDA_GetError(const IRDA_HandleTypeDef *hirda);
 - [DMA启动、完成与错误边界](Smartcard与IrDA_DMA边界.md)：句柄、返回值、循环模式、回调与资源所有权。
 
 本页完整核对的是上述固定头文件的HAL函数声明集合及对应定义原型；不据此宣称完整类型/宏索引、所有接口语义或全部并发路径均已完成审查。
+
+函数声明以外的Init结构、配置编码和30个__HAL控制宏，见[专用配置字段及宏](Smartcard与IrDA配置字段及宏.md)；该页分别限定其覆盖范围。
