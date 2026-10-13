@@ -132,4 +132,17 @@ READY 状态允许注册/注销下表全部 27 项；RESET 状态仅允许 0x00�
 核验方法：逐一比较固定头文件 ID 数值、RegisterCallback switch 对应字段及 UnRegisterCallback 对应字段/默认函数。27 项字段映射一致。HAL_TIM_HALL_SENSOR_MSPINIT_CB_ID 的用途按标识符与实际 switch 映射确定；原头文件该枚举行的 DeInit 注释不能覆盖实际 MspInit 行为。
 
 
+
+
+
+## 捕获DMA的请求时机与旧配置
+
+输入捕获DMA需同时核对CCxDE与CR2.CCDS：CCxDE允许请求，CCDS决定请求跟随CCx事件（0）还是更新事件（1）。DMA地址指向CCRx，只决定请求到达后访问哪个寄存器，不替代事件源选择。按RM0008 Rev21 CR2字段（TIM1 p341、TIM2～4 p406），需要逐次捕获搬运时应明确建立CCDS=0；沿用CCDS=1不能把DMA传输计数解释为捕获事件计数。
+
+核对固定de129f1和77fbb30的HAL_TIM_IC_Init、HAL_TIM_IC_ConfigChannel与HAL_TIM_IC_Start_DMA及其TIM_Base_SetConfig、CH2配置辅助路径：这些库内路径没有把CR2.CCDS恢复为0。Start_DMA为CH2设置CCR2地址并允许CC2DE；MSP/回调属于应用可自定义边界，可能另作配置，本结论不包括它们。因而“重新调用IC初始化/启动”不足以证明以前的DMA请求时机选择已被清除。
+
+同理，固定TIM_Base_SetConfig更新CR1的DIR/CMS、CKD、ARPE并写PSC/ARR及UG，没有统一清除原OPM/UDIS。连续捕获的配置前提应由应用建立；停止计数后还须先退出使DIR只读的中心/编码器模式，再按目标方向配置。修改实例级状态前应协调所有共享通道。
+
+固定源码：[旧版IC Init L1744–1789](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Src/stm32f1xx_hal_tim.c#L1744-L1789)、[旧版IC Start_DMA L2053–2175](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Src/stm32f1xx_hal_tim.c#L2053-L2175)、[新版IC Start_DMA L2364–2510](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/77fbb30b7a1d02533980400083e48c559aae5a4f/Src/stm32f1xx_hal_tim.c#L2364-L2510)。这是固定源码控制流与寄存器字段的交叉核查，未执行固件或板测。
+
 [返回定时器主题](../../知识库/06_定时器PWM与同步.md) · [图形关系与来源](图形关系与来源.md)

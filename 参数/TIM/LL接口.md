@@ -447,7 +447,7 @@ __STATIC_INLINE void LL_TIM_CC_SetUpdate (TIM_TypeDef * TIMx, uint32_t CCUpdateS
 __STATIC_INLINE void LL_TIM_CC_SetDMAReqTrigger (TIM_TypeDef * TIMx, uint32_t DMAReqTrigger);
 ```
 
-设置捕获比较 DMA 请求来自 CC 事件或更新事件。
+设置捕获比较 DMA 请求来自 CC 事件或更新事件。这是CR2.CCDS共享位，影响该实例的CCx DMA请求时机；逐次输入捕获搬运需选CC事件，修改时须协调其他通道。请求选择不改变DMA物理连线或外设地址。
 
 - `TIMx`：TIM1、TIM2、TIM3 或 TIM4 寄存器实例；高级寄存器功能仅 TIM1。
 - `DMAReqTrigger`：CC DMA 由比较事件或更新事件请求。
