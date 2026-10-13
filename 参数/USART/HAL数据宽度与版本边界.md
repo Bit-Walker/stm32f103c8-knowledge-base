@@ -111,3 +111,7 @@ USART_WaitOnFlagUntilTimeout只在所等标志尚未达到目标时检查Timeout
 式中BaudRate为目标位率（bit/s），PCLK1为APB1外设时钟频率（Hz），BRR为寄存器编码；USARTDIV=BRR/16为无量纲分频数。上述例子是固定整数宏与硬件分频条件的联合核对，未运行固件或测试线路。
 
 来源：[v1.1.4 UART宏 L804–814](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_hal_uart.h#L804-L814)、[v1.1.10 UART宏 L863–875](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/77fbb30b7a1d02533980400083e48c559aae5a4f/Inc/stm32f1xx_hal_uart.h#L863-L875)、[v1.1.10 USART宏 L608–621](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/77fbb30b7a1d02533980400083e48c559aae5a4f/Inc/stm32f1xx_hal_usart.h#L608-L621)；硬件分频见[RM0008 Rev21 pp798–799](https://www.st.com/resource/en/reference_manual/cd00171190.pdf#page=798)。
+
+## 专用模式驱动的独立版本边界
+
+HAL_UART / HAL_USART的修复结论不自动推广到HAL_IRDA或HAL_SMARTCARD；参见[Smartcard与IrDA数据宽度及初始化](Smartcard与IrDA数据宽度及初始化.md)。
