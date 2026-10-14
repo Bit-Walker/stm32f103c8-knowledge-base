@@ -49,6 +49,18 @@ DMAStop 本身不关闭 SPI、不清传输计数、不清 OVR，也不等待 BSY
 
 来源：[SPI DMAStop](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_spi.c#L2401-L2435)、[阻塞与中断 DMA Abort](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_dma.c#L415-L491)。
 
+## Pause / Resume 操作与在途数据
+
+固定版本的 HAL_SPI_DMAPause 在锁宏之后清除 CR2 中的 TXDMAEN、RXDMAEN，随后解锁。函数体不等待 TXE/BSY、不禁用 SPI、不调用 HAL_DMA_Abort，也不清传输计数或修改 SPI 句柄 State。暂停 DMA 请求不能据此解释成在途数据、移位过程或外部时钟均已停止。
+
+HAL_SPI_DMAResume 在锁宏之后同时设置 TXDMAEN、RXDMAEN。它没有保存暂停前的请求使能掩码，也未按 Direction、State 或关联 DMA 句柄是否存在选择单一方向；因而不能假定它只恢复暂停前开启的那一路请求。
+
+这两个函数都不显式重新配置 DMA 地址、长度或通道状态。Resume 不能代替重新建立已 Abort 的 DMA 事务；还需核对通道、缓冲区、SPI 模式和从设备协议。基础锁宏未在此展开，不能把正常尾部的 HAL_OK 推广成任意入口条件都返回成功。
+
+以上是固定源码控制流核查，不是板级暂停时序保证。驱动使用说明要求 Pause/Stop 在 SPI 回调内调用，相关循环模式限制继续适用。
+
+来源：[Pause / Resume L2355–2393](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_spi.c#L2355-L2393)、[使用条件 L56–70](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_spi.c#L56-L70)。
+
 ## 完成回调、循环模式与传输错误
 
 以下继续限定于上述固定版本的双 DMA 接收／收发路径。
