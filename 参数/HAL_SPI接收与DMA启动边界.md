@@ -91,6 +91,33 @@ RM0008 Rev21 §13.3.5 p280 说明 DMA 传输错误由硬件清除故障通道 EN
 
 来源：[回调赋值](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_spi.c#L1970-L2012)、[DMA IRQ](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_dma.c#L602-L680)、[SPI DMA 错误回调](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_spi.c#L3031-L3047)。DMA1 固定映射及共享请求条件复用[DMA 参数与 HAL 接口](DMA参数与HAL接口.md)；RM0008 Rev21 §13.3.7 Table78 p282 中 SPI1 Rx/Tx 分别为 Ch2/Ch3，SPI2 Rx/Tx 分别为 Ch4/Ch5，不能把同通道的多个请求视为独立队列。
 
+## Abort / Abort_IT 的完成时点与清理条件
+
+以下只核查固定版本的所列分支；未穷尽用户回调重入、重新启动和所有中断交错，不作为可直接套用的完整故障恢复流程。
+
+### 阻塞 Abort 的 DMA 分支
+
+HAL_SPI_Abort 同时检查相应 SPI DMA 请求位和对应 DMA 句柄是否非空。请求位清除操作放在非空句柄的分支内；请求位与句柄配置不一致时，最后的 SPI READY 或传输计数归零不能证明该请求位已经清除。
+
+| 分支条件 | 对应 DMA 清理与外设动作 |
+|---|---|
+| TXDMAEN 已置位且 hdmatx 非空 | 清 DMA 中止回调指针，调用阻塞 HAL_DMA_Abort，清 TXDMAEN，再等待 TXE；这个分支本身没有等待 BSY 或禁用 SPE |
+| RXDMAEN 已置位且 hdmarx 非空 | 清 DMA 中止回调指针，调用阻塞 HAL_DMA_Abort，禁用 SPI，再清 RXDMAEN |
+
+随后函数清两方向软件计数、处理错误码、清 OVR、将 SPI 句柄置 READY。两方向动作不同，软件状态不能统一代表已按正常收尾顺序结束物理事务。这里给出条件路径，不表示正确配置的工程必然出现句柄不一致。
+
+来源：[HAL_SPI_Abort L2057–2185](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_spi.c#L2057-L2185)。
+
+### Abort_IT 回调可以先于函数返回
+
+HAL_SPI_Abort_IT 先配置非空 DMA 句柄的中止回调，再按请求位调用 HAL_DMA_Abort_IT。匹配版本的 HAL_DMA_Abort_IT 在 DMA BUSY 分支中关闭中断和通道、清标志、置 DMA READY、解锁，然后在返回之前直接调用非空 XferAbortCallback。
+
+SPI 的 Tx/Rx DMA 中止回调先清本方向请求和回调指针；若另一方向存在且其中止回调指针仍非空，本次回调返回；否则清软件计数、清 OVR、置 SPI READY 并调用用户 AbortCpltCallback。因此，用户的 SPI 中止完成回调可以发生在 HAL_SPI_Abort_IT 尚未返回的同一调用栈中。入口函数在 abortcplt=1 的收尾分支也直接调用用户回调。
+
+Tx 子回调等待 TXE；Rx 子回调禁用 SPI 后调用 EndRxTxTransaction 检查 TXE/BSY。该差异及可能发生的等待说明，不能仅凭 _IT 后缀推定入口立即返回、回调一定在之后的中断中执行，或回调到达就代表所有物理条件已经无误。
+
+来源：[SPI Abort_IT L2203–2353](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_spi.c#L2203-L2353)、[匹配 DMA Abort_IT L456–491](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_dma.c#L456-L491)、[SPI DMA 中止回调 L3075–3185](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_spi.c#L3075-L3185)。
+
 ## 术语与来源身份
 
 - SPI：Serial Peripheral Interface，串行外设接口。
