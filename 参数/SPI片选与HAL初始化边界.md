@@ -1,6 +1,6 @@
 # SPI 片选与 HAL 初始化边界
 
-适用 STM32F103C8T6。依据 RM0008 Rev21 §25.3.1–25.3.3（pp703–707）、§25.5.1–25.5.2（pp743–744），并交叉检查固定 STM32F1 HAL 提交 `bd368aa335c529641d2e567574885e02deacc64a`。以下为文档与源码核查，未做板级时序验证。
+适用 STM32F103C8T6。依据 RM0008 Rev21 §25.3.1–25.3.3（pp703–707）、§25.5.1–25.5.2（pp742–744），并交叉检查固定 STM32F1 HAL 提交 `bd368aa335c529641d2e567574885e02deacc64a`。以下为文档与源码核查，未做板级时序验证。
 
 ## NSS 的三种管理配置
 
@@ -68,5 +68,28 @@ NSS（Slave Select，低有效片选）可参与内部选择判定或作为主�
 `HAL_SPI_Init` 在 `USE_SPI_CRC != 0` 且 CRC 开启时通过 `assert_param` 检查多项式；当 `USE_SPI_CRC=0` 时，函数把句柄中的 CRCCalculation 改为 DISABLE。不能将上述断言契约解释成任何构建下非法值都会返回 HAL_ERROR。
 
 来源：[检查宏及其注释 L619–626](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Inc/stm32f1xx_hal_spi.h#L619-L626)、[CRC 构建分支 L377–385](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_spi.c#L377-L385)。本节未测试非法参数在特定工程构建下的实际后果。
+
+## 配置字段的硬件写入条件
+
+RM0008 对以下字段规定了不同的修改条件。配置结构中的字段赋值本身不会改写外设；实际寄存器写入仍须满足对应条件。
+
+| SPI_CR1 字段 | 含义 | 原厂写入条件 |
+|---|---|---|
+| DFF（Data Frame Format） | 8／16 位数据帧格式 | 仅在 SPE=0、SPI 禁用时写入 |
+| CRCEN（Hardware CRC Calculation Enable） | 硬件 CRC 计算使能 | 仅在 SPE=0、SPI 禁用时写入 |
+| LSBFIRST（Frame Format） | 数据位先后顺序 | 通信进行中不得改变 |
+| BR[2:0]（Baud Rate Control） | 主机串行时钟分频 | 通信进行中不得改变 |
+| MSTR（Master Selection） | 主／从模式选择 | 通信进行中不得改变 |
+| CPOL（Clock Polarity）、CPHA（Clock Phase） | 时钟极性和采样相位 | 通信进行中不得改变 |
+
+来源：RM0008 Rev21 §25.5.1 pp742–744。“SPI 禁用”和“通信未进行”按原文分别保留；正常停止通信的时点见[状态标志与停机边界](SPI状态标志与停机边界.md)。
+
+固定版本 `HAL_SPI_Init` 先调用 `__HAL_SPI_DISABLE`，然后整体写 CR1 和 CR2。CR2 的写入值仅保留所选 SSOE，因此该次写入也清除 SPI 的 Tx/Rx DMA 请求使能以及 TXE/RXNE/ERR 中断使能。函数本身没有调用 DMA Abort，也没有等待 TXE/BSY 完成正常收尾。其末尾清 ErrorCode 并把 SPI 句柄置为 READY；这些软件状态不能证明之前的数据传输已经正常结束或相连 DMA 通道已经完成清理。
+
+来源：[HAL_SPI_Init L330–455](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_spi.c#L330-L455)、RM0008 Rev21 §25.5.2 p744。此处说明函数自身的固定实现；应用自定义 MspInit 回调可能另有操作，未据此断言所有工程的完整初始化流程相同。
+
+## GPIO 配置与引脚映射入口
+
+SPI 的 GPIO 模式取决于主／从、单双线、点对点或多从机以及 NSS 管理方式。按[引脚复用与 AFIO 的 SPI 信号表](引脚复用与AFIO.md#外设模式)选择模式；同页的[通信映射表](引脚复用与AFIO.md#通信定时器映射)列出 SPI1 默认与重映射引脚及 JTAG 引脚释放条件。原厂依据为 RM0008 Rev21 Table25 p167、Table56 p181，避免将所有 SPI 引脚统一配置成复用推挽。
 
 官方手册：[RM0008](https://www.st.com/resource/en/reference_manual/cd00171190-stm32f101xx-stm32f102xx-stm32f103xx-stm32f105xx-and-stm32f107xx-advanced-armbased-32bit-mcus-stmicroelectronics.pdf)。在线文件可能更新，本文以 Rev21 的所列页码为准。
