@@ -88,6 +88,40 @@ RM0008 对以下字段规定了不同的修改条件。配置结构中的字段�
 
 来源：[HAL_SPI_Init L330–455](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_spi.c#L330-L455)、RM0008 Rev21 §25.5.2 p744。此处说明函数自身的固定实现；应用自定义 MspInit 回调可能另有操作，未据此断言所有工程的完整初始化流程相同。
 
+## DeInit 与回调生命周期
+
+以下结论限定于上述固定 HAL 提交，不包含应用自行扩展的资源管理。
+
+### DeInit 的硬件动作与 MSP 职责
+
+`HAL_SPI_DeInit` 将句柄设为 BUSY，调用 `__HAL_SPI_DISABLE`，执行 MspDeInit，随后清 ErrorCode、把 State 设为 RESET 并解锁。`__HAL_SPI_DISABLE` 仅清 SPI_CR1.SPE；函数内的“Disable the SPI Peripheral Clock”注释不能据以认定 RCC 的 SPI 时钟已关闭。
+
+默认弱 `HAL_SPI_MspDeInit` 函数仅处理未使用参数，没有实际清理 GPIO、RCC、NVIC 或 DMA。实际资源释放取决于应用覆盖的 MSP 函数或注册的 MspDeInitCallback。DeInit 主体也未等待 TXE/BSY、未调用 DMA Abort；不能仅凭 HAL_OK 或 State=RESET 判断先前传输已正常收尾、所有硬件资源已经复位。
+
+来源：[HAL_SPI_DeInit L458–499](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_spi.c#L458-L499)、[默认 MspDeInit L523–531](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_spi.c#L523-L531)、[使能／禁用宏 L434–446](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Inc/stm32f1xx_hal_spi.h#L434-L446)。
+
+### 运行时注册回调的状态条件
+
+`USE_HAL_SPI_REGISTER_CALLBACKS=1` 时，RegisterCallback 和 UnRegisterCallback 的状态分支如下。此表描述到达状态检查后的允许范围，不穷举锁处理等其他返回路径。
+
+| SPI 句柄 State | 允许的 CallbackID 类型 |
+|---|---|
+| READY | Tx/Rx/TxRx 完成，Tx/Rx/TxRx 半完成，Error、Abort，以及 MspInit、MspDeInit，共十类 |
+| RESET | 仅 MspInit、MspDeInit |
+| 其他状态 | 状态分支报 HAL_ERROR 并置 HAL_SPI_ERROR_INVALID_CALLBACK |
+
+不支持的 CallbackID 也置 INVALID_CALLBACK 并报 HAL_ERROR。RegisterCallback 的 pCallback=NULL 检查直接报错；UnRegisterCallback 成功时把所选指针恢复为对应默认弱函数，不是置 NULL。
+
+来源：[RegisterCallback L537–651](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_spi.c#L537-L651)、[UnRegisterCallback L652–749](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_spi.c#L652-L749)。
+
+### DeInit 后重新 Init 的回调恢复条件
+
+Init 的 RESET 分支将 TxCplt、RxCplt、TxRxCplt、TxHalfCplt、RxHalfCplt、TxRxHalfCplt、Error、AbortCplt 八个回调指针重新设为对应默认弱函数。因此，应用通过 RegisterCallback 安装的这八类回调，在正常 DeInit→Init 后需要按应用需求重新注册，并检查返回结果。
+
+这与链接时覆盖默认弱函数的方式不同：覆盖后的同名函数仍是该工程中的默认实现。已有非空 MspInitCallback 在 Init 中保留；DeInit 仅在 MspDeInitCallback 为 NULL 时补入默认函数。不要把八个数据／错误回调的重置规律套用到两个 MSP 指针上。
+
+来源：[Init RESET 分支 L389–418](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_spi.c#L389-L418)、[DeInit MSP 分支 L479–490](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_spi.c#L479-L490)。这是对固定源码分支的归纳，未作板级验证。
+
 ## GPIO 配置与引脚映射入口
 
 SPI 的 GPIO 模式取决于主／从、单双线、点对点或多从机以及 NSS 管理方式。按[引脚复用与 AFIO 的 SPI 信号表](引脚复用与AFIO.md#外设模式)选择模式；同页的[通信映射表](引脚复用与AFIO.md#通信定时器映射)列出 SPI1 默认与重映射引脚及 JTAG 引脚释放条件。原厂依据为 RM0008 Rev21 Table25 p167、Table56 p181，避免将所有 SPI 引脚统一配置成复用推挽。
