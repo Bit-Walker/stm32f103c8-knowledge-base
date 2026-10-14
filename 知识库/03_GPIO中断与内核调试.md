@@ -49,7 +49,9 @@ AFIO_MAPR的SWJ_CFG只写且读值未定义。普通整字读改写可能破坏�
 
 C8有EXTI0～18：0～15各从同号GPIO选一个来源，16/17/18固定为PVD/RTC Alarm/USB Wakeup。因此PA0和PB0不能各自独占一条EXTI0，PC仅有13～15可选，PD0/1不可用。EXTI5～9和10～15分别共享NVIC入口，ISR必须区分所有可能来源。依据：[RM0008 §10.2；§10.2.2–§10.2.5；§9.3.2；§9.4.3–§9.4.6，p175,191,192,207,208,209,210](../来源/RM0008.md#src-rm0008-r21-exti-route)、[RM0008 §10.1，p204,205,206](../来源/RM0008.md#src-rm0008-r21-exti-vector)。
 
-![EXTI中断和事件路径](../assets/exti_structure.svg)
+![RM0008 Rev21 Figure20，p207：EXTI中断和事件路径原图](../assets/manual/rm0008-r21/p207-gpio-exti.png)
+
+来源：ST RM0008 Rev21 Figure20，p207；原图裁切，未改动连线或补画寄存器接口。
 
 上支路先经Interrupt mask再到Pending request register；下支路经Event mask产生事件脉冲。IMR与EMR独立：纯事件需EMR=1且IMR=0；两者都开可同时产生事件和中断，不能沿用“无需清pending”的简化说法。
 
