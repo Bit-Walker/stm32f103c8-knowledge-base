@@ -36,6 +36,8 @@ SPI_DR（Data Register）是数据寄存器。CRC 传输阶段计算被冻结；
 
 ## 固定 HAL 的额外使用条件
 
+多项式字段要求 1～65535 的奇数；其注释差异、assert_param 检查条件以及 USE_SPI_CRC=0 时的字段改写见[完整初始化字段及 CRC 参数校验](SPI片选与HAL初始化边界.md#crc-参数校验的边界)。
+
 固定驱动文件的使用说明明确指出：DMA 循环模式不管理 CRC 功能；主机双线 RXONLY 和主机单线接收不能使用 DMA 循环模式。不能因回调实现存在 CIRC 分支，就认为以上配置得到驱动支持。
 
 同一使用说明要求 HAL_SPI_DMAPause / HAL_SPI_DMAStop 在 SPI 回调中使用；主机 RXONLY 或单线接收为避免发起新传输，另列 DeInit 后 Init 的流程。它们是该版本声明的使用条件，具体停机、片选与在途数据仍需结合[HAL DMA 路径](HAL_SPI接收与DMA启动边界.md)和[初始化边界](SPI片选与HAL初始化边界.md)判断。

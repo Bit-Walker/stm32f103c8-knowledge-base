@@ -41,4 +41,32 @@ NSS（Slave Select，低有效片选）可参与内部选择判定或作为主�
 
 来源：[HAL_SPI_Init L330–455](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_spi.c#L330-L455)。源码 Git blob 为 `d1c741075bc63718c9032bab7fd9eb23cc4a880b`，头文件 Git blob 为 `309eb5bd2397b23ec7fb652c4a9ee29875d4f424`。
 
+## SPI_InitTypeDef 全部初始化字段
+
+下表列出固定头文件的全部 11 个字段，均为 `uint32_t`。枚举宏是配置编码；不能把分频数或模式序号直接代替宏值。
+
+| 字段 | 固定版本的取值 | 对应含义与条件 |
+|---|---|---|
+| Mode | SPI_MODE_MASTER / SPI_MODE_SLAVE | 主／从模式；主机宏包含 MSTR 和 SSI |
+| Direction | SPI_DIRECTION_2LINES / SPI_DIRECTION_2LINES_RXONLY / SPI_DIRECTION_1LINE | 双线全双工／双线只接收／单线双向模式；单线具体发送或接收方向还需相应传输路径设置 |
+| DataSize | SPI_DATASIZE_8BIT / SPI_DATASIZE_16BIT | 数据帧宽度；8／16 位配置与 CRC 宽度关联 |
+| CLKPolarity | SPI_POLARITY_LOW / SPI_POLARITY_HIGH | SCK 空闲时低／高 |
+| CLKPhase | SPI_PHASE_1EDGE / SPI_PHASE_2EDGE | 第一／第二个时钟跳变沿采样；对应边沿的上升或下降由极性共同决定 |
+| NSS | SPI_NSS_SOFT / SPI_NSS_HARD_INPUT / SPI_NSS_HARD_OUTPUT | 软件选择／硬件输入／硬件输出，详见上文的主从适用条件 |
+| BaudRatePrescaler | SPI_BAUDRATEPRESCALER_2、_4、_8、_16、_32、_64、_128、_256 | 主机串行时钟分频选择；从机不以此设置外部输入 SCK，且 Init 会改写该字段 |
+| FirstBit | SPI_FIRSTBIT_MSB / SPI_FIRSTBIT_LSB | 最高有效位／最低有效位先传 |
+| TIMode | SPI_TIMODE_DISABLE | 本器件只允许关闭 TI 模式 |
+| CRCCalculation | SPI_CRCCALCULATION_DISABLE / SPI_CRCCALCULATION_ENABLE | CRC 关闭／开启；还受 USE_SPI_CRC 构建配置和循环 DMA 使用限制约束 |
+| CRCPolynomial | 1～65535 的奇数 | CRC 多项式配置值；该范围不保证与任意外部 CRC 协议匹配 |
+
+来源：[结构字段 L45–84](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Inc/stm32f1xx_hal_spi.h#L45-L84)、[取值宏 L202–296](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Inc/stm32f1xx_hal_spi.h#L202-L296)。波形含义结合 RM0008 pp703–705；该表不替代电气时序和驱动吞吐限制。
+
+### CRC 参数校验的边界
+
+`CRCPolynomial` 字段注释与 `IS_SPI_CRC_POLYNOMIAL` 的实际表达式均要求 1～65535 且为奇数；该检查宏上方的参数注释却写下界 0，并未列奇数条件。这里保留差异，使用与字段说明及表达式一致的范围。
+
+`HAL_SPI_Init` 在 `USE_SPI_CRC != 0` 且 CRC 开启时通过 `assert_param` 检查多项式；当 `USE_SPI_CRC=0` 时，函数把句柄中的 CRCCalculation 改为 DISABLE。不能将上述断言契约解释成任何构建下非法值都会返回 HAL_ERROR。
+
+来源：[检查宏及其注释 L619–626](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Inc/stm32f1xx_hal_spi.h#L619-L626)、[CRC 构建分支 L377–385](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_spi.c#L377-L385)。本节未测试非法参数在特定工程构建下的实际后果。
+
 官方手册：[RM0008](https://www.st.com/resource/en/reference_manual/cd00171190-stm32f101xx-stm32f102xx-stm32f103xx-stm32f105xx-and-stm32f107xx-advanced-armbased-32bit-mcus-stmicroelectronics.pdf)。在线文件可能更新，本文以 Rev21 的所列页码为准。
