@@ -16,6 +16,12 @@ ACK 是应答控制位；POS 控制 ACK 的位置。ADDR 表示地址阶段完�
 
 来源：[HAL 轮询接收函数](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_i2c.c#L1195-L1428)。
 
+### 对照 AN2824 原流程图时的注意点
+
+AN2824 Rev4 第 7 页 Figure 1 的三字节收尾分支漏列了读取倒数第三个字节 `DataN-2` 的步骤。第 5 页正文明确写出：清 ACK 后读取这个字节，以启动最后一个字节的接收。上表所列固定 HAL 实现也包含这次读取，因此不能只按该图编写收尾代码。
+
+对照来源：[AN2824 正文，第 5 页](https://www.st.com/resource/en/application_note/an2824-stm32f10xxx-ic-optimized-examples-stmicroelectronics.pdf#page=5)、[原图 Figure 1，第 7 页](https://www.st.com/resource/en/application_note/an2824-stm32f10xxx-ic-optimized-examples-stmicroelectronics.pdf#page=7)。此处记录图文差异，不将其称为 ST 已确认的勘误。
+
 ### 中断屏蔽会影响调用环境
 
 上述临界段直接调用 `__disable_irq()` 与 `__enable_irq()`，没有在这些位置保存并恢复调用前的 PRIMASK。PRIMASK 是控制可配置优先级异常屏蔽的寄存器。
