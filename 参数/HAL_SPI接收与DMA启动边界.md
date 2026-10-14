@@ -53,6 +53,8 @@ DMAStop 本身不关闭 SPI、不清传输计数、不清 OVR，也不等待 BSY
 
 以下继续限定于上述固定版本的双 DMA 接收／收发路径。
 
+先满足该版本[使用说明 L56–70](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_spi.c#L56-L70)的限制：主机双线 RXONLY 和主机单线接收不能使用 DMA 循环模式；DMA 循环模式不管理 CRC 功能。该说明还要求 HAL_SPI_DMAPause / HAL_SPI_DMAStop 在 SPI 回调内调用，并对主机 RXONLY／单线接收列出 DeInit 后 Init 以避免新传输的流程。下面的实现分析不放宽这些使用条件；CRC 硬件阶段见[SPI CRC 阶段与使用条件](SPI_CRC阶段与使用条件.md)。
+
 | 接收 DMA 配置 | 完成回调路径的动作 | 使用边界 |
 |---|---|---|
 | 普通模式，接收入口 | 关闭 SPI ERR 中断、处理所启用的 CRC、撤销相应 DMA 请求、检查终结条件、清 Rx 计数、置 READY；有错误时转错误回调 | 主机双线会撤销两路 DMA 请求；该接收完成路径只清 RxXferCount，不能单凭 TxXferCount 残值判定仍在传输 |
