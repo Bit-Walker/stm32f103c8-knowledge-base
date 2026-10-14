@@ -76,3 +76,7 @@ DMA来源按真实文档与固定源码归并，18条支持范围分别使用唯
 - [ES096 USART六条限制](ES096.md#src-es096-r15-usart-boundaries)
 - [RM0008硬件、24幅图与8张表](RM0008.md#src-rm0008-r21-usart-hardware)
 - [主题图形关系与范围](../参数/USART/图形关系与来源.md)
+
+## I²C 时序与驱动
+
+- [AN2824 Rev4：优化收发示例与 HAL 对照](AN2824.md)
