@@ -91,6 +91,24 @@ RM0008 Rev21 §13.3.5 p280 说明 DMA 传输错误由硬件清除故障通道 EN
 
 来源：[回调赋值](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_spi.c#L1970-L2012)、[DMA IRQ](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_dma.c#L602-L680)、[SPI DMA 错误回调](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_spi.c#L3031-L3047)。DMA1 固定映射及共享请求条件复用[DMA 参数与 HAL 接口](DMA参数与HAL接口.md)；RM0008 Rev21 §13.3.7 Table78 p282 中 SPI1 Rx/Tx 分别为 Ch2/Ch3，SPI2 Rx/Tx 分别为 Ch4/Ch5，不能把同通道的多个请求视为独立队列。
 
+## SPI IRQ 错误链与 DMA 错误链
+
+以下限定同一固定 HAL 版本。SPI 外设的 OVR/MODF 错误与 DMA 控制器自身的 TE 错误从不同入口处理，回调行为须分别核查。
+
+`HAL_SPI_IRQHandler` 先读取 CR2/SR 快照。没有 OVR 且 RXNE 和对应中断使能成立时，调用 RxISR 并返回；随后检查 TXE 和对应中断使能，成立则调用 TxISR 并返回；再检查 MODF/OVR 与 ERR 中断使能。这个顺序是单次调用的控制流，不是 NVIC 优先级，也不表示同时存在的标志会一次处理完。
+
+在 OVR 分支中，State=BUSY_TX 时仅清 OVR 后返回，不记录 OVR 错误；同一快照若有 MODF，也不会在这个返回之后继续处理。不能据此断言后续中断永远不会处理 MODF。
+
+进入错误处理且 ErrorCode 非零后，函数关闭 RXNE/TXE/ERR 中断，先将 SPI State 设为 READY。若入口 CR2 快照含任一 DMA 请求使能，则清两个请求位，依次为非空 Rx、Tx DMA 句柄设置 SPI_DMAAbortOnError，再分别调用 HAL_DMA_Abort_IT；失败时追加 SPI ABORT 错误。
+
+匹配的 HAL_DMA_Abort_IT 在 BUSY 分支内同步调用中止回调。SPI_DMAAbortOnError 清两个 SPI 软件计数，然后直接调用用户 ErrorCallback，没有等待另一方向完成，也没有跨通道合并通知。
+
+由此得到有条件的静态结论：若确实进入上述 DMA 错误分支，两个句柄非空且在各自 Abort_IT 调用时均为 BUSY，用户回调不改动相关状态或指针，则同一次 SPI IRQ 可同步调用两次 ErrorCallback。第一次发生在 Rx Abort 内，早于 IRQ 随后调用 Tx Abort；第一次回调不能作为 Tx DMA 通道已经禁用的证据。
+
+只有一路有效、某路 DMA 已不处于 BUSY、回调修改状态或数据分支提前返回等条件会改变路径。应用不能无条件假定一次错误恰好通知一次，也不能仅凭 SPI READY 判断旧清理调用栈已经返回。用户主动 Abort_IT 使用另一个双通道回调协调逻辑，不能与这里的错误链混用。未穷举回调重入与中断交错，未做板级验证。
+
+来源（固定提交 bd368aa335c529641d2e567574885e02deacc64a）：[SPI IRQ L2443–2543](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_spi.c#L2443-L2543)、[SPI_DMAAbortOnError L3054–3066](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_spi.c#L3054-L3066)、[DMA Abort_IT L456–491](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_dma.c#L456-L491)。
+
 ## Abort / Abort_IT 的完成时点与清理条件
 
 以下只核查固定版本的所列分支；未穷尽用户回调重入、重新启动和所有中断交错，不作为可直接套用的完整故障恢复流程。
