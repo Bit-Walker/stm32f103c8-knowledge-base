@@ -83,7 +83,7 @@ AHB/APB 桥将上述操作转换成 32 位 APB 写：向字内任意字节地址
 |传输完成|TCIFx|TCIE|IFCR.CTCIFx 写 1|
 |传输错误|TEIFx|TEIE|IFCR.CTEIFx 写 1|
 
-GIFx 是该通道上述事件的综合标志；IFCR.CGIFx 写 1 同时清 GIF、HTIF、TCIF、TEIF。**按 ES096 §2.4.1，活动通道禁止使用 CGIFx 全清：它若与传输错误同周期发生，会丢失 TEIFx 并阻止通道自动禁用。活动期间分别使用 CHTIFx、CTCIFx、CTEIFx，CGIFx 只用于通道已停用后的清理。**DMA1 的 7 个通道各有独立 IRQ。清 DMA 标志采用写 1 清，与 ADC/TIM 的写 0 清不同；不能混用清标志模板。
+GIFx 是该通道上述事件的综合标志；IFCR.CGIFx 写 1 同时清 GIF、HTIF、TCIF、TEIF。**按 ES096 §2.4.1，活动通道禁止使用 CGIFx 全清：它若与传输错误同周期发生，会丢失 TEIFx 并阻止通道自动禁用。活动期间分别使用 CHTIFx、CTCIFx、CTEIFx，CGIFx 只用于通道已停用后的清理。** DMA1 的 7 个通道各有独立 IRQ。清 DMA 标志采用写 1 清，与 ADC/TIM 的写 0 清不同；不能混用清标志模板。
 
 
 ## 全部 DMA1 寄存器

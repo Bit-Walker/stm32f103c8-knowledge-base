@@ -133,7 +133,7 @@ HAL_StatusTypeDef       HAL_ADCEx_Calibration_Start(ADC_HandleTypeDef* hadc);
 
 自动校准 ADC。调用前 ADC 处于停止状态；在首次采样前或停机后调用，检查 HAL 返回状态。
 
-**历史实现边界（2026-10-12 源码复核）：**[ST HAL 驱动 v1.1.4 固定源码](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Src/stm32f1xx_hal_adc_ex.c) 的该函数先停止规则/注入转换并禁用 ADC，将显式“两 ADC 周期”等待放在 ADON=0 阶段，随后调用 ADC_Enable、复位校准并校准，成功后保留 ADC 使能。RM0008 Rev21 §11.4 的硬件要求则是校准前 ADON=1 至少两个 ADC 时钟周期；通用 ADC_Enable 稳定延时不能被直接当成已按 ADC 时钟证明该条件。不能只在函数外预先置 ADON，因为函数内部会再次禁用 ADC。
+**历史实现边界（2026-10-12 源码复核）：** [ST HAL 驱动 v1.1.4 固定源码](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Src/stm32f1xx_hal_adc_ex.c) 的该函数先停止规则/注入转换并禁用 ADC，将显式“两 ADC 周期”等待放在 ADON=0 阶段，随后调用 ADC_Enable、复位校准并校准，成功后保留 ADC 使能。RM0008 Rev21 §11.4 的硬件要求则是校准前 ADON=1 至少两个 ADC 时钟周期；通用 ADC_Enable 稳定延时不能被直接当成已按 ADC 时钟证明该条件。不能只在函数外预先置 ADON，因为函数内部会再次禁用 ADC。
 
 [ST 官方 HAL 发布说明](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/77fbb30b7a1d02533980400083e48c559aae5a4f/Release_Notes.html)在 V1.1.9（2023-04-07）的 HAL ADC 条目中记录了校准前 ADON=1 保持至少两个 ADC 时钟周期的修复。这里的 V1.1.9 是 HAL 驱动版本。使用旧驱动应核对使能后的等待；其他分支和自定义移植仍须检查实际源码与时钟条件，HAL_OK 本身不证明校准时序合规。
 

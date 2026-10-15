@@ -121,7 +121,7 @@ bit7 EVOE（rw）=1将内核EVENTOUT接到所选脚；bits6:4 PORT（rw）为000
 |1|I2C1_REMAP|rw|
 |0|SPI1_REMAP|rw|
 
-bits31:27、23:16 保持复位值。**SWJ_CFG读未定义，不能依赖对整个MAPR的普通读改写保留调试选择。**维护软件影子或每次明确写入期望SWJ_CFG，其余字段照所需保留。
+bits31:27、23:16 保持复位值。**SWJ_CFG读未定义，不能依赖对整个MAPR的普通读改写保留调试选择。** 维护软件影子或每次明确写入期望SWJ_CFG，其余字段照所需保留。
 
 ### AFIO_EXTICR1～4
 
