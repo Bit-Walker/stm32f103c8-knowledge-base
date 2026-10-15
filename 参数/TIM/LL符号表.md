@@ -40,17 +40,19 @@
 
 ## 通道与控制更新
 
+各接口接受的通道及组合方式见对应参数说明。
+
 | 符号 | 中文含义与适用条件 |
 |---|---|
 | `LL_TIM_CCUPDATESOURCE_COMG_ONLY` | TIM1 控制位 COM 更新来源：仅软件 COMG |
 | `LL_TIM_CCUPDATESOURCE_COMG_AND_TRGI` | TIM1 控制位 COM 更新来源：软件 COMG 或 TRGI |
-| `LL_TIM_CHANNEL_CH1` | 选择CH1；N路仅TIM1，每个API允许的主/N通道须另核 |
-| `LL_TIM_CHANNEL_CH1N` | 选择CH1N；N路仅TIM1，每个API允许的主/N通道须另核 |
-| `LL_TIM_CHANNEL_CH2` | 选择CH2；N路仅TIM1，每个API允许的主/N通道须另核 |
-| `LL_TIM_CHANNEL_CH2N` | 选择CH2N；N路仅TIM1，每个API允许的主/N通道须另核 |
-| `LL_TIM_CHANNEL_CH3` | 选择CH3；N路仅TIM1，每个API允许的主/N通道须另核 |
-| `LL_TIM_CHANNEL_CH3N` | 选择CH3N；N路仅TIM1，每个API允许的主/N通道须另核 |
-| `LL_TIM_CHANNEL_CH4` | 选择CH4；N路仅TIM1，每个API允许的主/N通道须另核 |
+| `LL_TIM_CHANNEL_CH1` | 选择 CH1 |
+| `LL_TIM_CHANNEL_CH1N` | 选择 CH1N（TIM1） |
+| `LL_TIM_CHANNEL_CH2` | 选择 CH2 |
+| `LL_TIM_CHANNEL_CH2N` | 选择 CH2N（TIM1） |
+| `LL_TIM_CHANNEL_CH3` | 选择 CH3 |
+| `LL_TIM_CHANNEL_CH3N` | 选择 CH3N（TIM1） |
+| `LL_TIM_CHANNEL_CH4` | 选择 CH4 |
 
 ## 输入映射与编码器
 
@@ -71,45 +73,49 @@
 
 ## 输入捕获滤波
 
+$f_{\mathrm{CK\_INT}}$ 为定时器内核时钟频率，$f_{\mathrm{DTS}}$ 为 CKD 分频后的滤波／死区时钟频率，单位均为 Hz。FDIV1_N2/N4/N8 使用前者，其余分频滤波档使用后者。定义见[固定头文件 L653–668](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_ll_tim.h#L653-L668)。
+
 | 符号 | 中文含义与适用条件 |
 |---|---|
-| `LL_TIM_IC_FILTER_FDIV1` | 无数字滤波 |
-| `LL_TIM_IC_FILTER_FDIV1_N2` | 滤波采样分频 1，连续 2 个一致样本 |
-| `LL_TIM_IC_FILTER_FDIV1_N4` | 滤波采样分频 1，连续 4 个一致样本 |
-| `LL_TIM_IC_FILTER_FDIV1_N8` | 滤波采样分频 1，连续 8 个一致样本 |
-| `LL_TIM_IC_FILTER_FDIV2_N6` | 滤波采样分频 2，连续 6 个一致样本 |
-| `LL_TIM_IC_FILTER_FDIV2_N8` | 滤波采样分频 2，连续 8 个一致样本 |
-| `LL_TIM_IC_FILTER_FDIV4_N6` | 滤波采样分频 4，连续 6 个一致样本 |
-| `LL_TIM_IC_FILTER_FDIV4_N8` | 滤波采样分频 4，连续 8 个一致样本 |
-| `LL_TIM_IC_FILTER_FDIV8_N6` | 滤波采样分频 8，连续 6 个一致样本 |
-| `LL_TIM_IC_FILTER_FDIV8_N8` | 滤波采样分频 8，连续 8 个一致样本 |
-| `LL_TIM_IC_FILTER_FDIV16_N5` | 滤波采样分频 16，连续 5 个一致样本 |
-| `LL_TIM_IC_FILTER_FDIV16_N6` | 滤波采样分频 16，连续 6 个一致样本 |
-| `LL_TIM_IC_FILTER_FDIV16_N8` | 滤波采样分频 16，连续 8 个一致样本 |
-| `LL_TIM_IC_FILTER_FDIV32_N5` | 滤波采样分频 32，连续 5 个一致样本 |
-| `LL_TIM_IC_FILTER_FDIV32_N6` | 滤波采样分频 32，连续 6 个一致样本 |
-| `LL_TIM_IC_FILTER_FDIV32_N8` | 滤波采样分频 32，连续 8 个一致样本 |
+| `LL_TIM_IC_FILTER_FDIV1` | 无数字滤波；以 $f_{\mathrm{DTS}}$ 采样 |
+| `LL_TIM_IC_FILTER_FDIV1_N2` | 采样频率 $f_{\mathrm{CK\_INT}}$，连续 2 个一致样本 |
+| `LL_TIM_IC_FILTER_FDIV1_N4` | 采样频率 $f_{\mathrm{CK\_INT}}$，连续 4 个一致样本 |
+| `LL_TIM_IC_FILTER_FDIV1_N8` | 采样频率 $f_{\mathrm{CK\_INT}}$，连续 8 个一致样本 |
+| `LL_TIM_IC_FILTER_FDIV2_N6` | 采样频率 $f_{\mathrm{DTS}}/2$，连续 6 个一致样本 |
+| `LL_TIM_IC_FILTER_FDIV2_N8` | 采样频率 $f_{\mathrm{DTS}}/2$，连续 8 个一致样本 |
+| `LL_TIM_IC_FILTER_FDIV4_N6` | 采样频率 $f_{\mathrm{DTS}}/4$，连续 6 个一致样本 |
+| `LL_TIM_IC_FILTER_FDIV4_N8` | 采样频率 $f_{\mathrm{DTS}}/4$，连续 8 个一致样本 |
+| `LL_TIM_IC_FILTER_FDIV8_N6` | 采样频率 $f_{\mathrm{DTS}}/8$，连续 6 个一致样本 |
+| `LL_TIM_IC_FILTER_FDIV8_N8` | 采样频率 $f_{\mathrm{DTS}}/8$，连续 8 个一致样本 |
+| `LL_TIM_IC_FILTER_FDIV16_N5` | 采样频率 $f_{\mathrm{DTS}}/16$，连续 5 个一致样本 |
+| `LL_TIM_IC_FILTER_FDIV16_N6` | 采样频率 $f_{\mathrm{DTS}}/16$，连续 6 个一致样本 |
+| `LL_TIM_IC_FILTER_FDIV16_N8` | 采样频率 $f_{\mathrm{DTS}}/16$，连续 8 个一致样本 |
+| `LL_TIM_IC_FILTER_FDIV32_N5` | 采样频率 $f_{\mathrm{DTS}}/32$，连续 5 个一致样本 |
+| `LL_TIM_IC_FILTER_FDIV32_N6` | 采样频率 $f_{\mathrm{DTS}}/32$，连续 6 个一致样本 |
+| `LL_TIM_IC_FILTER_FDIV32_N8` | 采样频率 $f_{\mathrm{DTS}}/32$，连续 8 个一致样本 |
 
 ## ETR 滤波
 
+时钟符号与上表相同；基准选择见[固定头文件 L767–774](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_ll_tim.h#L767-L774)。
+
 | 符号 | 中文含义与适用条件 |
 |---|---|
-| `LL_TIM_ETR_FILTER_FDIV1` | 无数字滤波 |
-| `LL_TIM_ETR_FILTER_FDIV1_N2` | 滤波采样分频 1，连续 2 个一致样本 |
-| `LL_TIM_ETR_FILTER_FDIV1_N4` | 滤波采样分频 1，连续 4 个一致样本 |
-| `LL_TIM_ETR_FILTER_FDIV1_N8` | 滤波采样分频 1，连续 8 个一致样本 |
-| `LL_TIM_ETR_FILTER_FDIV2_N6` | 滤波采样分频 2，连续 6 个一致样本 |
-| `LL_TIM_ETR_FILTER_FDIV2_N8` | 滤波采样分频 2，连续 8 个一致样本 |
-| `LL_TIM_ETR_FILTER_FDIV4_N6` | 滤波采样分频 4，连续 6 个一致样本 |
-| `LL_TIM_ETR_FILTER_FDIV4_N8` | 滤波采样分频 4，连续 8 个一致样本 |
-| `LL_TIM_ETR_FILTER_FDIV8_N6` | 滤波采样分频 8，连续 6 个一致样本 |
-| `LL_TIM_ETR_FILTER_FDIV8_N8` | 滤波采样分频 8，连续 8 个一致样本 |
-| `LL_TIM_ETR_FILTER_FDIV16_N5` | 滤波采样分频 16，连续 5 个一致样本 |
-| `LL_TIM_ETR_FILTER_FDIV16_N6` | 滤波采样分频 16，连续 6 个一致样本 |
-| `LL_TIM_ETR_FILTER_FDIV16_N8` | 滤波采样分频 16，连续 8 个一致样本 |
-| `LL_TIM_ETR_FILTER_FDIV32_N5` | 滤波采样分频 32，连续 5 个一致样本 |
-| `LL_TIM_ETR_FILTER_FDIV32_N6` | 滤波采样分频 32，连续 6 个一致样本 |
-| `LL_TIM_ETR_FILTER_FDIV32_N8` | 滤波采样分频 32，连续 8 个一致样本 |
+| `LL_TIM_ETR_FILTER_FDIV1` | 无数字滤波；以 $f_{\mathrm{DTS}}$ 采样 |
+| `LL_TIM_ETR_FILTER_FDIV1_N2` | 采样频率 $f_{\mathrm{CK\_INT}}$，连续 2 个一致样本 |
+| `LL_TIM_ETR_FILTER_FDIV1_N4` | 采样频率 $f_{\mathrm{CK\_INT}}$，连续 4 个一致样本 |
+| `LL_TIM_ETR_FILTER_FDIV1_N8` | 采样频率 $f_{\mathrm{CK\_INT}}$，连续 8 个一致样本 |
+| `LL_TIM_ETR_FILTER_FDIV2_N6` | 采样频率 $f_{\mathrm{DTS}}/2$，连续 6 个一致样本 |
+| `LL_TIM_ETR_FILTER_FDIV2_N8` | 采样频率 $f_{\mathrm{DTS}}/2$，连续 8 个一致样本 |
+| `LL_TIM_ETR_FILTER_FDIV4_N6` | 采样频率 $f_{\mathrm{DTS}}/4$，连续 6 个一致样本 |
+| `LL_TIM_ETR_FILTER_FDIV4_N8` | 采样频率 $f_{\mathrm{DTS}}/4$，连续 8 个一致样本 |
+| `LL_TIM_ETR_FILTER_FDIV8_N6` | 采样频率 $f_{\mathrm{DTS}}/8$，连续 6 个一致样本 |
+| `LL_TIM_ETR_FILTER_FDIV8_N8` | 采样频率 $f_{\mathrm{DTS}}/8$，连续 8 个一致样本 |
+| `LL_TIM_ETR_FILTER_FDIV16_N5` | 采样频率 $f_{\mathrm{DTS}}/16$，连续 5 个一致样本 |
+| `LL_TIM_ETR_FILTER_FDIV16_N6` | 采样频率 $f_{\mathrm{DTS}}/16$，连续 6 个一致样本 |
+| `LL_TIM_ETR_FILTER_FDIV16_N8` | 采样频率 $f_{\mathrm{DTS}}/16$，连续 8 个一致样本 |
+| `LL_TIM_ETR_FILTER_FDIV32_N5` | 采样频率 $f_{\mathrm{DTS}}/32$，连续 5 个一致样本 |
+| `LL_TIM_ETR_FILTER_FDIV32_N6` | 采样频率 $f_{\mathrm{DTS}}/32$，连续 6 个一致样本 |
+| `LL_TIM_ETR_FILTER_FDIV32_N8` | 采样频率 $f_{\mathrm{DTS}}/32$，连续 8 个一致样本 |
 
 ## ETR 极性与预分频
 
@@ -126,8 +132,8 @@
 
 | 符号 | 中文含义与适用条件 |
 |---|---|
-| `LL_TIM_OCIDLESTATE_LOW` | TIM1 主输出空闲电平：低有效/低电平 |
-| `LL_TIM_OCIDLESTATE_HIGH` | TIM1 主输出空闲电平：高有效/高电平 |
+| `LL_TIM_OCIDLESTATE_LOW` | TIM1 主输出空闲电平：低电平 |
+| `LL_TIM_OCIDLESTATE_HIGH` | TIM1 主输出空闲电平：高电平 |
 | `LL_TIM_OCMODE_FROZEN` | 输出比较模式：冻结 OCREF |
 | `LL_TIM_OCMODE_ACTIVE` | 输出比较模式：匹配置有效 |
 | `LL_TIM_OCMODE_INACTIVE` | 输出比较模式：匹配置无效 |
@@ -136,8 +142,8 @@
 | `LL_TIM_OCMODE_FORCED_ACTIVE` | 输出比较模式：强制有效 |
 | `LL_TIM_OCMODE_PWM1` | 输出比较模式：PWM 模式 1 |
 | `LL_TIM_OCMODE_PWM2` | 输出比较模式：PWM 模式 2，逻辑相对 PWM1 反转 |
-| `LL_TIM_OCPOLARITY_HIGH` | 主输出有效极性：高有效/高电平 |
-| `LL_TIM_OCPOLARITY_LOW` | 主输出有效极性：低有效/低电平 |
+| `LL_TIM_OCPOLARITY_HIGH` | 主输出有效极性：高电平有效 |
+| `LL_TIM_OCPOLARITY_LOW` | 主输出有效极性：低电平有效 |
 | `LL_TIM_OCSTATE_DISABLE` | 输出通道使能：关闭 |
 | `LL_TIM_OCSTATE_ENABLE` | 输出通道使能：开启 |
 
@@ -149,8 +155,8 @@
 | `LL_TIM_AUTOMATICOUTPUT_ENABLE` | TIM1 自动恢复 MOE：开启 |
 | `LL_TIM_BREAK_DISABLE` | TIM1 刹车：关闭 |
 | `LL_TIM_BREAK_ENABLE` | TIM1 刹车：开启 |
-| `LL_TIM_BREAK_POLARITY_LOW` | BKIN 有效极性：低有效/低电平 |
-| `LL_TIM_BREAK_POLARITY_HIGH` | BKIN 有效极性：高有效/高电平 |
+| `LL_TIM_BREAK_POLARITY_LOW` | BKIN 有效极性：低电平有效 |
+| `LL_TIM_BREAK_POLARITY_HIGH` | BKIN 有效极性：高电平有效 |
 | `LL_TIM_LOCKLEVEL_OFF` | TIM1 配置锁级别：不锁定 |
 | `LL_TIM_LOCKLEVEL_1` | TIM1 配置锁级别1；保护范围逐级增加，复位前不可解除 |
 | `LL_TIM_LOCKLEVEL_2` | TIM1 配置锁级别2；保护范围逐级增加，复位前不可解除 |
@@ -189,24 +195,24 @@
 
 | 符号 | 中文含义与适用条件 |
 |---|---|
-| `LL_TIM_DMABURST_BASEADDR_CR1` | DMA 突发起始寄存器 CR1；RCR/BDTR 仅 TIM1 |
-| `LL_TIM_DMABURST_BASEADDR_CR2` | DMA 突发起始寄存器 CR2；RCR/BDTR 仅 TIM1 |
-| `LL_TIM_DMABURST_BASEADDR_SMCR` | DMA 突发起始寄存器 SMCR；RCR/BDTR 仅 TIM1 |
-| `LL_TIM_DMABURST_BASEADDR_DIER` | DMA 突发起始寄存器 DIER；RCR/BDTR 仅 TIM1 |
-| `LL_TIM_DMABURST_BASEADDR_SR` | DMA 突发起始寄存器 SR；RCR/BDTR 仅 TIM1 |
-| `LL_TIM_DMABURST_BASEADDR_EGR` | DMA 突发起始寄存器 EGR；RCR/BDTR 仅 TIM1 |
-| `LL_TIM_DMABURST_BASEADDR_CCMR1` | DMA 突发起始寄存器 CCMR1；RCR/BDTR 仅 TIM1 |
-| `LL_TIM_DMABURST_BASEADDR_CCMR2` | DMA 突发起始寄存器 CCMR2；RCR/BDTR 仅 TIM1 |
-| `LL_TIM_DMABURST_BASEADDR_CCER` | DMA 突发起始寄存器 CCER；RCR/BDTR 仅 TIM1 |
-| `LL_TIM_DMABURST_BASEADDR_CNT` | DMA 突发起始寄存器 CNT；RCR/BDTR 仅 TIM1 |
-| `LL_TIM_DMABURST_BASEADDR_PSC` | DMA 突发起始寄存器 PSC；RCR/BDTR 仅 TIM1 |
-| `LL_TIM_DMABURST_BASEADDR_ARR` | DMA 突发起始寄存器 ARR；RCR/BDTR 仅 TIM1 |
-| `LL_TIM_DMABURST_BASEADDR_RCR` | DMA 突发起始寄存器 RCR；RCR/BDTR 仅 TIM1 |
-| `LL_TIM_DMABURST_BASEADDR_CCR1` | DMA 突发起始寄存器 CCR1；RCR/BDTR 仅 TIM1 |
-| `LL_TIM_DMABURST_BASEADDR_CCR2` | DMA 突发起始寄存器 CCR2；RCR/BDTR 仅 TIM1 |
-| `LL_TIM_DMABURST_BASEADDR_CCR3` | DMA 突发起始寄存器 CCR3；RCR/BDTR 仅 TIM1 |
-| `LL_TIM_DMABURST_BASEADDR_CCR4` | DMA 突发起始寄存器 CCR4；RCR/BDTR 仅 TIM1 |
-| `LL_TIM_DMABURST_BASEADDR_BDTR` | DMA 突发起始寄存器 BDTR；RCR/BDTR 仅 TIM1 |
+| `LL_TIM_DMABURST_BASEADDR_CR1` | DMA 突发起始寄存器 CR1 |
+| `LL_TIM_DMABURST_BASEADDR_CR2` | DMA 突发起始寄存器 CR2 |
+| `LL_TIM_DMABURST_BASEADDR_SMCR` | DMA 突发起始寄存器 SMCR |
+| `LL_TIM_DMABURST_BASEADDR_DIER` | DMA 突发起始寄存器 DIER |
+| `LL_TIM_DMABURST_BASEADDR_SR` | DMA 突发起始寄存器 SR |
+| `LL_TIM_DMABURST_BASEADDR_EGR` | DMA 突发起始寄存器 EGR |
+| `LL_TIM_DMABURST_BASEADDR_CCMR1` | DMA 突发起始寄存器 CCMR1 |
+| `LL_TIM_DMABURST_BASEADDR_CCMR2` | DMA 突发起始寄存器 CCMR2 |
+| `LL_TIM_DMABURST_BASEADDR_CCER` | DMA 突发起始寄存器 CCER |
+| `LL_TIM_DMABURST_BASEADDR_CNT` | DMA 突发起始寄存器 CNT |
+| `LL_TIM_DMABURST_BASEADDR_PSC` | DMA 突发起始寄存器 PSC |
+| `LL_TIM_DMABURST_BASEADDR_ARR` | DMA 突发起始寄存器 ARR |
+| `LL_TIM_DMABURST_BASEADDR_RCR` | DMA 突发起始寄存器 RCR（TIM1） |
+| `LL_TIM_DMABURST_BASEADDR_CCR1` | DMA 突发起始寄存器 CCR1 |
+| `LL_TIM_DMABURST_BASEADDR_CCR2` | DMA 突发起始寄存器 CCR2 |
+| `LL_TIM_DMABURST_BASEADDR_CCR3` | DMA 突发起始寄存器 CCR3 |
+| `LL_TIM_DMABURST_BASEADDR_CCR4` | DMA 突发起始寄存器 CCR4 |
+| `LL_TIM_DMABURST_BASEADDR_BDTR` | DMA 突发起始寄存器 BDTR（TIM1） |
 
 ## DMA burst 长度
 

@@ -243,7 +243,7 @@ __STATIC_INLINE uint32_t LL_TIM_GetCounter (TIM_TypeDef * TIMx);
 
 读取CNT 计数器值。
 
-返回：`uint32_t`，具体数值/位域含义见上方功能说明；Get 类不表示操作成功状态。
+返回：`uint32_t`，当前 CNT 值，范围 0–65535。
 
 固定头文件：[接口定义L1258](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_ll_tim.h#L1258)。
 
@@ -279,7 +279,7 @@ __STATIC_INLINE uint32_t LL_TIM_GetPrescaler (TIM_TypeDef * TIMx);
 
 读取总线可见PSC值；新值可能尚未装入内部活动预分频器，读回不证明当前分频已改变。
 
-返回：`uint32_t`，具体数值/位域含义见上方功能说明；Get 类不表示操作成功状态。
+返回：`uint32_t`，总线可见 PSC 值，范围 0–65535。
 
 固定头文件：[接口定义L1298](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_ll_tim.h#L1298)。
 
@@ -289,7 +289,7 @@ __STATIC_INLINE uint32_t LL_TIM_GetPrescaler (TIM_TypeDef * TIMx);
 __STATIC_INLINE void LL_TIM_SetAutoReload (TIM_TypeDef * TIMx, uint32_t AutoReload);
 ```
 
-写ARR自动重装值，C8为16位；ARPE决定是否等待UEV装入活动值。
+写入 16 位 ARR 自动重装值；ARPE 决定是否等待 UEV 装入活动值。
 
 - `AutoReload`：ARR 值，0–65535；零值会阻止正常计数。
 
@@ -301,9 +301,9 @@ __STATIC_INLINE void LL_TIM_SetAutoReload (TIM_TypeDef * TIMx, uint32_t AutoRelo
 __STATIC_INLINE uint32_t LL_TIM_GetAutoReload (TIM_TypeDef * TIMx);
 ```
 
-读取总线可见ARR值，C8为16位；启用预装载时不以读回确认内部活动值已更新。
+读取总线可见的 16 位 ARR 值；启用预装载时，读回值不表示内部活动值已更新。
 
-返回：`uint32_t`，具体数值/位域含义见上方功能说明；Get 类不表示操作成功状态。
+返回：`uint32_t`，总线可见 ARR 值，范围 0–65535。
 
 固定头文件：[接口定义L1323](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_ll_tim.h#L1323)。
 
@@ -328,11 +328,11 @@ __STATIC_INLINE void LL_TIM_SetRepetitionCounter (TIM_TypeDef * TIMx, uint32_t R
 __STATIC_INLINE uint32_t LL_TIM_GetRepetitionCounter (TIM_TypeDef * TIMx);
 ```
 
-读取TIM1的RCR配置值，C8有效位为0～255；不是内部正在递减的重复计数状态。
+读取 TIM1 的 RCR 配置值；该值不表示内部正在递减的重复计数状态。
 
 - `TIMx`：选择 TIM1。
 
-返回：`uint32_t`，具体数值/位域含义见上方功能说明；Get 类不表示操作成功状态。
+返回：`uint32_t`，RCR 配置值，范围 0–255。
 
 - 适用实例：TIM1。
 
@@ -731,7 +731,7 @@ __STATIC_INLINE void LL_TIM_OC_SetDeadTime (TIM_TypeDef * TIMx, uint32_t DeadTim
 __STATIC_INLINE void LL_TIM_OC_SetCompareCH1 (TIM_TypeDef * TIMx, uint32_t CompareValue);
 ```
 
-设置输出通道 1 的 CCR1 比较值，C8 范围 0–65535。
+设置输出通道 1 的 CCR1 比较值。
 
 - `CompareValue`：CCR 比较值，0–65535。
 
@@ -743,7 +743,7 @@ __STATIC_INLINE void LL_TIM_OC_SetCompareCH1 (TIM_TypeDef * TIMx, uint32_t Compa
 __STATIC_INLINE void LL_TIM_OC_SetCompareCH2 (TIM_TypeDef * TIMx, uint32_t CompareValue);
 ```
 
-设置输出通道 2 的 CCR2 比较值，C8 范围 0–65535。
+设置输出通道 2 的 CCR2 比较值。
 
 - `CompareValue`：CCR 比较值，0–65535。
 
@@ -755,7 +755,7 @@ __STATIC_INLINE void LL_TIM_OC_SetCompareCH2 (TIM_TypeDef * TIMx, uint32_t Compa
 __STATIC_INLINE void LL_TIM_OC_SetCompareCH3 (TIM_TypeDef * TIMx, uint32_t CompareValue);
 ```
 
-设置输出通道 3 的 CCR3 比较值，C8 范围 0–65535。
+设置输出通道 3 的 CCR3 比较值。
 
 - `CompareValue`：CCR 比较值，0–65535。
 
@@ -767,7 +767,7 @@ __STATIC_INLINE void LL_TIM_OC_SetCompareCH3 (TIM_TypeDef * TIMx, uint32_t Compa
 __STATIC_INLINE void LL_TIM_OC_SetCompareCH4 (TIM_TypeDef * TIMx, uint32_t CompareValue);
 ```
 
-设置输出通道 4 的 CCR4 比较值，C8 范围 0–65535。
+设置输出通道 4 的 CCR4 比较值。
 
 - `CompareValue`：CCR 比较值，0–65535。
 
@@ -779,9 +779,9 @@ __STATIC_INLINE void LL_TIM_OC_SetCompareCH4 (TIM_TypeDef * TIMx, uint32_t Compa
 __STATIC_INLINE uint32_t LL_TIM_OC_GetCompareCH1 (TIM_TypeDef * TIMx);
 ```
 
-读取输出通道1总线可见CCR1值，C8范围0～65535；OC1PE=1时新预装载值可能尚未成为活动比较值。
+读取输出通道1总线可见CCR1值，范围 0–65535；OC1PE=1时新预装载值可能尚未成为活动比较值。
 
-返回：`uint32_t`，具体数值/位域含义见上方功能说明；Get 类不表示操作成功状态。
+返回：`uint32_t`，总线可见 CCR1 比较值，范围 0–65535。
 
 固定头文件：[接口定义L2032](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_ll_tim.h#L2032)。
 
@@ -791,9 +791,9 @@ __STATIC_INLINE uint32_t LL_TIM_OC_GetCompareCH1 (TIM_TypeDef * TIMx);
 __STATIC_INLINE uint32_t LL_TIM_OC_GetCompareCH2 (TIM_TypeDef * TIMx);
 ```
 
-读取输出通道2总线可见CCR2值，C8范围0～65535；OC2PE=1时新预装载值可能尚未成为活动比较值。
+读取输出通道2总线可见CCR2值，范围 0–65535；OC2PE=1时新预装载值可能尚未成为活动比较值。
 
-返回：`uint32_t`，具体数值/位域含义见上方功能说明；Get 类不表示操作成功状态。
+返回：`uint32_t`，总线可见 CCR2 比较值，范围 0–65535。
 
 固定头文件：[接口定义L2045](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_ll_tim.h#L2045)。
 
@@ -803,9 +803,9 @@ __STATIC_INLINE uint32_t LL_TIM_OC_GetCompareCH2 (TIM_TypeDef * TIMx);
 __STATIC_INLINE uint32_t LL_TIM_OC_GetCompareCH3 (TIM_TypeDef * TIMx);
 ```
 
-读取输出通道3总线可见CCR3值，C8范围0～65535；OC3PE=1时新预装载值可能尚未成为活动比较值。
+读取输出通道3总线可见CCR3值，范围 0–65535；OC3PE=1时新预装载值可能尚未成为活动比较值。
 
-返回：`uint32_t`，具体数值/位域含义见上方功能说明；Get 类不表示操作成功状态。
+返回：`uint32_t`，总线可见 CCR3 比较值，范围 0–65535。
 
 固定头文件：[接口定义L2058](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_ll_tim.h#L2058)。
 
@@ -815,9 +815,9 @@ __STATIC_INLINE uint32_t LL_TIM_OC_GetCompareCH3 (TIM_TypeDef * TIMx);
 __STATIC_INLINE uint32_t LL_TIM_OC_GetCompareCH4 (TIM_TypeDef * TIMx);
 ```
 
-读取输出通道4总线可见CCR4值，C8范围0～65535；OC4PE=1时新预装载值可能尚未成为活动比较值。
+读取输出通道4总线可见CCR4值，范围 0–65535；OC4PE=1时新预装载值可能尚未成为活动比较值。
 
-返回：`uint32_t`，具体数值/位域含义见上方功能说明；Get 类不表示操作成功状态。
+返回：`uint32_t`，总线可见 CCR4 比较值，范围 0–65535。
 
 固定头文件：[接口定义L2071](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_ll_tim.h#L2071)。
 
@@ -833,8 +833,11 @@ __STATIC_INLINE void LL_TIM_IC_Config (TIM_TypeDef * TIMx, uint32_t Channel, uin
 
 - `Channel`：所选定时器通道；使用本接口列出的通道常量，不能混用 HAL 和 LL 编码。
   - 可用编码：`LL_TIM_CHANNEL_CH1`、`LL_TIM_CHANNEL_CH2`、`LL_TIM_CHANNEL_CH3`、`LL_TIM_CHANNEL_CH4`。
-- `Configuration`：组合配置位，按下面列出的本功能常量组合。
-  - 以下四组分别择一后按位或：输入映射为 `LL_TIM_ACTIVEINPUT_DIRECTTI` / `LL_TIM_ACTIVEINPUT_INDIRECTTI` / `LL_TIM_ACTIVEINPUT_TRC`；预分频为 `LL_TIM_ICPSC_DIV1` / `LL_TIM_ICPSC_DIV2` / `LL_TIM_ICPSC_DIV4` / `LL_TIM_ICPSC_DIV8`；滤波为下文 `LL_TIM_IC_SetFilter` 列出的全部 16 档之一；极性为 `LL_TIM_IC_POLARITY_RISING` 或 `LL_TIM_IC_POLARITY_FALLING`。不得在同一组选取多个互斥编码。
+- `Configuration`：以下四组各选一项，再按位或组合；同组编码互斥。
+  - 输入映射：`LL_TIM_ACTIVEINPUT_DIRECTTI`、`LL_TIM_ACTIVEINPUT_INDIRECTTI` 或 `LL_TIM_ACTIVEINPUT_TRC`。
+  - 预分频：`LL_TIM_ICPSC_DIV1`、`LL_TIM_ICPSC_DIV2`、`LL_TIM_ICPSC_DIV4` 或 `LL_TIM_ICPSC_DIV8`。
+  - 滤波：[输入捕获滤波](LL符号表.md#输入捕获滤波)中的 16 档之一。
+  - 极性：`LL_TIM_IC_POLARITY_RISING` 或 `LL_TIM_IC_POLARITY_FALLING`。
 
 固定头文件：[接口定义L2117](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_ll_tim.h#L2117)。
 
@@ -1002,7 +1005,7 @@ __STATIC_INLINE uint32_t LL_TIM_IC_GetCaptureCH1 (TIM_TypeDef * TIMx);
 
 读取输入通道 1 最近锁存的 CCR1 捕获值；应用还应检查过捕获标志，读值函数本身不检查该标志。但 [ES096](https://www.st.com/resource/en/errata_sheet/es096-stm32f101x8b-stm32f102x8b-and-stm32f103x8b-mediumdensity-device-limitations-stmicroelectronics.pdf) §2.6.5/§2.6.6 规定捕获与 CCR 读取竞争时可能漏报或误报，CCxOF 不能作为完整无丢样证明。
 
-返回：`uint32_t`，具体数值/位域含义见上方功能说明；Get 类不表示操作成功状态。
+返回：`uint32_t`，CCR1 捕获值，范围 0–65535。
 
 固定头文件：[接口定义L2402](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_ll_tim.h#L2402)。
 
@@ -1016,7 +1019,7 @@ __STATIC_INLINE uint32_t LL_TIM_IC_GetCaptureCH2 (TIM_TypeDef * TIMx);
 
 读取输入通道 2 最近锁存的 CCR2 捕获值；应用还应检查过捕获标志，读值函数本身不检查该标志。但 [ES096](https://www.st.com/resource/en/errata_sheet/es096-stm32f101x8b-stm32f102x8b-and-stm32f103x8b-mediumdensity-device-limitations-stmicroelectronics.pdf) §2.6.5/§2.6.6 规定捕获与 CCR 读取竞争时可能漏报或误报，CCxOF 不能作为完整无丢样证明。
 
-返回：`uint32_t`，具体数值/位域含义见上方功能说明；Get 类不表示操作成功状态。
+返回：`uint32_t`，CCR2 捕获值，范围 0–65535。
 
 固定头文件：[接口定义L2415](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_ll_tim.h#L2415)。
 
@@ -1030,7 +1033,7 @@ __STATIC_INLINE uint32_t LL_TIM_IC_GetCaptureCH3 (TIM_TypeDef * TIMx);
 
 读取输入通道 3 最近锁存的 CCR3 捕获值；应用还应检查过捕获标志，读值函数本身不检查该标志。但 [ES096](https://www.st.com/resource/en/errata_sheet/es096-stm32f101x8b-stm32f102x8b-and-stm32f103x8b-mediumdensity-device-limitations-stmicroelectronics.pdf) §2.6.5/§2.6.6 规定捕获与 CCR 读取竞争时可能漏报或误报，CCxOF 不能作为完整无丢样证明。
 
-返回：`uint32_t`，具体数值/位域含义见上方功能说明；Get 类不表示操作成功状态。
+返回：`uint32_t`，CCR3 捕获值，范围 0–65535。
 
 固定头文件：[接口定义L2428](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_ll_tim.h#L2428)。
 
@@ -1044,7 +1047,7 @@ __STATIC_INLINE uint32_t LL_TIM_IC_GetCaptureCH4 (TIM_TypeDef * TIMx);
 
 读取输入通道 4 最近锁存的 CCR4 捕获值；应用还应检查过捕获标志，读值函数本身不检查该标志。但 [ES096](https://www.st.com/resource/en/errata_sheet/es096-stm32f101x8b-stm32f102x8b-and-stm32f103x8b-mediumdensity-device-limitations-stmicroelectronics.pdf) §2.6.5/§2.6.6 规定捕获与 CCR 读取竞争时可能漏报或误报，CCxOF 不能作为完整无丢样证明。
 
-返回：`uint32_t`，具体数值/位域含义见上方功能说明；Get 类不表示操作成功状态。
+返回：`uint32_t`，CCR4 捕获值，范围 0–65535。
 
 固定头文件：[接口定义L2441](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_ll_tim.h#L2441)。
 
@@ -2287,7 +2290,7 @@ ErrorStatus LL_TIM_DeInit (TIM_TypeDef * TIMx);
 void LL_TIM_StructInit (LL_TIM_InitTypeDef * TIM_InitStruct);
 ```
 
-填充时基结构默认值，不访问定时器。Autoreload默认0xFFFFFFFF，须按C8的16位ARR范围重新选择；各默认字段见[初始化约束](LL初始化边界.md#3-structinit的默认值与芯片适用范围)。
+填充时基结构默认值，不访问定时器。Autoreload默认0xFFFFFFFF，须按 16 位 ARR 范围重新选择；各默认字段见[初始化约束](LL初始化边界.md#3-structinit的默认值与芯片适用范围)。
 
 - `TIM_InitStruct`：原型指定的 LL 配置结构指针；StructInit 写入默认值，Init 读取配置。
 
