@@ -9,6 +9,24 @@
 
 以下C原型已逐项匹配固定de129f1头文件，共189项；`__STATIC_INLINE` 表示 LL 头文件内联接口。原型匹配不等于语义和全部模式组合已验证。所有条目受芯片、时钟、运行状态及初始化约束限制。HAL/LL 的枚举编码不能交叉传入。
 
+## 本页导航
+
+- [计数与更新](#计数与更新)
+- [捕获比较通道控制](#捕获比较通道控制)
+- [输出比较与 PWM](#输出比较与-pwm)
+- [输入捕获](#输入捕获)
+- [外部时钟与同步](#外部时钟与同步)
+- [刹车与输出保护](#刹车与输出保护)
+- [DMA burst](#dma-burst)
+- [事件标志](#事件标志)
+- [中断使能](#中断使能)
+- [DMA 请求使能](#dma-请求使能)
+- [软件事件](#软件事件)
+- [初始化与配置结构](#初始化与配置结构)
+
+
+## 计数与更新
+
 ### `LL_TIM_EnableCounter`
 
 ```c
@@ -391,6 +409,8 @@ __STATIC_INLINE uint32_t LL_TIM_GetRepetitionCounter (TIM_TypeDef * TIMx);
 
 固定头文件：[接口定义L1350](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_ll_tim.h#L1350)。
 
+## 捕获比较通道控制
+
 ### `LL_TIM_CC_EnablePreload`
 
 ```c
@@ -538,6 +558,8 @@ __STATIC_INLINE uint32_t LL_TIM_CC_IsEnabledChannel (TIM_TypeDef * TIMx, uint32_
 固定头文件：[接口定义L1523](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_ll_tim.h#L1523)。
 
 补充核对：固定实现比较(CCER & Channels)==Channels；组合掩码要求所有所选位均置位才返回1。零掩码也会返回1，因此参数应为本接口允许的非空通道集合。此返回值只描述通道使能位，不证明MOE、计数器或实际引脚已开启。
+
+## 输出比较与 PWM
 
 ### `LL_TIM_OC_ConfigOutput`
 
@@ -946,6 +968,8 @@ __STATIC_INLINE uint32_t LL_TIM_OC_GetCompareCH4 (TIM_TypeDef * TIMx);
 
 固定头文件：[接口定义L2071](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_ll_tim.h#L2071)。
 
+## 输入捕获
+
 ### `LL_TIM_IC_Config`
 
 ```c
@@ -1210,6 +1234,8 @@ __STATIC_INLINE uint32_t LL_TIM_IC_GetCaptureCH4 (TIM_TypeDef * TIMx);
 
 补充核对：在输入捕获模式下，读取CCR4会清除对应CC4IF；该读操作有状态副作用，不能当作不改变标志的纯观察。它不自动检查CC4OF，也不能排除ES096所列捕获/读取竞争。
 
+## 外部时钟与同步
+
 ### `LL_TIM_EnableExternalClock`
 
 ```c
@@ -1394,6 +1420,8 @@ __STATIC_INLINE void LL_TIM_ConfigETR (TIM_TypeDef * TIMx, uint32_t ETRPolarity,
 
 固定头文件：[接口定义L2677](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_ll_tim.h#L2677)。
 
+## 刹车与输出保护
+
 ### `LL_TIM_EnableBRK`
 
 ```c
@@ -1572,6 +1600,8 @@ __STATIC_INLINE uint32_t LL_TIM_IsEnabledAllOutputs (TIM_TypeDef * TIMx);
 
 
 此查询只测试BDTR.MOE；不检查每个CCxE/CCxNE，也不读取GPIO引脚，返回1不能证明所有通道正在输出，返回0不能证明所有引脚为低。
+## DMA burst
+
 ### `LL_TIM_ConfigDMABurst`
 
 ```c
@@ -1589,6 +1619,8 @@ __STATIC_INLINE void LL_TIM_ConfigDMABurst (TIM_TypeDef * TIMx, uint32_t DMABurs
 返回：无返回值。
 
 固定头文件：[接口定义L2900](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_ll_tim.h#L2900)。
+
+## 事件标志
 
 ### `LL_TIM_ClearFlag_UPDATE`
 
@@ -1933,6 +1965,8 @@ __STATIC_INLINE uint32_t LL_TIM_IsActiveFlag_CC4OVR (TIM_TypeDef * TIMx);
 返回：uint32_t，0 表示否/未置位，1 表示是/已置位。
 
 固定头文件：[接口定义L3176](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_ll_tim.h#L3176)。
+
+## 中断使能
 
 ### `LL_TIM_EnableIT_UPDATE`
 
@@ -2282,6 +2316,8 @@ __STATIC_INLINE uint32_t LL_TIM_IsEnabledIT_BRK (TIM_TypeDef * TIMx);
 
 固定头文件：[接口定义L3447](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_ll_tim.h#L3447)。
 
+## DMA 请求使能
+
 ### `LL_TIM_EnableDMAReq_UPDATE`
 
 ```c
@@ -2582,6 +2618,8 @@ __STATIC_INLINE uint32_t LL_TIM_IsEnabledDMAReq_TRIG (TIM_TypeDef * TIMx);
 
 固定头文件：[接口定义L3685](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_ll_tim.h#L3685)。
 
+## 软件事件
+
 ### `LL_TIM_GenerateEvent_UPDATE`
 
 ```c
@@ -2699,6 +2737,8 @@ __STATIC_INLINE void LL_TIM_GenerateEvent_BRK (TIM_TypeDef * TIMx);
 - 适用实例：TIM1。
 
 固定头文件：[接口定义L3780](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_ll_tim.h#L3780)。
+
+## 初始化与配置结构
 
 ### `LL_TIM_DeInit`
 
