@@ -164,7 +164,7 @@ $$
 对于没有额外接收缓冲、请求等间隔到达且每个请求对应一次数据更新的模型，可以进一步要求整项搬运在下次请求前完成，作为保守的充分服务预算条件：
 
 $$
-t_{\mathrm{complete,worst}}<T_{\mathrm{request}}=\frac{1}{R_{\mathrm{request}}}
+t_{\mathrm{complete,worst}}\lt T_{\mathrm{request}}=\frac{1}{R_{\mathrm{request}}}
 $$
 
  $`t_{\mathrm{complete,worst}}`$  从请求发生起计时，到该项数据的目的写入完成为止，表示最坏条件下的整项完成时间； $`T_{\mathrm{request}}`$  是相邻请求间隔，两者单位均为 s。 $`R_{\mathrm{request}}`$  是请求速率，单位为请求/s。下标 complete、worst、request 分别表示整项完成、最坏条件和请求。
