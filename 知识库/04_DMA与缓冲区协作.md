@@ -1,7 +1,7 @@
 # DMA 与缓冲区协作
 
 
-以下合并DMA1寄存器、总线竞争、ADC/TIM请求与固定HAL生命周期；完整映射、宽度组合及寄存器表见[DMA参数与HAL接口](../参数/DMA参数与HAL接口.md)。
+DMA 采集与发送需要同时确定请求来源、数据项宽度、缓冲区所有权和最坏处理期限。本章按建立传输、消费半缓冲和错误恢复组织；完整参数见[DMA参数与HAL接口](../参数/DMA参数与HAL接口.md)。
 
 ## 1 DMA1资源、通道和数据项
 
@@ -31,7 +31,16 @@ DMA1 提供 7 个固定映射通道。同一通道的多个请求源以逻辑“
 
 上述顺序是寄存器级生命周期约束，不是HAL内部指令顺序保证。所核HAL_ADC_Start_DMA先置CR2.DMA，再调用HAL_DMA_Start_IT，最后开放规则转换触发，因此调用前仍须停止实际生产源。
 
-具体固定源码位置：ADC内部回调在1627–1633行，CR2.DMA在1645行，未检查返回的Start_IT调用在1648行，触发在1654–1662行。HAL 的 Init 不是安全终止旧传输的接口，Start/Start_IT 的返回也不是完成通知。外设 HAL 通常会安装内部 DMA 回调，不能在运行中替换它们；真正的 DMA IRQ 要调用对应 `HAL_DMA_IRQHandler`。句柄、Parent、缓冲区必须覆盖整个异步生命周期，不能传入已离开作用域的局部数组。[UM1850 Rev 3，§3.9 HAL common resources；§14 HAL DMA Generic Driver（§14.1–14.3）](https://www.st.com/resource/en/user_manual/um1850-description-of-stm32f1-hal-and-lowlayer-drivers-stmicroelectronics.pdf#page=148)；[stm32f1xx_hal_dma.c @ bd368aa335c529641d2e567574885e02deacc64a](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_dma.c)；[stm32f1xx_hal_adc.c @ bd368aa335c529641d2e567574885e02deacc64a](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_adc.c#L1553-L1678)
+对应固定 ADC 源码位置为：
+
+- 1627～1633 行：安装内部 DMA 回调。
+- 1645 行：设置 CR2.DMA。
+- 1648 行：调用 Start_IT，未检查其返回值。
+- 1654～1662 行：开放转换触发。
+
+HAL 的 Init 不是安全终止旧传输的接口，Start/Start_IT 的返回也不是完成通知。外设 HAL 通常会安装内部 DMA 回调，不能在运行中替换它们；真正的 DMA IRQ 要调用对应 `HAL_DMA_IRQHandler`。句柄、Parent、缓冲区必须覆盖整个异步生命周期，不能传入已离开作用域的局部数组。[UM1850 Rev 3，§3.9 HAL common resources；§14 HAL DMA Generic Driver（§14.1–14.3）](https://www.st.com/resource/en/user_manual/um1850-description-of-stm32f1-hal-and-lowlayer-drivers-stmicroelectronics.pdf#page=148)；[stm32f1xx_hal_dma.c @ bd368aa335c529641d2e567574885e02deacc64a](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_dma.c)；[stm32f1xx_hal_adc.c @ bd368aa335c529641d2e567574885e02deacc64a](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_adc.c#L1553-L1678)
+
+### 2.1 超时后的软件状态与硬件状态
 
 尤其要审查超时路径：本次复核的 [stm32f1xx_hal_dma.c @ bd368aa335c529641d2e567574885e02deacc64a](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_dma.c) 中，PollForTransfer 超时会把软件状态改为 READY，却不清 EN；此时直接 Abort 又可能因不处于 BUSY 而只报告 NO_XFER。
 
@@ -51,9 +60,17 @@ $$
 
 $T_{\mathrm{half}}$ 是按稳定数据项速率计算的半缓冲名义填充时间，单位 s，下标 half 表示半区；$N$ 是正偶数个 DMA 项；$R_{\mathrm{item}}$ 是流入数组的数据项速率，单位 项/s，下标 item 表示数据项。
 
-等间隔到达时可据此保守安排处理预算；突发到达、触发抖动或可变序列不能仅以长期平均 R_item 证明截止时间，必须核对“本半区完成通知至本半区最早被重写”的最短间隔。CPU 的中断响应、排队和实际处理总时间都要计入这段预算；HT/TC 状态位不是事件队列，延迟跨越多轮时不能靠一个置位标志恢复轮数。增大 N 增加窗口和延迟，不能补救长期消费速度不足，也不能挽回 DMA 读取之前已被外设覆盖的结果。[RM0008 Rev 21，§13.3.3 DMA channels; §13.3.6 Interrupts; §13.4.1/4](https://www.st.com/resource/en/reference_manual/cd00171190.pdf#page=278)
+### 3.1 覆盖期限与处理预算
 
-**算例，非实测保证：**4 个 ADC rank，每秒触发 10 000 个完整序列，则 R_item=40 000 项/s。若采用 256 个半字，整个数组 512 B，每半区 128 项、32 帧，名义半区时长为 3.2 ms。
+等间隔到达时可据此保守安排处理预算；突发到达、触发抖动或可变序列不能仅以长期平均 $R_{\mathrm{item}}$ 证明截止时间，必须核对“本半区完成通知至本半区最早被重写”的最短间隔。
+
+CPU 的中断响应、排队和实际处理总时间都要计入这段预算；HT/TC 状态位不是事件队列，延迟跨越多轮时不能靠一个置位标志恢复轮数。
+
+增大 $N$ 增加窗口和延迟，不能补救长期消费速度不足，也不能挽回 DMA 读取之前已被外设覆盖的结果。[RM0008 Rev 21，§13.3.3 DMA channels; §13.3.6 Interrupts; §13.4.1/4](https://www.st.com/resource/en/reference_manual/cd00171190.pdf#page=278)
+
+### 3.2 四通道 ADC 算例
+
+以下为预算算例，未作为实测保证：4 个 ADC rank，每秒触发 10 000 个完整序列，则 $R_{\mathrm{item}}$=40 000 项/s。若采用 256 个半字，整个数组 512 B，每半区 128 项、32 帧，名义半区时长为 3.2 ms。
 
 每个 ADC 序列内部是突发写入，应再按实际触发/转换时序验证最早覆盖时间；此例还须先确认 ADC 每组能在 100 µs 内完成。为避免半区跨帧，N/2 宜为 rank 数的整数倍；这是软件数据组织约定，不是 DMA 硬件限制。注入抢占后不能再由数组下标推断规则样本严格等时距。[RM0008 Rev 21，§11.3.8 Scan mode; §11.3.9 Injected channel management; §11.8 DMA request; §11.9.2 Regular simultaneous mode; §11.12.14 ADC regular data register](https://www.st.com/resource/en/reference_manual/cd00171190.pdf#page=221)
 
@@ -64,7 +81,11 @@ $T_{\mathrm{half}}$ 是按稳定数据项速率计算的半缓冲名义填充时
 原厂拓扑依据：[RM0008 Rev21 §3.1 System architecture，pp47–49；§3.3.3 Embedded Flash memory，pp58–59；图49及§13.3，pp276–278](https://www.st.com/resource/en/reference_manual/cd00171190.pdf#page=47)。图仅保留C8相关路径及外设示例，不把七通道画成七个独立搬运引擎。
 
 
-图依据RM0008 Rev21图49及总线章节、DS5319 Rev20 C8资源自主绘制。ICode、DCode、System分别表示，ICode取指支路不经过图中矩阵；Flash接口仲裁与矩阵轮转仲裁、DMA内部通道仲裁分别说明。箭头表示访问请求方向，不表示读回数据方向。图中 CPU/DMA 主端口竞争与 DMA 内部通道竞争属于两层仲裁。总线矩阵采用轮转；DMA 通道按软件优先级选择，同级小编号优先，高优先级连续请求可使低优先级长期等待。提升 DMA 通道 PL 与提升 NVIC 优先级不是同一件事；前者影响搬运调度，后者影响 CPU 消费通知。[AN2548 Rev 9，§2 Bus bandwidth; §4 DMA controller; §5.3 Sharing the bus matrix with CPU; §6 Insufficient resources threats](https://www.st.com/resource/en/application_note/an2548-introduction-to-dma-controller-for-stm32-mcus-stmicroelectronics.pdf#page=3)；[RM0008 Rev 21，§13.3.1 DMA transactions; §13.3.3 DMA channels; §13.3.5 Error management; §13.4 DMA registers](https://www.st.com/resource/en/reference_manual/cd00171190.pdf#page=276)
+图依据RM0008 Rev21图49及总线章节、DS5319 Rev20 C8资源自主绘制。ICode、DCode、System分别表示，ICode取指支路不经过图中矩阵；Flash接口仲裁与矩阵轮转仲裁、DMA内部通道仲裁分别说明。箭头表示访问请求方向，不表示读回数据方向。
+
+图中 CPU/DMA 主端口竞争与 DMA 内部通道竞争属于两层仲裁。
+
+总线矩阵采用轮转；DMA 通道按软件优先级选择，同级小编号优先，高优先级连续请求可使低优先级长期等待。提升 DMA 通道 PL 与提升 NVIC 优先级不是同一件事；前者影响搬运调度，后者影响 CPU 消费通知。[AN2548 Rev 9，§2 Bus bandwidth; §4 DMA controller; §5.3 Sharing the bus matrix with CPU; §6 Insufficient resources threats](https://www.st.com/resource/en/application_note/an2548-introduction-to-dma-controller-for-stm32-mcus-stmicroelectronics.pdf#page=3)；[RM0008 Rev 21，§13.3.1 DMA transactions; §13.3.3 DMA channels; §13.3.5 Error management; §13.4 DMA registers](https://www.st.com/resource/en/reference_manual/cd00171190.pdf#page=276)
 
 单次服务可拆成 $t_{\mathrm{S}}=t_{\mathrm{A}}+t_{\mathrm{RD}}+t_{\mathrm{WR}}$；连续请求还须计入握手 $t_{\mathrm{TS}}=t_{\mathrm{S}}+t_{\mathrm{Ack}}$。
 
@@ -76,19 +97,42 @@ $t_{\mathrm{S}}$、$t_{\mathrm{TS}}$ 分别为单次/连续总服务时间，$t_
 
 对无额外接收缓冲、等间隔请求且每次请求对应一次数据更新的模型，可用 $t_{\mathrm{complete,worst}}<T_{\mathrm{request}}=1/R_{\mathrm{request}}$ 作为保守的充分服务预算条件。
 
-$t_{\mathrm{complete,worst}}$ 从请求发生起计至该数据项的目的写入完成，单位 s；下标 complete 表示整项搬运完成，worst 表示最坏条件。$T_{\mathrm{request}}$ 为相邻请求间隔，单位 s；$R_{\mathrm{request}}$ 为请求速率，单位 请求/s，request 表示请求。真正防止源数据覆盖的截止是：下一次数据更新前完成旧数据的源读取；目的写稍后完成并不必然表示源数据已丢失。该式是工程推导，不是AN2548原文公式，也不替代持续吞吐量与整个系统实时性检查。非均匀输入须用最短实际覆盖期限，不能仅用长期平均请求速率。AN2548 建议服务能力达到预计同口径负载的 1.5 倍，但平均余量不证明上述时限。72 MHz TIM 时钟也不意味着 APB 搬运频率翻倍。[AN2548 Rev 9，§6 Insufficient resources threats](https://www.st.com/resource/en/application_note/an2548-introduction-to-dma-controller-for-stm32-mcus-stmicroelectronics.pdf#page=10)
+$t_{\mathrm{complete,worst}}$ 从请求发生起计至该数据项的目的写入完成，单位 s；下标 complete 表示整项搬运完成，worst 表示最坏条件。$T_{\mathrm{request}}$ 为相邻请求间隔，单位 s；$R_{\mathrm{request}}$ 为请求速率，单位 请求/s，request 表示请求。
+
+真正防止源数据覆盖的截止是：下一次数据更新前完成旧数据的源读取；目的写稍后完成并不必然表示源数据已丢失。
+
+该式是工程推导，不是AN2548原文公式，也不替代持续吞吐量与整个系统实时性检查。非均匀输入须用最短实际覆盖期限，不能仅用长期平均请求速率。
+
+AN2548 建议服务能力达到预计同口径负载的 1.5 倍，但平均余量不证明上述时限。72 MHz TIM 时钟也不意味着 APB 搬运频率翻倍。[AN2548 Rev 9，§6 Insufficient resources threats](https://www.st.com/resource/en/application_note/an2548-introduction-to-dma-controller-for-stm32-mcus-stmicroelectronics.pdf#page=10)
 
 ## 5 ADC 与定时器的两种特殊契约
 
-- **单 ADC 规则采集：**ADC1→DMA1_Channel1，通常用半字结果；独立 ADC2 没有自己的 DMA 请求。规则组双 ADC 的相应DMA模式从 ADC1_DR 搬 32 位字，高半字 ADC2、低半字 ADC1，长度按组合字数填；16 位搬运会丢 ADC2。注入结果在 JDRx，不产生规则 DMA 请求。[RM0008 Rev 21，§11.3.8 Scan mode; §11.3.9 Injected channel management; §11.8 DMA request; §11.9.2 Regular simultaneous mode; §11.12.14 ADC regular data register](https://www.st.com/resource/en/reference_manual/cd00171190.pdf#page=221)；[RM0008 Rev 21，§13.3.7 DMA request mapping](https://www.st.com/resource/en/reference_manual/cd00171190.pdf#page=281)
-- **ADC HAL 启动：**已核对版本的 `HAL_ADC_Start_DMA` 不检查底层 `HAL_DMA_Start_IT` 返回。DMA 忙时外层仍可能返回 HAL_OK 并继续开放 ADC。启动前必须独占正确通道，验证句柄及配置；运行后观察 CNDTR 与预期半满/全满事件，不能只信外层返回值。[stm32f1xx_hal_adc.c @ bd368aa335c529641d2e567574885e02deacc64a](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_adc.c#L1553-L1678)
-- **TIM DMA burst：**DMA 本身没有 burst/FIFO，但 TIM 可把一个事件展开为多次请求。CPAR 固定为 DMAR、PINC=0，DCR.DBA 选首寄存器，DBL 是项数减一。TIM1 的 ARR/RCR/CCR1 连写是三个应答过程，不是原子总线写；需结合预装载和下次装载期限设计。TIM2～4 没有 RCR，不能照搬三字段表。[RM0008 Rev 21，§14.4.19 TIM1 and TIM8 DMA control register; §14.4.20 TIM1 and TIM8 DMA address for full transfer; §15.4.17/18; §15.4.19 TIMx register map](https://www.st.com/resource/en/reference_manual/cd00171190.pdf#page=361)
+### 5.1 ADC 数据项与组合字
+
+ADC1→DMA1_Channel1，通常用半字结果；独立 ADC2 没有自己的 DMA 请求。规则组双 ADC 的相应DMA模式从 ADC1_DR 搬 32 位字，高半字 ADC2、低半字 ADC1，长度按组合字数填；16 位搬运会丢 ADC2。注入结果在 JDRx，不产生规则 DMA 请求。[RM0008 Rev 21，§11.3.8 Scan mode; §11.3.9 Injected channel management; §11.8 DMA request; §11.9.2 Regular simultaneous mode; §11.12.14 ADC regular data register](https://www.st.com/resource/en/reference_manual/cd00171190.pdf#page=221)；[RM0008 Rev 21，§13.3.7 DMA request mapping](https://www.st.com/resource/en/reference_manual/cd00171190.pdf#page=281)
+### 5.2 HAL 启动返回值
+
+已核对版本的 `HAL_ADC_Start_DMA` 不检查底层 `HAL_DMA_Start_IT` 返回。DMA 忙时外层仍可能返回 HAL_OK 并继续开放 ADC。启动前必须独占正确通道，验证句柄及配置；运行后观察 CNDTR 与预期半满/全满事件，不能只信外层返回值。[stm32f1xx_hal_adc.c @ bd368aa335c529641d2e567574885e02deacc64a](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_adc.c#L1553-L1678)
+### 5.3 定时器 DMA burst
+
+DMA 本身没有 burst/FIFO，但 TIM 可把一个事件展开为多次请求。CPAR 固定为 DMAR、PINC=0，DCR.DBA 选首寄存器，DBL 是项数减一。TIM1 的 ARR/RCR/CCR1 连写是三个应答过程，不是原子总线写；需结合预装载和下次装载期限设计。TIM2～4 没有 RCR，不能照搬三字段表。[RM0008 Rev 21，§14.4.19 TIM1 and TIM8 DMA control register; §14.4.20 TIM1 and TIM8 DMA address for full transfer; §15.4.17/18; §15.4.19 TIMx register map](https://www.st.com/resource/en/reference_manual/cd00171190.pdf#page=361)
 
 ## 6 错误状态与所有权恢复
 
 活动通道只写 CHTIF、CTCIF、CTEIF 清具体标志，不能用 CGIF 全清。它与传输错误同周期发生时，可能漏 TEIF 并阻止自动禁用。全局清除留在通道停用后。[ES096 Rev 15，§2.4.1 DMA disable failure and error flag omission upon simultaneous transfer error and global flag clear](https://www.st.com/resource/en/errata_sheet/es096-stm32f101x8b-stm32f102x8b-and-stm32f103x8b-mediumdensity-device-limitations-stmicroelectronics.pdf#page=3)
 
-无搬运先查固定映射、EN、外设请求使能和实际触发；搬运完成却无回调查 NVIC、IRQ、回调关联；元素错位查两端宽度/地址步长和帧边界；长时间后失真查半区覆盖及多通道竞争。TE 与“没有 TE”都不能替代外设丢样判断，ADC 尤其没有可兜底的硬件 OVR 标志。固定HAL的完成/错误检查有顺序：轮询在目标完成标志已置位时跳过循环内TE检查；IRQ按HT→TC→TE分支，不保证错误回调先于半完成回调。恢复动作还可能覆盖先前ErrorCode，需先保存诊断，见[检查顺序与错误保存](../参数/DMA参数与HAL接口.md#完成标志与错误分支的检查顺序)。
+### 6.1 按现象定位
+
+| 现象 | 优先检查 |
+|---|---|
+| 没有搬运 | 固定映射、EN、外设请求使能和实际触发 |
+| 搬运完成但没有回调 | NVIC、IRQ 分发和回调关联 |
+| 元素错位 | 两端宽度、地址步长和帧边界 |
+| 长时间运行后失真 | 半区覆盖和多通道竞争 |
+
+### 6.2 保存错误与收回所有权
+
+TE 与“没有 TE”都不能替代外设丢样判断，ADC 尤其没有可兜底的硬件 OVR 标志。固定HAL的完成/错误检查有顺序：轮询在目标完成标志已置位时跳过循环内TE检查；IRQ按HT→TC→TE分支，不保证错误回调先于半完成回调。恢复动作还可能覆盖先前ErrorCode，需先保存诊断，见[检查顺序与错误保存](../参数/DMA参数与HAL接口.md#完成标志与错误分支的检查顺序)。
 
 联调至少分别施加 CPU 高频 SRAM 访问、APB 访问和其他 DMA 流，记录时钟、通道 PL、CNDTR、外设状态及处理时间。故障后明确丢弃哪一段不完整帧，再按启动流程重建；不要在仍活动的硬件上仅把 HAL State 改成 READY。HAL/LL 切换同样需先收回外设、IRQ 和缓冲区所有权。[UM1850 Rev 3，§5 Cohabiting of HAL and LL](https://www.st.com/resource/en/user_manual/um1850-description-of-stm32f1-hal-and-lowlayer-drivers-stmicroelectronics.pdf#page=46)
 
