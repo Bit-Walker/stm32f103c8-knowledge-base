@@ -1,6 +1,14 @@
 # ADC HAL 配置结构及条件编译字段
 
-按UM1850 Rev3与固定v1.1.4源码整理；基础字段与回调注册条件字段分开。
+依据 UM1850 Rev3 与固定 v1.1.4 源码。先选配置对象，再查字段；较长的时序和状态条件紧接对应表格说明。
+
+- [公共与规则组初始化](#adc_inittypedef)
+- [规则通道配置](#adc_channelconftypedef)
+- [模拟看门狗](#adc_analogwdgconftypedef)
+- [ADC 句柄](#__adc_handletypedef)
+- [注入组配置](#adc_injectionconftypedef)
+- [双 ADC 模式](#adc_multimodetypedef)
+- [条件回调字段](#回调注册配置下的附加字段)
 
 ## `ADC_InitTypeDef`
 
@@ -8,13 +16,17 @@
 
 | 字段类型与名称 | 中文含义与约束 |
 |---|---|
-| `uint32_t DataAlign` | 规则数据右对齐为 DR[11:0]、左对齐为 DR[15:4]。注入组执行偏移减法：右对齐 JDR[11:0] 为数据、[15:12] 为符号扩展；左对齐 JDR[14:3] 为数据、bit15 为符号、[2:0]=0。注入结果不能按规则组的无符号 0–4095 处理。 |
+| `uint32_t DataAlign` | 规则组与注入组的数据对齐方式，见下方说明。 |
 | `uint32_t ScanConvMode` | 规则组与注入组共用扫描开关；禁用时只转换 Rank 1，序列长度配置失效。 |
 | `FunctionalState ContinuousConvMode` | 规则组连续转换开关：启用后首次触发启动，后续序列自动重复；与间断转换互斥。 |
 | `uint32_t NbrOfConversion` | 规则组序列长度，1–16；多 Rank 要同时启用扫描。 |
 | `FunctionalState DiscontinuousConvMode` | 规则组间断转换开关，只在扫描且非连续方式有效。 |
 | `uint32_t NbrOfDiscConversion` | 每次触发执行的规则组间断转换个数，1–8；间断关闭时忽略。 |
 | `uint32_t ExternalTrigConv` | 规则组触发源，软件触发或 TIM1 CC1/CC2/CC3、TIM2 CC2、TIM3 TRGO、TIM4 CC4、EXTI11；外部触发仅上升沿。 |
+
+### 数据对齐
+
+规则数据右对齐为 DR[11:0]、左对齐为 DR[15:4]。注入组执行偏移减法：右对齐 JDR[11:0] 为数据、[15:12] 为符号扩展；左对齐 JDR[14:3] 为数据、bit15 为符号、[2:0]=0。注入结果不能按规则组的无符号 0–4095 处理。
 
 ## `ADC_ChannelConfTypeDef`
 
@@ -24,7 +36,11 @@
 |---|---|
 | `uint32_t Channel` | ADC 通道；C8 外部通道 0–9，内部通道 16/温度、17/VREFINT 仅 ADC1 可用。 |
 | `uint32_t Rank` | 规则组位置，ADC_REGULAR_RANK_1 至 ADC_REGULAR_RANK_16；同一 Rank 再配置将覆盖原通道；移除末尾 Rank 也可缩短 NbrOfConversion，不能只停止为该 Rank 调用配置函数。 |
-| `uint32_t SamplingTime` | 每通道采样周期取 1.5、7.5、13.5、28.5、41.5、55.5、71.5、239.5 个 ADC 时钟；总转换时间再加 12.5 周期。同一通道规则组和注入组共享采样时间。内部通道采样条件须按DS5319 Table12/51及RM§11.10确定：VREFINT采样5.1µs为典型栏值、17.1µs为Max栏值；温度采样RM推荐17.1µs，不能把通用HAL注释的约5–17.1µs直接当成统一保证最小值。 |
+| `uint32_t SamplingTime` | 采样窗口的 ADC 周期数；档位、内部通道条件见下方说明。 |
+
+### 采样时间与内部通道
+
+每通道采样周期取 1.5、7.5、13.5、28.5、41.5、55.5、71.5、239.5 个 ADC 时钟；总转换时间再加 12.5 周期。同一通道规则组和注入组共享采样时间。内部通道采样条件须按DS5319 Table12/51及RM§11.10确定：VREFINT采样5.1µs为典型栏值、17.1µs为Max栏值；温度采样RM推荐17.1µs，不能把通用HAL注释的约5–17.1µs直接当成统一保证最小值。
 
 ## `ADC_AnalogWDGConfTypeDef`
 
@@ -64,8 +80,12 @@
 | `uint32_t InjectedOffset` | 从注入原始转换结果减去的偏移，0–4095；减法结果可能为负。 |
 | `uint32_t InjectedNbrOfConversion` | 注入组序列长度，1–4；同组所有通道配置必须一致，长度改变会影响已有 Rank。 |
 | `FunctionalState InjectedDiscontinuousConvMode` | 注入组间断模式开关，每次触发固定推进一个 Rank；ScanConvMode 关闭时该字段被忽略；ContinuousConvMode 开启时原文规定忽略；自动注入时不得启用。此字段对整个注入组生效。 |
-| `FunctionalState AutoInjectedConv` | 规则序列结束后自动执行注入组；采用自动注入时关闭两组间断模式，注入触发设软件/独立外部触发关闭。UM1850 原说明称普通 DMA 完成会停止 JAUTO、要持续应使用循环 DMA；已核固定实现的 DMA 完成回调不直接清 JAUTO 或 ADON，不能当作 ADC 硬件自行停机保证。重复配置 AutoInjectedConv=DISABLE 也不保证清除已有 JAUTO，见配置契约。 |
+| `FunctionalState AutoInjectedConv` | 规则序列结束后的自动注入开关，配置与停止条件见下方说明。 |
 | `uint32_t ExternalTrigInjecConv` | 注入触发源：软件或 TIM1 TRGO/CC4、TIM2 TRGO/CC1、TIM3 CC4、TIM4 TRGO、EXTI15；仅上升沿。修改前关闭 ADC，否则 HAL 可能跳过该项而不报错。 |
+
+### 自动注入的配置与停止条件
+
+规则序列结束后自动执行注入组；采用自动注入时关闭两组间断模式，注入触发设软件/独立外部触发关闭。UM1850 原说明称普通 DMA 完成会停止 JAUTO、要持续应使用循环 DMA；已核固定实现的 DMA 完成回调不直接清 JAUTO 或 ADON，不能当作 ADC 硬件自行停机保证。重复配置 AutoInjectedConv=DISABLE 也不保证清除已有 JAUTO，见配置契约。
 
 ## `ADC_MultiModeTypeDef`
 
