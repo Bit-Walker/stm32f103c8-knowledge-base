@@ -41,7 +41,7 @@ DMA来源按真实文档与固定源码归并，18条支持范围分别使用唯
 - [SRC-RM0008-R21-DMA-CIRCULAR-BUFFER](RM0008.md#src-rm0008-r21-dma-circular-buffer)：循环重装、HT/TC标志及剩余计数的硬件基础
 - [SRC-RM0008-R21-DMA-ADC-CONTRACT](RM0008.md#src-rm0008-r21-dma-adc-contract)：规则序列逐项DR→DMA
 - [SRC-AN2548-R9-DMA-BUS-COMPETITION](AN2548.md#src-an2548-r9-dma-bus-competition)：主设备轮转、通道固定优先级、低优先级饿死、CPU同APB竞争
-- [SRC-AN2548-R9-DMA-SERVICE-TIMING](AN2548.md#src-an2548-r9-dma-service-timing)：tS=tA+tRD+tWR
+- [SRC-AN2548-R9-DMA-SERVICE-TIMING](AN2548.md#src-an2548-r9-dma-service-timing)： $`t_{\mathrm S}=t_{\mathrm A}+t_{\mathrm{RD}}+t_{\mathrm{WR}}`$ ，服务时间为仲裁/地址计算、读取、写入时间之和，单位均s
 - [SRC-AN2548-R9-DMA-RESOURCE-BUDGET](AN2548.md#src-an2548-r9-dma-resource-budget)：预计负载外50%余量，约三分之一能力保留
 - [SRC-RM0008-R21-DMA-TIM-BURST](RM0008.md#src-rm0008-r21-dma-tim-burst)：TIM1 DCR.DBA/DBL编码与DMAR地址重定向
 - [SRC-ES096-R15-DMA-GLOBAL-FLAG-ERRATUM](ES096.md#src-es096-r15-dma-global-flag-erratum)：活动通道清GIF与TE同周期会漏TEIF、禁用失败
