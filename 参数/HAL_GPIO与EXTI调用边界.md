@@ -17,19 +17,31 @@
 
 输入上拉路径先写 BSRR 置 ODR，输入下拉路径先写 BRR 清 ODR，然后更新 CRL/CRH。GPIO_InitTypeDef 没有初始输出电平字段，输出初始化路径不会代替应用设定目标 ODR。输出或复用输出时填写 Pull 不会自动启用内部上拉/下拉。
 
-头文件是全系列接口，掩码存在不证明引脚在 C8T6 封装引出。速度编码、特殊引脚和复用条件见[GPIO模式与寄存器](GPIO模式与寄存器.md)与[EXTI寄存器与路由](EXTI寄存器与路由.md)。官方驱动开头的“所有引脚都有 EXTI”、DAC 示例等通用描述不能覆盖 C8 的 PD0/PD1 等限制，也不能给 C8 添加 DAC。
+头文件是全系列接口，掩码存在不证明引脚在 C8T6 封装引出。速度编码、特殊引脚和复用条件见[GPIO模式与寄存器](GPIO模式与寄存器.md)与[EXTI寄存器与路由](EXTI寄存器与路由.md)。PD0/PD1 的 OSC 重映射不提供 EXTI 路径，需按实际引脚表选择输入来源。
 
 来源：[GPIO 头文件，字段、模式与宏](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Inc/stm32f1xx_hal_gpio.h#L35-L180)；[初始化实现](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_gpio.c#L170-L340)。
 
 ## 初始化与撤销 EXTI
 
+| 操作 | HAL_GPIO_Init 的 EXTI 分支 | 应用负责 |
+|---|---|---|
+| 时钟 | 启用 AFIO 时钟 | 先启用目标 GPIO 端口时钟 |
+| GPIO 与路由 | 配置输入模式、偏置及 EXTICR | 选择实际引脚并协调路由占用 |
+| 触发与路径 | 配置 RTSR、FTSR、EMR、IMR | 协调重配置窗口与其他使用者 |
+| 挂起状态 | 不清 EXTI_PR | 按切换场景处理遗留请求 |
+| NVIC | 不设置优先级或使能 | 配置优先级、使能及共享 IRQ 策略 |
+
+### 首次初始化和运行中切换
+
 应用先启用相应 GPIO 端口时钟。HAL_GPIO_Init 的 EXTI 分支启用 AFIO 时钟，配置 EXTICR 路由、RTSR/FTSR 边沿以及 EMR/IMR。该函数不清 EXTI_PR，也不配置 NVIC；应用须按实际切换场景协调屏蔽、旧挂起清理、优先级和使能。
 
 再次调用 HAL_GPIO_Init 改成普通输入或输出时，不进入 EXTI 分支。因此此调用本身不能证明旧路由、触发和屏蔽配置已经撤销。
 
+### 撤销配置
+
 HAL_GPIO_DeInit 仅在 EXTICR 当前端口选择匹配 GPIOx 时清该线的 EXTI 配置；随后仍将所选 GPIO 的 CRL/CRH 字段恢复为浮空输入并清相应 ODR。函数不清 PR，也不处理 NVIC。共享 IRQ 的关闭和其他使用者须由应用协调。
 
-以上为调用职责，不是声称函数必然有缺陷。端口重配置和共享寄存器更新也不构成整体原子事务。
+端口重配置涉及多次共享寄存器更新，整个过程需要应用协调并发访问。
 
 来源：[官方使用说明](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_gpio.c#L20-L100)；[Init 与 DeInit](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_gpio.c#L170-L415)。
 
@@ -45,7 +57,13 @@ IDR（Input Data Register，输入数据寄存器）反映输入路径；ODR（O
 
 ## 共享 EXTI 中断的掩码
 
-HAL_GPIO_EXTI_IRQHandler 的处理顺序为：检查 PR 与输入掩码是否非零；用原输入掩码清 PR；调用一次 HAL_GPIO_EXTI_Callback，并传递原输入掩码。
+HAL_GPIO_EXTI_IRQHandler 按以下顺序处理：
+
+1. 检查 PR 与输入掩码按位与的结果是否非零。
+2. 若非零，用原输入掩码清除 PR。
+3. 调用一次 HAL_GPIO_EXTI_Callback，传入原输入掩码。
+
+这条路径先清挂起，再执行用户回调。
 
 因此把 GPIO_PIN_5 与 GPIO_PIN_6 的组合一次传入，并不会自动获得两次单线回调，也不能由回调参数判定这两条线都曾挂起。共享 IRQ 可逐条用单线掩码分发；如果自行聚合，必须明确保存的挂起快照与新增边沿之间的时序。
 
