@@ -14,11 +14,17 @@
 
 ## 分频与周期条件
 
-[时基源文件 L70–106](https://github.com/STMicroelectronics/STM32CubeF1/blob/c7656f1fee178058be2f8ebfc8df9eaf91dc565e/Projects/STM32F103RB-Nucleo/Examples/HAL/HAL_TimeBase_TIM/Src/stm32f1xx_hal_timebase_tim.c#L70-L106)在 APB1 不分频时取 PCLK1，否则取 2×PCLK1；代码计算 PSC = floor(f_TIM / 1,000,000) − 1，ARR = 999。
+[时基源文件 L70–106](https://github.com/STMicroelectronics/STM32CubeF1/blob/c7656f1fee178058be2f8ebfc8df9eaf91dc565e/Projects/STM32F103RB-Nucleo/Examples/HAL/HAL_TimeBase_TIM/Src/stm32f1xx_hal_timebase_tim.c#L70-L106)在 APB1 不分频时取 $`f_{\mathrm{TIM}}=f_{\mathrm{PCLK1}}`$ ，否则取 $`f_{\mathrm{TIM}}=2f_{\mathrm{PCLK1}}`$ ；代码把 $`\left\lfloor\frac{f_{\mathrm{TIM}}}{1{,}000{,}000\,\mathrm{Hz}}\right\rfloor-1`$ 写入 `PSC`，并设置 `ARR = 999`。
 
-其中 f_TIM 为 TIM2 输入时钟，单位 Hz；PSC 为预分频寄存器编码，无量纲，实际除数为 PSC+1；ARR 为自动重装值，无量纲，向上计数周期包含 ARR+1 个计数时钟；floor 表示向下取整。
+其中 $`f_{\mathrm{TIM}}`$ 为 TIM2 输入时钟频率， $`f_{\mathrm{PCLK1}}`$ 为 APB1 时钟频率，单位均为 Hz；`PSC` 为预分频寄存器编码，无量纲，实际除数为 $`\mathrm{PSC}+1`$ ；`ARR` 为自动重装值，无量纲，向上计数周期包含 $`\mathrm{ARR}+1`$ 个计数时钟； $`\lfloor\cdot\rfloor`$ 表示向下取整。
 
-在该向上计数配置下，周期 T = (PSC+1)×(ARR+1)/f_TIM。T 的单位为秒，其余符号含义同上。要得到精确 1 ms，输入频率必须能按代码分频精确得到 1 MHz，且分频值在有效范围内。例如 f_TIM=72 MHz 时 PSC=71、ARR=999；f_TIM=8 MHz 时 PSC=7、ARR=999。此处是寄存器关系计算，不是板卡测量。
+在该向上计数配置下，周期为：
+
+```math
+T=\frac{(\mathrm{PSC}+1)(\mathrm{ARR}+1)}{f_{\mathrm{TIM}}}
+```
+
+$`T`$ 的单位为秒，其余符号含义同上。要得到精确 1 ms，输入频率必须能按代码分频精确得到 1 MHz，且分频值在有效范围内。例如 $`f_{\mathrm{TIM}}=72\,\mathrm{MHz}`$ 时 `PSC=71`、`ARR=999`； $`f_{\mathrm{TIM}}=8\,\mathrm{MHz}`$ 时 `PSC=7`、`ARR=999`。此处是寄存器关系计算，不是板卡测量。
 
 若输入不足 1 MHz，代码的无符号减法会产生下溢值；若不是 1 MHz 的整数倍，向下取整会使周期偏离 1 ms。原注释 L93 与实际 Period 赋值 L98 的表达不同，按 PSC 和 ARR 联合关系核查。硬件依据见[TIM 计数时基与更新](TIM/计数时基与更新.md)。
 

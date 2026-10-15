@@ -4,21 +4,57 @@
 
 ## 1 接口与计数单位
 
-|接口|主要参数|结果或通知|
-|---|---|---|
-|HAL_UARTEx_ReceiveToIdle|huart、pData、uint16_t Size、uint16_t *RxLen、uint32_t Timeout|阻塞接收，返回HAL_StatusTypeDef；RxLen记录已经写入缓冲的项数|
-|HAL_UARTEx_ReceiveToIdle_IT|huart、pData、uint16_t Size|启动中断接收，后续由RxEvent回调报告|
-|HAL_UARTEx_ReceiveToIdle_DMA|huart、pData、uint16_t Size|启动DMA接收，HT、TC和符合条件的IDLE均可能报告RxEvent|
-|HAL_UARTEx_GetRxEventType|huart|返回句柄中的HAL_UART_RxEventTypeTypeDef字段|
-|HAL_UARTEx_RxEventCallback|huart、uint16_t Size|默认弱回调，返回void；Size的事件含义见下表|
-|HAL_UART_RegisterRxEventCallback|huart、pUART_RxEventCallbackTypeDef pCallback|启用动态回调注册时，设置RxEvent回调，返回HAL_StatusTypeDef|
-|HAL_UART_UnRegisterRxEventCallback|huart|启用动态回调注册时恢复默认弱回调，返回HAL_StatusTypeDef|
+### 1.1 共用参数与使用约束
 
-huart为UART_HandleTypeDef指针，pData为uint8_t指针形式的数据区入口。Size和RxLen均按数据项计数。9位且无校验时，轮询/IT按uint16_t元素保存数据；其他所述帧格式按uint8_t元素保存，校验占位另按有效数据掩码处理。DMA的外设及内存宽度仍由关联DMA配置决定，指针的C类型不自动配置宽度；连续保存整段结果还需要MINC=1及相应容量、对齐。
+- **指针与计数。** `huart` 为 `UART_HandleTypeDef` 指针，`pData` 为 `uint8_t` 指针形式的数据区入口。`Size` 和 `RxLen` 均按数据项计数。
+- **数据项宽度。** 9 位且无校验时，轮询/IT 按 `uint16_t` 元素保存数据；其他所述帧格式按 `uint8_t` 元素保存，校验占位另按有效数据掩码处理。DMA 的外设及内存宽度仍由关联 DMA 配置决定，指针的 C 类型不自动配置宽度；连续保存整段结果还需要 `MINC=1` 及相应容量、对齐。
+- **超时。** `Timeout` 单位为 HAL 毫秒 tick；`HAL_MAX_DELAY` 代表不检查该有限超时条件。
+- **存储与生命周期。** `RxLen` 必须指向可写 `uint16_t` 存储；固定阻塞实现检查 `pData` 和 `Size`，但没有在解引用前检查 `RxLen` 是否为空。所有异步缓冲、句柄和关联 DMA 资源必须保持有效。
 
-Timeout单位为HAL毫秒tick；HAL_MAX_DELAY代表不检查该有限超时条件。RxLen必须指向可写uint16_t存储；固定阻塞实现检查pData和Size，但没有在解引用前检查RxLen是否为空。所有异步缓冲、句柄和关联DMA资源必须保持有效。
+### 1.2 启动接收
 
-来源：[接口声明，头文件L748–764](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/77fbb30b7a1d02533980400083e48c559aae5a4f/Inc/stm32f1xx_hal_uart.h#L748-L764)、[阻塞实现，L1591–1706](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/77fbb30b7a1d02533980400083e48c559aae5a4f/Src/stm32f1xx_hal_uart.c#L1591-L1706)。
+**`HAL_UARTEx_ReceiveToIdle`**
+
+- 参数：`huart`、`pData`、`uint16_t Size`、`uint16_t *RxLen`、`uint32_t Timeout`。
+- 结果：阻塞接收，返回 `HAL_StatusTypeDef`；`RxLen` 记录已经写入缓冲的项数。
+
+**`HAL_UARTEx_ReceiveToIdle_IT`**
+
+- 参数：`huart`、`pData`、`uint16_t Size`。
+- 结果与通知：返回 `HAL_StatusTypeDef`；启动中断接收，后续由 RxEvent 回调报告。
+
+**`HAL_UARTEx_ReceiveToIdle_DMA`**
+
+- 参数：`huart`、`pData`、`uint16_t Size`。
+- 结果与通知：返回 `HAL_StatusTypeDef`；启动 DMA 接收，HT、TC 和符合条件的 IDLE 均可能报告 RxEvent。
+
+### 1.3 查询事件与接收回调
+
+**`HAL_UARTEx_GetRxEventType`**
+
+- 参数：`huart`。
+- 结果：返回句柄中的 `HAL_UART_RxEventTypeTypeDef` 字段。
+
+**`HAL_UARTEx_RxEventCallback`**
+
+- 参数：`huart`、`uint16_t Size`。
+- 结果：默认弱回调，返回 `void`；`Size` 的事件含义见 §2 的事件表。
+
+### 1.4 动态注册回调
+
+以下两个接口均在启用动态回调注册时使用。
+
+**`HAL_UART_RegisterRxEventCallback`**
+
+- 参数：`huart`、`pUART_RxEventCallbackTypeDef pCallback`。
+- 结果：设置 RxEvent 回调，返回 `HAL_StatusTypeDef`。
+
+**`HAL_UART_UnRegisterRxEventCallback`**
+
+- 参数：`huart`。
+- 结果：恢复默认弱回调，返回 `HAL_StatusTypeDef`。
+
+来源：[接收回调声明，L784](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/77fbb30b7a1d02533980400083e48c559aae5a4f/Inc/stm32f1xx_hal_uart.h#L784)、[动态注册声明，L736–737](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/77fbb30b7a1d02533980400083e48c559aae5a4f/Inc/stm32f1xx_hal_uart.h#L736-L737)、[接口声明，头文件L748–764](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/77fbb30b7a1d02533980400083e48c559aae5a4f/Inc/stm32f1xx_hal_uart.h#L748-L764)、[阻塞实现，L1591–1706](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/77fbb30b7a1d02533980400083e48c559aae5a4f/Src/stm32f1xx_hal_uart.c#L1591-L1706)。
 
 ## 2 RxEvent 的 Size 是位置或累计进度
 
