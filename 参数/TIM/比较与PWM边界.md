@@ -6,19 +6,23 @@
 
 向上边沿对齐：
 
-`T_edge = (ARR + 1) / fCNT`
+$$
+T_{\mathrm{edge}}=\frac{\mathrm{ARR}+1}{f_{\mathrm{CNT}}}
+$$
 
 `D_edge = CCR / (ARR + 1)`，适用0≤CCR≤ARR。
 
-T_edge为完整周期，单位s；D_edge为OCxREF有效时间比例，无量纲；ARR和CCR分别为自动重装值及对应通道比较整数，无量纲，ARR>0；fCNT为预分频后的计数频率，单位Hz；edge表示边沿对齐。CCR>ARR时参考恒有效，CCR=ARR仍留一个无效计数节拍。C8的CCR也是16位；当ARR=65535时，已没有可写入的更大CCR，因此不能把“CCR>ARR恒有效”当作这个最大ARR配置下仍可实现的数值选项。
+$T_{\mathrm{edge}}$为完整周期，单位s；D_edge为OCxREF有效时间比例，无量纲；ARR和CCR分别为自动重装值及对应通道比较整数，无量纲，ARR>0；$f_{\mathrm{CNT}}$为预分频后的计数频率，单位Hz；edge表示边沿对齐。CCR>ARR时参考恒有效，CCR=ARR仍留一个无效计数节拍。C8的CCR也是16位；当ARR=65535时，已没有可写入的更大CCR，因此不能把“CCR>ARR恒有效”当作这个最大ARR配置下仍可实现的数值选项。
 
 向下边沿对齐（PWM1）：
 
-`T_down = (ARR + 1) / fCNT`
+$$
+T_{\mathrm{down}}=\frac{\mathrm{ARR}+1}{f_{\mathrm{CNT}}}
+$$
 
 `D_down = (CCR + 1) / (ARR + 1)`，适用0≤CCR≤ARR。
 
-T_down为完整向下计数周期，单位s；D_down为OCxREF有效时间比例，无量纲；down表示向下计数；ARR、CCR和fCNT的含义与单位同上。此式按RM0008的“CNT>CCR无效、其余有效”比较关系统计ARR→0共ARR+1个计数节拍得到。CCR=0仍有一个有效节拍，CCR=ARR或CCR>ARR均恒有效；手册明确说明这个模式不能仅靠CCR数值实现0%参考占空。该结论仍受本篇稳态条件限定。
+$T_{\mathrm{down}}$为完整向下计数周期，单位s；D_down为OCxREF有效时间比例，无量纲；down表示向下计数；ARR、CCR和$f_{\mathrm{CNT}}$的含义与单位同上。此式按RM0008的“CNT>CCR无效、其余有效”比较关系统计ARR→0共ARR+1个计数节拍得到。CCR=0仍有一个有效节拍，CCR=ARR或CCR>ARR均恒有效；手册明确说明这个模式不能仅靠CCR数值实现0%参考占空。该结论仍受本篇稳态条件限定。
 
 同一比较与计数条件下，PWM2的内部参考有效比例为`D_PWM2 = 1 − D_PWM1`。D_PWM1、D_PWM2分别为PWM1、PWM2内部OCxREF有效时间比例，无量纲；下标表示所选PWM模式，不表示主/互补引脚。向下计数时PWM2在CCR=0得到ARR/(ARR+1)，不能由这个数值设置得到100%；实际输出还须经过极性、使能及死区路径。
 
@@ -26,11 +30,13 @@ T_down为完整向下计数周期，单位s；D_down为OCxREF有效时间比例�
 
 中心对齐：
 
-`T_center = 2 × ARR / fCNT`
+$$
+T_{\mathrm{center}}=\frac{2\mathrm{ARR}}{f_{\mathrm{CNT}}}
+$$
 
 `D_center = CCR / ARR`，适用0≤CCR≤ARR。
 
-T_center为一次完整上、下往返周期，单位s；D_center为参考有效时间比例，无量纲；center表示中心对齐，其余符号与上式相同。ARR>0；CCR=0为恒无效，CCR=ARR及CCR>ARR为恒有效。该比例由手册比较规则和图85的稳定往返波形得到，不包含实际引脚的保护与驱动延迟。
+$T_{\mathrm{center}}$为一次完整上、下往返周期，单位s；D_center为参考有效时间比例，无量纲；center表示中心对齐，其余符号与上式相同。ARR>0；CCR=0为恒无效，CCR=ARR及CCR>ARR为恒有效。该比例由手册比较规则和图85的稳定往返波形得到，不包含实际引脚的保护与驱动延迟。
 
 同样ARR=8时，边沿周期是9个计数节拍，中心周期是16个；CCR=8分别对应8/9及1的参考占空。不得把两种模式都写成ARR+1个节拍，也不得把CCR=ARR在两种模式下都当成相同极限。
 
