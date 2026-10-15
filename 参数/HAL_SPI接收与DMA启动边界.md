@@ -1,12 +1,12 @@
 # HAL SPI 接收与 DMA 启动边界
 
-固定实现为 ST 官方 stm32f1xx-hal-driver 提交 `bd368aa335c529641d2e567574885e02deacc64a`。本文核查接收入口、双 DMA 启动及停止分支；不代表完整 SPI 手册，不包含编译或实机验收。
+固定实现为 ST 官方 stm32f1xx-hal-driver 提交 `bd368aa335c529641d2e567574885e02deacc64a`。本文核查 SPI（Serial Peripheral Interface，串行外设接口）的接收入口、双 DMA 启动及停止分支；不代表完整 SPI 手册，不包含编译或实机验收。
 
 硬件状态与正常收尾见[SPI 状态标志与停机边界](SPI状态标志与停机边界.md)，包含清标志副作用及 CRC 器件勘误。
 
 ## 主机双线接收会发送缓冲区内容
 
-在 `SPI_MODE_MASTER` 且 `SPI_DIRECTION_2LINES` 时，HAL_SPI_Receive 将状态置为 BUSY_RX，并调用 HAL_SPI_TransmitReceive，同一个 pData 同时作为发送与接收缓冲区。中断版 Receive_IT 和 DMA 版 Receive_DMA 使用相同的转交方式。
+在 `SPI_MODE_MASTER` 且 `SPI_DIRECTION_2LINES` 时，HAL_SPI_Receive 将状态置为 BUSY_RX，并调用 HAL_SPI_TransmitReceive，同一个 pData 同时作为发送与接收缓冲区。中断版 Receive_IT 和 DMA 版 Receive_DMA 使用相同的转交方式。本文中的 BUSY_RX、READY 等是 HAL 软件状态，不是线路测量结果。
 
 这条路径通过发送产生时钟，发送数据来源是传入的缓冲区，不是库自动填充的固定 0 或 0xFF。若从设备对占位字节有要求，应明确准备发送数据；需要独立控制收发内容时，可使用分离发送、接收缓冲区的收发接口，并按从设备协议设计事务。异步传输结束前须保持缓冲区有效，不能由 CPU 随意改写。
 
@@ -16,7 +16,7 @@
 
 ## Receive_DMA 在此分支需要两路 DMA
 
-主机双线 Receive_DMA 会转交 TransmitReceive_DMA，使用 hdmarx 和 hdmatx。不能因为 API 名称包含 Receive，就只配置接收 DMA。
+主机双线 Receive_DMA 会转交 TransmitReceive_DMA，使用 SPI 句柄关联的接收 DMA 句柄 hdmarx 和发送 DMA 句柄 hdmatx。不能因为 API 名称包含 Receive，就只配置接收 DMA。
 
 TransmitReceive_DMA 保留入口的 BUSY_RX 状态，并由此为接收 DMA 选择接收完成路径；普通收发调用则选择收发完成路径。发送 DMA 的半完成、完成、错误及中止回调被设为 NULL；事务关闭安排在接收完成路径。应用应正确关联句柄、DMA 通道、IRQ 分发及缓冲区，避免把发送 DMA 完成当作全部事务完成。
 
@@ -26,7 +26,7 @@ TransmitReceive_DMA 保留入口的 BUSY_RX 状态，并由此为接收 DMA 选�
 
 ## 启动失败可能留下部分状态
 
-该版本先启动接收 DMA，成功后打开 SPI 接收 DMA 请求，再启动发送 DMA。
+该版本先启动接收 DMA，成功后置位 SPI 接收 DMA 请求使能位 RXDMAEN，再启动发送 DMA。
 
 | 失败位置 | 该错误返回分支执行的动作 | 不能假定自动完成的动作 |
 |---|---|---|
@@ -41,17 +41,17 @@ TransmitReceive_DMA 保留入口的 BUSY_RX 状态，并由此为接收 DMA 选�
 
 ## DMAStop 的返回值与硬件状态分别核对
 
-HAL_SPI_DMAStop 对每个非空 Tx/Rx DMA 句柄调用阻塞 HAL_DMA_Abort。任一路失败会记录 SPI DMA 错误并令返回值为 HAL_ERROR；之后仍清除 SPI 的 Tx/Rx DMA 请求位，并设置 SPI READY。
+HAL_SPI_DMAStop 对每个非空 Tx/Rx DMA 句柄调用阻塞 HAL_DMA_Abort。任一路失败会记录 SPI DMA 错误并令返回值为 HAL_ERROR；之后仍清除 SPI 的发送／接收 DMA 请求使能位 TXDMAEN／RXDMAEN，并设置 SPI READY。
 
 匹配 HAL_DMA_Abort 仅在 DMA BUSY 路径关闭中断和通道、清标志并恢复 READY；非 BUSY 路径设置 NO_XFER、解锁并返回 HAL_ERROR。该阻塞函数不调用传输完成或中止回调。SPI DMAStop 开头有关 DMA Abort 生成完成回调的注释，不能替代这份实际实现。HAL_DMA_Abort_IT 是另一个接口，在其 BUSY 路径会调用非空中止回调。
 
-DMAStop 本身不关闭 SPI、不清传输计数、不清 OVR，也不等待 BSY。因此返回 ERROR 不等于完全未清理，SPI READY 也不等于线路已结束。外设剩余数据、片选和从设备协议状态须另外核对，不能把这个函数当作无条件恢复整笔事务的保证。
+DMAStop 本身不关闭 SPI、不清传输计数、不清接收溢出标志 OVR（Overrun），也不等待忙状态标志 BSY（Busy）。因此返回 ERROR 不等于完全未清理，SPI READY 也不等于线路已结束。外设剩余数据、片选和从设备协议状态须另外核对，不能把这个函数当作无条件恢复整笔事务的保证。
 
 来源：[SPI DMAStop](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_spi.c#L2401-L2435)、[阻塞与中断 DMA Abort](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_dma.c#L415-L491)。
 
 ## Pause / Resume 操作与在途数据
 
-固定版本的 HAL_SPI_DMAPause 在锁宏之后清除 CR2 中的 TXDMAEN、RXDMAEN，随后解锁。函数体不等待 TXE/BSY、不禁用 SPI、不调用 HAL_DMA_Abort，也不清传输计数或修改 SPI 句柄 State。暂停 DMA 请求不能据此解释成在途数据、移位过程或外部时钟均已停止。
+固定版本的 HAL_SPI_DMAPause 在锁宏之后清除控制寄存器 2（CR2，Control Register 2）中的 TXDMAEN、RXDMAEN，随后解锁。函数体不等待 TXE/BSY、不禁用 SPI、不调用 HAL_DMA_Abort，也不清传输计数或修改 SPI 句柄 State。暂停 DMA 请求不能据此解释成在途数据、移位过程或外部时钟均已停止。
 
 HAL_SPI_DMAResume 在锁宏之后同时设置 TXDMAEN、RXDMAEN。它没有保存暂停前的请求使能掩码，也未按 Direction、State 或关联 DMA 句柄是否存在选择单一方向；因而不能假定它只恢复暂停前开启的那一路请求。
 
@@ -136,11 +136,8 @@ Tx 子回调等待 TXE；Rx 子回调禁用 SPI 后调用 EndRxTxTransaction 检
 
 来源：[SPI Abort_IT L2203–2353](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_spi.c#L2203-L2353)、[匹配 DMA Abort_IT L456–491](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_dma.c#L456-L491)、[SPI DMA 中止回调 L3075–3185](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_spi.c#L3075-L3185)。
 
-## 术语与来源身份
+<a id="术语与来源身份"></a>
 
-- SPI：Serial Peripheral Interface，串行外设接口。
-- DR：Data Register，数据寄存器；CR2：Control Register 2，控制寄存器 2。
-- RXDMAEN / TXDMAEN：接收／发送 DMA 请求使能位；OVR：Overrun，接收溢出；BSY：Busy，忙状态标志。
-- hdmarx / hdmatx：SPI 句柄关联的接收／发送 DMA 句柄；BUSY_RX、BUSY_TX_RX、READY 是 HAL 软件状态，不是线路测量结果。
+## 来源身份
 
 Git blob：SPI C 文件 `d1c741075bc63718c9032bab7fd9eb23cc4a880b`；DMA C 文件 `80b65a4f0eb72ab673bf03b47ec2d45b0856a120`。所有源码链接固定到同一提交，避免将不同版本的启动与清理行为拼接。
