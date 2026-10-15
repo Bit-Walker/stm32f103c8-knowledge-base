@@ -252,13 +252,11 @@
 
 ## 硬件与条件编译边界
 
-- 软件状态名不能替代实际硬件检测。采样丢失须结合触发、数据搬运与消费时序判断。
 - USE_HAL_ADC_REGISTER_CALLBACKS==1时的七个回调ID、七个附加句柄字段及HAL_ADC_ERROR_INVALID_CALLBACK见[HAL配置字段](HAL配置字段.md)。
 - 配置结构没有ExternalTrigConvEdge、ExternalTrigInjecConvEdge等其他系列字段；头文件触发边沿符号存在不意味着这些字段存在。
-- HAL软件State、硬件SR、DMA完成标志和数据缓冲区有效性分别核对。
 
 ## 状态与配置解释边界
 
-State 为可组合的软件位图，ErrorCode 是另一字段；不能仅按 READY、REG_EOC 或 INJ_EOC 的名称推出硬件状态和数据新鲜性。具体轮询分支及估算宏的通道 8/9 掩码缺口见[轮询实现契约](HAL轮询边界.md)。
+State 为可组合的软件位图，ErrorCode 是另一字段。HAL 软件 State、硬件 SR、DMA 完成标志和数据缓冲区有效性须分别核对，不能仅按 READY、REG_EOC 或 INJ_EOC 的名称推出硬件状态和数据新鲜性。采样丢失还须结合触发、数据搬运与消费时序判断。
 
-本页按实际用途收录符号；回调注册条件、附加句柄字段及 INVALID_CALLBACK 错误见[HAL 配置字段](HAL配置字段.md)。
+具体轮询分支及估算宏的通道 8/9 掩码缺口见[轮询实现契约](HAL轮询边界.md)。

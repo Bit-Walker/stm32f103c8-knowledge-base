@@ -16,6 +16,7 @@ C8 的 ADC 模拟供电 VDDA 工作范围为 2.4–3.6 V，输入范围为 VREF�
 - 通道采样时间属于物理通道；规则组最后一次配置会影响注入组的同通道，反之亦然。注入偏移按注入 Rank 配置，值为 0–4095，结果可为负。
 - 规则连续转换与间断模式互斥；自动注入与两组间断模式不兼容。注入间断固定每次触发一个 Rank，规则间断每次触发 1–8 个 Rank。
 - 外部触发只支持上升沿。选择触发源与开放触发是不同步骤。普通软件启动函数不能当成外部触发开放函数使用。
+- 触发编码按 ADC1/ADC2 的实际路由选择；原文还覆盖其他密度器件。TIM2/3/4 即使存在，也不能套用 ADC3 专用触发连线。
 - 规则组多通道扫描优先使用 DMA；转换完成中断不能保证逐一取回整个序列。UM1850 只说扫描轮询改用“最大转换时间”等待，不能扩写成保证等待整个序列结束。所核对 HAL 实现的估算分支不逐 Rank 检查完成，也不确认外部触发已发生；扫描加单 Rank 间断可限制硬件每次转换数量，但仍不能使此 HAL 分支自动变成 EOC 轮询。具体条件见[规则组轮询接口](HAL轮询边界.md)。DMA 读取 DR 会清 EOC，因此不能让轮询与 DMA 竞争同一结束标志。
 - 改序列、触发源、双模式和注入组公共属性前先停止转换；公共模式变化前停止 ADC1 与 ADC2。HAL 某些在线更新会跳过不允许修改的字段，不报错并不代表所有字段已经改变。
 - ADC1/ADC2 共用中断向量；两个实例都在使用时，IRQ 应对相应句柄分别分发。DMA IRQ 应调用 HAL_DMA_IRQHandler，而不是把 ADC IRQ 处理函数填入 DMA 向量。原文该处为明显笔误。
@@ -220,8 +221,6 @@ __STATIC_INLINE void LL_ADC_REG_SetTriggerSource (ADC_TypeDef * ADCx, uint32_t T
 
 返回：无返回值。
 
-原文另列 `LL_ADC_REG_TRIG_EXT_TIM8_TRGO`、`LL_ADC_REG_TRIG_EXT_TIM8_TRGO_ADC3`、`LL_ADC_REG_TRIG_EXT_TIM3_CH1`、`LL_ADC_REG_TRIG_EXT_TIM2_CH3`、`LL_ADC_REG_TRIG_EXT_TIM8_CH1`、`LL_ADC_REG_TRIG_EXT_TIM5_CH1`、`LL_ADC_REG_TRIG_EXT_TIM5_CH3`；它们属于其它密度器件的 TIM8 或 ADC3/TIM5 路由，不是 C8 的 ADC1/ADC2 可选事件。TIM2/3/4 即使存在，也不能把 ADC3 专用触发连线套给 ADC1/ADC2。
-
 #### `LL_ADC_REG_GetTriggerSource`
 
 [固定实现](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Inc/stm32f1xx_ll_adc.h#L1861)
@@ -234,9 +233,6 @@ __STATIC_INLINE uint32_t LL_ADC_REG_GetTriggerSource (ADC_TypeDef * ADCx);
 
 
 返回：uint32_t，返回编码：`LL_ADC_REG_TRIG_SOFTWARE`、`LL_ADC_REG_TRIG_EXT_TIM1_CH3`、`LL_ADC_REG_TRIG_EXT_TIM1_CH1`、`LL_ADC_REG_TRIG_EXT_TIM1_CH2`、`LL_ADC_REG_TRIG_EXT_TIM2_CH2`、`LL_ADC_REG_TRIG_EXT_TIM3_TRGO`、`LL_ADC_REG_TRIG_EXT_TIM4_CH4`、`LL_ADC_REG_TRIG_EXT_EXTI_LINE11`。
-
-
-原文另列 `LL_ADC_REG_TRIG_EXT_TIM8_TRGO`、`LL_ADC_REG_TRIG_EXT_TIM8_TRGO_ADC3`、`LL_ADC_REG_TRIG_EXT_TIM3_CH1`、`LL_ADC_REG_TRIG_EXT_TIM2_CH3`、`LL_ADC_REG_TRIG_EXT_TIM8_CH1`、`LL_ADC_REG_TRIG_EXT_TIM5_CH1`、`LL_ADC_REG_TRIG_EXT_TIM5_CH3`；它们属于其它密度器件的 TIM8 或 ADC3/TIM5 路由，不是 C8 的 ADC1/ADC2 可选事件。TIM2/3/4 即使存在，也不能把 ADC3 专用触发连线套给 ADC1/ADC2。
 
 #### `LL_ADC_REG_IsTriggerSourceSWStart`
 
@@ -436,8 +432,6 @@ __STATIC_INLINE void LL_ADC_INJ_SetTriggerSource (ADC_TypeDef * ADCx, uint32_t T
 
 返回：无返回值。
 
-原文另列 `LL_ADC_INJ_TRIG_EXT_TIM8_CH4`、`LL_ADC_INJ_TRIG_EXT_TIM8_CH4_ADC3`、`LL_ADC_INJ_TRIG_EXT_TIM4_CH3`、`LL_ADC_INJ_TRIG_EXT_TIM8_CH2`、`LL_ADC_INJ_TRIG_EXT_TIM5_TRGO`、`LL_ADC_INJ_TRIG_EXT_TIM5_CH4`；它们属于其它密度器件的 TIM8 或 ADC3/TIM5 路由，不是 C8 的 ADC1/ADC2 可选事件。TIM2/3/4 即使存在，也不能把 ADC3 专用触发连线套给 ADC1/ADC2。
-
 #### `LL_ADC_INJ_GetTriggerSource`
 
 [固定实现](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Inc/stm32f1xx_ll_adc.h#L2421)
@@ -450,9 +444,6 @@ __STATIC_INLINE uint32_t LL_ADC_INJ_GetTriggerSource (ADC_TypeDef * ADCx);
 
 
 返回：uint32_t，返回编码：`LL_ADC_INJ_TRIG_SOFTWARE`、`LL_ADC_INJ_TRIG_EXT_TIM1_TRGO`、`LL_ADC_INJ_TRIG_EXT_TIM1_CH4`、`LL_ADC_INJ_TRIG_EXT_TIM2_TRGO`、`LL_ADC_INJ_TRIG_EXT_TIM2_CH1`、`LL_ADC_INJ_TRIG_EXT_TIM3_CH4`、`LL_ADC_INJ_TRIG_EXT_TIM4_TRGO`、`LL_ADC_INJ_TRIG_EXT_EXTI_LINE15`。
-
-
-原文另列 `LL_ADC_INJ_TRIG_EXT_TIM8_CH4`、`LL_ADC_INJ_TRIG_EXT_TIM8_CH4_ADC3`、`LL_ADC_INJ_TRIG_EXT_TIM4_CH3`、`LL_ADC_INJ_TRIG_EXT_TIM8_CH2`、`LL_ADC_INJ_TRIG_EXT_TIM5_TRGO`、`LL_ADC_INJ_TRIG_EXT_TIM5_CH4`；它们属于其它密度器件的 TIM8 或 ADC3/TIM5 路由，不是 C8 的 ADC1/ADC2 可选事件。TIM2/3/4 即使存在，也不能把 ADC3 专用触发连线套给 ADC1/ADC2。
 
 #### `LL_ADC_INJ_IsTriggerSourceSWStart`
 
