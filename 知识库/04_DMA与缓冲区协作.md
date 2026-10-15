@@ -100,9 +100,9 @@ CPU 的中断响应、排队和实际处理总时间都要计入这段预算；H
 
 $t_{\mathrm{S}}$、$t_{\mathrm{TS}}$ 分别为单次/连续总服务时间，$t_{\mathrm{A}}$ 为仲裁与地址计算、$t_{\mathrm{RD}}$ 为源读取、$t_{\mathrm{WR}}$ 为目的写入、$t_{\mathrm{Ack}}$ 为附加握手，全部单位 s；下标 S/TS 表示 service/total service（服务/含握手的总服务），A 表示 arbitration（仲裁），RD/WR 表示 read/write（读/写），Ack 表示 acknowledge（应答）。AHB 和 APB 周期必须按各自频率换算；原文给出的理想下限不是满负载最坏值。C8 的 ADC1 经 APB2，不能套其他系列 AHB ADC 的周期数。[AN2548 Rev 9，§5.1 DMA transfer timing; §5.1.1 AHB peripheral and system volatile memory; §5.1.2 APB peripheral and system volatile memory; §5.2 Total service time and parallelism; §5.4 Impact of APB; §7 DMA overview](https://www.st.com/resource/en/application_note/an2548-introduction-to-dma-controller-for-stm32-mcus-stmicroelectronics.pdf#page=7)
 
-![AN2548图3两通道阶段交叠的自主整理](../assets/dma/dma_channel_overlap_source_comparison.svg)
+![AN2548 Rev9 Figure3：两通道阶段交叠原图](../assets/manual/an2548-r9/p8-fig3.png)
 
-依据AN2548 Rev9 p8 Figure3自主整理，保留两上行服务块、一下行服务块及相对格线。首次交叠覆盖上行末一访问格与Ack，后续交叠位于下行末两访问格；原正文措辞另列，图中格数不是F103确定时序保证。具体关系见[图关系与来源](../参数/DMA图关系与来源.md#两通道阶段交叠)。
+原图裁自AN2548 Rev9，印刷p8/PDF第8页Figure3（DT49500V1），保留两个上行服务块、一个下行服务块及原有时钟格线。§5.2正文称另一通道仲裁可与前一通道AHB访问的末尾两个周期重叠；图中首次交叠覆盖上行末一访问格与Ack，第二次交叠则位于下行末两访问格。此处分别保留文字与图示，不把差异定性为ST正式勘误，也不据图中格数保证F103精确时序。原图没有t0…t15标签；[图关系与来源](../参数/DMA图关系与来源.md#两通道阶段交叠)中的相对格线编号仅为读图辅助。
 
 对无额外接收缓冲、等间隔请求且每次请求对应一次数据更新的模型，可用 $t_{\mathrm{complete,worst}}<T_{\mathrm{request}}=1/R_{\mathrm{request}}$ 作为保守的充分服务预算条件。
 
