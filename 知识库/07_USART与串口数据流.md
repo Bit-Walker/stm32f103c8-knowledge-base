@@ -59,7 +59,23 @@ HAL接口按异步UART、同步USART及Smartcard/IrDA专用模块分别保存固
 - [LL接口及结构索引](../参数/USART/LL接口与配置符号.md)：C8可用分支、字段与符号、寄存器对应关系
 - [LL初始化和模式边界](../参数/USART/LL初始化与模式边界.md)：UE前提、部分写入、BRR截断、模式清置掩码及保留字段
 
-## 4 需要一起保存的事实
+- [1 实例、时钟与DMA资源](#1-实例时钟与dma资源)
+- [2 硬件与参数](#2-硬件与参数)
+- [3 固定HAL与LL接口](#3-固定hal与ll接口)
+- [4 数据格式与传输边界](#4-数据格式与传输边界)
+
+### Smartcard 与 IrDA 专用驱动
+
+- [数据宽度与初始化](../参数/USART/Smartcard与IrDA数据宽度及初始化.md)：两版CPU访问差异、参数校验与重初始化边界
+- [DMA启动、完成与错误边界](../参数/USART/Smartcard与IrDA_DMA边界.md)：RX错误方向的句柄访问、启动返回值、循环模式差异及回调资源条件
+
+- [Smartcard与IrDA HAL接口索引](../参数/USART/Smartcard与IrDA_HAL接口索引.md)：60个不同接口名称、两版120条声明的原型/定义位置和回调条件；单列ReInit声明与实现差异
+
+- [Smartcard与IrDA配置、句柄及宏](../参数/USART/Smartcard与IrDA配置字段及宏.md)：Init/句柄字段、状态与回调ID、配置编码、PSC时钟来源、标志读取/清除和中断使能宏边界
+
+<a id="4-需要一起保存的事实"></a>
+
+## 4 数据格式与传输边界
 
 - 有效数据位数由M与PCE共同决定。常见8E1/8O1在F1对应9位字长加校验；代码中的WordLength不能直接当有效载荷位数。
 - DMA完成、TDR空、线路发送结束、HAL句柄READY分别回答不同问题，不能把其中一项替代全部事务收尾。
@@ -79,12 +95,3 @@ HAL接口按异步UART、同步USART及Smartcard/IrDA专用模块分别保存固
 - [固定驱动来源](../来源/驱动实现.md#src-usart-fixed-safety-boundaries)
 
 接口名称、原型和固定函数体核查只证明相应静态内容。本文没有新增固件执行或板端测试；所记载的历史模型结果仅限原来注明的范围，未穷尽中断抢占、编译选项、用户MSP与实际电气条件。
-
-### Smartcard 与 IrDA 专用驱动
-
-- [数据宽度与初始化](../参数/USART/Smartcard与IrDA数据宽度及初始化.md)：两版CPU访问差异、参数校验与重初始化边界
-- [DMA启动、完成与错误边界](../参数/USART/Smartcard与IrDA_DMA边界.md)：RX错误方向的句柄访问、启动返回值、循环模式差异及回调资源条件
-
-- [Smartcard与IrDA HAL接口索引](../参数/USART/Smartcard与IrDA_HAL接口索引.md)：60个不同接口名称、两版120条声明的原型/定义位置和回调条件；单列ReInit声明与实现差异
-
-- [Smartcard与IrDA配置、句柄及宏](../参数/USART/Smartcard与IrDA配置字段及宏.md)：Init/句柄字段、状态与回调ID、配置编码、PSC时钟来源、标志读取/清除和中断使能宏边界

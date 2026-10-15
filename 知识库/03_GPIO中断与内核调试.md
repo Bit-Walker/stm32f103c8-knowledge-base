@@ -6,7 +6,18 @@
 
 依据为 RM0008 Rev21、PM0056 Rev7、DS5319 Rev20、ES096 Rev15 及 UM1850 Rev3；原图收录情况见[图表关系与覆盖范围](../参数/图表关系与覆盖范围.md)。
 
-## 1 GPIO配置必须同时看模式和数据通路
+- [1 GPIO 模式与数据通路](#1-gpio-模式与数据通路)
+- [2 AFIO 映射与复用冲突](#2-afio-映射与复用冲突)
+- [3 EXTI 路由与挂起处理](#3-exti-路由与挂起处理)
+- [4 NVIC 优先级与临界区](#4-nvic-优先级与临界区)
+- [5 SysTick 配置与访问副作用](#5-systick-配置与访问副作用)
+- [6 故障现场记录与清除](#6-故障现场记录与清除)
+- [7 调试连接与观察副作用](#7-调试连接与观察副作用)
+- [8 分层故障排查](#8-分层故障排查)
+
+<a id="1-gpio配置必须同时看模式和数据通路"></a>
+
+## 1 GPIO 模式与数据通路
 
 GPIO（通用输入/输出）的模式与速度由 MODE、CNF 字段控制。下文无前缀的成组 0/1 编码按二进制读，0x 前缀表示十六进制；同名字段应连同寄存器前缀检索。
 
@@ -53,7 +64,9 @@ LCKR锁定的是选中引脚的CRL/CRH配置，不锁ODR。固定低16位掩码�
 
 HAL 接入细节见[GPIO 与 EXTI 调用边界](../参数/HAL_GPIO与EXTI调用边界.md)。固定版本 HAL_GPIO_Init 不清 EXTI 挂起、不配置 NVIC；共享 IRQ 的 HAL 处理函数也不会自动把复合掩码逐位分发。
 
-## 2 AFIO重映射与内部复用冲突要分开检查
+<a id="2-afio重映射与内部复用冲突要分开检查"></a>
+
+## 2 AFIO 映射与复用冲突
 
 全部外设角色、重映射与AFIO字段见[引脚复用与AFIO](../参数/引脚复用与AFIO.md)；十条内部复用冲突完整条件见[GPIO内部复用冲突](../参数/GPIO内部复用冲突.md)。
 
@@ -78,7 +91,9 @@ AFIO_MAPR的SWJ_CFG只写且读值未定义。普通整字读改写可能破坏�
 
 这些是选定风险，全部条件见[ES096 §2.3.1–§2.3.10](../来源/ES096.md#src-es096-r15-gpio-conflicts)。USART1_RTS/CAN冲突的专门规避中，ES096允许在CAN不用时用CAN_REMAP=01这一未用配置；它不是一般CAN功能映射的合法选项，也不授权其他“保留编码试一试”。PA9条款还存在标题/正文表述差异，且原修订矩阵漏列，不能自补“所有版本已修复/未修复”的结论，见[ES096 §2.3.1–§2.3.10](../来源/ES096.md#src-es096-r15-gpio-conflicts)。
 
-## 3 EXTI的路由 屏蔽和挂起不是同一层
+<a id="3-exti的路由-屏蔽和挂起不是同一层"></a>
+
+## 3 EXTI 路由与挂起处理
 
 [EXTI寄存器与路由](../参数/EXTI寄存器与路由.md)保留六寄存器、边沿写入窗口与19条线边界；[C8完整外部向量表](../参数/C8外部向量表.md)保留IRQ0～42。
 
@@ -100,7 +115,9 @@ EXTI_PR为写1清，直接写要清的掩码；PR读改写会把读到的其他1
 
 低功耗还必须叠加ES096：PVD和USB Wakeup不能走WFE事件唤醒，WFE前中断也有事件寄存器竞态。实际入口与清理顺序见[时钟复位与低功耗](https://github.com/Bit-Walker/stm32f103c8-knowledge-base/blob/main/知识库/02_时钟复位与低功耗.md#4-低功耗选择由状态保持和唤醒源决定)，不能仅凭通用EXTI图决定可用唤醒方案。
 
-## 4 NVIC优先级必须贯通到临界区
+<a id="4-nvic优先级必须贯通到临界区"></a>
+
+## 4 NVIC 优先级与临界区
 
 相关字段布局与参数见[内核寄存器参数](../参数/内核寄存器参数.md)及[异常与屏蔽参数](../参数/异常与屏蔽参数.md)。
 
@@ -143,7 +160,9 @@ BASEPRI写值要按寄存器编码，阈值子优先级部分宜为0。volatile�
 
 异常入口最低位要为1以指示Thumb。AIRCR写分组/复位还必须带0x05FA钥匙，不能将读回的0xFA05用普通读改写送回。依据：[PM0056 §2.3.4；§4.3.10；§4.4.4](../来源/PM0056.md#src-pm0056-r7-vtor)；[PM0056 §2.2.4；§3.9.3–3.9.5](../来源/PM0056.md#src-pm0056-r7-barriers)；[ARM DDI0403E.b §B1.5.3 The vector table，pB1-581,B1-582](../来源/Arm_DDI0403Eb.md#src-armv7m-eb-vector)、[PM0056 §2.3.5–2.3.6；§4.3.7；§4.4.5](../来源/PM0056.md#src-pm0056-r7-priority)；[stm32f1xx_hal_cortex.h 对应来源副本行号](../来源/驱动实现.md#src-hal-cortex-group-snapshot)。
 
-## 5 SysTick既是时基也是有副作用的寄存器
+<a id="5-systick既是时基也是有副作用的寄存器"></a>
+
+## 5 SysTick 配置与访问副作用
 
 [SysTick接口参数](../参数/SysTick接口参数.md)保留UM1850参数文字与固定CMSIS实现差异。
 
@@ -187,7 +206,9 @@ SysTick与故障观察的访问副作用不能混用：
 
 实现边界：与官方commit 77fbb30b7a1d02533980400083e48c559aae5a4f逐字节相同的HAL Cortex C文件中，HAL_SYSTICK_CLKSourceConfig读改写CTRL；结合上表可推得调用会消耗COUNTFLAG。这是[固定HAL Cortex C实现](../来源/驱动实现.md#src-hal-cortex-snapshot)与寄存器语义的推导，不是所有HAL版本已逐版证明。修改时钟源后也要重新核对LOAD与期望周期。
 
-## 6 故障现场先取证 再决定是否清除
+<a id="6-故障现场先取证-再决定是否清除"></a>
+
+## 6 故障现场记录与清除
 
 异常硬件帧保存R0～R3、R12、LR、PC、xPSR共8字，R4～R11不在其中。Handler使用MSP，但被中断线程的帧可能在PSP；用入口LR的EXC_RETURN判断：0xFFFFFFF1返回Handler/MSP，0xFFFFFFF9返回Thread/MSP，0xFFFFFFFD返回Thread/PSP。还要考虑对齐填充与入栈故障，不能一律拿当前C函数SP当原始帧。依据：[PM0056 §2.1.1–2.1.3；§2.3.7](../来源/PM0056.md#src-pm0056-r7-exception-frame)。
 
@@ -206,7 +227,9 @@ SysTick与故障观察的访问副作用不能混用：
 记录CFSR、HFSR、SHCSR、栈选择和可验证帧后再清状态。CFSR/HFSR相关故障位正常读取、写1清，不能当读清，也不能普通写0清零；写HFSR只针对目标故障位，DEBUG_VT及保留位保持0。C8无可编程MPU、无硬件浮点协处理器，但仍有固定执行/特权限制；NOCP或MemManage字段不证明相应硬件存在。依据：[PM0056 §2.4；§4.4.9–4.4.14](../来源/PM0056.md#src-pm0056-r7-fault-evidence)；[Arm Cortex-M3 TRM DDI0337E §8.2.2 NVIC register descriptions / Configurable Fault Status Registers](../来源/Arm_DDI0337E.md#src-arm-cm3-r1p1-fault-w1c)；[stm32f103xb.h 对应来源副本行号](../来源/驱动实现.md#src-stm32f103xb-core)、[PM0056 §2.4；§4.4.9–4.4.14](../来源/PM0056.md#src-pm0056-r7-fault-evidence)。
 
 
-## 7 调试应保留恢复入口 并承认观察会改变系统
+<a id="7-调试应保留恢复入口-并承认观察会改变系统"></a>
+
+## 7 调试连接与观察副作用
 
 调试引脚、ID、传输、跟踪及冻结字段见[调试寄存器与协议](../参数/调试寄存器与协议.md)。
 
@@ -226,7 +249,9 @@ DBGMCU_IDCODE/CR的脱机CPU访问受C8勘误限制，读0不能诊断成芯片�
 
 若开发的是调试探针，还需遵守SWD的posted AP读、RDBUFF取末次结果、WAIT/FAULT条件性数据阶段、至少两个写后空闲时钟及上电ACK确认；总线事务OK不等于电源域已经就绪。Park位在原RM与后续ADIv5规范有差异，直接沿用已核查[RM0008 §31.8.1–§31.8.5](../来源/RM0008.md#src-rm0008-r21-swd-protocol)；[IHI0031A §5.2–§5.4.5](../来源/IHI0031A.md#src-ihi0031a-swd-protocol)；[IHI0031D §B4.2，pB4-110](../来源/IHI0031D.md#src-ihi0031d-swd-park)；[IHI0031A §3.4.1–§3.4.2](../来源/IHI0031A.md#src-ihi0031a-power-ack)的版本辨析，不能自行拼接不同规范的时序。
 
-## 8 按故障层次缩小定位范围
+<a id="8-按故障层次缩小定位范围"></a>
+
+## 8 分层故障排查
 
 [硅修订矩阵](../参数/硅修订矩阵.md)保留ES096 Tables1–4对应状态与缺项。
 

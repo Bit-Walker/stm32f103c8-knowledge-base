@@ -46,7 +46,16 @@ HAL 的 Init 不是安全终止旧传输的接口，Start/Start_IT 的返回也�
 
 [Poll超时557–570行](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_dma.c#L557-L570)只改变错误码/软件状态并解锁，READY、HAL_OK 和硬件静止是三个不同判断；应按固定驱动版本检查实际停止路径。[stm32f1xx_hal_dma.c @ bd368aa335c529641d2e567574885e02deacc64a](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_dma.c)
 
-## 3 半缓冲通知意味着有限的处理窗口
+- [1 DMA1资源、通道和数据项](#1-dma1资源通道和数据项)
+- [2 启停与HAL生命周期](#2-启停与hal生命周期)
+- [3 循环 DMA 与半缓冲处理](#3-循环-dma-与半缓冲处理)
+- [4 吞吐量与最坏服务延迟](#4-吞吐量与最坏服务延迟)
+- [5 ADC 与定时器 DMA](#5-adc-与定时器-dma)
+- [6 错误状态与所有权恢复](#6-错误状态与所有权恢复)
+
+<a id="3-半缓冲通知意味着有限的处理窗口"></a>
+
+## 3 循环 DMA 与半缓冲处理
 
 以下前后半区模型要求 MINC=1、正偶数长度 N，且缓冲区按对应 MSIZE 连续排列。循环 DMA 自动重装计数和内部地址。对外设→存储器的循环接收，HT 表示前半区已经填好，TC 表示后半区已经填好；DMA 随即写另一半，绝不是整块数组停止变化。
 
@@ -105,7 +114,9 @@ $t_{\mathrm{complete,worst}}$ 从请求发生起计至该数据项的目的写�
 
 AN2548 建议服务能力达到预计同口径负载的 1.5 倍，但平均余量不证明上述时限。72 MHz TIM 时钟也不意味着 APB 搬运频率翻倍。[AN2548 Rev 9，§6 Insufficient resources threats](https://www.st.com/resource/en/application_note/an2548-introduction-to-dma-controller-for-stm32-mcus-stmicroelectronics.pdf#page=10)
 
-## 5 ADC 与定时器的两种特殊契约
+<a id="5-adc-与定时器的两种特殊契约"></a>
+
+## 5 ADC 与定时器 DMA
 
 ### 5.1 ADC 数据项与组合字
 
