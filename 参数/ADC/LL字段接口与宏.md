@@ -914,7 +914,7 @@ __STATIC_INLINE uint32_t LL_ADC_REG_ReadMultiConversionData32 (ADC_TypeDef * ADC
 
 按 UM1850 原接口契约返回：`uint32_t`，MASTER/SLAVE 选择相应 ADC 的数据，MASTER_SLAVE 返回 ADC1 低半字、ADC2 高半字的组合字，原文给定容器范围 0x00000000–0xFFFFFFFF。可用 __LL_ADC_MULTI_CONV_DATA_MASTER_SLAVE 从组合字再取主/从数据；ADCx 应取主 ADC1 公共入口。
 
-**组合数据有效条件：**按 RM0008 §11.9，通过 ADC1_DR 读取主从组合结果时，必须置 ADC1_CR2.DMA=1，即使采用 CPU 轮询读取而未使用 DMA 控制器也一样；否则不能把高 16 位当作有效 ADC2 结果。该位条件与是否启用 DMA1 通道是不同概念。
+**组合数据有效条件：** 按 RM0008 §11.9，通过 ADC1_DR 读取主从组合结果时，必须置 ADC1_CR2.DMA=1，即使采用 CPU 轮询读取而未使用 DMA 控制器也一样；否则不能把高 16 位当作有效 ADC2 结果。该位条件与是否启用 DMA1 通道是不同概念。
 
 版本核验：2026-10-10 读取 [ST 官方 LL ADC 头文件固定快照](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Inc/stm32f1xx_ll_adc.h)，REG_ReadConversionData32 实际掩码为 ADC_DR_DATA（低 16 位）；ReadMultiConversionData32 的实现却固定先掩 ADC_DR_ADC2DATA（高 16 位）再按 ConversionData 移位，与上述“主/从/组合”文档契约不一致，会丢失主半字。使用本接口前必须核对工程固定版本的实际实现，不能只因传 MASTER_SLAVE 就保证得到完整组合字。这里保留 UM1850 原契约与所见实现差异，不把新版本源码当作原手册内容，也未修改库文件。
 
@@ -1102,7 +1102,7 @@ __STATIC_INLINE uint32_t LL_ADC_IsActiveFlag_SLV_EOS (ADC_Common_TypeDef * ADCxy
 
 返回：uint32_t，0 表示否/未置位，1 表示是/已置位。
 
-**固定版本差异：**本接口实际由公共 SR 地址加 4 字节读取 ADC1_CR1，未读到 ADC2_SR；本节上方为接口意图，其返回不能用于确认 ADC2 事件。地址推导与对应位号见[LL 实现边界](LL固定实现边界.md#从-adc-状态查询的地址偏移与接口说明不一致)。
+**固定版本差异：** 本接口实际由公共 SR 地址加 4 字节读取 ADC1_CR1，未读到 ADC2_SR；本节上方为接口意图，其返回不能用于确认 ADC2 事件。地址推导与对应位号见[LL 实现边界](LL固定实现边界.md#从-adc-状态查询的地址偏移与接口说明不一致)。
 
 #### `LL_ADC_IsActiveFlag_MST_JEOS`
 
@@ -1132,7 +1132,7 @@ __STATIC_INLINE uint32_t LL_ADC_IsActiveFlag_SLV_JEOS (ADC_Common_TypeDef * ADCx
 
 返回：uint32_t，0 表示否/未置位，1 表示是/已置位。
 
-**固定版本差异：**本接口实际由公共 SR 地址加 4 字节读取 ADC1_CR1，未读到 ADC2_SR；本节上方为接口意图，其返回不能用于确认 ADC2 事件。地址推导与对应位号见[LL 实现边界](LL固定实现边界.md#从-adc-状态查询的地址偏移与接口说明不一致)。
+**固定版本差异：** 本接口实际由公共 SR 地址加 4 字节读取 ADC1_CR1，未读到 ADC2_SR；本节上方为接口意图，其返回不能用于确认 ADC2 事件。地址推导与对应位号见[LL 实现边界](LL固定实现边界.md#从-adc-状态查询的地址偏移与接口说明不一致)。
 
 #### `LL_ADC_IsActiveFlag_MST_AWD1`
 
@@ -1162,7 +1162,7 @@ __STATIC_INLINE uint32_t LL_ADC_IsActiveFlag_SLV_AWD1 (ADC_Common_TypeDef * ADCx
 
 返回：uint32_t，0 表示否/未置位，1 表示是/已置位。
 
-**固定版本差异：**本接口实际由公共 SR 地址加 4 字节读取 ADC1_CR1，未读到 ADC2_SR；本节上方为接口意图，其返回不能用于确认 ADC2 事件。地址推导与对应位号见[LL 实现边界](LL固定实现边界.md#从-adc-状态查询的地址偏移与接口说明不一致)。
+**固定版本差异：** 本接口实际由公共 SR 地址加 4 字节读取 ADC1_CR1，未读到 ADC2_SR；本节上方为接口意图，其返回不能用于确认 ADC2 事件。地址推导与对应位号见[LL 实现边界](LL固定实现边界.md#从-adc-状态查询的地址偏移与接口说明不一致)。
 
 ### 中断使能与查询
 
@@ -1555,11 +1555,11 @@ C8 分支读取 ADC1、ADC2 的 ADON 并作按位或：两者均关闭时返回 
 
 以非负整数实参调用时，换算关系为：
 
-$$
+```math
 V_{\mathrm{out,mV}}=\left\lfloor\frac{D\,V_{\mathrm{ref,mV}}}{4095}\right\rfloor
-$$
+```
 
-$D$ 为 ADC 码值；$V_{\mathrm{ref,mV}}$ 和 $V_{\mathrm{out,mV}}$ 分别表示参考电压和返回电压以 mV 为单位的数值。整数除法丢弃不足 1 mV 的小数。在器件合法电压范围内，参考电压的 mV 数值与 12 位码值的乘积不会超过 `uint32_t` 范围。
+$`D`$ 为 ADC 码值； $`V_{\mathrm{ref,mV}}`$ 和 $`V_{\mathrm{out,mV}}`$ 分别表示参考电压和返回电压以 mV 为单位的数值。整数除法丢弃不足 1 mV 的小数。在器件合法电压范围内，参考电压的 mV 数值与 12 位码值的乘积不会超过 `uint32_t` 范围。
 
 该宏没有固定返回类型，也没有把全部实参强制转为整数；传入浮点实参会改变表达式类型和舍入路径。不得直接传入左对齐 DR 值、带符号的注入减偏移结果、双 ADC 组合字，或以 µV 为单位的参考电压。
 
@@ -1571,26 +1571,26 @@ $D$ 为 ADC 码值；$V_{\mathrm{ref,mV}}$ 和 $V_{\mathrm{out,mV}}$ 分别表�
 
 参数按调用顺序为：
 
-- `__TEMPSENSOR_TYP_AVGSLOPE__`：典型斜率 $S_{\mathrm{avg}}$，单位 µV/°C；必须为正且非零。
-- `__TEMPSENSOR_TYP_CALX_V__`：典型校准点电压 $V_{\mathrm{cal}}$，单位 mV。
-- `__TEMPSENSOR_CALX_TEMP__`：校准点温度 $T_{\mathrm{cal}}$，单位 °C。固定源码的参数注释将该单位误写为 mV。
-- `__VREFANALOG_VOLTAGE__`：可靠已知的参考电压 $V_{\mathrm{REF}}$，单位 mV。
-- `__TEMPSENSOR_ADC_DATA__`：温度通道的右对齐 12 位 ADC 码值 $D$。
+- `__TEMPSENSOR_TYP_AVGSLOPE__`：典型斜率 $`S_{\mathrm{avg}}`$ ，单位 µV/°C；必须为正且非零。
+- `__TEMPSENSOR_TYP_CALX_V__`：典型校准点电压 $`V_{\mathrm{cal}}`$ ，单位 mV。
+- `__TEMPSENSOR_CALX_TEMP__`：校准点温度 $`T_{\mathrm{cal}}`$ ，单位 °C。固定源码的参数注释将该单位误写为 mV。
+- `__VREFANALOG_VOLTAGE__`：可靠已知的参考电压 $`V_{\mathrm{REF}}`$ ，单位 mV。
+- `__TEMPSENSOR_ADC_DATA__`：温度通道的右对齐 12 位 ADC 码值 $`D`$ 。
 - `__ADC_RESOLUTION__`：使用 `LL_ADC_RESOLUTION_12B`。
 
 结果单位为 °C。该宏使用典型参数，精度受器件散差限制；这些参数不是逐芯片校准值，也不能直接套用其他芯片的工厂温度校准宏。
 
 忽略整数截断时，物理换算关系为：
 
-$$
+```math
 V_{\mathrm{ADC}}=\frac{D}{4095}V_{\mathrm{REF}}
-$$
+```
 
-$$
+```math
 T=T_{\mathrm{cal}}+\frac{V_{\mathrm{cal}}-V_{\mathrm{ADC}}}{S_{\mathrm{avg}}}
-$$
+```
 
-$V_{\mathrm{ADC}}$ 为温度通道的电压估计值，$T$ 为温度估计值。计算温差前须统一单位：两个电压以 mV 数值输入时，应乘 1000 换成 µV，再除以以 µV/°C 为单位的斜率。
+$`V_{\mathrm{ADC}}`$ 为温度通道的电压估计值， $`T`$ 为温度估计值。计算温差前须统一单位：两个电压以 mV 数值输入时，应乘 1000 换成 µV，再除以以 µV/°C 为单位的斜率。
 
 [ST 官方固定快照](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Inc/stm32f1xx_ll_adc.h#L1525-L1541) 的实际运算顺序还包括：
 

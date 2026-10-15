@@ -73,26 +73,26 @@
 
 ## 输入捕获滤波
 
-$f_{\mathrm{CK\_INT}}$ 为定时器内核时钟频率，$f_{\mathrm{DTS}}$ 为 CKD 分频后的滤波／死区时钟频率，单位均为 Hz。FDIV1_N2/N4/N8 使用前者，其余分频滤波档使用后者。定义见[固定头文件 L653–668](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_ll_tim.h#L653-L668)。
+$`f_{\mathrm{CK\_INT}}`$ 为定时器内核时钟频率， $`f_{\mathrm{DTS}}`$ 为 CKD 分频后的滤波／死区时钟频率，单位均为 Hz。FDIV1_N2/N4/N8 使用前者，其余分频滤波档使用后者。定义见[固定头文件 L653–668](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_ll_tim.h#L653-L668)。
 
 | 符号 | 中文含义与适用条件 |
 |---|---|
-| `LL_TIM_IC_FILTER_FDIV1` | 无数字滤波；以 $f_{\mathrm{DTS}}$ 采样 |
-| `LL_TIM_IC_FILTER_FDIV1_N2` | 采样频率 $f_{\mathrm{CK\_INT}}$，连续 2 个一致样本 |
-| `LL_TIM_IC_FILTER_FDIV1_N4` | 采样频率 $f_{\mathrm{CK\_INT}}$，连续 4 个一致样本 |
-| `LL_TIM_IC_FILTER_FDIV1_N8` | 采样频率 $f_{\mathrm{CK\_INT}}$，连续 8 个一致样本 |
-| `LL_TIM_IC_FILTER_FDIV2_N6` | 采样频率 $f_{\mathrm{DTS}}/2$，连续 6 个一致样本 |
-| `LL_TIM_IC_FILTER_FDIV2_N8` | 采样频率 $f_{\mathrm{DTS}}/2$，连续 8 个一致样本 |
-| `LL_TIM_IC_FILTER_FDIV4_N6` | 采样频率 $f_{\mathrm{DTS}}/4$，连续 6 个一致样本 |
-| `LL_TIM_IC_FILTER_FDIV4_N8` | 采样频率 $f_{\mathrm{DTS}}/4$，连续 8 个一致样本 |
-| `LL_TIM_IC_FILTER_FDIV8_N6` | 采样频率 $f_{\mathrm{DTS}}/8$，连续 6 个一致样本 |
-| `LL_TIM_IC_FILTER_FDIV8_N8` | 采样频率 $f_{\mathrm{DTS}}/8$，连续 8 个一致样本 |
-| `LL_TIM_IC_FILTER_FDIV16_N5` | 采样频率 $f_{\mathrm{DTS}}/16$，连续 5 个一致样本 |
-| `LL_TIM_IC_FILTER_FDIV16_N6` | 采样频率 $f_{\mathrm{DTS}}/16$，连续 6 个一致样本 |
-| `LL_TIM_IC_FILTER_FDIV16_N8` | 采样频率 $f_{\mathrm{DTS}}/16$，连续 8 个一致样本 |
-| `LL_TIM_IC_FILTER_FDIV32_N5` | 采样频率 $f_{\mathrm{DTS}}/32$，连续 5 个一致样本 |
-| `LL_TIM_IC_FILTER_FDIV32_N6` | 采样频率 $f_{\mathrm{DTS}}/32$，连续 6 个一致样本 |
-| `LL_TIM_IC_FILTER_FDIV32_N8` | 采样频率 $f_{\mathrm{DTS}}/32$，连续 8 个一致样本 |
+| `LL_TIM_IC_FILTER_FDIV1` | 无数字滤波；以 $`f_{\mathrm{DTS}}`$ 采样 |
+| `LL_TIM_IC_FILTER_FDIV1_N2` | 采样频率 $`f_{\mathrm{CK\_INT}}`$ ，连续 2 个一致样本 |
+| `LL_TIM_IC_FILTER_FDIV1_N4` | 采样频率 $`f_{\mathrm{CK\_INT}}`$ ，连续 4 个一致样本 |
+| `LL_TIM_IC_FILTER_FDIV1_N8` | 采样频率 $`f_{\mathrm{CK\_INT}}`$ ，连续 8 个一致样本 |
+| `LL_TIM_IC_FILTER_FDIV2_N6` | 采样频率 $`f_{\mathrm{DTS}}/2`$ ，连续 6 个一致样本 |
+| `LL_TIM_IC_FILTER_FDIV2_N8` | 采样频率 $`f_{\mathrm{DTS}}/2`$ ，连续 8 个一致样本 |
+| `LL_TIM_IC_FILTER_FDIV4_N6` | 采样频率 $`f_{\mathrm{DTS}}/4`$ ，连续 6 个一致样本 |
+| `LL_TIM_IC_FILTER_FDIV4_N8` | 采样频率 $`f_{\mathrm{DTS}}/4`$ ，连续 8 个一致样本 |
+| `LL_TIM_IC_FILTER_FDIV8_N6` | 采样频率 $`f_{\mathrm{DTS}}/8`$ ，连续 6 个一致样本 |
+| `LL_TIM_IC_FILTER_FDIV8_N8` | 采样频率 $`f_{\mathrm{DTS}}/8`$ ，连续 8 个一致样本 |
+| `LL_TIM_IC_FILTER_FDIV16_N5` | 采样频率 $`f_{\mathrm{DTS}}/16`$ ，连续 5 个一致样本 |
+| `LL_TIM_IC_FILTER_FDIV16_N6` | 采样频率 $`f_{\mathrm{DTS}}/16`$ ，连续 6 个一致样本 |
+| `LL_TIM_IC_FILTER_FDIV16_N8` | 采样频率 $`f_{\mathrm{DTS}}/16`$ ，连续 8 个一致样本 |
+| `LL_TIM_IC_FILTER_FDIV32_N5` | 采样频率 $`f_{\mathrm{DTS}}/32`$ ，连续 5 个一致样本 |
+| `LL_TIM_IC_FILTER_FDIV32_N6` | 采样频率 $`f_{\mathrm{DTS}}/32`$ ，连续 6 个一致样本 |
+| `LL_TIM_IC_FILTER_FDIV32_N8` | 采样频率 $`f_{\mathrm{DTS}}/32`$ ，连续 8 个一致样本 |
 
 ## ETR 滤波
 
@@ -100,22 +100,22 @@ $f_{\mathrm{CK\_INT}}$ 为定时器内核时钟频率，$f_{\mathrm{DTS}}$ 为 C
 
 | 符号 | 中文含义与适用条件 |
 |---|---|
-| `LL_TIM_ETR_FILTER_FDIV1` | 无数字滤波；以 $f_{\mathrm{DTS}}$ 采样 |
-| `LL_TIM_ETR_FILTER_FDIV1_N2` | 采样频率 $f_{\mathrm{CK\_INT}}$，连续 2 个一致样本 |
-| `LL_TIM_ETR_FILTER_FDIV1_N4` | 采样频率 $f_{\mathrm{CK\_INT}}$，连续 4 个一致样本 |
-| `LL_TIM_ETR_FILTER_FDIV1_N8` | 采样频率 $f_{\mathrm{CK\_INT}}$，连续 8 个一致样本 |
-| `LL_TIM_ETR_FILTER_FDIV2_N6` | 采样频率 $f_{\mathrm{DTS}}/2$，连续 6 个一致样本 |
-| `LL_TIM_ETR_FILTER_FDIV2_N8` | 采样频率 $f_{\mathrm{DTS}}/2$，连续 8 个一致样本 |
-| `LL_TIM_ETR_FILTER_FDIV4_N6` | 采样频率 $f_{\mathrm{DTS}}/4$，连续 6 个一致样本 |
-| `LL_TIM_ETR_FILTER_FDIV4_N8` | 采样频率 $f_{\mathrm{DTS}}/4$，连续 8 个一致样本 |
-| `LL_TIM_ETR_FILTER_FDIV8_N6` | 采样频率 $f_{\mathrm{DTS}}/8$，连续 6 个一致样本 |
-| `LL_TIM_ETR_FILTER_FDIV8_N8` | 采样频率 $f_{\mathrm{DTS}}/8$，连续 8 个一致样本 |
-| `LL_TIM_ETR_FILTER_FDIV16_N5` | 采样频率 $f_{\mathrm{DTS}}/16$，连续 5 个一致样本 |
-| `LL_TIM_ETR_FILTER_FDIV16_N6` | 采样频率 $f_{\mathrm{DTS}}/16$，连续 6 个一致样本 |
-| `LL_TIM_ETR_FILTER_FDIV16_N8` | 采样频率 $f_{\mathrm{DTS}}/16$，连续 8 个一致样本 |
-| `LL_TIM_ETR_FILTER_FDIV32_N5` | 采样频率 $f_{\mathrm{DTS}}/32$，连续 5 个一致样本 |
-| `LL_TIM_ETR_FILTER_FDIV32_N6` | 采样频率 $f_{\mathrm{DTS}}/32$，连续 6 个一致样本 |
-| `LL_TIM_ETR_FILTER_FDIV32_N8` | 采样频率 $f_{\mathrm{DTS}}/32$，连续 8 个一致样本 |
+| `LL_TIM_ETR_FILTER_FDIV1` | 无数字滤波；以 $`f_{\mathrm{DTS}}`$ 采样 |
+| `LL_TIM_ETR_FILTER_FDIV1_N2` | 采样频率 $`f_{\mathrm{CK\_INT}}`$ ，连续 2 个一致样本 |
+| `LL_TIM_ETR_FILTER_FDIV1_N4` | 采样频率 $`f_{\mathrm{CK\_INT}}`$ ，连续 4 个一致样本 |
+| `LL_TIM_ETR_FILTER_FDIV1_N8` | 采样频率 $`f_{\mathrm{CK\_INT}}`$ ，连续 8 个一致样本 |
+| `LL_TIM_ETR_FILTER_FDIV2_N6` | 采样频率 $`f_{\mathrm{DTS}}/2`$ ，连续 6 个一致样本 |
+| `LL_TIM_ETR_FILTER_FDIV2_N8` | 采样频率 $`f_{\mathrm{DTS}}/2`$ ，连续 8 个一致样本 |
+| `LL_TIM_ETR_FILTER_FDIV4_N6` | 采样频率 $`f_{\mathrm{DTS}}/4`$ ，连续 6 个一致样本 |
+| `LL_TIM_ETR_FILTER_FDIV4_N8` | 采样频率 $`f_{\mathrm{DTS}}/4`$ ，连续 8 个一致样本 |
+| `LL_TIM_ETR_FILTER_FDIV8_N6` | 采样频率 $`f_{\mathrm{DTS}}/8`$ ，连续 6 个一致样本 |
+| `LL_TIM_ETR_FILTER_FDIV8_N8` | 采样频率 $`f_{\mathrm{DTS}}/8`$ ，连续 8 个一致样本 |
+| `LL_TIM_ETR_FILTER_FDIV16_N5` | 采样频率 $`f_{\mathrm{DTS}}/16`$ ，连续 5 个一致样本 |
+| `LL_TIM_ETR_FILTER_FDIV16_N6` | 采样频率 $`f_{\mathrm{DTS}}/16`$ ，连续 6 个一致样本 |
+| `LL_TIM_ETR_FILTER_FDIV16_N8` | 采样频率 $`f_{\mathrm{DTS}}/16`$ ，连续 8 个一致样本 |
+| `LL_TIM_ETR_FILTER_FDIV32_N5` | 采样频率 $`f_{\mathrm{DTS}}/32`$ ，连续 5 个一致样本 |
+| `LL_TIM_ETR_FILTER_FDIV32_N6` | 采样频率 $`f_{\mathrm{DTS}}/32`$ ，连续 6 个一致样本 |
+| `LL_TIM_ETR_FILTER_FDIV32_N8` | 采样频率 $`f_{\mathrm{DTS}}/32`$ ，连续 8 个一致样本 |
 
 ## ETR 极性与预分频
 

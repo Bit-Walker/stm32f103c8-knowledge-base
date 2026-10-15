@@ -22,24 +22,24 @@ Timeout单位为HAL毫秒tick；HAL_MAX_DELAY代表不检查该有限超时条�
 
 ## 2 RxEvent 的 Size 是位置或累计进度
 
-下表适用于已正确启动、请求长度固定的 `ReceiveToIdle_DMA` 事务。请求长度记为 $N$，即本次传入的 `Size`，单位为数据项；$\mathrm{CNDTR}$ 为读取时 DMA 剩余项数。表中的 TC 是接收达到 $N$ 项时的 HAL 接收事件，不是 `USART_SR.TC` 发送完成标志。
+下表适用于已正确启动、请求长度固定的 `ReceiveToIdle_DMA` 事务。请求长度记为 $`N`$ ，即本次传入的 `Size`，单位为数据项； $`\mathrm{CNDTR}`$ 为读取时 DMA 剩余项数。表中的 TC 是接收达到 $`N`$ 项时的 HAL 接收事件，不是 `USART_SR.TC` 发送完成标志。
 
 使用下表前，须保证 DMA 句柄的 `Init.Mode` 与硬件 `CCR.CIRC` 一致。IDLE 收尾按前者分支，DMA 完整回调按后者分支；修改其中一处不能保证另一处自动同步。
 
-表内回调数值均以数据项为单位。$\lfloor N/2\rfloor$ 表示 $N$ 除以 2 后向下取整，即整数商；$N-\mathrm{CNDTR}$ 表示本次长度减去读取时剩余项数。
+表内回调数值均以数据项为单位。 $`\lfloor N/2\rfloor`$ 表示 $`N`$ 除以 2 后向下取整，即整数商； $`N-\mathrm{CNDTR}`$ 表示本次长度减去读取时剩余项数。
 
 |事件|回调 `Size` 实参|普通 DMA|循环 DMA|
 |---|---|---|---|
-|HT|$\lfloor N/2\rfloor$|继续接收|继续接收|
-|TC|$N$|关闭接收 DMA 请求及相应中断，`RxState` 置 `READY`|继续接收，保留忙状态|
-|IDLE，且 $0<\mathrm{CNDTR}<N$|$N-\mathrm{CNDTR}$|清请求、关闭相关接收中断，调用 DMA Abort 并报告|保留接收，报告当前环内进度|
-|IDLE，但 $\mathrm{CNDTR}=0$ 或 $\mathrm{CNDTR}=N$|该 IDLE 分支不调用 RxEvent|完整完成由 DMA 完成路径报告|未报告 IDLE 不代表没有数据；还须结合 TC 及回卷时序判断|
+|HT| $`\lfloor N/2\rfloor`$ |继续接收|继续接收|
+|TC| $`N`$ |关闭接收 DMA 请求及相应中断，`RxState` 置 `READY`|继续接收，保留忙状态|
+|IDLE，且 $`0<\mathrm{CNDTR}<N`$ | $`N-\mathrm{CNDTR}`$ |清请求、关闭相关接收中断，调用 DMA Abort 并报告|保留接收，报告当前环内进度|
+|IDLE，但 $`\mathrm{CNDTR}=0`$ 或 $`\mathrm{CNDTR}=N`$ |该 IDLE 分支不调用 RxEvent|完整完成由 DMA 完成路径报告|未报告 IDLE 不代表没有数据；还须结合 TC 及回卷时序判断|
 
 ### 2.1 重复位置与环尾位置
 
-`Size` 表示位置或累计进度，不是距上一次回调新增的数据项数。例如，$N$ 为正偶数时，HT 报告 $N/2$ 项；随后发生 IDLE，若读取时进度未变，仍可报告同一位置。把两次 `Size` 相加会重复计数。
+`Size` 表示位置或累计进度，不是距上一次回调新增的数据项数。例如， $`N`$ 为正偶数时，HT 报告 $`N/2`$ 项；随后发生 IDLE，若读取时进度未变，仍可报告同一位置。把两次 `Size` 相加会重复计数。
 
-循环 DMA 的 TC 报告 $N$，表示本轮环尾位置，不能直接当作 0。应用可以在明确的游标规则中处理环尾，但须保留相应代际和未消费区段。
+循环 DMA 的 TC 报告 $`N`$ ，表示本轮环尾位置，不能直接当作 0。应用可以在明确的游标规则中处理环尾，但须保留相应代际和未消费区段。
 
 ### 2.2 中断延迟与回卷
 
@@ -47,7 +47,7 @@ Timeout单位为HAL毫秒tick；HAL_MAX_DELAY代表不检查该有限超时条�
 
 HT、TC、IDLE 应交给同一个串行化的消费机制处理，并按最早覆盖时刻安排处理预算。单个事件标志或位置值不能证明多圈数据没有丢失。
 
-若采用前后半区模型，$N$ 应为正偶数。表中的 $N/2$ 整数商只说明源码传给回调的数值，不保证奇数长度时的硬件半传输边界。
+若采用前后半区模型， $`N`$ 应为正偶数。表中的 $`N/2`$ 整数商只说明源码传给回调的数值，不保证奇数长度时的硬件半传输边界。
 
 来源：[IRQ中的IDLE分支，L2478–2582](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/77fbb30b7a1d02533980400083e48c559aae5a4f/Src/stm32f1xx_hal_uart.c#L2478-L2582)、[DMA完整/半完整回调，L3042–3140](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/77fbb30b7a1d02533980400083e48c559aae5a4f/Src/stm32f1xx_hal_uart.c#L3042-L3140)。
 
