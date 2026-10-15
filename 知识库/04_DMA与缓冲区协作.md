@@ -3,6 +3,13 @@
 
 DMA 采集与发送需要同时确定请求来源、数据项宽度、缓冲区所有权和最坏处理期限。本章按建立传输、消费半缓冲和错误恢复组织；完整参数见[DMA参数与HAL接口](../参数/DMA参数与HAL接口.md)。
 
+- [1 DMA1资源、通道和数据项](#1-dma1资源通道和数据项)
+- [2 启停与HAL生命周期](#2-启停与hal生命周期)
+- [3 循环 DMA 与半缓冲处理](#3-循环-dma-与半缓冲处理)
+- [4 吞吐量与最坏服务延迟](#4-吞吐量与最坏服务延迟)
+- [5 ADC 与定时器 DMA](#5-adc-与定时器-dma)
+- [6 错误状态与所有权恢复](#6-错误状态与所有权恢复)
+
 ## 1 DMA1资源、通道和数据项
 
 DMA1 提供 7 个固定映射通道。同一通道的多个请求源以逻辑“或”汇合，DMA 不携带来源标签。例：ADC1、TIM2_CH3、TIM4_CH1 共用通道 1；USART1_RX 与 TIM1_UP 共用通道 5。
@@ -46,13 +53,6 @@ HAL 的 Init 不是安全终止旧传输的接口，Start/Start_IT 的返回也�
 
 [Poll超时557–570行](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_dma.c#L557-L570)只改变错误码/软件状态并解锁，READY、HAL_OK 和硬件静止是三个不同判断；应按固定驱动版本检查实际停止路径。[stm32f1xx_hal_dma.c @ bd368aa335c529641d2e567574885e02deacc64a](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_dma.c)
 
-- [1 DMA1资源、通道和数据项](#1-dma1资源通道和数据项)
-- [2 启停与HAL生命周期](#2-启停与hal生命周期)
-- [3 循环 DMA 与半缓冲处理](#3-循环-dma-与半缓冲处理)
-- [4 吞吐量与最坏服务延迟](#4-吞吐量与最坏服务延迟)
-- [5 ADC 与定时器 DMA](#5-adc-与定时器-dma)
-- [6 错误状态与所有权恢复](#6-错误状态与所有权恢复)
-
 <a id="3-半缓冲通知意味着有限的处理窗口"></a>
 
 ## 3 循环 DMA 与半缓冲处理
@@ -85,14 +85,9 @@ CPU 的中断响应、排队和实际处理总时间都要计入这段预算；H
 
 ## 4 吞吐量与最坏服务延迟
 
-![STM32F103C8T6 CPU、DMA1与共享总线资源](../assets/dma/dma_c8_bus_and_arbitration.svg)
+CPU 的 ICode 取指路径连接 Flash 指令接口；DCode、System 与 DMA1 的 AHB 主端口参与总线矩阵访问。Flash 数据接口、SRAM 和通往 APB1/APB2 的系统路径分别受各自资源约束；具体访问关系见[总线与仲裁](../参数/DMA图关系与来源.md#总线与仲裁示意图)。
 
-原厂拓扑依据：[RM0008 Rev21 §3.1 System architecture，pp47–49；§3.3.3 Embedded Flash memory，pp58–59；图49及§13.3，pp276–278](https://www.st.com/resource/en/reference_manual/cd00171190.pdf#page=47)。图仅保留C8相关路径及外设示例，不把七通道画成七个独立搬运引擎。
-
-
-图依据RM0008 Rev21图49及总线章节、DS5319 Rev20 C8资源自主绘制。ICode、DCode、System分别表示，ICode取指支路不经过图中矩阵；Flash接口仲裁与矩阵轮转仲裁、DMA内部通道仲裁分别说明。箭头表示访问请求方向，不表示读回数据方向。
-
-图中 CPU/DMA 主端口竞争与 DMA 内部通道竞争属于两层仲裁。
+需要分别考虑三处仲裁：Flash 接口中的取指与数据访问、总线矩阵中的主设备竞争、DMA1 内部的通道请求竞争。[RM0008 Rev21 §3.1、§3.3.3、§13.3](https://www.st.com/resource/en/reference_manual/cd00171190.pdf#page=47)
 
 总线矩阵采用轮转；DMA 通道按软件优先级选择，同级小编号优先，高优先级连续请求可使低优先级长期等待。提升 DMA 通道 PL 与提升 NVIC 优先级不是同一件事；前者影响搬运调度，后者影响 CPU 消费通知。[AN2548 Rev 9，§2 Bus bandwidth; §4 DMA controller; §5.3 Sharing the bus matrix with CPU; §6 Insufficient resources threats](https://www.st.com/resource/en/application_note/an2548-introduction-to-dma-controller-for-stm32-mcus-stmicroelectronics.pdf#page=3)；[RM0008 Rev 21，§13.3.1 DMA transactions; §13.3.3 DMA channels; §13.3.5 Error management; §13.4 DMA registers](https://www.st.com/resource/en/reference_manual/cd00171190.pdf#page=276)
 
