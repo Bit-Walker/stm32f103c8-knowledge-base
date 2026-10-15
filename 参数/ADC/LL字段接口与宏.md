@@ -1547,7 +1547,21 @@ C8 分支读取 ADC1、ADC2 的 ADON 并作按位或：两者均关闭时返回 
 
 调用形态：`__LL_ADC_CALC_DATA_TO_VOLTAGE(__VREFANALOG_VOLTAGE__, __ADC_DATA__, __ADC_RESOLUTION__)`。
 
-参数依次为参考电压 mV、右对齐 ADC 数字值（0–4095）、LL_ADC_RESOLUTION_12B；以非负整数实参调用时，按 floor(Vref×data/4095) 作整数换算，结果单位 mV，丢弃不足 1 mV 的小数。此宏没有固定返回类型或强制把全部实参转成整数；传入浮点实参会改变表达式类型和舍入路径。参考电压必须可靠已知；C8 合法电压范围内的 mV×12 位数据乘积不会超过 uint32_t。不要把左对齐 DR、带符号的注入减偏移结果、双 ADC 组合字或以 µV 表示的参考电压直接传入该接口。
+参数按调用顺序为：
+
+- `__VREFANALOG_VOLTAGE__`：可靠已知的参考电压，单位 mV。
+- `__ADC_DATA__`：右对齐的 12 位 ADC 码值，范围 0–4095。
+- `__ADC_RESOLUTION__`：使用 `LL_ADC_RESOLUTION_12B`。
+
+以非负整数实参调用时，换算关系为：
+
+$$
+V_{\mathrm{out,mV}}=\left\lfloor\frac{D\,V_{\mathrm{ref,mV}}}{4095}\right\rfloor
+$$
+
+$D$ 为 ADC 码值；$V_{\mathrm{ref,mV}}$ 和 $V_{\mathrm{out,mV}}$ 分别表示参考电压和返回电压以 mV 为单位的数值。整数除法丢弃不足 1 mV 的小数。在器件合法电压范围内，参考电压的 mV 数值与 12 位码值的乘积不会超过 `uint32_t` 范围。
+
+该宏没有固定返回类型，也没有把全部实参强制转为整数；传入浮点实参会改变表达式类型和舍入路径。不得直接传入左对齐 DR 值、带符号的注入减偏移结果、双 ADC 组合字，或以 µV 为单位的参考电压。
 
 #### `__LL_ADC_CALC_TEMPERATURE_TYP_PARAMS`
 
@@ -1555,7 +1569,36 @@ C8 分支读取 ADC1、ADC2 的 ADON 并作按位或：两者均关闭时返回 
 
 调用形态：`__LL_ADC_CALC_TEMPERATURE_TYP_PARAMS(__TEMPSENSOR_TYP_AVGSLOPE__, __TEMPSENSOR_TYP_CALX_V__, __TEMPSENSOR_CALX_TEMP__, __VREFANALOG_VOLTAGE__, __TEMPSENSOR_ADC_DATA__, __ADC_RESOLUTION__)`。
 
-依次输入典型斜率 µV/°C、典型校准点电压 mV、校准点温度 °C、参考电压 mV、温度通道 ADC 数据、12 位分辨率；返回 °C。采用典型而非逐芯片校准参数，精度受器件散差限制。原文将校准点温度参数单位误写为 mV；正确为 °C。物理换算式为 T=(Vcal_mV−Vref_mV×ADC/4095)×1000/AvgSlope_µV_per_°C+Tcal_°C；核对的 [ST 官方固定快照](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Inc/stm32f1xx_ll_adc.h#L1525-L1541) 宏在 ADC 数据和参考电压均为整数实参时，先经整数除法把 ADC 电压截断为整数 mV，再换算为 µV 作差并除以斜率；整数结果的除法向零截断。浮点实参会改变中间除法和截断位置，不能把整数路径的误差分析无条件套用。斜率须为正且非零；温差可能为负，改写公式时必须保留有符号算术，并检查传入参数的 C 整数类型不会把负温差提升成无符号数。输入 ADC 数据应为右对齐的 12 位量，参考电压需可靠已知，不能把其它芯片的工厂温度校准宏直接套到 C8。
+参数按调用顺序为：
+
+- `__TEMPSENSOR_TYP_AVGSLOPE__`：典型斜率 $S_{\mathrm{avg}}$，单位 µV/°C；必须为正且非零。
+- `__TEMPSENSOR_TYP_CALX_V__`：典型校准点电压 $V_{\mathrm{cal}}$，单位 mV。
+- `__TEMPSENSOR_CALX_TEMP__`：校准点温度 $T_{\mathrm{cal}}$，单位 °C。固定源码的参数注释将该单位误写为 mV。
+- `__VREFANALOG_VOLTAGE__`：可靠已知的参考电压 $V_{\mathrm{REF}}$，单位 mV。
+- `__TEMPSENSOR_ADC_DATA__`：温度通道的右对齐 12 位 ADC 码值 $D$。
+- `__ADC_RESOLUTION__`：使用 `LL_ADC_RESOLUTION_12B`。
+
+结果单位为 °C。该宏使用典型参数，精度受器件散差限制；这些参数不是逐芯片校准值，也不能直接套用其他芯片的工厂温度校准宏。
+
+忽略整数截断时，物理换算关系为：
+
+$$
+V_{\mathrm{ADC}}=\frac{D}{4095}V_{\mathrm{REF}}
+$$
+
+$$
+T=T_{\mathrm{cal}}+\frac{V_{\mathrm{cal}}-V_{\mathrm{ADC}}}{S_{\mathrm{avg}}}
+$$
+
+$V_{\mathrm{ADC}}$ 为温度通道的电压估计值，$T$ 为温度估计值。计算温差前须统一单位：两个电压以 mV 数值输入时，应乘 1000 换成 µV，再除以以 µV/°C 为单位的斜率。
+
+[ST 官方固定快照](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Inc/stm32f1xx_ll_adc.h#L1525-L1541) 的实际运算顺序还包括：
+
+1. ADC 数据和参考电压均为整数实参时，先做整数除法，将 ADC 电压截断为整数 mV。
+2. 校准点电压和上述 ADC 电压分别乘 1000，并分别转换为 `int32_t`，然后相减。
+3. 电压差除以斜率，再加校准点温度。采用整数运算且保持有符号温差时，除法向零截断。
+
+传入浮点实参会改变中间乘除运算和截断位置，但不会取消上述两处 `int32_t` 转换，不能按全程浮点计算理解，也不能直接套用整数路径的误差分析。电压差及温差可能为负；改写公式时必须保留有符号算术，并检查实参的 C 整数类型，避免负温差被提升为无符号数。
 
 ### 直接寄存器访问宏
 
