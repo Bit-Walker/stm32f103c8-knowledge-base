@@ -37,7 +37,7 @@ NSS（Slave Select，低有效片选）可参与内部选择判定或作为主�
 - 只有句柄 `State=HAL_SPI_STATE_RESET` 分支执行 MspInit 或已注册的 MspInitCallback；再次调用 Init 不保证重复配置 GPIO、时钟和 NVIC。
 - Init 的流程没有先等待已有传输正常结束。运行中重新初始化需要应用协调，不能作为受控收尾的替代步骤。
 - 有效 Motorola 从机配置下，Init 会把句柄中的 BaudRatePrescaler 改为 DIV2；RM0008 p706 明确从机的 BR 位不决定接收到的串行时钟速率。
-- 本器件不支持 TI 模式，TIMode 应为 `SPI_TIMODE_DISABLE`。源码中的其他条件分支不能用作支持 TI 模式的依据。
+- `TIMode` 应配置为 `SPI_TIMODE_DISABLE`。
 
 来源：[HAL_SPI_Init L330–455](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_spi.c#L330-L455)。源码 Git blob 为 `d1c741075bc63718c9032bab7fd9eb23cc4a880b`，头文件 Git blob 为 `309eb5bd2397b23ec7fb652c4a9ee29875d4f424`。
 
