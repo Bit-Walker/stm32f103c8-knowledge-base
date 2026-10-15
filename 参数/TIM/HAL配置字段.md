@@ -1,6 +1,6 @@
 # TIM HAL 配置结构
 
-适用STM32F103C8T6，固定来源整合。字段表由既有资料迁移，基础HAL字段参考固定de129f1头文件；Hall结构的四个uint32_t字段已逐项核对保留的[UM1850 Rev3 §37.1.1 p532原文](https://www.st.com/resource/en/user_manual/um1850-description-of-stm32f1-hal-and-lowlayer-drivers-stmicroelectronics.pdf#page=532)，并与固定实现访问字段交叉核对；此处不宣称已核对TIMEx头文件。参数及返回状态边界另见[HAL初始化](HAL初始化边界.md)和[扩展接口](HAL扩展接口.md)。
+字段表由既有资料迁移，基础HAL字段参考固定de129f1头文件；Hall结构的四个uint32_t字段已逐项核对保留的[UM1850 Rev3 §37.1.1 p532原文](https://www.st.com/resource/en/user_manual/um1850-description-of-stm32f1-hal-and-lowlayer-drivers-stmicroelectronics.pdf#page=532)，并与固定实现访问字段交叉核对；此处不宣称已核对TIMEx头文件。参数及返回状态边界另见[HAL初始化](HAL初始化边界.md)和[扩展接口](HAL扩展接口.md)。
 
 
 ### `TIM_Base_InitTypeDef`

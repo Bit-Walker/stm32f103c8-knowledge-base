@@ -20,7 +20,8 @@ hadc、hdma分别为有效ADC与DMA句柄指针；DMA的Parent须指向真实所
 固定定位：
 - [v1.1.4辅助函数及DMA回调，L2224–2400](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Src/stm32f1xx_hal_adc.c#L2224-L2400)
 - [v1.1.10对应实现，L2232起](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/77fbb30b7a1d02533980400083e48c559aae5a4f/Src/stm32f1xx_hal_adc.c#L2232)
-- [v1.1.4内部声明，L977–979](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_hal_adc.h#L977-L979)、[v1.1.10声明，L976–978](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/77fbb30b7a1d02533980400083e48c559aae5a4f/Inc/stm32f1xx_hal_adc.h#L976-L978)
+- [v1.1.4内部声明，L977–979](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_hal_adc.h#L977-L979)
+- [v1.1.10声明，L976–978](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/77fbb30b7a1d02533980400083e48c559aae5a4f/Inc/stm32f1xx_hal_adc.h#L976-L978)
 
 ## 2 八个导出宏
 

@@ -1,6 +1,6 @@
 # USART与串口数据流
 
-目标为STM32F103C8T6，含USART1、USART2、USART3，无UART4/5。以下按硬件机制、驱动契约及芯片勘误整合。本主题按固定手册与驱动提交定位；图形整合范围、源文差异及验证限制见图形关系页。
+USART1、USART2、USART3 的硬件机制、HAL/LL 接口和芯片勘误在本章分层组织。本主题按固定手册与驱动提交定位；图形整合范围、源文差异及验证限制见图形关系页。
 
 ![USART收发数据路径](../assets/usart/usart_data_path.svg)
 
@@ -38,7 +38,7 @@ C8正常时钟约束下PCLK2最高72 MHz，PCLK1最高36 MHz；USART波特率时
 
 图279中的简写（例如 HD、LINE、CKEN）应以寄存器定义的 HDSEL、LINEN、CLKEN 等正式字段名检索。图内 SW_RX 标注没有在本表推导成额外外部引脚；C8 可用引脚及重映射须查芯片封装和 GPIO 主题。
 
-来源：[RM0008 图279，p789](https://www.st.com/resource/en/reference_manual/cd00171190.pdf#page=789)及[寄存器定义，pp817–827](https://www.st.com/resource/en/reference_manual/cd00171190.pdf#page=817)。
+来源：[RM0008 图279](https://www.st.com/resource/en/reference_manual/cd00171190.pdf#page=789)及[寄存器定义，pp817–827](https://www.st.com/resource/en/reference_manual/cd00171190.pdf#page=817)。
 
 ## 2 硬件与参数
 
@@ -71,9 +71,12 @@ HAL接口按异步UART、同步USART及Smartcard/IrDA专用模块分别保存固
 ## 5 图形与交叉参考
 
 - [图形关系与来源](../参数/USART/图形关系与来源.md)
-- [DMA参数与请求映射](../参数/DMA参数与HAL接口.md) · [引脚复用与AFIO](../参数/引脚复用与AFIO.md)
-- [GPIO内部复用冲突](../参数/GPIO内部复用冲突.md) · [范围与已知限制](../已知限制.md)
-- [RM0008来源](../来源/RM0008.md#src-rm0008-r21-usart-hardware) · [固定驱动来源](../来源/驱动实现.md#src-usart-fixed-safety-boundaries)
+- [DMA参数与请求映射](../参数/DMA参数与HAL接口.md)
+- [引脚复用与AFIO](../参数/引脚复用与AFIO.md)
+- [GPIO内部复用冲突](../参数/GPIO内部复用冲突.md)
+- [范围与已知限制](../已知限制.md)
+- [RM0008来源](../来源/RM0008.md#src-rm0008-r21-usart-hardware)
+- [固定驱动来源](../来源/驱动实现.md#src-usart-fixed-safety-boundaries)
 
 接口名称、原型和固定函数体核查只证明相应静态内容。本文没有新增固件执行或板端测试；所记载的历史模型结果仅限原来注明的范围，未穷尽中断抢占、编译选项、用户MSP与实际电气条件。
 

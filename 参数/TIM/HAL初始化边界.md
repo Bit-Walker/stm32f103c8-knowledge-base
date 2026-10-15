@@ -1,6 +1,6 @@
 # TIM HAL 时基初始化与反初始化边界
 
-固定来源整合参考。以下是两个固定版本的源代码阅读结论，不是固件执行或板端测试。C8只使用TIM1～TIM4；MSP回调、编译宏及用户改动另行决定实际工程行为。
+以下是两个固定版本的源代码阅读结论，不是固件执行或板端测试。C8只使用TIM1～TIM4；MSP回调、编译宏及用户改动另行决定实际工程行为。
 
 - v1.1.4：de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9。
 - v1.1.10：77fbb30b7a1d02533980400083e48c559aae5a4f。
@@ -29,7 +29,7 @@ v1.1.10还将DMABurstState、全部主通道与互补通道软件状态置READY�
 
 v1.1.10的UIF条件清除只说明该次读到置位后的分支；没有等待所有潜在同步事件结束，也不撤回接收端已消费的触发。本页不据此保证任意时钟比、并发事件或运行时Init均无额外中断。
 
-来源：[v1.1.10 Period断言定义L1656](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/77fbb30b7a1d02533980400083e48c559aae5a4f/Inc/stm32f1xx_hal_tim.h#L1656)、[v1.1.4结构注释L62–69](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_hal_tim.h#L62-L69)、[RM0008 Rev21 RCR，p357](https://www.st.com/resource/en/reference_manual/cd00171190.pdf#page=357)。
+来源：[v1.1.10 Period断言定义L1656](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/77fbb30b7a1d02533980400083e48c559aae5a4f/Inc/stm32f1xx_hal_tim.h#L1656)、[v1.1.4结构注释L62–69](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_hal_tim.h#L62-L69)、[RM0008 Rev21 RCR](https://www.st.com/resource/en/reference_manual/cd00171190.pdf#page=357)。
 
 ## 3 DeInit、停计数、关时钟和外设复位分别核查
 

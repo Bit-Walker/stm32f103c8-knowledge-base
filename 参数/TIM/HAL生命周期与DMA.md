@@ -1,6 +1,6 @@
 # TIM HAL 生命周期、回调与DMA边界
 
-适用STM32F103C8T6，固定来源整合。下文明确区分固定旧版共享State与所列新快照的配对通道状态。未执行固件或板端测量。初始化字段与UG另见[初始化约束](HAL初始化边界.md)；输出组合见[输出安全](输出级与保护.md)。
+下文明确区分固定旧版共享State与所列新快照的配对通道状态。未执行固件或板端测量。初始化字段与UG另见[初始化约束](HAL初始化边界.md)；输出组合见[输出安全](输出级与保护.md)。
 
 
 Base 仅管理基本时基；OC、PWM、IC 各有 Init、ConfigChannel、Start/Stop 及中断/DMA变体。OnePulse 以 Init 的 OnePulseMode 决定单次或重复，通道配置指定输入/输出；编码器 Init 同时配置两路输入，其 Start 的 Channel 可选 CH1、CH2 或 ALL。Encoder_Start_DMA 的 pData1/pData2 分别接收 CCR1/CCR2 捕获数据，不是自动输出累计位置数组。
@@ -130,9 +130,6 @@ READY 状态允许注册/注销下表全部 27 项；RESET 状态仅允许 0x00�
 | HAL_TIM_BREAK_CB_ID | 0x1A | BreakCallback | HAL_TIMEx_BreakCallback |
 
 核验方法：逐一比较固定头文件 ID 数值、RegisterCallback switch 对应字段及 UnRegisterCallback 对应字段/默认函数。27 项字段映射一致。HAL_TIM_HALL_SENSOR_MSPINIT_CB_ID 的用途按标识符与实际 switch 映射确定；原头文件该枚举行的 DeInit 注释不能覆盖实际 MspInit 行为。
-
-
-
 
 
 ## 捕获DMA的请求时机与旧配置

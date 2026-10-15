@@ -1,6 +1,6 @@
 # TIM LL 接口逐项参考
 
-适用STM32F103C8T6，固定来源整合参考。保留189个函数/内联入口与参数，原型逐项匹配固定de129f1头文件；接口说明不代表所有运行状态、编译配置与并发组合已经穷尽验证。
+保留189个函数/内联入口与参数，原型逐项匹配固定de129f1头文件；接口说明不代表所有运行状态、编译配置与并发组合已经穷尽验证。
 
 索引型Channel参数只接受该接口列出的单一通道。固定头文件TIM_GET_CHANNEL_INDEX对未匹配值回退到索引6（CH4），不会自动返回非法参数；将多个通道按位或传给这类接口可能误操作CH4。Channels位掩码接口则按各自说明处理组合值。
 
@@ -366,12 +366,12 @@ __STATIC_INLINE void LL_TIM_SetRepetitionCounter (TIM_TypeDef * TIMx, uint32_t R
 
 设置TIM1 的 RCR 重复计数值，0–255。
 
-- `TIMx`：在 STM32F103C8T6 上仅允许 TIM1；本接口访问的高级字段在 TIM2～TIM4 上不可用。
+- `TIMx`：选择 TIM1。
 - `RepetitionCounter`：TIM1 RCR 值，0–255。
 
 返回：无返回值。
 
-- C8 仅 TIM1 支持该高级功能，TIM2–TIM4 不适用。
+- 适用实例：TIM1。
 
 固定头文件：[接口定义L1337](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_ll_tim.h#L1337)。
 
@@ -383,11 +383,11 @@ __STATIC_INLINE uint32_t LL_TIM_GetRepetitionCounter (TIM_TypeDef * TIMx);
 
 读取TIM1的RCR配置值，C8有效位为0～255；不是内部正在递减的重复计数状态。
 
-- `TIMx`：在 STM32F103C8T6 上仅允许 TIM1；本接口访问的高级字段在 TIM2～TIM4 上不可用。
+- `TIMx`：选择 TIM1。
 
 返回：`uint32_t`，具体数值/位域含义见上方功能说明；Get 类不表示操作成功状态。
 
-- C8 仅 TIM1 支持该高级功能，TIM2–TIM4 不适用。
+- 适用实例：TIM1。
 
 固定头文件：[接口定义L1350](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_ll_tim.h#L1350)。
 
@@ -399,11 +399,11 @@ __STATIC_INLINE void LL_TIM_CC_EnablePreload (TIM_TypeDef * TIMx);
 
 使能TIM1 互补输出控制位预装载（CCxE、CCxNE、OCxM）。
 
-- `TIMx`：在 STM32F103C8T6 上仅允许 TIM1；本接口访问的高级字段在 TIM2～TIM4 上不可用。
+- `TIMx`：选择 TIM1。
 
 返回：无返回值。
 
-- C8 仅 TIM1 支持该高级功能，TIM2–TIM4 不适用。
+- 适用实例：TIM1。
 
 固定头文件：[接口定义L1373](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_ll_tim.h#L1373)。
 
@@ -415,11 +415,11 @@ __STATIC_INLINE void LL_TIM_CC_DisablePreload (TIM_TypeDef * TIMx);
 
 关闭TIM1 互补输出控制位预装载（CCxE、CCxNE、OCxM）。
 
-- `TIMx`：在 STM32F103C8T6 上仅允许 TIM1；本接口访问的高级字段在 TIM2～TIM4 上不可用。
+- `TIMx`：选择 TIM1。
 
 返回：无返回值。
 
-- C8 仅 TIM1 支持该高级功能，TIM2–TIM4 不适用。
+- 适用实例：TIM1。
 
 固定头文件：[接口定义L1386](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_ll_tim.h#L1386)。
 
@@ -431,13 +431,13 @@ __STATIC_INLINE void LL_TIM_CC_SetUpdate (TIM_TypeDef * TIMx, uint32_t CCUpdateS
 
 设置TIM1 预装载捕获比较控制位的 COM 更新来源。
 
-- `TIMx`：在 STM32F103C8T6 上仅允许 TIM1；本接口访问的高级字段在 TIM2～TIM4 上不可用。
+- `TIMx`：选择 TIM1。
 - `CCUpdateSource`：捕获比较控制位的 COM 更新来源，TIM1 专用。
   - 可用编码：`LL_TIM_CCUPDATESOURCE_COMG_ONLY`、`LL_TIM_CCUPDATESOURCE_COMG_AND_TRGI`。
 
 返回：无返回值。
 
-- C8 仅 TIM1 支持该高级功能，TIM2–TIM4 不适用。
+- 适用实例：TIM1。
 
 固定头文件：[接口定义L1402](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_ll_tim.h#L1402)。
 
@@ -479,13 +479,13 @@ __STATIC_INLINE void LL_TIM_CC_SetLockLevel (TIM_TypeDef * TIMx, uint32_t LockLe
 
 设置TIM1 的 BDTR 配置写保护级别。
 
-- `TIMx`：在 STM32F103C8T6 上仅允许 TIM1；本接口访问的高级字段在 TIM2～TIM4 上不可用。
+- `TIMx`：选择 TIM1。
 - `LockLevel`：TIM1 LOCK OFF/1/2/3，锁定后仅复位可解除。
   - 可用编码：`LL_TIM_LOCKLEVEL_OFF`、`LL_TIM_LOCKLEVEL_1`、`LL_TIM_LOCKLEVEL_2`、`LL_TIM_LOCKLEVEL_3`。
 
 返回：无返回值。
 
-- C8 仅 TIM1 支持该高级功能，TIM2–TIM4 不适用。
+- 适用实例：TIM1。
 
 固定头文件：[接口定义L1448](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_ll_tim.h#L1448)。
 
@@ -639,7 +639,7 @@ __STATIC_INLINE void LL_TIM_OC_SetIdleState (TIM_TypeDef * TIMx, uint32_t Channe
 
 设置TIM1 输出空闲电平。
 
-- `TIMx`：在 STM32F103C8T6 上仅允许 TIM1；本接口访问的高级字段在 TIM2～TIM4 上不可用。
+- `TIMx`：选择 TIM1。
 - `Channel`：所选定时器通道；使用本接口列出的通道常量，不能混用 HAL 和 LL 编码。
   - 可用编码：`LL_TIM_CHANNEL_CH1`、`LL_TIM_CHANNEL_CH1N`、`LL_TIM_CHANNEL_CH2`、`LL_TIM_CHANNEL_CH2N`、`LL_TIM_CHANNEL_CH3`、`LL_TIM_CHANNEL_CH3N`、`LL_TIM_CHANNEL_CH4`。
 - `IdleState`：TIM1 输出空闲态电平。
@@ -647,7 +647,7 @@ __STATIC_INLINE void LL_TIM_OC_SetIdleState (TIM_TypeDef * TIMx, uint32_t Channe
 
 返回：无返回值。
 
-- C8 仅 TIM1 支持该高级功能，TIM2–TIM4 不适用。
+- 适用实例：TIM1。
 
 固定头文件：[接口定义L1715](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_ll_tim.h#L1715)。
 
@@ -659,13 +659,13 @@ __STATIC_INLINE uint32_t LL_TIM_OC_GetIdleState (TIM_TypeDef * TIMx, uint32_t Ch
 
 读取TIM1 输出空闲电平。
 
-- `TIMx`：在 STM32F103C8T6 上仅允许 TIM1；本接口访问的高级字段在 TIM2～TIM4 上不可用。
+- `TIMx`：选择 TIM1。
 - `Channel`：所选定时器通道；使用本接口列出的通道常量，不能混用 HAL 和 LL 编码。
   - 可用编码：`LL_TIM_CHANNEL_CH1`、`LL_TIM_CHANNEL_CH1N`、`LL_TIM_CHANNEL_CH2`、`LL_TIM_CHANNEL_CH2N`、`LL_TIM_CHANNEL_CH3`、`LL_TIM_CHANNEL_CH3N`、`LL_TIM_CHANNEL_CH4`。
 
 返回：uint32_t，返回编码：`LL_TIM_OCIDLESTATE_LOW`、`LL_TIM_OCIDLESTATE_HIGH`。
 
-- C8 仅 TIM1 支持该高级功能，TIM2–TIM4 不适用。
+- 适用实例：TIM1。
 
 固定头文件：[接口定义L1743](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_ll_tim.h#L1743)。
 
@@ -821,12 +821,12 @@ __STATIC_INLINE void LL_TIM_OC_SetDeadTime (TIM_TypeDef * TIMx, uint32_t DeadTim
 
 设置TIM1 死区 DTG 编码，范围 0–255。
 
-- `TIMx`：在 STM32F103C8T6 上仅允许 TIM1；本接口访问的高级字段在 TIM2～TIM4 上不可用。
+- `TIMx`：选择 TIM1。
 - `DeadTime`：TIM1 死区 DTG 非线性编码，0–255。
 
 返回：无返回值。
 
-- C8 仅 TIM1 支持该高级功能，TIM2–TIM4 不适用。
+- 适用实例：TIM1。
 
 固定头文件：[接口定义L1963](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_ll_tim.h#L1963)。
 
@@ -1402,11 +1402,11 @@ __STATIC_INLINE void LL_TIM_EnableBRK (TIM_TypeDef * TIMx);
 
 使能TIM1 刹车输入使能。
 
-- `TIMx`：在 STM32F103C8T6 上仅允许 TIM1；本接口访问的高级字段在 TIM2～TIM4 上不可用。
+- `TIMx`：选择 TIM1。
 
 返回：无返回值。
 
-- C8 仅 TIM1 支持该高级功能，TIM2–TIM4 不适用。
+- 适用实例：TIM1。
 
 固定头文件：[接口定义L2698](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_ll_tim.h#L2698)。
 
@@ -1418,11 +1418,11 @@ __STATIC_INLINE void LL_TIM_DisableBRK (TIM_TypeDef * TIMx);
 
 关闭TIM1 刹车输入使能。
 
-- `TIMx`：在 STM32F103C8T6 上仅允许 TIM1；本接口访问的高级字段在 TIM2～TIM4 上不可用。
+- `TIMx`：选择 TIM1。
 
 返回：无返回值。
 
-- C8 仅 TIM1 支持该高级功能，TIM2–TIM4 不适用。
+- 适用实例：TIM1。
 
 固定头文件：[接口定义L2715](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_ll_tim.h#L2715)。
 
@@ -1434,13 +1434,13 @@ __STATIC_INLINE void LL_TIM_ConfigBRK (TIM_TypeDef * TIMx, uint32_t BreakPolarit
 
 设置 TIM1 刹车输入极性；刹车使能另由 EnableBRK 控制。
 
-- `TIMx`：在 STM32F103C8T6 上仅允许 TIM1；本接口访问的高级字段在 TIM2～TIM4 上不可用。
+- `TIMx`：选择 TIM1。
 - `BreakPolarity`：TIM1 BKIN 有效极性。
   - 可用编码：`LL_TIM_BREAK_POLARITY_LOW`、`LL_TIM_BREAK_POLARITY_HIGH`。
 
 返回：无返回值。
 
-- C8 仅 TIM1 支持该高级功能，TIM2–TIM4 不适用。
+- 适用实例：TIM1。
 
 固定头文件：[接口定义L2735](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_ll_tim.h#L2735)。
 
@@ -1452,7 +1452,7 @@ __STATIC_INLINE void LL_TIM_SetOffStates (TIM_TypeDef * TIMx, uint32_t OffStateI
 
 配置 TIM1 的运行关闭态 OSSR 与空闲关闭态 OSSI；LOCK 生效后可能不可修改。
 
-- `TIMx`：在 STM32F103C8T6 上仅允许 TIM1；本接口访问的高级字段在 TIM2～TIM4 上不可用。
+- `TIMx`：选择 TIM1。
 - `OffStateIdle`：TIM1 空闲关闭态 OSSI。
   - 可用编码：`LL_TIM_OSSI_DISABLE`、`LL_TIM_OSSI_ENABLE`。
 - `OffStateRun`：TIM1 运行关闭态 OSSR。
@@ -1460,7 +1460,7 @@ __STATIC_INLINE void LL_TIM_SetOffStates (TIM_TypeDef * TIMx, uint32_t OffStateI
 
 返回：无返回值。
 
-- C8 仅 TIM1 支持该高级功能，TIM2–TIM4 不适用。
+- 适用实例：TIM1。
 
 固定头文件：[接口定义L2759](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_ll_tim.h#L2759)。
 
@@ -1472,11 +1472,11 @@ __STATIC_INLINE void LL_TIM_EnableAutomaticOutput (TIM_TypeDef * TIMx);
 
 设置TIM1的AOE，允许在刹车输入无效且满足条件的更新事件自动置MOE；不要求此前发生过刹车。
 
-- `TIMx`：在 STM32F103C8T6 上仅允许 TIM1；本接口访问的高级字段在 TIM2～TIM4 上不可用。
+- `TIMx`：选择 TIM1。
 
 返回：无返回值。
 
-- C8 仅 TIM1 支持该高级功能，TIM2–TIM4 不适用。
+- 适用实例：TIM1。
 
 固定头文件：[接口定义L2772](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_ll_tim.h#L2772)。
 
@@ -1490,11 +1490,11 @@ __STATIC_INLINE void LL_TIM_DisableAutomaticOutput (TIM_TypeDef * TIMx);
 
 清TIM1的AOE，关闭更新事件自动置MOE的路径；受LOCK写保护条件约束。
 
-- `TIMx`：在 STM32F103C8T6 上仅允许 TIM1；本接口访问的高级字段在 TIM2～TIM4 上不可用。
+- `TIMx`：选择 TIM1。
 
 返回：无返回值。
 
-- C8 仅 TIM1 支持该高级功能，TIM2–TIM4 不适用。
+- 适用实例：TIM1。
 
 固定头文件：[接口定义L2785](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_ll_tim.h#L2785)。
 
@@ -1508,11 +1508,11 @@ __STATIC_INLINE uint32_t LL_TIM_IsEnabledAutomaticOutput (TIM_TypeDef * TIMx);
 
 查询TIM1的AOE使能位；返回值不单独表示MOE当前状态或实际输出电平。
 
-- `TIMx`：在 STM32F103C8T6 上仅允许 TIM1；本接口访问的高级字段在 TIM2～TIM4 上不可用。
+- `TIMx`：选择 TIM1。
 
 返回：uint32_t，0 表示否/未置位，1 表示是/已置位。
 
-- C8 仅 TIM1 支持该高级功能，TIM2–TIM4 不适用。
+- 适用实例：TIM1。
 
 固定头文件：[接口定义L2798](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_ll_tim.h#L2798)。
 
@@ -1526,11 +1526,11 @@ __STATIC_INLINE void LL_TIM_EnableAllOutputs (TIM_TypeDef * TIMx);
 
 使能TIM1 主输出总使能 MOE。
 
-- `TIMx`：在 STM32F103C8T6 上仅允许 TIM1；本接口访问的高级字段在 TIM2～TIM4 上不可用。
+- `TIMx`：选择 TIM1。
 
 返回：无返回值。
 
-- C8 仅 TIM1 支持该高级功能，TIM2–TIM4 不适用。
+- 适用实例：TIM1。
 
 固定头文件：[接口定义L2813](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_ll_tim.h#L2813)。
 
@@ -1544,11 +1544,11 @@ __STATIC_INLINE void LL_TIM_DisableAllOutputs (TIM_TypeDef * TIMx);
 
 关闭TIM1 主输出总使能 MOE。
 
-- `TIMx`：在 STM32F103C8T6 上仅允许 TIM1；本接口访问的高级字段在 TIM2～TIM4 上不可用。
+- `TIMx`：选择 TIM1。
 
 返回：无返回值。
 
-- C8 仅 TIM1 支持该高级功能，TIM2–TIM4 不适用。
+- 适用实例：TIM1。
 
 固定头文件：[接口定义L2828](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_ll_tim.h#L2828)。
 
@@ -1562,11 +1562,11 @@ __STATIC_INLINE uint32_t LL_TIM_IsEnabledAllOutputs (TIM_TypeDef * TIMx);
 
 查询是否使能TIM1 主输出总使能 MOE。
 
-- `TIMx`：在 STM32F103C8T6 上仅允许 TIM1；本接口访问的高级字段在 TIM2～TIM4 上不可用。
+- `TIMx`：选择 TIM1。
 
 返回：uint32_t，0 表示否/未置位，1 表示是/已置位。
 
-- C8 仅 TIM1 支持该高级功能，TIM2–TIM4 不适用。
+- 适用实例：TIM1。
 
 固定头文件：[接口定义L2841](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_ll_tim.h#L2841)。
 
@@ -1738,11 +1738,11 @@ __STATIC_INLINE void LL_TIM_ClearFlag_COM (TIM_TypeDef * TIMx);
 
 清除TIM1 换相状态标志。
 
-- `TIMx`：在 STM32F103C8T6 上仅允许 TIM1；本接口访问的高级字段在 TIM2～TIM4 上不可用。
+- `TIMx`：选择 TIM1。
 
 返回：无返回值。
 
-- C8 仅 TIM1 支持该高级功能，TIM2–TIM4 不适用。
+- 适用实例：TIM1。
 
 固定头文件：[接口定义L3033](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_ll_tim.h#L3033)。
 
@@ -1754,11 +1754,11 @@ __STATIC_INLINE uint32_t LL_TIM_IsActiveFlag_COM (TIM_TypeDef * TIMx);
 
 查询TIM1 换相标志是否置位。
 
-- `TIMx`：在 STM32F103C8T6 上仅允许 TIM1；本接口访问的高级字段在 TIM2～TIM4 上不可用。
+- `TIMx`：选择 TIM1。
 
 返回：uint32_t，0 表示否/未置位，1 表示是/已置位。
 
-- C8 仅 TIM1 支持该高级功能，TIM2–TIM4 不适用。
+- 适用实例：TIM1。
 
 固定头文件：[接口定义L3044](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_ll_tim.h#L3044)。
 
@@ -1798,11 +1798,11 @@ __STATIC_INLINE void LL_TIM_ClearFlag_BRK (TIM_TypeDef * TIMx);
 
 清除TIM1 刹车状态标志。
 
-- `TIMx`：在 STM32F103C8T6 上仅允许 TIM1；本接口访问的高级字段在 TIM2～TIM4 上不可用。
+- `TIMx`：选择 TIM1。
 
 返回：无返回值。
 
-- C8 仅 TIM1 支持该高级功能，TIM2–TIM4 不适用。
+- 适用实例：TIM1。
 
 固定头文件：[接口定义L3077](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_ll_tim.h#L3077)。
 
@@ -1814,11 +1814,11 @@ __STATIC_INLINE uint32_t LL_TIM_IsActiveFlag_BRK (TIM_TypeDef * TIMx);
 
 查询TIM1 刹车标志是否置位。
 
-- `TIMx`：在 STM32F103C8T6 上仅允许 TIM1；本接口访问的高级字段在 TIM2～TIM4 上不可用。
+- `TIMx`：选择 TIM1。
 
 返回：uint32_t，0 表示否/未置位，1 表示是/已置位。
 
-- C8 仅 TIM1 支持该高级功能，TIM2–TIM4 不适用。
+- 适用实例：TIM1。
 
 固定头文件：[接口定义L3088](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_ll_tim.h#L3088)。
 
@@ -2152,11 +2152,11 @@ __STATIC_INLINE void LL_TIM_EnableIT_COM (TIM_TypeDef * TIMx);
 
 开放TIM1 换相中断。
 
-- `TIMx`：在 STM32F103C8T6 上仅允许 TIM1；本接口访问的高级字段在 TIM2～TIM4 上不可用。
+- `TIMx`：选择 TIM1。
 
 返回：无返回值。
 
-- C8 仅 TIM1 支持该高级功能，TIM2–TIM4 不适用。
+- 适用实例：TIM1。
 
 固定头文件：[接口定义L3359](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_ll_tim.h#L3359)。
 
@@ -2168,11 +2168,11 @@ __STATIC_INLINE void LL_TIM_DisableIT_COM (TIM_TypeDef * TIMx);
 
 关闭TIM1 换相中断。
 
-- `TIMx`：在 STM32F103C8T6 上仅允许 TIM1；本接口访问的高级字段在 TIM2～TIM4 上不可用。
+- `TIMx`：选择 TIM1。
 
 返回：无返回值。
 
-- C8 仅 TIM1 支持该高级功能，TIM2–TIM4 不适用。
+- 适用实例：TIM1。
 
 固定头文件：[接口定义L3370](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_ll_tim.h#L3370)。
 
@@ -2184,11 +2184,11 @@ __STATIC_INLINE uint32_t LL_TIM_IsEnabledIT_COM (TIM_TypeDef * TIMx);
 
 查询TIM1 换相中断是否开放。
 
-- `TIMx`：在 STM32F103C8T6 上仅允许 TIM1；本接口访问的高级字段在 TIM2～TIM4 上不可用。
+- `TIMx`：选择 TIM1。
 
 返回：uint32_t，0 表示否/未置位，1 表示是/已置位。
 
-- C8 仅 TIM1 支持该高级功能，TIM2–TIM4 不适用。
+- 适用实例：TIM1。
 
 固定头文件：[接口定义L3381](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_ll_tim.h#L3381)。
 
@@ -2242,11 +2242,11 @@ __STATIC_INLINE void LL_TIM_EnableIT_BRK (TIM_TypeDef * TIMx);
 
 开放TIM1 刹车中断。
 
-- `TIMx`：在 STM32F103C8T6 上仅允许 TIM1；本接口访问的高级字段在 TIM2～TIM4 上不可用。
+- `TIMx`：选择 TIM1。
 
 返回：无返回值。
 
-- C8 仅 TIM1 支持该高级功能，TIM2–TIM4 不适用。
+- 适用实例：TIM1。
 
 固定头文件：[接口定义L3425](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_ll_tim.h#L3425)。
 
@@ -2258,11 +2258,11 @@ __STATIC_INLINE void LL_TIM_DisableIT_BRK (TIM_TypeDef * TIMx);
 
 关闭TIM1 刹车中断。
 
-- `TIMx`：在 STM32F103C8T6 上仅允许 TIM1；本接口访问的高级字段在 TIM2～TIM4 上不可用。
+- `TIMx`：选择 TIM1。
 
 返回：无返回值。
 
-- C8 仅 TIM1 支持该高级功能，TIM2–TIM4 不适用。
+- 适用实例：TIM1。
 
 固定头文件：[接口定义L3436](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_ll_tim.h#L3436)。
 
@@ -2274,11 +2274,11 @@ __STATIC_INLINE uint32_t LL_TIM_IsEnabledIT_BRK (TIM_TypeDef * TIMx);
 
 查询TIM1 刹车中断是否开放。
 
-- `TIMx`：在 STM32F103C8T6 上仅允许 TIM1；本接口访问的高级字段在 TIM2～TIM4 上不可用。
+- `TIMx`：选择 TIM1。
 
 返回：uint32_t，0 表示否/未置位，1 表示是/已置位。
 
-- C8 仅 TIM1 支持该高级功能，TIM2–TIM4 不适用。
+- 适用实例：TIM1。
 
 固定头文件：[接口定义L3447](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_ll_tim.h#L3447)。
 
@@ -2500,11 +2500,11 @@ __STATIC_INLINE void LL_TIM_EnableDMAReq_COM (TIM_TypeDef * TIMx);
 
 开放TIM1 换相 DMA 请求。
 
-- `TIMx`：在 STM32F103C8T6 上仅允许 TIM1；本接口访问的高级字段在 TIM2～TIM4 上不可用。
+- `TIMx`：选择 TIM1。
 
 返回：无返回值。
 
-- C8 仅 TIM1 支持该高级功能，TIM2–TIM4 不适用。
+- 适用实例：TIM1。
 
 固定头文件：[接口定义L3630](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_ll_tim.h#L3630)。
 
@@ -2516,11 +2516,11 @@ __STATIC_INLINE void LL_TIM_DisableDMAReq_COM (TIM_TypeDef * TIMx);
 
 关闭TIM1 换相 DMA 请求。
 
-- `TIMx`：在 STM32F103C8T6 上仅允许 TIM1；本接口访问的高级字段在 TIM2～TIM4 上不可用。
+- `TIMx`：选择 TIM1。
 
 返回：无返回值。
 
-- C8 仅 TIM1 支持该高级功能，TIM2–TIM4 不适用。
+- 适用实例：TIM1。
 
 固定头文件：[接口定义L3641](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_ll_tim.h#L3641)。
 
@@ -2532,11 +2532,11 @@ __STATIC_INLINE uint32_t LL_TIM_IsEnabledDMAReq_COM (TIM_TypeDef * TIMx);
 
 查询TIM1 换相 DMA 请求是否开放。
 
-- `TIMx`：在 STM32F103C8T6 上仅允许 TIM1；本接口访问的高级字段在 TIM2～TIM4 上不可用。
+- `TIMx`：选择 TIM1。
 
 返回：uint32_t，0 表示否/未置位，1 表示是/已置位。
 
-- C8 仅 TIM1 支持该高级功能，TIM2–TIM4 不适用。
+- 适用实例：TIM1。
 
 固定头文件：[接口定义L3652](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_ll_tim.h#L3652)。
 
@@ -2660,11 +2660,11 @@ __STATIC_INLINE void LL_TIM_GenerateEvent_COM (TIM_TypeDef * TIMx);
 
 通过 EGR 产生一次TIM1 换相软件事件。
 
-- `TIMx`：在 STM32F103C8T6 上仅允许 TIM1；本接口访问的高级字段在 TIM2～TIM4 上不可用。
+- `TIMx`：选择 TIM1。
 
 返回：无返回值。
 
-- C8 仅 TIM1 支持该高级功能，TIM2–TIM4 不适用。
+- 适用实例：TIM1。
 
 固定头文件：[接口定义L3758](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_ll_tim.h#L3758)。
 
@@ -2692,11 +2692,11 @@ __STATIC_INLINE void LL_TIM_GenerateEvent_BRK (TIM_TypeDef * TIMx);
 
 通过 EGR 产生一次TIM1 刹车软件事件。
 
-- `TIMx`：在 STM32F103C8T6 上仅允许 TIM1；本接口访问的高级字段在 TIM2～TIM4 上不可用。
+- `TIMx`：选择 TIM1。
 
 返回：无返回值。
 
-- C8 仅 TIM1 支持该高级功能，TIM2–TIM4 不适用。
+- 适用实例：TIM1。
 
 固定头文件：[接口定义L3780](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_ll_tim.h#L3780)。
 
@@ -2879,7 +2879,7 @@ void LL_TIM_BDTR_StructInit (LL_TIM_BDTR_InitTypeDef * TIM_BDTRInitStruct);
 
 返回：无返回值。
 
-- C8 仅 TIM1 支持该高级功能，TIM2–TIM4 不适用。
+- 适用实例：TIM1。
 
 固定头文件：[接口定义L3805](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_ll_tim.h#L3805)。
 
@@ -2891,12 +2891,12 @@ ErrorStatus LL_TIM_BDTR_Init (TIM_TypeDef * TIMx, LL_TIM_BDTR_InitTypeDef * TIM_
 
 配置 TIM1 刹车和死区；第一次写入时一并设置所有将受 LOCK 保护的字段。
 
-- `TIMx`：在 STM32F103C8T6 上仅允许 TIM1；本接口访问的高级字段在 TIM2～TIM4 上不可用。
+- `TIMx`：选择 TIM1。
 - `TIM_BDTRInitStruct`：原型指定的 LL 配置结构指针；StructInit 写入默认值，Init 读取配置。
 
 返回：该固定实现的正常返回路径为SUCCESS；参数断言及硬件状态检查须独立处理。不会配置GPIO或NVIC，不能据返回值判定全部硬件写入已接受。
 
-- C8 仅 TIM1 支持该高级功能，TIM2–TIM4 不适用。
+- 适用实例：TIM1。
 
 固定头文件：[接口定义L3806](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_ll_tim.h#L3806)。
 

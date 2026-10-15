@@ -67,7 +67,8 @@ DMA来源按真实文档与固定源码归并，18条支持范围分别使用唯
 - [ES096定时器边界](ES096.md#src-es096-r15-tim-boundaries)
 - [UM1850接口范围](UM1850.md#src-um1850-r3-tim-interfaces)
 - [HAL/LL固定源码](驱动实现.md#src-tim-fixed-implementations)
-- [AN4013模式与同步](AN4013.md) · [AN4776测量与波形应用](AN4776.md)
+- [AN4013模式与同步](AN4013.md)
+- [AN4776测量与波形应用](AN4776.md)
 
 
 ## USART硬件与驱动来源

@@ -7,7 +7,7 @@
 
 ### DMA1 完整请求映射
 
-依据：[RM0008 Rev 21，§13.3.7 DMA request mapping，印刷页 281,282](https://www.st.com/resource/en/reference_manual/cd00171190.pdf#page=281)。
+依据：[RM0008 Rev 21，§13.3.7 DMA request mapping](https://www.st.com/resource/en/reference_manual/cd00171190.pdf#page=281)。
 
 
 每通道的外设请求在进入 DMA 前简单逻辑或合并，不携带“是哪一个外设请求”的身份。一个通道任意时刻只能使能一个实际请求源；DMA 地址设置并不会筛选请求源。同一行内多个源不能同时依靠同一个通道独立搬运。
@@ -29,7 +29,7 @@ RX表示接收，TX表示发送，CH表示捕获比较通道，UP表示更新事
 
 ### 全部数据宽度组合、对齐和端序
 
-依据：[RM0008 Rev 21，§13.3.3 DMA channels; §13.3.4 Programmable data width, data alignment and endians，印刷页 277,278,279,280,287,288](https://www.st.com/resource/en/reference_manual/cd00171190.pdf#page=277)。
+依据：[RM0008 Rev 21，§13.3.3 DMA channels; §13.3.4 Programmable data width, data alignment and endians](https://www.st.com/resource/en/reference_manual/cd00171190.pdf#page=277)。
 
 
 下表依据RM0008 Rev21 Table76的源/目的内容列、PSIZE/MSIZE字段及p277递增规则，对九种组合进行一致性整理；不是原表操作栏的逐字等价复制。设每次源数据低字节为 B0，后续地址顺序为 B1、B2……，PINC=MINC=1，NDT=4；每笔都只读一个源数据项，再写一个目的数据项，不做打包拼接。
@@ -65,7 +65,7 @@ AHB/APB 桥将上述操作转换成 32 位 APB 写：向字内任意字节地址
 
 ### 中断
 
-依据：[RM0008 Rev 21，§13.3.1 DMA transactions; §13.3.3 DMA channels; §13.3.5 Error management; §13.4 DMA registers，印刷页 276,277,278,279,280,284,285,286,287,288,289,290,291](https://www.st.com/resource/en/reference_manual/cd00171190.pdf#page=276)；[ES096 Rev 15，§2.4.1 DMA disable failure and error flag omission upon simultaneous transfer error and global flag clear，印刷页 3,13](https://www.st.com/resource/en/errata_sheet/es096-stm32f101x8b-stm32f102x8b-and-stm32f103x8b-mediumdensity-device-limitations-stmicroelectronics.pdf#page=3)。
+依据：[RM0008 Rev 21，§13.3.1 DMA transactions; §13.3.3 DMA channels; §13.3.5 Error management; §13.4 DMA registers](https://www.st.com/resource/en/reference_manual/cd00171190.pdf#page=276)；[ES096 Rev 15，§2.4.1 DMA disable failure and error flag omission upon simultaneous transfer error and global flag clear](https://www.st.com/resource/en/errata_sheet/es096-stm32f101x8b-stm32f102x8b-and-stm32f103x8b-mediumdensity-device-limitations-stmicroelectronics.pdf#page=3)。
 
 
 |事件|状态|使能|清除|
@@ -79,7 +79,7 @@ GIFx 是该通道上述事件的综合标志；IFCR.CGIFx 写 1 同时清 GIF、
 
 ### 全部 DMA1 寄存器
 
-依据：[RM0008 Rev 21，§13.3.1 DMA transactions; §13.3.3 DMA channels; §13.3.5 Error management; §13.4 DMA registers，印刷页 276,277,278,279,280,284,285,286,287,288,289,290,291](https://www.st.com/resource/en/reference_manual/cd00171190.pdf#page=276)；[ES096 Rev 15，§2.4.2 Byte and half-word accesses not supported，印刷页 13](https://www.st.com/resource/en/errata_sheet/es096-stm32f101x8b-stm32f102x8b-and-stm32f103x8b-mediumdensity-device-limitations-stmicroelectronics.pdf#page=13)；[ES096 Rev 15，§2.4.1 DMA disable failure and error flag omission upon simultaneous transfer error and global flag clear，印刷页 3,13](https://www.st.com/resource/en/errata_sheet/es096-stm32f101x8b-stm32f102x8b-and-stm32f103x8b-mediumdensity-device-limitations-stmicroelectronics.pdf#page=3)。
+依据：[RM0008 Rev 21，§13.3.1 DMA transactions; §13.3.3 DMA channels; §13.3.5 Error management; §13.4 DMA registers](https://www.st.com/resource/en/reference_manual/cd00171190.pdf#page=276)；[ES096 Rev 15，§2.4.2 Byte and half-word accesses not supported](https://www.st.com/resource/en/errata_sheet/es096-stm32f101x8b-stm32f102x8b-and-stm32f103x8b-mediumdensity-device-limitations-stmicroelectronics.pdf#page=13)；[ES096 Rev 15，§2.4.1 DMA disable failure and error flag omission upon simultaneous transfer error and global flag clear](https://www.st.com/resource/en/errata_sheet/es096-stm32f101x8b-stm32f102x8b-and-stm32f103x8b-mediumdensity-device-limitations-stmicroelectronics.pdf#page=3)。
 
 
 DMA1 基址 0x40020000。**DMA 控制寄存器必须使用对齐的 32 位 word 访问。** RM0008 本节宣称可作 8/16 位访问的文字已由 ES096 §2.4.2 更正，byte/halfword 写会产生异常行为；这不影响 DMA 搬运的数据项仍支持 8、16、32 位。各字段有效范围如下，保留位保持复位值。所有寄存器复位值均为 0x00000000。rw=软件读写，r=只读，w=只写。
@@ -153,7 +153,7 @@ bit31:0 MA 为 rw 存储器端基址，EN=1 时禁止写。MSIZE=01 时忽略 MA
 
 以下七个成员的类型均为`uint32_t`（UM1850 Rev3 §14.1.1，印刷页148）。
 
-依据：[UM1850 Rev 3，§3.9 HAL common resources；§14 HAL DMA Generic Driver（§14.1–14.3），印刷页 25,148,149,150,151,152,153,154,155,156,157,158,159](https://www.st.com/resource/en/user_manual/um1850-description-of-stm32f1-hal-and-lowlayer-drivers-stmicroelectronics.pdf#page=148)。
+依据：[UM1850 Rev 3，§3.9 HAL common resources；§14 HAL DMA Generic Driver（§14.1–14.3）](https://www.st.com/resource/en/user_manual/um1850-description-of-stm32f1-hal-and-lowlayer-drivers-stmicroelectronics.pdf#page=148)。
 
 |成员|可选值与意义|
 |---|---|
@@ -167,7 +167,7 @@ bit31:0 MA 为 rw 存储器端基址，EN=1 时禁止写。MSIZE=01 时忽略 MA
 
 ### DMA_HandleTypeDef（结构体标签__DMA_HandleTypeDef）
 
-依据：[UM1850 Rev 3，§3.9 HAL common resources；§14 HAL DMA Generic Driver（§14.1–14.3），印刷页 25,148,149,150,151,152,153,154,155,156,157,158,159](https://www.st.com/resource/en/user_manual/um1850-description-of-stm32f1-hal-and-lowlayer-drivers-stmicroelectronics.pdf#page=148)。
+依据：[UM1850 Rev 3，§3.9 HAL common resources；§14 HAL DMA Generic Driver（§14.1–14.3）](https://www.st.com/resource/en/user_manual/um1850-description-of-stm32f1-hal-and-lowlayer-drivers-stmicroelectronics.pdf#page=148)。
 
 |成员|类型与意义|
 |---|---|
@@ -188,7 +188,7 @@ bit31:0 MA 为 rw 存储器端基址，EN=1 时禁止写。MSIZE=01 时忽略 MA
 
 下表h均为`DMA_HandleTypeDef *`（UM1850 Rev3 §14.3，印刷页155–156，结合§14.1.2句柄定义）。
 
-依据：[UM1850 Rev 3，§3.9 HAL common resources；§14 HAL DMA Generic Driver（§14.1–14.3），印刷页 25,148,149,150,151,152,153,154,155,156,157,158,159](https://www.st.com/resource/en/user_manual/um1850-description-of-stm32f1-hal-and-lowlayer-drivers-stmicroelectronics.pdf#page=148)；[stm32f1xx_hal_dma.c @ bd368aa335c529641d2e567574885e02deacc64a](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_dma.c)。
+依据：[UM1850 Rev 3，§3.9 HAL common resources；§14 HAL DMA Generic Driver（§14.1–14.3）](https://www.st.com/resource/en/user_manual/um1850-description-of-stm32f1-hal-and-lowlayer-drivers-stmicroelectronics.pdf#page=148)；[stm32f1xx_hal_dma.c @ bd368aa335c529641d2e567574885e02deacc64a](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_dma.c)。
 
 |宏|语义与返回|
 |---|---|
@@ -200,7 +200,7 @@ bit31:0 MA 为 rw 存储器端基址，EN=1 时禁止写。MSIZE=01 时忽略 MA
 
 ### DMA1各通道完整标志
 
-依据：[UM1850 Rev 3，§3.9 HAL common resources；§14 HAL DMA Generic Driver（§14.1–14.3），印刷页 25,148,149,150,151,152,153,154,155,156,157,158,159](https://www.st.com/resource/en/user_manual/um1850-description-of-stm32f1-hal-and-lowlayer-drivers-stmicroelectronics.pdf#page=148)。
+依据：[UM1850 Rev 3，§3.9 HAL common resources；§14 HAL DMA Generic Driver（§14.1–14.3）](https://www.st.com/resource/en/user_manual/um1850-description-of-stm32f1-hal-and-lowlayer-drivers-stmicroelectronics.pdf#page=148)。
 
 |通道|全局|全完成|半完成|传输错误|
 |---|---|---|---|---|
@@ -214,7 +214,7 @@ bit31:0 MA 为 rw 存储器端基址，EN=1 时禁止写。MSIZE=01 时忽略 MA
 
 ### C8功能边界
 
-依据：[DS5319 Rev 20，§2.1 Device overview，印刷页 10,11](https://www.st.com/resource/en/datasheet/stm32f103c8.pdf#page=10)；[RM0008 Rev 21，§13.3.3 DMA channels; §13.3.4 Programmable data width, data alignment and endians，印刷页 277,278,279,280,287,288](https://www.st.com/resource/en/reference_manual/cd00171190.pdf#page=277)；[RM0008 Rev 21，§13.3.1 DMA transactions; §13.3.3 DMA channels; §13.3.5 Error management; §13.4 DMA registers，印刷页 276,277,278,279,280,284,285,286,287,288,289,290,291](https://www.st.com/resource/en/reference_manual/cd00171190.pdf#page=276)。
+依据：[DS5319 Rev 20，§2.1 Device overview](https://www.st.com/resource/en/datasheet/stm32f103c8.pdf#page=10)；[RM0008 Rev 21，§13.3.3 DMA channels; §13.3.4 Programmable data width, data alignment and endians](https://www.st.com/resource/en/reference_manual/cd00171190.pdf#page=277)；[RM0008 Rev 21，§13.3.1 DMA transactions; §13.3.3 DMA channels; §13.3.5 Error management; §13.4 DMA registers](https://www.st.com/resource/en/reference_manual/cd00171190.pdf#page=276)。
 
 | 项目 | STM32F103C8T6 的使用边界 |
 |---|---|
@@ -229,7 +229,7 @@ bit31:0 MA 为 rw 存储器端基址，EN=1 时禁止写。MSIZE=01 时忽略 MA
 
 ### APB外设分布
 
-依据：[DS5319 Rev 20，§2.1 Device overview，印刷页 10,11](https://www.st.com/resource/en/datasheet/stm32f103c8.pdf#page=10)；[RM0008 Rev 21，§13.3.1 DMA transactions; §13.3.3 DMA channels; §13.3.5 Error management; §13.4 DMA registers，印刷页 276,277,278,279,280,284,285,286,287,288,289,290,291](https://www.st.com/resource/en/reference_manual/cd00171190.pdf#page=276)。
+依据：[DS5319 Rev 20，§2.1 Device overview](https://www.st.com/resource/en/datasheet/stm32f103c8.pdf#page=10)；[RM0008 Rev 21，§13.3.1 DMA transactions; §13.3.3 DMA channels; §13.3.5 Error management; §13.4 DMA registers](https://www.st.com/resource/en/reference_manual/cd00171190.pdf#page=276)。
 
 | 总线 | 与本笔记相关的常用外设 | 设计含义 |
 |---|---|---|
@@ -238,7 +238,7 @@ bit31:0 MA 为 rw 存储器端基址，EN=1 时禁止写。MSIZE=01 时忽略 MA
 
 ### 原文理想时序下限
 
-依据：[AN2548 Rev 9，§5.1 DMA transfer timing; §5.1.1 AHB peripheral and system volatile memory; §5.1.2 APB peripheral and system volatile memory; §5.2 Total service time and parallelism; §5.4 Impact of APB; §7 DMA overview，印刷页 7,8,9,11](https://www.st.com/resource/en/application_note/an2548-introduction-to-dma-controller-for-stm32-mcus-stmicroelectronics.pdf#page=7)。
+依据：[AN2548 Rev 9，§5.1 DMA transfer timing; §5.1.1 AHB peripheral and system volatile memory; §5.1.2 APB peripheral and system volatile memory; §5.2 Total service time and parallelism; §5.4 Impact of APB; §7 DMA overview](https://www.st.com/resource/en/application_note/an2548-introduction-to-dma-controller-for-stm32-mcus-stmicroelectronics.pdf#page=7)。
 
 | 阶段 | 原文给出的理想下限或影响因素 |
 |---|---|
@@ -248,7 +248,7 @@ bit31:0 MA 为 rw 存储器端基址，EN=1 时禁止写。MSIZE=01 时忽略 MA
 
 ### 资源不足表现
 
-依据：[AN2548 Rev 9，§6 Insufficient resources threats，印刷页 10](https://www.st.com/resource/en/application_note/an2548-introduction-to-dma-controller-for-stm32-mcus-stmicroelectronics.pdf#page=10)。
+依据：[AN2548 Rev 9，§6 Insufficient resources threats](https://www.st.com/resource/en/application_note/an2548-introduction-to-dma-controller-for-stm32-mcus-stmicroelectronics.pdf#page=10)。
 
 | 表现 | 原因与后果 | 应检查什么 |
 |---|---|---|

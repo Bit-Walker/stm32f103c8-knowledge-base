@@ -29,7 +29,7 @@ void HAL_SYSTICK_CLKSourceConfig (uint32_t CLKSource);
 `CLKSource` 为 `SYSTICK_CLKSOURCE_HCLK` 或 `SYSTICK_CLKSOURCE_HCLK_DIV8`，分别选 HCLK 或 HCLK/8；切换后需重新计算周期。
 
 
-[UM1850 §10.1.1；§10.1.4；§10.2.1，p114,115,117,119,120](../来源/UM1850.md#src-um1850-r3-cortex)；[core_cm3_cmsis590.h 对应来源副本行号](../来源/驱动实现.md#src-cmsis590-cm3)；[stm32f1xx_hal_cortex.c 对应来源副本行号](../来源/驱动实现.md#src-hal-cortex-snapshot)
+[UM1850 §10.1.1；§10.1.4；§10.2.1](../来源/UM1850.md#src-um1850-r3-cortex)；[core_cm3_cmsis590.h 对应来源副本行号](../来源/驱动实现.md#src-cmsis590-cm3)；[stm32f1xx_hal_cortex.c 对应来源副本行号](../来源/驱动实现.md#src-hal-cortex-snapshot)
 
 ## HAL 软件时基
 

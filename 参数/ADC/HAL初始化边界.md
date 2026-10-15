@@ -1,6 +1,6 @@
 # ADC 初始化、反初始化及软件状态边界
 
-适用 STM32F103C8T6。依据固定 HAL v1.1.4 / v1.1.10 源码阅读；没有执行实板验证。
+依据固定 HAL v1.1.4 / v1.1.10 源码阅读；没有执行实板验证。
 
 ## Init 的资源与回调条件
 
@@ -43,7 +43,7 @@ GetState 和 GetError 分别返回软件字段，不执行寄存器核对或硬�
 - [v1.1.4 DeInit，L639–775](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Src/stm32f1xx_hal_adc.c#L639-L775)
 - [v1.1.10 对应实现](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/77fbb30b7a1d02533980400083e48c559aae5a4f/Src/stm32f1xx_hal_adc.c#L421-L771)
 - [v1.1.4 Start/Stop](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Src/stm32f1xx_hal_adc.c#L1046-L1181)
-- [RM0008 Rev21 §11.12.8，p246](https://www.st.com/resource/en/reference_manual/cd00171190.pdf#page=246)
+- [RM0008 Rev21 §11.12.8](https://www.st.com/resource/en/reference_manual/cd00171190.pdf#page=246)
 
 相关停止和恢复条件见[DMA生命周期与恢复](DMA生命周期与恢复.md)。
 

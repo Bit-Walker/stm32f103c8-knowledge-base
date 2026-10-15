@@ -1,6 +1,6 @@
 # ADC LL 初始化与寄存器更新的固定实现边界
 
-范围：STM32F103C8T6；固定提交 bd368aa335c529641d2e567574885e02deacc64a 的官方 LL ADC 头文件和 C 实现。两份文件已核对官方 Git blob 标识。以下为源码、字段编码与 RM0008 的交叉核查，不代表固件或实板测试。
+固定提交 bd368aa335c529641d2e567574885e02deacc64a 的官方 LL ADC 头文件和 C 实现。两份文件已核对官方 Git blob 标识。以下为源码、字段编码与 RM0008 的交叉核查，不代表固件或实板测试。
 
 ## LL_ADC_REG_Init 的 CR1 写入值混入序列长度
 
@@ -26,7 +26,6 @@
 - [固定头文件，序列长度编码 L592–607](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Inc/stm32f1xx_ll_adc.h#L592-L607)
 - [RM0008 Rev21，CR1 位定义 p238](https://www.st.com/resource/en/reference_manual/cd00171190.pdf#page=238)
 
-相关历史记录：ST 社区有针对 F2 提交的同类报告，ST 员工确认了 F4 的问题并报告 F4 固件包修复。这个记录仅作背景，不能当作 F1 已获官方确认或修复的证据；本节 F1 结论来自上列固定源码和寄存器定义。[ST 社区记录](https://community.st.com/stm32-mcus-embedded-software-32/bug-in-stm32f2-adc-low-level-driver-ll-adc-reg-init-regarding-sequencerlength-76566)
 
 ## LL_ADC_DeInit 返回值的保证范围
 
@@ -45,8 +44,10 @@ UM1850 Rev3 p651 将返回值列为 SUCCESS 和 ERROR，并分别关联寄存器
 UM1850 Rev3 p650 的 CommonDeInit 描述明确覆盖同一公共组中的全部 ADC；p651 也推荐用它对全部实例作硬复位。这与所核固定实现的复位掩码不一致。知识库需要同时保留该文档表述和版本限定：此指定实现请求 ADC1 复位，不能替代对 ADC2 的独立寄存器清理。公共双模式控制发生变化本身仍可能影响另一 ADC 的工作，应先按两实例的资源所有权停机。这里确认的是软件复位请求路径，没有执行 ADC2 实板保留值测试。
 
 - [固定 CommonDeInit 实现 L279–291](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_ll_adc.c#L279-L291)
-- [固定 LL bus 常量](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Inc/stm32f1xx_ll_bus.h#L174-L177)；[ForceReset](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Inc/stm32f1xx_ll_bus.h#L928-L931)；[ReleaseReset](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Inc/stm32f1xx_ll_bus.h#L983-L986)
-- [RM0008 Rev21，ADC1RST/ADC2RST，p107](https://www.st.com/resource/en/reference_manual/cd00171190.pdf#page=107)
+- [固定 LL bus 常量](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Inc/stm32f1xx_ll_bus.h#L174-L177)
+- [ForceReset](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Inc/stm32f1xx_ll_bus.h#L928-L931)
+- [ReleaseReset](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Inc/stm32f1xx_ll_bus.h#L983-L986)
+- [RM0008 Rev21，ADC1RST/ADC2RST](https://www.st.com/resource/en/reference_manual/cd00171190.pdf#page=107)
 
 ## 结构默认值与生效条件
 
@@ -85,8 +86,12 @@ C8 的公共入口 ADC12_COMMON 指向 ADC1_BASE，公共 SR 位于偏移 0。�
 
 出处：
 - [固定偏移宏，L227–228](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Inc/stm32f1xx_ll_adc.h#L227-L228)
-- [固定 SLV_EOS，L3663–3673](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Inc/stm32f1xx_ll_adc.h#L3663-L3673)；[SLV_JEOS，L3699–3706](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Inc/stm32f1xx_ll_adc.h#L3699-L3706)；[SLV_AWD1，L3730–3735](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Inc/stm32f1xx_ll_adc.h#L3730-L3735)
-- [固定 CMSIS 公共结构](https://github.com/STMicroelectronics/cmsis-device-f1/blob/c8e9a4a4f16b6d2cb2a2083cbe5161025280fb22/Include/stm32f103xb.h#L167-L174)；[ADC1/ADC2 基地址](https://github.com/STMicroelectronics/cmsis-device-f1/blob/c8e9a4a4f16b6d2cb2a2083cbe5161025280fb22/Include/stm32f103xb.h#L607-L608)；[公共入口](https://github.com/STMicroelectronics/cmsis-device-f1/blob/c8e9a4a4f16b6d2cb2a2083cbe5161025280fb22/Include/stm32f103xb.h#L671)
+- [固定 SLV_EOS，L3663–3673](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Inc/stm32f1xx_ll_adc.h#L3663-L3673)
+- [SLV_JEOS，L3699–3706](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Inc/stm32f1xx_ll_adc.h#L3699-L3706)
+- [SLV_AWD1，L3730–3735](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Inc/stm32f1xx_ll_adc.h#L3730-L3735)
+- [固定 CMSIS 公共结构](https://github.com/STMicroelectronics/cmsis-device-f1/blob/c8e9a4a4f16b6d2cb2a2083cbe5161025280fb22/Include/stm32f103xb.h#L167-L174)
+- [ADC1/ADC2 基地址](https://github.com/STMicroelectronics/cmsis-device-f1/blob/c8e9a4a4f16b6d2cb2a2083cbe5161025280fb22/Include/stm32f103xb.h#L607-L608)
+- [公共入口](https://github.com/STMicroelectronics/cmsis-device-f1/blob/c8e9a4a4f16b6d2cb2a2083cbe5161025280fb22/Include/stm32f103xb.h#L671)
 - [RM0008 Rev21，地址映射 p51](https://www.st.com/resource/en/reference_manual/cd00171190.pdf#page=51)，SR/CR1 定义 pp237–240。
 
 ## 内部通道看门狗编码中的软件标记

@@ -1,6 +1,6 @@
 # HAL GPIO 与 EXTI 调用边界
 
-适用 STM32F103C8T6。以下实现固定为 ST 官方 stm32f1xx-hal-driver 提交 `bd368aa335c529641d2e567574885e02deacc64a`，不代表所有 HAL 版本。核查为源码静态分析，未包含固件编译或实机验收。
+以下实现固定为 ST 官方 stm32f1xx-hal-driver 提交 `bd368aa335c529641d2e567574885e02deacc64a`，不代表所有 HAL 版本。核查为源码静态分析，未包含固件编译或实机验收。
 
 ## 初始化字段及硬件边界
 

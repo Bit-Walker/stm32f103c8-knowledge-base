@@ -47,7 +47,9 @@
 ### 板级时钟证据定位
 
 - [MDK 项目预处理宏与源文件列表](https://github.com/STMicroelectronics/STM32CubeF1/blob/c7656f1fee178058be2f8ebfc8df9eaf91dc565e/Projects/STM32F103RB-Nucleo/Examples/HAL/HAL_TimeBase_TIM/MDK-ARM/Project.uvprojx#L336-L450)
-- [main.c 的局部结构与 PLL 设置](https://github.com/STMicroelectronics/STM32CubeF1/blob/c7656f1fee178058be2f8ebfc8df9eaf91dc565e/Projects/STM32F103RB-Nucleo/Examples/HAL/HAL_TimeBase_TIM/Src/main.c#L125-L152)；[配置头中的 HSE_VALUE](https://github.com/STMicroelectronics/STM32CubeF1/blob/c7656f1fee178058be2f8ebfc8df9eaf91dc565e/Projects/STM32F103RB-Nucleo/Examples/HAL/HAL_TimeBase_TIM/Inc/stm32f1xx_hal_conf.h#L72-L86)
-- [匹配 RCC 读取 HSEPredivValue 的路径](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_rcc.c#L683-L731)；[RCCEx 中的 /1、/2 定义](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Inc/stm32f1xx_hal_rcc_ex.h#L449-L471)
+- [main.c 的局部结构与 PLL 设置](https://github.com/STMicroelectronics/STM32CubeF1/blob/c7656f1fee178058be2f8ebfc8df9eaf91dc565e/Projects/STM32F103RB-Nucleo/Examples/HAL/HAL_TimeBase_TIM/Src/main.c#L125-L152)
+- [配置头中的 HSE_VALUE](https://github.com/STMicroelectronics/STM32CubeF1/blob/c7656f1fee178058be2f8ebfc8df9eaf91dc565e/Projects/STM32F103RB-Nucleo/Examples/HAL/HAL_TimeBase_TIM/Inc/stm32f1xx_hal_conf.h#L72-L86)
+- [匹配 RCC 读取 HSEPredivValue 的路径](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_rcc.c#L683-L731)
+- [RCCEx 中的 /1、/2 定义](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Inc/stm32f1xx_hal_rcc_ex.h#L449-L471)
 
 128 MHz 的条件算术结果不构成允许的工作点；C8T6 系统时钟上限仍为 72 MHz，并须满足电源、Flash 延迟与总线等条件。HSE_VALUE 是软件计算常量，不能代替外部时钟测量。

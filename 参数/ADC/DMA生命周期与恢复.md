@@ -42,8 +42,11 @@ HAL_ADC_Init并不清State.ERROR_DMA；真实TE后单靠Stop→Init→重配模�
 
 ## 5 固定来源与验证边界
 
-- [独立Stop v1.1.4 L1692起](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Src/stm32f1xx_hal_adc.c#L1692)、[v1.1.10 L1694起](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/77fbb30b7a1d02533980400083e48c559aae5a4f/Src/stm32f1xx_hal_adc.c#L1694)
-- [双模式Start/Stop v1.1.4 L670–861](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Src/stm32f1xx_hal_adc_ex.c#L670-L861)、[v1.1.10 L675起](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/77fbb30b7a1d02533980400083e48c559aae5a4f/Src/stm32f1xx_hal_adc_ex.c#L675)
-- [DMA Abort v1.1.4 L416起](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Src/stm32f1xx_hal_dma.c#L416)、[v1.1.10 L415起](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/77fbb30b7a1d02533980400083e48c559aae5a4f/Src/stm32f1xx_hal_dma.c#L415)
+- [独立Stop v1.1.4 L1692起](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Src/stm32f1xx_hal_adc.c#L1692)
+- [v1.1.10 L1694起](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/77fbb30b7a1d02533980400083e48c559aae5a4f/Src/stm32f1xx_hal_adc.c#L1694)
+- [双模式Start/Stop v1.1.4 L670–861](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Src/stm32f1xx_hal_adc_ex.c#L670-L861)
+- [v1.1.10 L675起](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/77fbb30b7a1d02533980400083e48c559aae5a4f/Src/stm32f1xx_hal_adc_ex.c#L675)
+- [DMA Abort v1.1.4 L416起](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Src/stm32f1xx_hal_dma.c#L416)
+- [v1.1.10 L415起](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/77fbb30b7a1d02533980400083e48c559aae5a4f/Src/stm32f1xx_hal_dma.c#L415)
 
 留存的定向主机用例支持上述分支：独立ADC每版本8场景，双模式旧版6、新版9场景；禁用失败由显式受控条件注入，旧版临时句柄不确定路径未作确定状态断言。这些用例不模拟采样、硬件清EN、真实总线或中断时序，不说明实际故障概率；这些主机用例不构成板卡验证。固定bd368aa快照的ADC/DMA文件与所列v1.1.10文件字节一致，该一致性不扩展到未核对的其它文件。

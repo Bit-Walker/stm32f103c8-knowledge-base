@@ -1,6 +1,6 @@
 # ADC HAL 接口参考
 
-适用 STM32F103C8T6。保留原笔记 35 个接口并补齐 2 个条件回调注册接口，共 37 项；原型按固定 v1.1.4 头文件逐项列出。跨版本控制流差异由链接的专节说明。
+保留原笔记 35 个接口并补齐 2 个条件回调注册接口，共 37 项；原型按固定 v1.1.4 头文件逐项列出。跨版本控制流差异由链接的专节说明。
 
 公共约定：HAL_StatusTypeDef 返回值须按具体控制流解释；HAL_OK 不额外保证采集完成、配置全部应用、硬件停止或缓冲区可复用。Get 类的 uint32_t 是数据或位图，void 回调无返回值。有效句柄和参数对象的生命周期由调用方保证；assert_param 的存在不代表关闭断言后仍有运行时输入拒绝。
 
@@ -336,7 +336,7 @@ HAL_StatusTypeDef       HAL_ADCEx_Calibration_Start(ADC_HandleTypeDef* hadc);
 
 **历史实现边界（2026-10-12 源码复核）：**[ST HAL 驱动 v1.1.4 固定源码](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Src/stm32f1xx_hal_adc_ex.c) 的该函数先停止规则/注入转换并禁用 ADC，将显式“两 ADC 周期”等待放在 ADON=0 阶段，随后调用 ADC_Enable、复位校准并校准，成功后保留 ADC 使能。RM0008 Rev21 §11.4 的硬件要求则是校准前 ADON=1 至少两个 ADC 时钟周期；通用 ADC_Enable 稳定延时不能被直接当成已按 ADC 时钟证明该条件。不能只在函数外预先置 ADON，因为函数内部会再次禁用 ADC。
 
-[ST 技术维护者确认与修复记录](https://community.st.com/stm32-mcus-embedded-software-32/why-is-the-adc-calibration-procedure-for-stm32f107-different-from-datasheet-8478) 确认手册要求正确，登记缺陷 #142574，并于 2023-08-01 公告修复已随 STM32Cube_FW_F1_V1.8.5 交付。此处 V1.8.5 是 **Cube 固件包版本**，不是 HAL 驱动 v1.8.5。使用旧驱动应核对/修补使能后的等待或采用已修复版本；其他分支和自定义移植仍须核对源码与时钟条件，HAL_OK 本身不证明校准时序合规。
+[ST 官方 HAL 发布说明](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/77fbb30b7a1d02533980400083e48c559aae5a4f/Release_Notes.html)在 V1.1.9（2023-04-07）的 HAL ADC 条目中记录了校准前 ADON=1 保持至少两个 ADC 时钟周期的修复。这里的 V1.1.9 是 HAL 驱动版本。使用旧驱动应核对使能后的等待；其他分支和自定义移植仍须检查实际源码与时钟条件，HAL_OK 本身不证明校准时序合规。
 
 固定v1.1.10已将显式等待移至使能后，但两版的helper错误返回传递仍有不同边界，见[校准顺序与返回值](HAL初始化边界.md#校准入口的两版顺序与返回值传递)。
 

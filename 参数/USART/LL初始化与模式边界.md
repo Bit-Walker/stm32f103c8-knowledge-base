@@ -60,7 +60,7 @@ v1.1.10 保留上文所述的配置顺序、UE 门控、BRR 前的部分写入�
 
 接口注释描述禁用后当前操作被丢弃；RM0008 p821对UE停止时点的英文存在不完整表述。本页不据此承诺精确停机周期、已发送字符完整性，或所有活动事务已经安全结束，也不把函数返回当作完成确认。
 
-来源：[v1.1.4 Disable，L416–428](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_ll_usart.h#L416-L428)、[v1.1.10 Disable，L417–429](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/77fbb30b7a1d02533980400083e48c559aae5a4f/Inc/stm32f1xx_ll_usart.h#L417-L429)、[RM0008发送收尾，p793](https://www.st.com/resource/en/reference_manual/cd00171190.pdf#page=793)、[UE定义，p821](https://www.st.com/resource/en/reference_manual/cd00171190.pdf#page=821)。
+来源：[v1.1.4 Disable，L416–428](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_ll_usart.h#L416-L428)、[v1.1.10 Disable，L417–429](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/77fbb30b7a1d02533980400083e48c559aae5a4f/Inc/stm32f1xx_ll_usart.h#L417-L429)、[RM0008发送收尾](https://www.st.com/resource/en/reference_manual/cd00171190.pdf#page=793)、[UE定义](https://www.st.com/resource/en/reference_manual/cd00171190.pdf#page=821)。
 
 ## 8 模式辅助函数的精确改写范围
 

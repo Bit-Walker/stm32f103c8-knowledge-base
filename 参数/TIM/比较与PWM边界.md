@@ -1,6 +1,6 @@
 # PWM边沿、中心对齐与比较标志边界
 
-STM32F103C8T6，固定来源整合。下述关系针对固定ARR/CCR、内部稳定计数时钟、PWM1内部参考OCxREF；不包含输出极性、死区、OCREF清除、刹车、外部复位或启动暂态。TIM1的RCR可改变更新事件节奏，不改变这里固定计数波形的基本往返周期。
+下述关系针对固定ARR/CCR、内部稳定计数时钟、PWM1内部参考OCxREF；不包含输出极性、死区、OCREF清除、刹车、外部复位或启动暂态。TIM1的RCR可改变更新事件节奏，不改变这里固定计数波形的基本往返周期。
 
 ## 1 周期与参考占空
 
@@ -76,7 +76,7 @@ TIM2～TIM4图130/131（pp388–389）分别对应本章图84/85的4种边沿、
 
 §15.3.9还说明，为兼容ETRF参考清除，OCxREF在比较结果变化时，或从冻结OCxM=000切换到PWM模式时重新有效。因此本章固定参数稳态占空关系不能单独作为运行中任意切换模式、改值、清除参考后立即恢复的保证。涉及OCxCE的恢复仍要满足UEV及ETRF状态条件，见[参考清除](输出级与保护.md)。
 
-来源：[RM0008 Rev21图127，p383](https://www.st.com/resource/en/reference_manual/cd00171190.pdf#page=383)、[§15.3.9及图130/131，pp387–389](https://www.st.com/resource/en/reference_manual/cd00171190.pdf#page=387)。
+来源：[RM0008 Rev21图127](https://www.st.com/resource/en/reference_manual/cd00171190.pdf#page=383)、[§15.3.9及图130/131，pp387–389](https://www.st.com/resource/en/reference_manual/cd00171190.pdf#page=387)。
 
 ## 非预装载输出比较的翻转时序
 
