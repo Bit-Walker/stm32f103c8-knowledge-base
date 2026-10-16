@@ -2,7 +2,6 @@
 
 [生命周期与缓冲区正文](../知识库/04_DMA与缓冲区协作.md) · [图关系与来源](DMA图关系与来源.md)
 
-
 本页用于查询 DMA 请求映射、数据宽度、寄存器访问及 HAL 调用条件。
 
 - [请求映射](#dma1-完整请求映射)
@@ -17,7 +16,6 @@
 ## DMA1 完整请求映射
 
 依据：[RM0008 Rev 21，§13.3.7 DMA request mapping](https://www.st.com/resource/en/reference_manual/cd00171190.pdf#page=281)。
-
 
 每通道的外设请求在进入 DMA 前简单逻辑或合并，不携带“是哪一个外设请求”的身份。一个通道任意时刻只能使能一个实际请求源；DMA 地址设置并不会筛选请求源。同一行内多个源不能同时依靠同一个通道独立搬运。
 
@@ -35,13 +33,13 @@ RX表示接收，TX表示发送，CH表示捕获比较通道，UP表示更新事
 
 原表 78 的 TIM1/Channel3 单元显示短横线，但同章图 50 明确列出 TIM1_CH2；此处保留该有效请求并明确原表与图的不一致。设计时同时核对外设 DMA 使能、请求时机和通道固定连接。所有通道还可由 MEM2MEM 软件启动。
 
-
 ## 全部数据宽度组合、对齐和端序
 
 依据：[RM0008 Rev 21，§13.3.3 DMA channels; §13.3.4 Programmable data width, data alignment and endians](https://www.st.com/resource/en/reference_manual/cd00171190.pdf#page=277)。
 
+下表依据 RM0008 Rev 21 Table 76 的源/目的内容列及 p277 的递增规则，整理九种宽度组合。PSIZE、MSIZE 分别选择外设端、存储器端的数据项宽度；PINC、MINC 分别控制两端地址是否递增，NDT 表示数据项数。
 
-下表依据RM0008 Rev21 Table76的源/目的内容列、PSIZE/MSIZE字段及p277递增规则，对九种组合进行一致性整理；不是原表操作栏的逐字等价复制。设每次源数据低字节为 B0，后续地址顺序为 B1、B2……，PINC=MINC=1，NDT=4；每笔都只读一个源数据项，再写一个目的数据项，不做打包拼接。
+算例设 PINC=MINC=1、NDT=4；源区域按地址递增的字节依次记为 B0、B1、B2……。每笔只读一个源数据项，再写一个目的数据项，不做打包拼接。下表是结合字段定义的一致性整理，不是原表操作栏的逐字复制。
 
 |源位宽→目的位宽|源地址依次|目的地址依次|四个目的数据项|
 |---|---|---|---|
@@ -71,11 +69,9 @@ AHB 的字节/半字写会把数据复制到未使用的数据总线字节通道
 
 AHB/APB 桥将上述操作转换成 32 位 APB 写：向字内任意字节地址写 B0 会成为向字边界写 B0B0B0B0；向偏移 0 或 2 写半字 B1B0 会成为 B1B0B1B0。因此外设寄存器宽度与数据宽度不能随意混用。例如备份寄存器是按 32 位地址边界排列的 16 位寄存器，宜配置 MSIZE=16 位、PSIZE=32 位，源每次增 2、目的每次增 4，避免写错寄存器间距。
 
-
 ## 中断
 
 依据：[RM0008 Rev 21，§13.3.1 DMA transactions; §13.3.3 DMA channels; §13.3.5 Error management; §13.4 DMA registers](https://www.st.com/resource/en/reference_manual/cd00171190.pdf#page=276)；[ES096 Rev 15，§2.4.1 DMA disable failure and error flag omission upon simultaneous transfer error and global flag clear](https://www.st.com/resource/en/errata_sheet/es096-stm32f101x8b-stm32f102x8b-and-stm32f103x8b-mediumdensity-device-limitations-stmicroelectronics.pdf#page=3)。
-
 
 |事件|状态|使能|清除|
 |---|---|---|---|
@@ -85,11 +81,9 @@ AHB/APB 桥将上述操作转换成 32 位 APB 写：向字内任意字节地址
 
 GIFx 是该通道上述事件的综合标志；IFCR.CGIFx 写 1 同时清 GIF、HTIF、TCIF、TEIF。**按 ES096 §2.4.1，活动通道禁止使用 CGIFx 全清：它若与传输错误同周期发生，会丢失 TEIFx 并阻止通道自动禁用。活动期间分别使用 CHTIFx、CTCIFx、CTEIFx，CGIFx 只用于通道已停用后的清理。** DMA1 的 7 个通道各有独立 IRQ。清 DMA 标志采用写 1 清，与 ADC/TIM 的写 0 清不同；不能混用清标志模板。
 
-
 ## 全部 DMA1 寄存器
 
 依据：[RM0008 Rev 21，§13.3.1 DMA transactions; §13.3.3 DMA channels; §13.3.5 Error management; §13.4 DMA registers](https://www.st.com/resource/en/reference_manual/cd00171190.pdf#page=276)；[ES096 Rev 15，§2.4.2 Byte and half-word accesses not supported](https://www.st.com/resource/en/errata_sheet/es096-stm32f101x8b-stm32f102x8b-and-stm32f103x8b-mediumdensity-device-limitations-stmicroelectronics.pdf#page=13)；[ES096 Rev 15，§2.4.1 DMA disable failure and error flag omission upon simultaneous transfer error and global flag clear](https://www.st.com/resource/en/errata_sheet/es096-stm32f101x8b-stm32f102x8b-and-stm32f103x8b-mediumdensity-device-limitations-stmicroelectronics.pdf#page=3)。
-
 
 DMA1 基址 0x40020000。**DMA 控制寄存器必须使用对齐的 32 位 word 访问。** RM0008 本节宣称可作 8/16 位访问的文字已由 ES096 §2.4.2 更正，byte/halfword 写会产生异常行为；这不影响 DMA 搬运的数据项仍支持 8、16、32 位。各字段有效范围如下，保留位保持复位值。所有寄存器复位值均为 0x00000000。rw=软件读写，r=只读，w=只写。
 
@@ -193,6 +187,8 @@ bit31:0 MA 为 rw 存储器端基址，EN=1 时禁止写。MSIZE=01 时忽略 MA
 |DmaBaseAddress|`DMA_TypeDef *`，控制器基址，内部使用|
 |ChannelIndex|`uint32_t`，通道标志位偏移／索引，内部使用|
 
+关联定时器父句柄时，TIM_DMA_ID_UPDATE、TIM_DMA_ID_CC1、TIM_DMA_ID_CC2、TIM_DMA_ID_CC3、TIM_DMA_ID_CC4、TIM_DMA_ID_COMMUTATION、TIM_DMA_ID_TRIGGER 是 TIM 句柄内的 DMA 索引，不是 DMA1 的硬件通道号。实际通道仍须按[请求映射](#dma1-完整请求映射)选择。
+
 ## DMA宏
 
 下表h均为`DMA_HandleTypeDef *`（UM1850 Rev3 §14.3，印刷页155–156，结合§14.1.2句柄定义）。
@@ -205,7 +201,9 @@ bit31:0 MA 为 rw 存储器端基址，EN=1 时禁止写。MSIZE=01 时忽略 MA
 |`__HAL_DMA_ENABLE(h)` / `__HAL_DMA_DISABLE(h)`|置位／清除通道使能；无返回，不自动维护完整父外设状态|
 |`__HAL_DMA_ENABLE_IT(h,it)` / `__HAL_DMA_DISABLE_IT(h,it)`|it 可组合 `DMA_IT_TC`、`DMA_IT_HT`、`DMA_IT_TE`；无返回|
 |`__HAL_DMA_GET_IT_SOURCE(h,it)`|检查指定源是否使能，返回 SET/RESET 语义|
-|`__HAL_DMA_GET_COUNTER(h)`|返回 CNDTR 剩余数据项数；乘 MSIZE 对应的 1、2 或 4 字节得到剩余项对应的内存端搬运量。连续数组容量还须满足 MINC=1；MINC=0 重复访问同一内存项，不能据该乘积推断独立地址覆盖范围|
+|`__HAL_DMA_GET_COUNTER(h)`|返回 CNDTR 剩余数据项数|
+
+将剩余项数乘以 MSIZE 对应的 1、2 或 4 字节，可得到剩余项对应的内存端搬运量。只有 MINC=1 时，才能据此计算连续数组的剩余覆盖范围；MINC=0 会重复访问同一内存项，不能把该乘积当成独立地址范围。
 
 ## DMA1各通道完整标志
 
@@ -253,7 +251,7 @@ bit31:0 MA 为 rw 存储器端基址，EN=1 时禁止写。MSIZE=01 时忽略 MA
 |---|---|
 | 仲裁与地址计算 | 没有更高优先级挂起请求、从设备已准备好时，至少 2 个 AHB 周期 |
 | AHB 外设读取 | 至少 2 个 AHB 周期；总线共享或等待状态会增加时间 |
-| SRAM 写入 | 一次独立读写访问为 1 个 AHB 周期；原文明确列出的 STM32F1 SRAM read-after-write（先写、后读）情形为 2 个 AHB 周期 |
+| SRAM 访问 | 一次独立读写访问为 1 个 AHB 周期；STM32F1 的 read-after-write（先写、后读）情形为 2 个 AHB 周期 |
 
 ## 资源不足表现
 
@@ -268,9 +266,9 @@ bit31:0 MA 为 rw 存储器端基址，EN=1 时禁止写。MSIZE=01 时忽略 MA
 
 ## 时延模型的保留条件
 
-AN2548 Rev 9 §5.1–5.4，印刷页7–9，表2 p11：仲裁/地址计算理想至少2个AHB周期；AHB外设读取理想至少2个AHB周期；独立SRAM访问1个AHB周期，F1的read-after-write指先写后读情形2周期，不能说全部SRAM写都固定2周期。APB通用基本访问为2个APB周期，APB慢于AHB还需1个AHB同步周期；F1在跨系列表2的AHB/APB桥时钟项为3。以上不应未经阶段重叠分析机械相加。
+使用[原文理想时序下限](#原文理想时序下限)时，还须按实际访问路径计入桥接，并区分可交叠与串行阶段。AN2548 Rev 9 §5.1–5.4（p7–9）给出的 APB 通用基本访问为 2 个 APB 周期；APB 慢于 AHB 时，还需 1 个 AHB 同步周期。跨系列表 2（p11）中，F1 的 AHB/APB 桥时钟项为 3。不能未经阶段分析就把这些数字机械相加，也不能把先写后读的 2 周期特例推广到全部 SRAM 写入。
 
-握手 $`t_{\mathrm{Ack}}`$ 为 1 个 AHB 周期；原文说明不同通道的仲裁开销可被前一通道服务末段遮蔽；§5.2正文称AHB访问末尾两周期，图3首次重叠的网格画成最后一个AHB访问周期与随后Ack周期的重叠；后一次上行仲裁则位于下行访问末两格。这里只分别保留原图文表达，不据此推定F103精确硬件时序；这不是ST正式勘误。
+AN2548 Rev 9 §5.1（p7）注明：在没有背靠背传输、数据块仅含一个数据项的最简单情形中，不包含第四步应答握手。包含该步骤时，§5.2（p8）给出的应答握手时间 $`t_{\mathrm{Ack}}`$ 为 1 个 AHB 周期，下标 Ack 表示 acknowledge（应答）。不同通道的仲裁开销可以被前一通道服务的末段遮蔽；§5.2 正文与 Figure 3 首次交叠的阶段划分存在差异，详见[两次交叠与读图边界](DMA图关系与来源.md#两次交叠与读图边界)。该差异不构成 ST 正式勘误，也不能用于保证 F103 的精确硬件时序。
 
 CPU同APB访问的额外4周期也是简化模型，非任意分频下C8最坏常数。
 
@@ -283,15 +281,15 @@ CPU同APB访问的额外4周期也是简化模型，非任意分频下C8最坏�
 
 ## HAL接口与实际返回
 
-UM1850 Rev 3 §14.2.5 pp151–154列出的12个API及参数保留如下；实际状态行为以固定提交bd368aa335c529641d2e567574885e02deacc64a为边界。DataLength的1～65535是硬件/调用契约；固定.c仅调用assert_param检查范围，不能声称关闭assert时仍会自动返回参数错误。__HAL_LOCK展开和完整状态枚举因缺固定主头文件而未核，不包括在下表已核返回分支中。
+UM1850 Rev 3 §14.2.5 pp151–154列出的12个API及参数保留如下；实际状态行为以固定提交bd368aa335c529641d2e567574885e02deacc64a为边界。DataLength的1～65535是硬件/调用契约；固定.c仅调用assert_param检查范围，不能声称关闭assert时仍会自动返回参数错误。__HAL_LOCK展开和完整状态枚举因缺固定主头文件而未核，不包括在以下已核返回分支中。
 
-共用参数类型（UM1850 Rev3 §14.2.5，印刷页151–154）：hdma为`DMA_HandleTypeDef *`；SrcAddress、DstAddress、DataLength、CompleteLevel、Timeout均为`uint32_t`；CallbackID为`HAL_DMA_CallbackIDTypeDef`；pCallback为`void (*)(DMA_HandleTypeDef *)`。各接口返回类型见表；句柄和回调指向的对象须在调用及相应异步过程期间有效。
+共用参数类型（UM1850 Rev3 §14.2.5，印刷页151–154）：hdma为`DMA_HandleTypeDef *`；SrcAddress、DstAddress、DataLength、CompleteLevel、Timeout均为`uint32_t`；CallbackID为`HAL_DMA_CallbackIDTypeDef`；pCallback为`void (*)(DMA_HandleTypeDef *)`。各接口返回类型见各小节；句柄和回调指向的对象须在调用及相应异步过程期间有效。
 
 ### HAL_DMA_Init
 
 调用：`HAL_DMA_Init(hdma)`。
 
-HAL_StatusTypeDef；空句柄ERROR，配置/软件状态初始化到READY；不是安全Abort。
+返回 `HAL_StatusTypeDef`。空句柄返回 HAL_ERROR；正常路径初始化配置，将软件状态设为 HAL_DMA_STATE_READY（就绪）。初始化不能代替对旧传输的安全终止。
 
 [固定实现](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_dma.c#L142-L211)
 
@@ -299,7 +297,7 @@ HAL_StatusTypeDef；空句柄ERROR，配置/软件状态初始化到READY；不�
 
 调用：`HAL_DMA_DeInit(hdma)`。
 
-HAL_StatusTypeDef；空句柄ERROR，正常RESET；清回调。
+返回 `HAL_StatusTypeDef`。空句柄返回 HAL_ERROR；正常路径将软件状态设为 HAL_DMA_STATE_RESET（复位），并清除回调。
 
 [固定实现](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_dma.c#L219-L284)
 
@@ -307,7 +305,7 @@ HAL_StatusTypeDef；空句柄ERROR，正常RESET；清回调。
 
 调用：`HAL_DMA_Start(hdma, SrcAddress, DstAddress, DataLength)`。
 
-地址uint32_t；长度1～65535项；READY进入BUSY；成功OK；已通过锁宏进入函数主体后，非READY显式返回BUSY；锁宏展开尚未核验。
+地址参数为 `uint32_t`，DataLength 为 1～65535 个数据项。已通过锁宏进入函数主体后，READY 状态进入 HAL_DMA_STATE_BUSY（忙），成功启动返回 HAL_OK；非 READY 状态显式返回 HAL_BUSY。锁宏展开的返回路径仍不在本页核验范围内。
 
 [固定实现](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_dma.c#L318-L350)
 
@@ -323,7 +321,7 @@ HAL_StatusTypeDef；空句柄ERROR，正常RESET；清回调。
 
 调用：`HAL_DMA_Abort(hdma)`。
 
-BUSY才禁用与清理，成功READY/OK；非BUSY返回ERROR+NO_XFER且未禁用。
+仅 BUSY 状态执行禁用与清理，成功后置 READY 并返回 HAL_OK。非 BUSY 状态返回 HAL_ERROR，把 ErrorCode 设为 HAL_DMA_ERROR_NO_XFER，且不实际禁用通道；再次调用前应先保存原错误位图。
 
 [固定实现](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_dma.c#L415-L448)
 
@@ -339,7 +337,12 @@ BUSY路径在本调用同步执行非空Abort回调，回调可以早于返回�
 
 调用：`HAL_DMA_PollForTransfer(hdma, CompleteLevel, Timeout)`。
 
-CompleteLevel为HAL_DMA_FULL_TRANSFER或HAL_DMA_HALF_TRANSFER；Timeout为ms、0立即检查、HAL_MAX_DELAY无限等；执行到TE/超时分支时均ERROR而非HAL_TIMEOUT；目标完成标志已置位时跳过等待循环内的TE/超时检查；超时READY不清EN。
+- CompleteLevel 选择 HAL_DMA_FULL_TRANSFER（全传输）或 HAL_DMA_HALF_TRANSFER（半传输）。
+- Timeout 单位为 ms；0 表示不继续等待，HAL_MAX_DELAY 表示无限等待。
+- 普通模式下，半传输成功轮询后仍为 BUSY，全传输成功轮询后变为 READY。循环模式返回 HAL_ERROR，并设置 HAL_DMA_ERROR_NOT_SUPPORTED。
+- 执行到 TE（传输错误）或超时分支时，均返回 HAL_ERROR，而不是 HAL_TIMEOUT；超时会置 READY，却不清通道使能位 EN。
+
+目标完成标志已置位时，会跳过等待循环内的 TE/超时检查。返回值、软件状态与硬件状态应分别判断，详见[完成标志与错误分支的检查顺序](#完成标志与错误分支的检查顺序)。
 
 [固定实现](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_dma.c#L501-L594)
 
@@ -347,7 +350,7 @@ CompleteLevel为HAL_DMA_FULL_TRANSFER或HAL_DMA_HALF_TRANSFER；Timeout为ms、0
 
 调用：`HAL_DMA_IRQHandler(hdma)`。
 
-void；HT、TC、TE分支及对应中断使能门控；循环HT/TC保持BUSY；执行到TE分支才置READY/错误。
+返回 `void`。按 HT（半传输）、TC（传输完成）、TE（传输错误）的顺序，以对应中断使能位为条件作 if/else-if 分派；一次调用不会处理所有同时挂起的分支。循环模式的 HT/TC 处理保持 BUSY，执行到 TE 分支才置 READY 和错误状态。状态位不是事件队列，不能据此恢复已经丢失的多轮 HT/TC 通知。
 
 [固定实现](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_dma.c#L602-L680)
 
@@ -355,7 +358,12 @@ void；HT、TC、TE分支及对应中断使能门控；循环HT/TC保持BUSY；�
 
 调用：`HAL_DMA_RegisterCallback(hdma, CallbackID, pCallback)`。
 
-READY、有效ID方可修改；NULL未被专门拒绝，意味着不调用；返回HAL_StatusTypeDef。
+返回 `HAL_StatusTypeDef`。READY 状态且 CallbackID 有效时才可修改；NULL 回调未被专门拒绝，意味着不调用。可注册的 ID 为：
+
+- HAL_DMA_XFER_CPLT_CB_ID：完整传输回调
+- HAL_DMA_XFER_HALFCPLT_CB_ID：半传输回调
+- HAL_DMA_XFER_ERROR_CB_ID：错误回调
+- HAL_DMA_XFER_ABORT_CB_ID：终止回调
 
 [固定实现](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_dma.c#L692-L733)
 
@@ -363,7 +371,7 @@ READY、有效ID方可修改；NULL未被专门拒绝，意味着不调用；返
 
 调用：`HAL_DMA_UnRegisterCallback(hdma, CallbackID)`。
 
-支持单个或ALL；READY、合法ID成功OK，非READY或非法ID显式返回ERROR；锁宏展开尚未核验。
+支持解除上述单个回调，或用 HAL_DMA_XFER_ALL_CB_ID 解除全部回调。已通过锁宏进入函数主体后，READY 状态且 ID 合法时返回 HAL_OK；非 READY 或非法 ID 显式返回 HAL_ERROR。锁宏展开尚未核验。
 
 [固定实现](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_dma.c#L743-L791)
 
@@ -371,7 +379,7 @@ READY、有效ID方可修改；NULL未被专门拒绝，意味着不调用；返
 
 调用：`HAL_DMA_GetState(hdma)`。
 
-HAL_DMA_StateTypeDef，仅软件状态。
+返回 `HAL_DMA_StateTypeDef`，只反映软件状态。固定 dma.c 使用 HAL_DMA_STATE_RESET、HAL_DMA_STATE_READY、HAL_DMA_STATE_BUSY；完整枚举仍未按对应固定头文件核验，不能据此断言其他枚举不存在。硬件是否停止须另查 EN，剩余数据项须另查 CNDTR。
 
 [固定实现](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_dma.c#L819-L823)
 
@@ -379,19 +387,15 @@ HAL_DMA_StateTypeDef，仅软件状态。
 
 调用：`HAL_DMA_GetError(hdma)`。
 
-uint32_t错误位图。
+返回 `uint32_t` 错误位图。固定实现涉及 HAL_DMA_ERROR_NONE（无错误）、HAL_DMA_ERROR_TE（传输错误）、HAL_DMA_ERROR_NO_XFER（无活动传输）、HAL_DMA_ERROR_TIMEOUT（超时）和 HAL_DMA_ERROR_NOT_SUPPORTED（不支持的操作）。
 
 [固定实现](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_dma.c#L831-L834)
-
-固定dma.c实际使用的状态标识为HAL_DMA_STATE_RESET、HAL_DMA_STATE_READY、HAL_DMA_STATE_BUSY；完整HAL_DMA_StateTypeDef枚举定义尚未按对应固定头文件核验，不能据此断言其他枚举不存在。Poll超时实际写入READY。错误位名：HAL_DMA_ERROR_NONE、TE、NO_XFER、TIMEOUT、NOT_SUPPORTED。回调ID完整名：HAL_DMA_XFER_CPLT_CB_ID、HAL_DMA_XFER_HALFCPLT_CB_ID、HAL_DMA_XFER_ERROR_CB_ID、HAL_DMA_XFER_ABORT_CB_ID、HAL_DMA_XFER_ALL_CB_ID（最后者用于解除全部）。TIM句柄索引为TIM_DMA_ID_UPDATE/CC1/CC2/CC3/CC4/COMMUTATION/TRIGGER，不是DMA硬件通道号。
-
-普通模式HT成功轮询仍BUSY，完整完成轮询READY；循环模式Poll返回ERROR+NOT_SUPPORTED。主函数返回、句柄状态、硬件EN和CNDTR必须分别解释。固定IRQ实现按HT、else-if TC、else-if TE分派；同时挂起不是一次调用全部分发。这里是源码事实，不能据此承诺丢失的多轮HT/TC事件可恢复。
 
 ## 完成标志与错误分支的检查顺序
 
 固定bd368aa实现的PollForTransfer仅在目标HT/TC标志尚未置位的while循环内检查TE和超时。若检查循环条件时目标完成标志已经置位，该调用跳过循环内的错误/超时判断，清选定完成标志并走HAL_OK路径；这不能额外证明所有错误位均为0。Timeout=0表示不继续等待，目标已经完成时仍可返回OK。有限超时还依赖HAL_GetTick正常推进；函数内的毫秒比较不构成包含中断抢占及调度延迟的硬实时返回上限。此处说明源码分支顺序，不据此认定任意HT/TC/TE组合必然可在硅片同一周期出现。
 
-IRQ入口分别读取一次ISR与CCR快照，随后按已允许的HT、TC、TE依次作if/else-if选择。若进入时HT与TE均挂起且对应中断均已使能，会先处理HT及其非空半完成回调，本次不会继续进入TE分支。半完成回调因此不构成“错误已经优先处理”或“DMA仍在活动”的保证；新发生的事件也不能靠这次旧快照全部分发。原参数表的HT→TC→TE次序继续适用。
+IRQ入口分别读取一次ISR与CCR快照，随后按已允许的HT、TC、TE依次作if/else-if选择。若进入时HT与TE均挂起且对应中断均已使能，会先处理HT及其非空半完成回调，本次不会继续进入TE分支。半完成回调因此不构成“错误已经优先处理”或“DMA仍在活动”的保证；新发生的事件也不能靠这次旧快照全部分发。分支顺序与上面的 `HAL_DMA_IRQHandler` 小节一致。
 
 故障记录还须在再次操作句柄前保存：本版本Abort和Abort_IT在非BUSY分支直接把ErrorCode赋为HAL_DMA_ERROR_NO_XFER，覆盖原错误位图；它们没有在这一分支实际禁用通道。若Poll先因超时置READY、留下EN，再调用Abort，原TIMEOUT诊断可能被NO_XFER替换。不要以此手改State解锁，应保留原始错误、请求及通道状态，再走本事务明确拥有的停止路径。
 
@@ -400,3 +404,4 @@ IRQ入口分别读取一次ISR与CCR快照，随后按已允许的HT、TC、TE�
 ## 原厂证据边界
 
 规则扫描/注入抢占依据[RM0008 Rev21 §§11.3.8–11.3.9 p221](https://www.st.com/resource/en/reference_manual/cd00171190.pdf#page=221)；TIM burst依据[RM0008 Rev21 §§14.4.19–14.4.20 pp361–362](https://www.st.com/resource/en/reference_manual/cd00171190.pdf#page=361)。相关结论直接使用这些原厂章节；它们不构成对AN3116或AN4776整份文档的核验，也不代表ADC与定时器主题已完整覆盖。
+
