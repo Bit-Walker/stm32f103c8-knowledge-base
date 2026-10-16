@@ -32,6 +32,14 @@ ES096 §2.11.1 明确本器件不支持时间触发通信模式，`MCR.TTCM` 必
 
 依据：[RM0008 §24.7.1 pp660–661、TSR pp677–679](../../来源/RM0008.md#src-rm0008-r21-can-mailbox-fifo)。`AutoRetransmission` 开启时，未成功且未取消的请求可继续等待；应用应另行定义发送期限。关闭自动重发时，一次尝试结束也须检查结果，不能只看邮箱重新空闲。
 
+### 原图：发送邮箱的状态变化
+
+![RM0008 Rev21 Figure 228：CAN 发送邮箱状态](../../assets/manual/usb-can/p662-fig228.png)
+
+图：RM0008 Rev21 Figure 228，印刷/PDF p662。`TXRQ` 使空闲邮箱进入 `PENDING`，之后按优先级进入 `SCHEDULED`，总线空闲时进入 `TRANSMIT`。图中的两种完成后 `EMPTY` 分别保留 `TXOK=0` 和 `TXOK=1`，对应上表“邮箱可用”与“成功发送”的区别；不能由 `HAL_OK` 或 `TME=1` 跳过结果判断。[官方原图](https://www.st.com/resource/en/reference_manual/cd00171190.pdf#page=662) · [原图来源记录](../../assets/manual/usb-can/README.md)
+
+右侧失败路径的 `NART` 上横线表示逻辑取反：`NART=0` 允许自动重发，`NART=1` 时一次尝试结束后完成请求。图中的 `ABRQ` 直接取消箭头画在等待/已调度状态；已经进入发送状态时，取消仍可能遇到本次发送成功，须同时阅读前页的 Abort 说明和下文固定 HAL 行为，不能把图理解为能撤回已发送的位。[RM §24.7.1，pp660–661](https://www.st.com/resource/en/reference_manual/cd00171190.pdf#page=660)
+
 固定 `HAL_CAN_AbortTxRequest` 只设置所选邮箱的 `ABRQ` 后返回，没有等待取消完成。发送已经成功的业务是否需要补偿，由上层协议决定，不能将取消请求视为业务撤销。[Abort L1322–1363](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/77fbb30b7a1d02533980400083e48c559aae5a4f/Src/stm32f1xx_hal_can.c#L1322-L1363)
 
 该取消函数对 TSR 使用 `SET_BIT` 读改写。如果读取时已有邮箱的 `RQCP/TXOK/ALST/TERR` 为 1，写回这些 1 可能连带确认相应结果，涉及的可以是其他邮箱。因此取消与完成处理须统一协调，先保存仍需要的完成证据；不能假定一次取消仅改变所选 `ABRQ`。这是固定宏与 TSR 写1清语义的条件性推导，不声称所有并发事件都会丢失。[RM TSR pp677–679](../../来源/RM0008.md#src-rm0008-r21-can-mailbox-fifo) · [固定 SET_BIT L177](https://github.com/STMicroelectronics/cmsis_device_f1/blob/8a76309ed1250d817e9c888c4417171d2ba3ba63/Include/stm32f1xx.h#L177)
