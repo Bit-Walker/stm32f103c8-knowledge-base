@@ -89,3 +89,15 @@ DMA来源按真实文档与固定源码归并，18条支持范围分别使用唯
 ## ROM 串口引导
 
 - [AN2606 与 AN3155：连接、握手和能力查询](ROM串口引导资料.md)
+
+## RTC、BKP 与看门狗
+
+- [RM0008：RTC 架构、预分频与读回差异](RM0008.md#src-rm0008-r21-rtc-calendar-readback)
+- [RM0008：BKP 数据与 TAMPER](RM0008.md#src-rm0008-r21-bkp-data-tamper)
+- [RM0008：看门狗启动、窗口与时限](RM0008.md#src-rm0008-r21-watchdog-start-window)
+- [固定 HAL：RTC 软件日期与读写](驱动实现.md#src-hal-v1110-rtc-calendar-readback)
+- [ST：PRL 只写确认与 HAL 修复](驱动实现.md#src-rtc-prl-official-write-only)
+- [固定 HAL：IWDG 启动与刷新](驱动实现.md#src-hal-v1110-iwdg-start-refresh)
+- [固定 HAL：WWDG 初始化与 EWI](驱动实现.md#src-hal-v1110-wwdg-start-refresh)
+
+LSI 电气范围、更新与 Stop 勘误分别沿用 [DS5319 时钟电气条件](DS5319.md#src-ds5319-r20-clock-electrical)和 [ES096 IWDG 条件](ES096.md#src-es096-r15-iwdg-stop)。
