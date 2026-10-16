@@ -127,3 +127,7 @@ Init 的 RESET 分支将 TxCplt、RxCplt、TxRxCplt、TxHalfCplt、RxHalfCplt、
 SPI 的 GPIO 模式取决于主／从、单双线、点对点或多从机以及 NSS 管理方式。按[引脚复用与 AFIO 的 SPI 信号表](引脚复用与AFIO.md#外设模式)选择模式；同页的[通信映射表](引脚复用与AFIO.md#通信定时器映射)列出 SPI1 默认与重映射引脚及 JTAG 引脚释放条件。原厂依据为 RM0008 Rev21 Table25 p167、Table56 p181，避免将所有 SPI 引脚统一配置成复用推挽。
 
 官方手册：[RM0008](https://www.st.com/resource/en/reference_manual/cd00171190-stm32f101xx-stm32f102xx-stm32f103xx-stm32f105xx-and-stm32f107xx-advanced-armbased-32bit-mcus-stmicroelectronics.pdf)。在线文件可能更新，本文以 Rev21 的所列页码为准。
+
+## 片选与数据的电气时间窗口
+
+NSS建立保持、MISO高阻切换、主从输入输出窗口见[SPI电气时序与主从约束](SPI电气时序与主从约束.md)。DS5319表43的NSS时间以所用SPI的PCLK周期表示，不能读成固定纳秒；HAL初始化方式不替代这些约束。
