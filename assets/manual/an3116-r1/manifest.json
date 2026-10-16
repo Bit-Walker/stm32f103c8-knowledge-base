@@ -1,0 +1,64 @@
+{
+  "source_title": "AN3116 STM32’s ADC modes and their applications",
+  "version": "Doc ID 16840 Rev 1, March 2010",
+  "source_url": "https://www.st.com/resource/en/application_note/an3116-stm32s-adc-modes-and-their-applications-stmicroelectronics.pdf",
+  "source_sha256": "9174d8d2d618c530a68beb16c49aa12142e5a9422458d0fd1ef7258562c94547",
+  "source_bytes": 241943,
+  "source_pages": 18,
+  "retrieved_date_utc": "2026-10-16",
+  "render_engine": "PyMuPDF 1.26.6",
+  "coordinate_system": "PDF points from top-left; [x0,y0,x1,y1]; unrotated A4 page",
+  "figures": [
+    {
+      "figure": 8,
+      "printed_page": 10,
+      "pdf_page_1based": 10,
+      "file": "p10-fig8.png",
+      "crop_box_pt": [
+        120,
+        212,
+        532,
+        401
+      ],
+      "dpi": 240,
+      "width": 1374,
+      "height": 631,
+      "sha256": "b4918bca905cf79c89a4b67aec5802bee34d06b0be2c7c8ace5a5dbfaf51ca14",
+      "retained": "单相与三相电压电流同步测量；保留原公式漏字及全部通道标签"
+    },
+    {
+      "figure": 12,
+      "printed_page": 14,
+      "pdf_page_1based": 14,
+      "file": "p14-fig12.png",
+      "crop_box_pt": [
+        120,
+        281,
+        532,
+        478
+      ],
+      "dpi": 240,
+      "width": 1374,
+      "height": 658,
+      "sha256": "858e8344e1f5845142e1328f9a938b7fa5277b03001a25506e67e5902eaa6653",
+      "retained": "规则同时被注入同时打断；保留触发、恢复、完成箭头与采样转换图例"
+    },
+    {
+      "figure": 14,
+      "printed_page": 15,
+      "pdf_page_1based": 15,
+      "file": "p15-fig14.png",
+      "crop_box_pt": [
+        120,
+        428,
+        532,
+        555
+      ],
+      "dpi": 240,
+      "width": 1374,
+      "height": 424,
+      "sha256": "bcc1d709a158dc73d25d40e48070e4983c713693446ee95a214157219b7e7b1e",
+      "retained": "UPS系统框图；保留电池、逆变、负载与两处测量标记"
+    }
+  ]
+}
