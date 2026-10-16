@@ -77,7 +77,10 @@ void HAL_SMARTCARD_MspDeInit(SMARTCARD_HandleTypeDef *hsc);
 两版原型相同：
 
 ```c
-HAL_StatusTypeDef HAL_SMARTCARD_RegisterCallback(SMARTCARD_HandleTypeDef *hsc, HAL_SMARTCARD_CallbackIDTypeDef CallbackID, pSMARTCARD_CallbackTypeDef pCallback);
+HAL_StatusTypeDef HAL_SMARTCARD_RegisterCallback(
+    SMARTCARD_HandleTypeDef *hsc,
+    HAL_SMARTCARD_CallbackIDTypeDef CallbackID,
+    pSMARTCARD_CallbackTypeDef pCallback);
 ```
 
 ### HAL_SMARTCARD_UnRegisterCallback
@@ -87,7 +90,9 @@ HAL_StatusTypeDef HAL_SMARTCARD_RegisterCallback(SMARTCARD_HandleTypeDef *hsc, H
 两版原型相同：
 
 ```c
-HAL_StatusTypeDef HAL_SMARTCARD_UnRegisterCallback(SMARTCARD_HandleTypeDef *hsc, HAL_SMARTCARD_CallbackIDTypeDef CallbackID);
+HAL_StatusTypeDef HAL_SMARTCARD_UnRegisterCallback(
+    SMARTCARD_HandleTypeDef *hsc,
+    HAL_SMARTCARD_CallbackIDTypeDef CallbackID);
 ```
 
 ### HAL_SMARTCARD_Transmit
@@ -97,13 +102,21 @@ HAL_StatusTypeDef HAL_SMARTCARD_UnRegisterCallback(SMARTCARD_HandleTypeDef *hsc,
 v1.1.4：
 
 ```c
-HAL_StatusTypeDef HAL_SMARTCARD_Transmit(SMARTCARD_HandleTypeDef *hsc, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+HAL_StatusTypeDef HAL_SMARTCARD_Transmit(
+    SMARTCARD_HandleTypeDef *hsc,
+    uint8_t *pData,
+    uint16_t Size,
+    uint32_t Timeout);
 ```
 
 v1.1.10：
 
 ```c
-HAL_StatusTypeDef HAL_SMARTCARD_Transmit(SMARTCARD_HandleTypeDef *hsc, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
+HAL_StatusTypeDef HAL_SMARTCARD_Transmit(
+    SMARTCARD_HandleTypeDef *hsc,
+    const uint8_t *pData,
+    uint16_t Size,
+    uint32_t Timeout);
 ```
 
 ### HAL_SMARTCARD_Receive
@@ -113,7 +126,11 @@ HAL_StatusTypeDef HAL_SMARTCARD_Transmit(SMARTCARD_HandleTypeDef *hsc, const uin
 两版原型相同：
 
 ```c
-HAL_StatusTypeDef HAL_SMARTCARD_Receive(SMARTCARD_HandleTypeDef *hsc, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+HAL_StatusTypeDef HAL_SMARTCARD_Receive(
+    SMARTCARD_HandleTypeDef *hsc,
+    uint8_t *pData,
+    uint16_t Size,
+    uint32_t Timeout);
 ```
 
 ### HAL_SMARTCARD_Transmit_IT
@@ -123,13 +140,19 @@ HAL_StatusTypeDef HAL_SMARTCARD_Receive(SMARTCARD_HandleTypeDef *hsc, uint8_t *p
 v1.1.4：
 
 ```c
-HAL_StatusTypeDef HAL_SMARTCARD_Transmit_IT(SMARTCARD_HandleTypeDef *hsc, uint8_t *pData, uint16_t Size);
+HAL_StatusTypeDef HAL_SMARTCARD_Transmit_IT(
+    SMARTCARD_HandleTypeDef *hsc,
+    uint8_t *pData,
+    uint16_t Size);
 ```
 
 v1.1.10：
 
 ```c
-HAL_StatusTypeDef HAL_SMARTCARD_Transmit_IT(SMARTCARD_HandleTypeDef *hsc, const uint8_t *pData, uint16_t Size);
+HAL_StatusTypeDef HAL_SMARTCARD_Transmit_IT(
+    SMARTCARD_HandleTypeDef *hsc,
+    const uint8_t *pData,
+    uint16_t Size);
 ```
 
 ### HAL_SMARTCARD_Receive_IT
@@ -139,7 +162,10 @@ HAL_StatusTypeDef HAL_SMARTCARD_Transmit_IT(SMARTCARD_HandleTypeDef *hsc, const 
 两版原型相同：
 
 ```c
-HAL_StatusTypeDef HAL_SMARTCARD_Receive_IT(SMARTCARD_HandleTypeDef *hsc, uint8_t *pData, uint16_t Size);
+HAL_StatusTypeDef HAL_SMARTCARD_Receive_IT(
+    SMARTCARD_HandleTypeDef *hsc,
+    uint8_t *pData,
+    uint16_t Size);
 ```
 
 ### HAL_SMARTCARD_Transmit_DMA
@@ -149,13 +175,19 @@ HAL_StatusTypeDef HAL_SMARTCARD_Receive_IT(SMARTCARD_HandleTypeDef *hsc, uint8_t
 v1.1.4：
 
 ```c
-HAL_StatusTypeDef HAL_SMARTCARD_Transmit_DMA(SMARTCARD_HandleTypeDef *hsc, uint8_t *pData, uint16_t Size);
+HAL_StatusTypeDef HAL_SMARTCARD_Transmit_DMA(
+    SMARTCARD_HandleTypeDef *hsc,
+    uint8_t *pData,
+    uint16_t Size);
 ```
 
 v1.1.10：
 
 ```c
-HAL_StatusTypeDef HAL_SMARTCARD_Transmit_DMA(SMARTCARD_HandleTypeDef *hsc, const uint8_t *pData, uint16_t Size);
+HAL_StatusTypeDef HAL_SMARTCARD_Transmit_DMA(
+    SMARTCARD_HandleTypeDef *hsc,
+    const uint8_t *pData,
+    uint16_t Size);
 ```
 
 ### HAL_SMARTCARD_Receive_DMA
@@ -165,7 +197,10 @@ HAL_StatusTypeDef HAL_SMARTCARD_Transmit_DMA(SMARTCARD_HandleTypeDef *hsc, const
 两版原型相同：
 
 ```c
-HAL_StatusTypeDef HAL_SMARTCARD_Receive_DMA(SMARTCARD_HandleTypeDef *hsc, uint8_t *pData, uint16_t Size);
+HAL_StatusTypeDef HAL_SMARTCARD_Receive_DMA(
+    SMARTCARD_HandleTypeDef *hsc,
+    uint8_t *pData,
+    uint16_t Size);
 ```
 
 ### HAL_SMARTCARD_Abort
@@ -185,7 +220,8 @@ HAL_StatusTypeDef HAL_SMARTCARD_Abort(SMARTCARD_HandleTypeDef *hsc);
 两版原型相同：
 
 ```c
-HAL_StatusTypeDef HAL_SMARTCARD_AbortTransmit(SMARTCARD_HandleTypeDef *hsc);
+HAL_StatusTypeDef HAL_SMARTCARD_AbortTransmit(
+    SMARTCARD_HandleTypeDef *hsc);
 ```
 
 ### HAL_SMARTCARD_AbortReceive
@@ -215,7 +251,8 @@ HAL_StatusTypeDef HAL_SMARTCARD_Abort_IT(SMARTCARD_HandleTypeDef *hsc);
 两版原型相同：
 
 ```c
-HAL_StatusTypeDef HAL_SMARTCARD_AbortTransmit_IT(SMARTCARD_HandleTypeDef *hsc);
+HAL_StatusTypeDef HAL_SMARTCARD_AbortTransmit_IT(
+    SMARTCARD_HandleTypeDef *hsc);
 ```
 
 ### HAL_SMARTCARD_AbortReceive_IT
@@ -225,7 +262,8 @@ HAL_StatusTypeDef HAL_SMARTCARD_AbortTransmit_IT(SMARTCARD_HandleTypeDef *hsc);
 两版原型相同：
 
 ```c
-HAL_StatusTypeDef HAL_SMARTCARD_AbortReceive_IT(SMARTCARD_HandleTypeDef *hsc);
+HAL_StatusTypeDef HAL_SMARTCARD_AbortReceive_IT(
+    SMARTCARD_HandleTypeDef *hsc);
 ```
 
 ### HAL_SMARTCARD_IRQHandler
@@ -305,13 +343,15 @@ void HAL_SMARTCARD_AbortReceiveCpltCallback(SMARTCARD_HandleTypeDef *hsc);
 v1.1.4：
 
 ```c
-HAL_SMARTCARD_StateTypeDef HAL_SMARTCARD_GetState(SMARTCARD_HandleTypeDef *hsc);
+HAL_SMARTCARD_StateTypeDef HAL_SMARTCARD_GetState(
+    SMARTCARD_HandleTypeDef *hsc);
 ```
 
 v1.1.10：
 
 ```c
-HAL_SMARTCARD_StateTypeDef HAL_SMARTCARD_GetState(const SMARTCARD_HandleTypeDef *hsc);
+HAL_SMARTCARD_StateTypeDef HAL_SMARTCARD_GetState(
+    const SMARTCARD_HandleTypeDef *hsc);
 ```
 
 ### HAL_SMARTCARD_GetError
@@ -383,7 +423,10 @@ void HAL_IRDA_MspDeInit(IRDA_HandleTypeDef *hirda);
 两版原型相同：
 
 ```c
-HAL_StatusTypeDef HAL_IRDA_RegisterCallback(IRDA_HandleTypeDef *hirda, HAL_IRDA_CallbackIDTypeDef CallbackID, pIRDA_CallbackTypeDef pCallback);
+HAL_StatusTypeDef HAL_IRDA_RegisterCallback(
+    IRDA_HandleTypeDef *hirda,
+    HAL_IRDA_CallbackIDTypeDef CallbackID,
+    pIRDA_CallbackTypeDef pCallback);
 ```
 
 ### HAL_IRDA_UnRegisterCallback
@@ -393,7 +436,9 @@ HAL_StatusTypeDef HAL_IRDA_RegisterCallback(IRDA_HandleTypeDef *hirda, HAL_IRDA_
 两版原型相同：
 
 ```c
-HAL_StatusTypeDef HAL_IRDA_UnRegisterCallback(IRDA_HandleTypeDef *hirda, HAL_IRDA_CallbackIDTypeDef CallbackID);
+HAL_StatusTypeDef HAL_IRDA_UnRegisterCallback(
+    IRDA_HandleTypeDef *hirda,
+    HAL_IRDA_CallbackIDTypeDef CallbackID);
 ```
 
 ### HAL_IRDA_Transmit
@@ -403,13 +448,21 @@ HAL_StatusTypeDef HAL_IRDA_UnRegisterCallback(IRDA_HandleTypeDef *hirda, HAL_IRD
 v1.1.4：
 
 ```c
-HAL_StatusTypeDef HAL_IRDA_Transmit(IRDA_HandleTypeDef *hirda, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+HAL_StatusTypeDef HAL_IRDA_Transmit(
+    IRDA_HandleTypeDef *hirda,
+    uint8_t *pData,
+    uint16_t Size,
+    uint32_t Timeout);
 ```
 
 v1.1.10：
 
 ```c
-HAL_StatusTypeDef HAL_IRDA_Transmit(IRDA_HandleTypeDef *hirda, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
+HAL_StatusTypeDef HAL_IRDA_Transmit(
+    IRDA_HandleTypeDef *hirda,
+    const uint8_t *pData,
+    uint16_t Size,
+    uint32_t Timeout);
 ```
 
 ### HAL_IRDA_Receive
@@ -419,7 +472,11 @@ HAL_StatusTypeDef HAL_IRDA_Transmit(IRDA_HandleTypeDef *hirda, const uint8_t *pD
 两版原型相同：
 
 ```c
-HAL_StatusTypeDef HAL_IRDA_Receive(IRDA_HandleTypeDef *hirda, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+HAL_StatusTypeDef HAL_IRDA_Receive(
+    IRDA_HandleTypeDef *hirda,
+    uint8_t *pData,
+    uint16_t Size,
+    uint32_t Timeout);
 ```
 
 ### HAL_IRDA_Transmit_IT
@@ -429,13 +486,19 @@ HAL_StatusTypeDef HAL_IRDA_Receive(IRDA_HandleTypeDef *hirda, uint8_t *pData, ui
 v1.1.4：
 
 ```c
-HAL_StatusTypeDef HAL_IRDA_Transmit_IT(IRDA_HandleTypeDef *hirda, uint8_t *pData, uint16_t Size);
+HAL_StatusTypeDef HAL_IRDA_Transmit_IT(
+    IRDA_HandleTypeDef *hirda,
+    uint8_t *pData,
+    uint16_t Size);
 ```
 
 v1.1.10：
 
 ```c
-HAL_StatusTypeDef HAL_IRDA_Transmit_IT(IRDA_HandleTypeDef *hirda, const uint8_t *pData, uint16_t Size);
+HAL_StatusTypeDef HAL_IRDA_Transmit_IT(
+    IRDA_HandleTypeDef *hirda,
+    const uint8_t *pData,
+    uint16_t Size);
 ```
 
 ### HAL_IRDA_Receive_IT
@@ -445,7 +508,10 @@ HAL_StatusTypeDef HAL_IRDA_Transmit_IT(IRDA_HandleTypeDef *hirda, const uint8_t 
 两版原型相同：
 
 ```c
-HAL_StatusTypeDef HAL_IRDA_Receive_IT(IRDA_HandleTypeDef *hirda, uint8_t *pData, uint16_t Size);
+HAL_StatusTypeDef HAL_IRDA_Receive_IT(
+    IRDA_HandleTypeDef *hirda,
+    uint8_t *pData,
+    uint16_t Size);
 ```
 
 ### HAL_IRDA_Transmit_DMA
@@ -455,13 +521,19 @@ HAL_StatusTypeDef HAL_IRDA_Receive_IT(IRDA_HandleTypeDef *hirda, uint8_t *pData,
 v1.1.4：
 
 ```c
-HAL_StatusTypeDef HAL_IRDA_Transmit_DMA(IRDA_HandleTypeDef *hirda, uint8_t *pData, uint16_t Size);
+HAL_StatusTypeDef HAL_IRDA_Transmit_DMA(
+    IRDA_HandleTypeDef *hirda,
+    uint8_t *pData,
+    uint16_t Size);
 ```
 
 v1.1.10：
 
 ```c
-HAL_StatusTypeDef HAL_IRDA_Transmit_DMA(IRDA_HandleTypeDef *hirda, const uint8_t *pData, uint16_t Size);
+HAL_StatusTypeDef HAL_IRDA_Transmit_DMA(
+    IRDA_HandleTypeDef *hirda,
+    const uint8_t *pData,
+    uint16_t Size);
 ```
 
 ### HAL_IRDA_Receive_DMA
@@ -471,7 +543,10 @@ HAL_StatusTypeDef HAL_IRDA_Transmit_DMA(IRDA_HandleTypeDef *hirda, const uint8_t
 两版原型相同：
 
 ```c
-HAL_StatusTypeDef HAL_IRDA_Receive_DMA(IRDA_HandleTypeDef *hirda, uint8_t *pData, uint16_t Size);
+HAL_StatusTypeDef HAL_IRDA_Receive_DMA(
+    IRDA_HandleTypeDef *hirda,
+    uint8_t *pData,
+    uint16_t Size);
 ```
 
 ### HAL_IRDA_DMAPause

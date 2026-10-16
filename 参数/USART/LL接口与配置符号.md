@@ -33,7 +33,9 @@ ErrorStatus LL_USART_DeInit(USART_TypeDef *USARTx);
 ### LL_USART_Init
 
 ```c
-ErrorStatus LL_USART_Init(USART_TypeDef *USARTx, LL_USART_InitTypeDef *USART_InitStruct);
+ErrorStatus LL_USART_Init(
+    USART_TypeDef *USARTx,
+    LL_USART_InitTypeDef *USART_InitStruct);
 ```
 
 要求UE=0；部分配置写入后仍可能因时钟/波特率参数返回ERROR；[L202–322](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Src/stm32f1xx_ll_usart.c#L202-L322)。
@@ -49,7 +51,9 @@ void LL_USART_StructInit(LL_USART_InitTypeDef *USART_InitStruct);
 ### LL_USART_ClockInit
 
 ```c
-ErrorStatus LL_USART_ClockInit(USART_TypeDef *USARTx, LL_USART_ClockInitTypeDef *USART_ClockInitStruct);
+ErrorStatus LL_USART_ClockInit(
+    USART_TypeDef *USARTx,
+    LL_USART_ClockInitTypeDef *USART_ClockInitStruct);
 ```
 
 要求UE=0；禁用时钟分支仅清CLKEN，保留CPOL/CPHA/LBCL；[L357–408](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Src/stm32f1xx_ll_usart.c#L357-L408)。
@@ -57,7 +61,8 @@ ErrorStatus LL_USART_ClockInit(USART_TypeDef *USARTx, LL_USART_ClockInitTypeDef 
 ### LL_USART_ClockStructInit
 
 ```c
-void LL_USART_ClockStructInit(LL_USART_ClockInitTypeDef *USART_ClockInitStruct);
+void LL_USART_ClockStructInit(
+    LL_USART_ClockInitTypeDef *USART_ClockInitStruct);
 ```
 
 填入时钟配置默认值；[L416–423](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Src/stm32f1xx_ll_usart.c#L416-L423)。
