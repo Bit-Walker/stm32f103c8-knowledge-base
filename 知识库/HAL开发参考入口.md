@@ -13,7 +13,7 @@ HAL（Hardware Abstraction Layer，硬件抽象层）的开发资料按初始化
 
 ## 通用接口与扩展接口
 
-UM1850 §3.6–3.7（pp20–21）按初始化/反初始化、I/O、控制、状态/错误组织通用 API；TIM 等模块还按 PWM、输出比较、输入捕获等功能分类。扩展接口常位于 `_ex.c/.h`，使用 `HAL_PPPEx_Function` 命名，例如 `HAL_ADCEx_CalibrationStart`。
+UM1850 §3.6–3.7（pp20–21）按初始化/反初始化、I/O、控制、状态/错误组织通用 API；TIM 等模块还按 PWM、输出比较、输入捕获等功能分类。扩展接口常位于 `_ex.c/.h`，使用 `HAL_PPPEx_Function` 命名，例如 `HAL_ADCEx_Calibration_Start`。
 
 `PPP` 是手册中的外设占位符。实际函数名、返回类型及参数以对应头文件为准；不能把通用模型中的示意名称直接作为可编译声明。扩展接口的适用芯片与实例也需要核对。
 

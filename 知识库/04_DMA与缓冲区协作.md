@@ -121,6 +121,14 @@ HT/TC 状态位也不是事件队列。若处理延迟跨过多轮，一次置�
 
 ### 4.1 找出竞争发生的位置
 
+![RM0008 Rev21 Figure1 p47：CPU、DMA与AHB/APB总线架构原图](../assets/manual/system-architecture/rm0008-r21-p47-fig1.png)
+
+图 1，RM0008 Rev21，印刷/PDF 第 47 页。图中 Bus matrix 是总线矩阵，Bridge 1/2 是 AHB 到 APB1/2 的桥，FLITF 是 Flash 存储器接口。带有 DMA Request 的线表示外设请求路径，不是数据总线或时钟支路。
+
+这是跨器件的通用原图，原有模块标签完整保留。阅读本章时沿 CPU、DMA1、Flash、SRAM 和 APB1/APB2 两座桥追踪访问；本器件的外设挂接与封装范围按[系统架构与外设总线挂接](01_器件边界与硬件设计.md#111-系统架构与外设总线挂接)核对。
+
+此图表达访问与请求关系；各外设的核时钟另外查[原厂时钟树](02_时钟复位与低功耗.md#11-频率与分频)，不能把定时器的条件倍频当成 APB 传输也随之倍频。[原件与裁图记录](../assets/manual/system-architecture/README.md)。
+
 CPU 的指令端口 ICode 连接 Flash（闪存）的指令接口；代码区数据端口 DCode、系统端口 System 与 DMA1 的 AHB 主端口参与总线矩阵访问。AHB（Advanced high-performance bus，先进高性能总线）承载这些主设备对共享资源的访问。
 
 Flash 数据接口、静态随机存储器（SRAM）以及通往 APB1/APB2 的系统路径有各自的资源约束。分析一次传输时，应沿源地址和目的地址找到实际访问路径，具体关系见[总线与仲裁](../参数/DMA图关系与来源.md#总线与仲裁示意图)。
