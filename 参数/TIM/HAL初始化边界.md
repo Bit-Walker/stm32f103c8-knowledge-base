@@ -1,6 +1,6 @@
 # TIM HAL 时基初始化与反初始化边界
 
-以下是两个固定版本的源代码阅读结论，不是固件执行或板端测试。C8只使用TIM1～TIM4；MSP回调、编译宏及用户改动另行决定实际工程行为。
+以下是两个固定版本的源代码阅读结论，不是固件执行或板端测试。MSP回调、编译宏及用户改动另行决定实际工程行为。
 
 - v1.1.4：de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9。
 - v1.1.10：77fbb30b7a1d02533980400083e48c559aae5a4f。
@@ -17,17 +17,23 @@ v1.1.10还将DMABurstState、全部主通道与互补通道软件状态置READY�
 
 ## 2 Period、RepetitionCounter与断言的版本条件
 
-|字段或操作|v1.1.4|v1.1.10|C8硬件条件|
-|---|---|---|---|
-|Base_Init的Period检查|本函数未列IS_TIM_PERIOD断言|增加IS_TIM_PERIOD断言，要求>0且≤0xFFFF|ARR为16位，ARR=0阻塞计数|
-|RepetitionCounter写入|支持实例直接写结构字段到RCR|同样直接写入|TIM1只允许有效低8位，0～255；TIM2～4没有RCR|
-|写UG后的UIF处理|该helper没有随后清UIF语句|若立即读到UIF已置位，调用CLEAR_BIT清该位|清状态位不撤回已发生的UEV或TRGO|
+**Period检查**
+
+v1.1.4的Base_Init未列IS_TIM_PERIOD断言；v1.1.10增加该断言，要求>0且≤0xFFFF。ARR为16位，ARR=0阻塞计数。
 
 断言是否启用、失败后如何处理，由工程的assert_param配置决定；断言不是统一返回HAL_ERROR的运行期参数检查。不能因结构字段类型为uint32_t或函数返回OK，就扩大硬件字段范围。
 
-两版RepetitionCounter头文件注释均包含“高级定时器最大0xFFFF”的泛化文字，不能据此把F103C8的RCR扩为16位。本文使用RM0008 p357的REP[7:0]和本器件资源定义；寄存器保留位不应写入越界值。
+**RepetitionCounter写入**
 
-v1.1.10的UIF条件清除只说明该次读到置位后的分支；没有等待所有潜在同步事件结束，也不撤回接收端已消费的触发。本页不据此保证任意时钟比、并发事件或运行时Init均无额外中断。
+两版均在支持实例上直接将结构字段写入RCR。TIM1的RCR仅低8位有效，范围0～255；TIM2～4的对应地址保留。
+
+两版RepetitionCounter头文件注释均包含“高级定时器最大0xFFFF”的泛化文字，不能据此扩大RCR位宽。本文使用RM0008 p357的REP[7:0]和本器件资源定义；寄存器保留位不应写入越界值。
+
+**写UG后的UIF处理**
+
+v1.1.4的helper没有随后清UIF语句；v1.1.10若立即读到UIF已置位，调用CLEAR_BIT清该位。清状态位不撤回已发生的UEV或TRGO。
+
+这一条件清除没有等待所有潜在同步事件结束，也不撤回接收端已消费的触发。本页不据此保证任意时钟比、并发事件或运行时Init均无额外中断。
 
 来源：[v1.1.10 Period断言定义L1656](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/77fbb30b7a1d02533980400083e48c559aae5a4f/Inc/stm32f1xx_hal_tim.h#L1656)、[v1.1.4结构注释L62–69](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_hal_tim.h#L62-L69)、[RM0008 Rev21 RCR](https://www.st.com/resource/en/reference_manual/cd00171190.pdf#page=357)。
 
@@ -43,17 +49,16 @@ HAL注释建议中心/边沿模式切换前先复位，并举DeInit→Init为例
 
 ## 4 RESET_HANDLE_STATE的版本与回调副作用
 
-__HAL_TIM_RESET_HANDLE_STATE不是外设复位命令。固定头文件的赋值范围如下：
+__HAL_TIM_RESET_HANDLE_STATE不是外设复位命令。固定头文件在所有编译配置下的状态赋值为：
 
-|条件|v1.1.4|v1.1.10|
-|---|---|---|
-|所有编译配置|State置HAL_TIM_STATE_RESET|State置RESET；ChannelState[0…3]及ChannelNState[0…3]置相应RESET；DMABurstState置RESET|
-|USE_HAL_TIM_REGISTER_CALLBACKS=1|额外将14个MSP回调指针置NULL|同样额外清这14个MSP回调指针|
-|USE_HAL_TIM_REGISTER_CALLBACKS≠1|没有上述条件回调字段操作|没有上述条件回调字段操作|
+- v1.1.4：State置HAL_TIM_STATE_RESET。
+- v1.1.10：State置RESET；ChannelState[0…3]及ChannelNState[0…3]置相应RESET；DMABurstState置RESET。
+
+两版均仅在USE_HAL_TIM_REGISTER_CALLBACKS=1时，额外将14个MSP回调指针置NULL；其他配置没有这项回调字段操作。
 
 14个指针是Base、IC、OC、PWM、OnePulse、Encoder、HallSensor七类各自的MspInitCallback和MspDeInitCallback。先注册MSP回调后再使用此宏，会清除这些注册项；随后的Init可能转而采用默认弱MSP函数。事件完成/错误回调不在此宏的14项清空列表内，不能把它描述成清空所有回调；后续Init又有自己的回调恢复逻辑。
 
-宏本体没有操作CEN、MOE、RCC、DMA硬件，也没有释放缓冲区或重置Lock、hdma[]关联。v1.1.10的软件ChannelNState数组有四个槽位不代表C8有CH4N引脚。应用必须先确认真实硬件及所有权状态，不以此宏强行修补活动传输的状态机。
+宏本体没有操作CEN、MOE、RCC、DMA硬件，也没有释放缓冲区或重置Lock、hdma[]关联。v1.1.10的软件ChannelNState数组虽有四个槽位，实际互补输出仍限于TIM1 CH1～CH3，CH4没有N输出。应用必须先确认真实硬件及所有权状态，不以此宏强行修补活动传输的状态机。
 
 来源：[v1.1.4宏定义L987起](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_hal_tim.h#L987)、[v1.1.10宏定义L1026起](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/77fbb30b7a1d02533980400083e48c559aae5a4f/Inc/stm32f1xx_hal_tim.h#L1026)。
 
