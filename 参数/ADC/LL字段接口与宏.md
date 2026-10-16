@@ -1618,51 +1618,51 @@ $`V_{\mathrm{ADC}}`$ 为温度通道的电压估计值， $`T`$ 为温度估计�
 | 符号 | 中文含义与适用条件 |
 |---|---|
 | `LL_ADC_AWD_DISABLE` | 看门狗监视：关闭 |
-| `LL_ADC_AWD_ALL_CHANNELS_REG` | 看门狗监视：全通道；REG=规则组，INJ=注入组，REG_INJ=两组 |
-| `LL_ADC_AWD_ALL_CHANNELS_INJ` | 看门狗监视：全通道；REG=规则组，INJ=注入组，REG_INJ=两组 |
-| `LL_ADC_AWD_ALL_CHANNELS_REG_INJ` | 看门狗监视：全通道；REG=规则组，INJ=注入组，REG_INJ=两组 |
-| `LL_ADC_AWD_CHANNEL_0_REG` | ADC 通道 0，C8 外部模拟输入；监视组由 REG/INJ 后缀确定 |
-| `LL_ADC_AWD_CHANNEL_0_INJ` | ADC 通道 0，C8 外部模拟输入；监视组由 REG/INJ 后缀确定 |
-| `LL_ADC_AWD_CHANNEL_0_REG_INJ` | ADC 通道 0，C8 外部模拟输入；监视组由 REG/INJ 后缀确定 |
-| `LL_ADC_AWD_CHANNEL_1_REG` | ADC 通道 1，C8 外部模拟输入；监视组由 REG/INJ 后缀确定 |
-| `LL_ADC_AWD_CHANNEL_1_INJ` | ADC 通道 1，C8 外部模拟输入；监视组由 REG/INJ 后缀确定 |
-| `LL_ADC_AWD_CHANNEL_1_REG_INJ` | ADC 通道 1，C8 外部模拟输入；监视组由 REG/INJ 后缀确定 |
-| `LL_ADC_AWD_CHANNEL_2_REG` | ADC 通道 2，C8 外部模拟输入；监视组由 REG/INJ 后缀确定 |
-| `LL_ADC_AWD_CHANNEL_2_INJ` | ADC 通道 2，C8 外部模拟输入；监视组由 REG/INJ 后缀确定 |
-| `LL_ADC_AWD_CHANNEL_2_REG_INJ` | ADC 通道 2，C8 外部模拟输入；监视组由 REG/INJ 后缀确定 |
-| `LL_ADC_AWD_CHANNEL_3_REG` | ADC 通道 3，C8 外部模拟输入；监视组由 REG/INJ 后缀确定 |
-| `LL_ADC_AWD_CHANNEL_3_INJ` | ADC 通道 3，C8 外部模拟输入；监视组由 REG/INJ 后缀确定 |
-| `LL_ADC_AWD_CHANNEL_3_REG_INJ` | ADC 通道 3，C8 外部模拟输入；监视组由 REG/INJ 后缀确定 |
-| `LL_ADC_AWD_CHANNEL_4_REG` | ADC 通道 4，C8 外部模拟输入；监视组由 REG/INJ 后缀确定 |
-| `LL_ADC_AWD_CHANNEL_4_INJ` | ADC 通道 4，C8 外部模拟输入；监视组由 REG/INJ 后缀确定 |
-| `LL_ADC_AWD_CHANNEL_4_REG_INJ` | ADC 通道 4，C8 外部模拟输入；监视组由 REG/INJ 后缀确定 |
-| `LL_ADC_AWD_CHANNEL_5_REG` | ADC 通道 5，C8 外部模拟输入；监视组由 REG/INJ 后缀确定 |
-| `LL_ADC_AWD_CHANNEL_5_INJ` | ADC 通道 5，C8 外部模拟输入；监视组由 REG/INJ 后缀确定 |
-| `LL_ADC_AWD_CHANNEL_5_REG_INJ` | ADC 通道 5，C8 外部模拟输入；监视组由 REG/INJ 后缀确定 |
-| `LL_ADC_AWD_CHANNEL_6_REG` | ADC 通道 6，C8 外部模拟输入；监视组由 REG/INJ 后缀确定 |
-| `LL_ADC_AWD_CHANNEL_6_INJ` | ADC 通道 6，C8 外部模拟输入；监视组由 REG/INJ 后缀确定 |
-| `LL_ADC_AWD_CHANNEL_6_REG_INJ` | ADC 通道 6，C8 外部模拟输入；监视组由 REG/INJ 后缀确定 |
-| `LL_ADC_AWD_CHANNEL_7_REG` | ADC 通道 7，C8 外部模拟输入；监视组由 REG/INJ 后缀确定 |
-| `LL_ADC_AWD_CHANNEL_7_INJ` | ADC 通道 7，C8 外部模拟输入；监视组由 REG/INJ 后缀确定 |
-| `LL_ADC_AWD_CHANNEL_7_REG_INJ` | ADC 通道 7，C8 外部模拟输入；监视组由 REG/INJ 后缀确定 |
-| `LL_ADC_AWD_CHANNEL_8_REG` | ADC 通道 8，C8 外部模拟输入；监视组由 REG/INJ 后缀确定 |
-| `LL_ADC_AWD_CHANNEL_8_INJ` | ADC 通道 8，C8 外部模拟输入；监视组由 REG/INJ 后缀确定 |
-| `LL_ADC_AWD_CHANNEL_8_REG_INJ` | ADC 通道 8，C8 外部模拟输入；监视组由 REG/INJ 后缀确定 |
-| `LL_ADC_AWD_CHANNEL_9_REG` | ADC 通道 9，C8 外部模拟输入；监视组由 REG/INJ 后缀确定 |
-| `LL_ADC_AWD_CHANNEL_9_INJ` | ADC 通道 9，C8 外部模拟输入；监视组由 REG/INJ 后缀确定 |
-| `LL_ADC_AWD_CHANNEL_9_REG_INJ` | ADC 通道 9，C8 外部模拟输入；监视组由 REG/INJ 后缀确定 |
-| `LL_ADC_AWD_CHANNEL_16_REG` | ADC1 通道16连接温度；ADC2通道16接VSS；监视组由 REG/INJ 后缀确定 |
-| `LL_ADC_AWD_CHANNEL_16_INJ` | ADC1 通道16连接温度；ADC2通道16接VSS；监视组由 REG/INJ 后缀确定 |
-| `LL_ADC_AWD_CHANNEL_16_REG_INJ` | ADC1 通道16连接温度；ADC2通道16接VSS；监视组由 REG/INJ 后缀确定 |
-| `LL_ADC_AWD_CHANNEL_17_REG` | ADC1 通道17连接VREFINT；ADC2通道17接VSS；监视组由 REG/INJ 后缀确定 |
-| `LL_ADC_AWD_CHANNEL_17_INJ` | ADC1 通道17连接VREFINT；ADC2通道17接VSS；监视组由 REG/INJ 后缀确定 |
-| `LL_ADC_AWD_CHANNEL_17_REG_INJ` | ADC1 通道17连接VREFINT；ADC2通道17接VSS；监视组由 REG/INJ 后缀确定 |
-| `LL_ADC_AWD_CH_VREFINT_REG` | ADC1 内部参考电压看门狗监视组合 |
-| `LL_ADC_AWD_CH_VREFINT_INJ` | ADC1 内部参考电压看门狗监视组合 |
-| `LL_ADC_AWD_CH_VREFINT_REG_INJ` | ADC1 内部参考电压看门狗监视组合 |
-| `LL_ADC_AWD_CH_TEMPSENSOR_REG` | ADC1 内部温度传感器看门狗监视组合 |
-| `LL_ADC_AWD_CH_TEMPSENSOR_INJ` | ADC1 内部温度传感器看门狗监视组合 |
-| `LL_ADC_AWD_CH_TEMPSENSOR_REG_INJ` | ADC1 内部温度传感器看门狗监视组合 |
+| `LL_ADC_AWD_ALL_CHANNELS_REG` | 看门狗监视：全通道；监视规则组 |
+| `LL_ADC_AWD_ALL_CHANNELS_INJ` | 看门狗监视：全通道；监视注入组 |
+| `LL_ADC_AWD_ALL_CHANNELS_REG_INJ` | 看门狗监视：全通道；监视规则组和注入组 |
+| `LL_ADC_AWD_CHANNEL_0_REG` | ADC 通道 0，外部模拟输入；监视规则组 |
+| `LL_ADC_AWD_CHANNEL_0_INJ` | ADC 通道 0，外部模拟输入；监视注入组 |
+| `LL_ADC_AWD_CHANNEL_0_REG_INJ` | ADC 通道 0，外部模拟输入；监视规则组和注入组 |
+| `LL_ADC_AWD_CHANNEL_1_REG` | ADC 通道 1，外部模拟输入；监视规则组 |
+| `LL_ADC_AWD_CHANNEL_1_INJ` | ADC 通道 1，外部模拟输入；监视注入组 |
+| `LL_ADC_AWD_CHANNEL_1_REG_INJ` | ADC 通道 1，外部模拟输入；监视规则组和注入组 |
+| `LL_ADC_AWD_CHANNEL_2_REG` | ADC 通道 2，外部模拟输入；监视规则组 |
+| `LL_ADC_AWD_CHANNEL_2_INJ` | ADC 通道 2，外部模拟输入；监视注入组 |
+| `LL_ADC_AWD_CHANNEL_2_REG_INJ` | ADC 通道 2，外部模拟输入；监视规则组和注入组 |
+| `LL_ADC_AWD_CHANNEL_3_REG` | ADC 通道 3，外部模拟输入；监视规则组 |
+| `LL_ADC_AWD_CHANNEL_3_INJ` | ADC 通道 3，外部模拟输入；监视注入组 |
+| `LL_ADC_AWD_CHANNEL_3_REG_INJ` | ADC 通道 3，外部模拟输入；监视规则组和注入组 |
+| `LL_ADC_AWD_CHANNEL_4_REG` | ADC 通道 4，外部模拟输入；监视规则组 |
+| `LL_ADC_AWD_CHANNEL_4_INJ` | ADC 通道 4，外部模拟输入；监视注入组 |
+| `LL_ADC_AWD_CHANNEL_4_REG_INJ` | ADC 通道 4，外部模拟输入；监视规则组和注入组 |
+| `LL_ADC_AWD_CHANNEL_5_REG` | ADC 通道 5，外部模拟输入；监视规则组 |
+| `LL_ADC_AWD_CHANNEL_5_INJ` | ADC 通道 5，外部模拟输入；监视注入组 |
+| `LL_ADC_AWD_CHANNEL_5_REG_INJ` | ADC 通道 5，外部模拟输入；监视规则组和注入组 |
+| `LL_ADC_AWD_CHANNEL_6_REG` | ADC 通道 6，外部模拟输入；监视规则组 |
+| `LL_ADC_AWD_CHANNEL_6_INJ` | ADC 通道 6，外部模拟输入；监视注入组 |
+| `LL_ADC_AWD_CHANNEL_6_REG_INJ` | ADC 通道 6，外部模拟输入；监视规则组和注入组 |
+| `LL_ADC_AWD_CHANNEL_7_REG` | ADC 通道 7，外部模拟输入；监视规则组 |
+| `LL_ADC_AWD_CHANNEL_7_INJ` | ADC 通道 7，外部模拟输入；监视注入组 |
+| `LL_ADC_AWD_CHANNEL_7_REG_INJ` | ADC 通道 7，外部模拟输入；监视规则组和注入组 |
+| `LL_ADC_AWD_CHANNEL_8_REG` | ADC 通道 8，外部模拟输入；监视规则组 |
+| `LL_ADC_AWD_CHANNEL_8_INJ` | ADC 通道 8，外部模拟输入；监视注入组 |
+| `LL_ADC_AWD_CHANNEL_8_REG_INJ` | ADC 通道 8，外部模拟输入；监视规则组和注入组 |
+| `LL_ADC_AWD_CHANNEL_9_REG` | ADC 通道 9，外部模拟输入；监视规则组 |
+| `LL_ADC_AWD_CHANNEL_9_INJ` | ADC 通道 9，外部模拟输入；监视注入组 |
+| `LL_ADC_AWD_CHANNEL_9_REG_INJ` | ADC 通道 9，外部模拟输入；监视规则组和注入组 |
+| `LL_ADC_AWD_CHANNEL_16_REG` | ADC1 通道16连接温度；ADC2通道16接VSS；监视规则组 |
+| `LL_ADC_AWD_CHANNEL_16_INJ` | ADC1 通道16连接温度；ADC2通道16接VSS；监视注入组 |
+| `LL_ADC_AWD_CHANNEL_16_REG_INJ` | ADC1 通道16连接温度；ADC2通道16接VSS；监视规则组和注入组 |
+| `LL_ADC_AWD_CHANNEL_17_REG` | ADC1 通道17连接VREFINT；ADC2通道17接VSS；监视规则组 |
+| `LL_ADC_AWD_CHANNEL_17_INJ` | ADC1 通道17连接VREFINT；ADC2通道17接VSS；监视注入组 |
+| `LL_ADC_AWD_CHANNEL_17_REG_INJ` | ADC1 通道17连接VREFINT；ADC2通道17接VSS；监视规则组和注入组 |
+| `LL_ADC_AWD_CH_VREFINT_REG` | ADC1 内部参考电压看门狗监视组合；监视规则组 |
+| `LL_ADC_AWD_CH_VREFINT_INJ` | ADC1 内部参考电压看门狗监视组合；监视注入组 |
+| `LL_ADC_AWD_CH_VREFINT_REG_INJ` | ADC1 内部参考电压看门狗监视组合；监视规则组和注入组 |
+| `LL_ADC_AWD_CH_TEMPSENSOR_REG` | ADC1 内部温度传感器看门狗监视组合；监视规则组 |
+| `LL_ADC_AWD_CH_TEMPSENSOR_INJ` | ADC1 内部温度传感器看门狗监视组合；监视注入组 |
+| `LL_ADC_AWD_CH_TEMPSENSOR_REG_INJ` | ADC1 内部温度传感器看门狗监视组合；监视规则组和注入组 |
 | `LL_ADC_AWD1` | 唯一模拟看门狗实例 |
 | `LL_ADC_AWD_THRESHOLD_HIGH` | 选择上阈值 |
 | `LL_ADC_AWD_THRESHOLD_LOW` | 选择下阈值 |
@@ -1671,16 +1671,16 @@ $`V_{\mathrm{ADC}}`$ 为温度通道的电压估计值， $`T`$ 为温度估计�
 
 | 符号 | 中文含义与适用条件 |
 |---|---|
-| `LL_ADC_CHANNEL_0` | ADC 通道 0，C8 外部模拟输入 |
-| `LL_ADC_CHANNEL_1` | ADC 通道 1，C8 外部模拟输入 |
-| `LL_ADC_CHANNEL_2` | ADC 通道 2，C8 外部模拟输入 |
-| `LL_ADC_CHANNEL_3` | ADC 通道 3，C8 外部模拟输入 |
-| `LL_ADC_CHANNEL_4` | ADC 通道 4，C8 外部模拟输入 |
-| `LL_ADC_CHANNEL_5` | ADC 通道 5，C8 外部模拟输入 |
-| `LL_ADC_CHANNEL_6` | ADC 通道 6，C8 外部模拟输入 |
-| `LL_ADC_CHANNEL_7` | ADC 通道 7，C8 外部模拟输入 |
-| `LL_ADC_CHANNEL_8` | ADC 通道 8，C8 外部模拟输入 |
-| `LL_ADC_CHANNEL_9` | ADC 通道 9，C8 外部模拟输入 |
+| `LL_ADC_CHANNEL_0` | ADC 通道 0，外部模拟输入 |
+| `LL_ADC_CHANNEL_1` | ADC 通道 1，外部模拟输入 |
+| `LL_ADC_CHANNEL_2` | ADC 通道 2，外部模拟输入 |
+| `LL_ADC_CHANNEL_3` | ADC 通道 3，外部模拟输入 |
+| `LL_ADC_CHANNEL_4` | ADC 通道 4，外部模拟输入 |
+| `LL_ADC_CHANNEL_5` | ADC 通道 5，外部模拟输入 |
+| `LL_ADC_CHANNEL_6` | ADC 通道 6，外部模拟输入 |
+| `LL_ADC_CHANNEL_7` | ADC 通道 7，外部模拟输入 |
+| `LL_ADC_CHANNEL_8` | ADC 通道 8，外部模拟输入 |
+| `LL_ADC_CHANNEL_9` | ADC 通道 9，外部模拟输入 |
 | `LL_ADC_CHANNEL_16` | ADC1 通道16连接温度；ADC2通道16接VSS |
 | `LL_ADC_CHANNEL_17` | ADC1 通道17连接VREFINT；ADC2通道17接VSS |
 | `LL_ADC_CHANNEL_VREFINT` | ADC1 内部参考电压通道/通路 |
@@ -1755,13 +1755,13 @@ $`V_{\mathrm{ADC}}`$ 为温度通道的电压估计值， $`T`$ 为温度估计�
 | `LL_ADC_INJ_SEQ_SCAN_ENABLE_4RANKS` | 序列长度 4 的字段编码；须另使能公共 CR1.SCAN |
 | `LL_ADC_INJ_TRIG_EXT_RISING` | 仅上升沿触发 |
 | `LL_ADC_INJ_TRIG_SOFTWARE` | 软件触发 |
-| `LL_ADC_INJ_TRIG_EXT_TIM1_TRGO` | 注入组外部触发：TIM1_TRGO；仅本章保留的 C8 事件源 |
-| `LL_ADC_INJ_TRIG_EXT_TIM1_CH4` | 注入组外部触发：TIM1_CH4；仅本章保留的 C8 事件源 |
-| `LL_ADC_INJ_TRIG_EXT_TIM2_TRGO` | 注入组外部触发：TIM2_TRGO；仅本章保留的 C8 事件源 |
-| `LL_ADC_INJ_TRIG_EXT_TIM2_CH1` | 注入组外部触发：TIM2_CH1；仅本章保留的 C8 事件源 |
-| `LL_ADC_INJ_TRIG_EXT_TIM3_CH4` | 注入组外部触发：TIM3_CH4；仅本章保留的 C8 事件源 |
-| `LL_ADC_INJ_TRIG_EXT_TIM4_TRGO` | 注入组外部触发：TIM4_TRGO；仅本章保留的 C8 事件源 |
-| `LL_ADC_INJ_TRIG_EXT_EXTI_LINE15` | 注入组外部触发：EXTI_LINE15；仅本章保留的 C8 事件源 |
+| `LL_ADC_INJ_TRIG_EXT_TIM1_TRGO` | 注入组外部触发：TIM1_TRGO |
+| `LL_ADC_INJ_TRIG_EXT_TIM1_CH4` | 注入组外部触发：TIM1_CH4 |
+| `LL_ADC_INJ_TRIG_EXT_TIM2_TRGO` | 注入组外部触发：TIM2_TRGO |
+| `LL_ADC_INJ_TRIG_EXT_TIM2_CH1` | 注入组外部触发：TIM2_CH1 |
+| `LL_ADC_INJ_TRIG_EXT_TIM3_CH4` | 注入组外部触发：TIM3_CH4 |
+| `LL_ADC_INJ_TRIG_EXT_TIM4_TRGO` | 注入组外部触发：TIM4_TRGO |
+| `LL_ADC_INJ_TRIG_EXT_EXTI_LINE15` | 注入组外部触发：EXTI_LINE15 |
 | `LL_ADC_INJ_TRIG_INDEPENDENT` | 注入组独立触发 |
 | `LL_ADC_INJ_TRIG_FROM_GRP_REGULAR` | 规则序列完成后自动注入 |
 
@@ -1841,13 +1841,13 @@ $`V_{\mathrm{ADC}}`$ 为温度通道的电压估计值， $`T`$ 为温度估计�
 | `LL_ADC_REG_SEQ_SCAN_ENABLE_16RANKS` | 序列长度 16 的字段编码；须另使能公共 CR1.SCAN |
 | `LL_ADC_REG_TRIG_EXT_RISING` | 仅上升沿触发 |
 | `LL_ADC_REG_TRIG_SOFTWARE` | 软件触发 |
-| `LL_ADC_REG_TRIG_EXT_TIM1_CH3` | 规则组外部触发：TIM1_CH3；仅本章保留的 C8 事件源 |
-| `LL_ADC_REG_TRIG_EXT_TIM1_CH1` | 规则组外部触发：TIM1_CH1；仅本章保留的 C8 事件源 |
-| `LL_ADC_REG_TRIG_EXT_TIM1_CH2` | 规则组外部触发：TIM1_CH2；仅本章保留的 C8 事件源 |
-| `LL_ADC_REG_TRIG_EXT_TIM2_CH2` | 规则组外部触发：TIM2_CH2；仅本章保留的 C8 事件源 |
-| `LL_ADC_REG_TRIG_EXT_TIM3_TRGO` | 规则组外部触发：TIM3_TRGO；仅本章保留的 C8 事件源 |
-| `LL_ADC_REG_TRIG_EXT_TIM4_CH4` | 规则组外部触发：TIM4_CH4；仅本章保留的 C8 事件源 |
-| `LL_ADC_REG_TRIG_EXT_EXTI_LINE11` | 规则组外部触发：EXTI_LINE11；仅本章保留的 C8 事件源 |
+| `LL_ADC_REG_TRIG_EXT_TIM1_CH3` | 规则组外部触发：TIM1_CH3 |
+| `LL_ADC_REG_TRIG_EXT_TIM1_CH1` | 规则组外部触发：TIM1_CH1 |
+| `LL_ADC_REG_TRIG_EXT_TIM1_CH2` | 规则组外部触发：TIM1_CH2 |
+| `LL_ADC_REG_TRIG_EXT_TIM2_CH2` | 规则组外部触发：TIM2_CH2 |
+| `LL_ADC_REG_TRIG_EXT_TIM3_TRGO` | 规则组外部触发：TIM3_TRGO |
+| `LL_ADC_REG_TRIG_EXT_TIM4_CH4` | 规则组外部触发：TIM4_CH4 |
+| `LL_ADC_REG_TRIG_EXT_EXTI_LINE11` | 规则组外部触发：EXTI_LINE11 |
 
 ### 分辨率与扫描编码
 
