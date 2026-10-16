@@ -27,7 +27,9 @@ TIM1与TIM2～TIM4的TI2触发例子分别在p336/p396写“TI2上升沿启动�
 
 ## TIM1→TIM2 的六种同步关系
 
-![TIM1到TIM2六种同步连接及初始化条件](../../assets/tim/tim_cascade_modes.svg)
+![RM0008 Rev21图140：主从定时器选路，完整保留接收时钟Note](../../assets/manual/rm0008-r21/p398-fig140.png)
+
+原图140保留TIM1的UEV、MMS、TRGO1，经TIM2的ITR0、TS、SMS到CK_PSC、预分频器和计数器的完整通路。它直接画的是事件级联连接，不能把这一幅图当作六种模式各自的波形；下表继续分别列出图140～145的模式条件。
 
 以下实例均由TIM1.TRGO连接TIM2.ITR0，因此TIM2.TS=000。换用别的发送/接收实例必须重新查[ITR映射](硬件参数表.md#内部触发互联)。接收定时器的时钟必须在接收主事件之前打开，接收期间不动态改变该时钟。
 
@@ -40,6 +42,18 @@ TIM1与TIM2～TIM4的TI2触发例子分别在p336/p396写“TI2上升沿启动�
 |144|MMS=001，CNT_EN|SMS=110，触发|主使能上升沿启动从计数；主之后关闭，从仍可继续计数|
 |145|MMS=001，CNT_EN；主本身使用外部触发与MSM=1|SMS=110，触发|MSM协调主自身启动与传给从端的触发；初值和时基仍分别配置|
 
+### 同一Enable来源：门控暂停与触发启动
+
+![RM0008 Rev21图142：TIM1 Enable门控TIM2](../../assets/manual/rm0008-r21/p400-fig142.png)
+
+图142把TIM1的CNT_EN高窗口与TIM2计数窗口对应起来：两端先经UG初始化，从端再写0xE7，随后到0xE8、0xE9；主使能关闭后，从端暂停并保持计数值。这里按图题的Enable来源取MMS=001、从端SMS=101，并先使能从端CEN。p400同页步骤却写OC1REF、MMS=100，这是原文与图题/行为的差异；不改写原图，也不能把OC1REF门控图141的配置混入本例。
+
+![RM0008 Rev21图144：TIM1 Enable触发启动TIM2](../../assets/manual/rm0008-r21/p402-fig144.png)
+
+图144同样使用Enable来源，但从端为SMS=110：上升沿启动从计数，主使能关闭后从端仍继续至0xEA。p401引出图144时，把已经是触发模式的图143写成“改成触发、替代门控”；本文按图144标题和SMS字段区分，不从该交叉引用继承图143的UEV来源。两幅图均保留CNT_INIT、写CNT、TIF和Write TIF=0箭头；TIF是事件后由软件清除的标志，不是等宽触发脉冲，图形间距也不定义固定同步延迟。
+
+来源：[RM0008 Rev21图142 p400](https://www.st.com/resource/en/reference_manual/cd00171190.pdf#page=400)、[图144及引文pp401–402](https://www.st.com/resource/en/reference_manual/cd00171190.pdf#page=401)。图141、143、145的原波形本次未收录，其条件与数值仍在下表保留。
+
 原图数值和时基条件保留如下，计数数值均按原图十六进制标签记录，分频整数另按十进制；不作为新的程序初始值要求：
 
 |原图|初始值/计数片段|时基与初始化条件|
@@ -50,13 +64,15 @@ TIM1与TIM2～TIM4的TI2触发例子分别在p336/p396写“TI2上升沿启动�
 |144|主75经UG到00；从CD经UG到00，再写E7，继续E8/E9/EA|从端为触发模式，主停止后从仍继续；不能套用图142门控停机行为|
 |145|两端00→01→…→09|先UG初始化；MSM在主CNT_EN到CK_PSC之间插入协调延迟。图中CEN和TIF边沿并非全部重合|
 
-p401关于图144的交叉引用把已有触发例又描述成“改成触发、替代门控”，与相邻模式说明不一致；本文按图144标题的Enable来源和SMS=110区分，不能据这句交叉引用把图143的UEV来源自动照搬。p400的TIM2_CNTL字样也不建立独立8位计数写接口，按C8的CNT寄存器访问规则处理。
+p400的TIM2_CNTL字样也不建立独立8位计数写接口，按C8的CNT寄存器访问规则处理。
 
 级联例中的计数事件仍经过从端PSC，不能把“每个主UEV”无条件等同“TIM2.CNT加1”。主端非零RCR、UDIS以及额外UG等又会改变UEV节奏；不能只用主ARR直接推定整个级联频率。
 
+MMS=000也不是触发隔离：该选择可把EGR.UG导出TRGO。初始化UG期间须保证接收端不消费相应触发或COM，不能只靠把MMS清零；C8中各端时钟、PSC、CNT和装载初态仍需分别配置。[MMS字段p340](https://www.st.com/resource/en/reference_manual/cd00171190.pdf#page=340)。
+
 图142/144保留的初始化示例是：先分别UG初始化，再把TIM2.CNT写为0xE7；该写值提供初始计数偏移。图141展示未重新初始化时从原计数值继续计数。UG会产生其他已配置事件/触发，应在两端尚未接收工作触发时安排初始化，不能在运行中随意插入。
 
-原厂文本与图示有两处已知差异：p400的“使能门控”步骤写MMS=100，但图142和主停止即关闭从门控的条件要求按CNT_EN来源MMS=001解释；OC1REF门控另见图141。p402的同步启动例称TI1上升沿，却写TS=100（TI1F_ED双边沿检测）；明确只需要上升沿时，应按字段选择TI1FP1、TS=101及CC1P=0，并配置对应TI1输入链。本文分别保留配置编码及其真实来源含义，不把两个条件合并为同一保证。
+另一个原文差异在p402：同步启动例称TI1上升沿，却写TS=100（TI1F_ED双边沿检测）；明确只需要上升沿时，应按字段选择TI1FP1、TS=101及CC1P=0，并配置对应TI1输入链。本文分别保留配置编码及其真实来源含义，不把两个条件合并为同一保证。
 
 来源：[RM0008 Rev21 §15.3.15、图140～145，pp398–403](https://www.st.com/resource/en/reference_manual/cd00171190.pdf#page=398)、[SMCR字段pp407–409](https://www.st.com/resource/en/reference_manual/cd00171190.pdf#page=407)。
 
@@ -87,7 +103,15 @@ OCxFE快速功能仅在PWM1/PWM2有效。启用后，触发沿能按比较匹配
 
 ## Hall接口的触发与捕获
 
-![Hall间隔捕获与延迟COM控制路径](../../assets/tim/tim_hall_commutation.svg)
+![RM0008 Rev21图95：Hall接口计数、捕获、延迟COM与六路输出完整原图](../../assets/manual/rm0008-r21/p333-fig95.png)
+
+原图95上半部是接口定时器的三路输入、CNT、CCR2阈值、CCR1及TRGO=OC2REF，下半部是高级定时器的COM与OC1/OC1N～OC3/OC3N。应用于C8时，接口定时器从TIM2～TIM4中按实际ITR路由选择，高级输出端为TIM1；原章节的TIM5/TIM8不能据此扩展到C8。
+
+沿时间线阅读：Hall合格转换先捕获此前间隔并重新开始计数，CNT达到CCR2后OC2REF产生上升沿，再由接收端形成COM。TI1F_ED检测TI1滤波信号的两个方向转换，本例TS=100、SMS=100；CH1为CC1S=11，CH2为CC2S=00、OC2M=111，MMS=101。图下“Write CCxE, CCxNE and OCxM for next step”表示本次COM之后准备下一步控制值，并须赶在下次COM之前完成；不是把控制位预装载和CCR数值装载合并为同一事件。
+
+原图保留六次CCR1示例值与全部输出区间；它们不是固定转速、机械角或可直接用于功率级的安全换相表。六个COM区间的主PWM/保持高N端组合见[原Hall图的数值与传感器边界](#原hall图的数值与传感器边界)，其余输出在对应原图区间画为低。需要换算速度时，另须明确极对数及每电周期有效转换数，并验证输入、滤波、计数范围和回绕；输出保护、引脚复用和真实门极波形也需独立验证。
+
+来源：[RM0008 Rev21 §§14.3.17–18与图95，pp332–333](https://www.st.com/resource/en/reference_manual/cd00171190.pdf#page=332)。图中各条垂线用于关联事件，不据横向距离推定固定延迟。
 
 TI1S=1把CH1、CH2、CH3输入经异或汇合到TI1输入链。以TI1F_ED为TRGI、SMS=100，每次合格转换重新建立计数起点；CH1选择TRC捕获转换间隔，CH2可设置PWM2及CCR2延迟，MMS=101把OC2REF作为TRGO送到另一高级定时器。计数周期应覆盖预期最长转换间隔，避免溢出使读数失去直接间隔含义。
 
@@ -156,3 +180,4 @@ RM0008图95的六个示例捕获值依次为0xC7A3、0xC7A8、0xC794、0xC7A5、
 来源：[RM0008 Rev21图95 p333](https://www.st.com/resource/en/reference_manual/cd00171190.pdf#page=333)；[AN4013官方入口](https://www.st.com/resource/en/application_note/an4013-stm32-crossseries-timer-overview-stmicroelectronics.pdf)图9～10的既有裁图，完整原页未核验。
 
 [返回定时器主题](../../知识库/06_定时器PWM与同步.md) · [图形关系与来源](图形关系与来源.md)
+
