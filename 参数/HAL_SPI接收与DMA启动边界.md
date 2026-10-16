@@ -136,8 +136,24 @@ Tx 子回调等待 TXE；Rx 子回调禁用 SPI 后调用 EndRxTxTransaction 检
 
 来源：[SPI Abort_IT L2203–2353](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_spi.c#L2203-L2353)、[匹配 DMA Abort_IT L456–491](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_dma.c#L456-L491)、[SPI DMA 中止回调 L3075–3185](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_spi.c#L3075-L3185)。
 
+**v1.1.10 补充：旧中止调用退出前保留事务所有权。** 以下单独核对 STM32CubeF1 v1.8.6 所含 HAL v1.1.10，固定提交 `77fbb30b7a1d02533980400083e48c559aae5a4f`；只补充这一条回调内启动新 RX 的控制流，上文其他结论仍使用原先标明的 bd368aa 版本。
+
+考虑已经配置为从机、`SPI_DIRECTION_2LINES`、CRC 关闭的实例，原事务只使用发送 DMA，两个 DMA 均配置为普通模式。进入 `HAL_SPI_Abort_IT` 时满足：
+
+- SPI 状态为 BUSY_TX，ErrorCode 为 NONE，TXDMAEN=1、RXDMAEN=0；Tx DMA 状态为 BUSY 且通道已启用，Rx DMA 状态为 READY 且通道停用。
+- hdmatx、hdmarx 均有效，Parent 正确指向同一个 SPI 句柄，两个通道及缓冲区归该所有者独占；SPI 与 Rx DMA 句柄未锁定。没有残留 RXNE/TXE 中断使能，Tx 中止等待 TXE 可正常结束。
+- 用户中止完成回调只额外启动一次新的从机双线 `HAL_SPI_Receive_DMA`，传入有效缓冲区和非零 Size，启动返回 HAL_OK；整个调用期间没有外部 SCK 或其他中断、任务改变这些状态。
+
+原 Abort_IT 先按入口请求位设置 DMA 中止回调，其中 Rx 的 XferAbortCallback 为 NULL；然后中止 Tx。底层 `HAL_DMA_Abort_IT` 在当前调用栈内停用 Tx 通道并调用 SPI 的 Tx 中止回调，后者清 TXDMAEN、置 SPI READY，再调用用户 AbortCpltCallback。此时外层 Abort_IT 尚未检查其后面的 Rx 分支。[回调安装与 Tx/Rx 检查顺序 L2249–2315](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/77fbb30b7a1d02533980400083e48c559aae5a4f/Src/stm32f1xx_hal_spi.c#L2249-L2315)；[Tx 中止回调 L3073–3127](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/77fbb30b7a1d02533980400083e48c559aae5a4f/Src/stm32f1xx_hal_spi.c#L3073-L3127)。
+
+用户回调中的 Receive_DMA 会将 SPI 置为 BUSY_RX、启动 Rx DMA、保持其 XferAbortCallback=NULL，并设置 RXDMAEN。返回用户回调后，旧 Abort_IT 继续读取当前 RXDMAEN，因而对刚启动的 Rx 再调用 HAL_DMA_Abort_IT。该调用停用新 Rx 通道并置 DMA READY；由于中止回调为空，不会执行 SPI 的 Rx 中止收尾。[Receive_DMA L1801–1898](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/77fbb30b7a1d02533980400083e48c559aae5a4f/Src/stm32f1xx_hal_spi.c#L1801-L1898)；[DMA Abort_IT L456–490](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/77fbb30b7a1d02533980400083e48c559aae5a4f/Src/stm32f1xx_hal_dma.c#L456-L490)。
+
+上述条件下，两次 DMA Abort_IT 都返回 HAL_OK，外层局部变量 abortcplt 已为 0，因而跳过末尾的 SPI 计数、状态及用户回调处理。旧 Abort_IT 最终返回 HAL_OK，SPI 却仍为 BUSY_RX、RXDMAEN 仍为 1，新 Rx 通道已经停用；不会再补发一次用户中止完成回调。[外层末尾条件 L2317–2349](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/77fbb30b7a1d02533980400083e48c559aae5a4f/Src/stm32f1xx_hal_spi.c#L2317-L2349)。
+
+应用级事务门控应覆盖整个中止调用：在调用前准备完成记录，回调内只记录结果或投递事件；等外层 Abort_IT 返回，再由同一所有者核验请求位、DMA 通道和错误状态，决定是否启动下一笔。这里确认的是上述限定路径的静态调用关系，未运行固件或主机测试桩，未验证总线时序，也未穷尽其他回调重入和中断交错。[固定来源记录](../来源/驱动实现.md#src-hal-77fbb30-spi-abort-reentry)。
+
 <a id="术语与来源身份"></a>
 
 ## 来源身份
 
-Git blob：SPI C 文件 `d1c741075bc63718c9032bab7fd9eb23cc4a880b`；DMA C 文件 `80b65a4f0eb72ab673bf03b47ec2d45b0856a120`。所有源码链接固定到同一提交，避免将不同版本的启动与清理行为拼接。
+Git blob：原有 bd368aa 核查的 SPI C 文件 `d1c741075bc63718c9032bab7fd9eb23cc4a880b`；DMA C 文件 `80b65a4f0eb72ab673bf03b47ec2d45b0856a120`。该部分源码链接保持原固定提交；v1.1.10 中止回调重入补充的 SPI/DMA 文件另按[77fbb30 来源记录](../来源/驱动实现.md#src-hal-77fbb30-spi-abort-reentry)核对，各自限定到所列结论。
