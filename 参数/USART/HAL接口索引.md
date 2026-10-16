@@ -84,10 +84,15 @@
 
 #### 回调注册与条件编译
 
-|接口|参数（完整顺序）|返回类型|固定声明|
-|---|---|---|---|
-|`HAL_UART_RegisterCallback`|`UART_HandleTypeDef *huart, HAL_UART_CallbackIDTypeDef CallbackID, pUART_CallbackTypeDef pCallback`|`HAL_StatusTypeDef`|[L687](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_hal_uart.h#L687-L687)|
-|`HAL_UART_UnRegisterCallback`|`UART_HandleTypeDef *huart, HAL_UART_CallbackIDTypeDef CallbackID`|`HAL_StatusTypeDef`|[L688](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_hal_uart.h#L688-L688)|
+**`HAL_UART_RegisterCallback`**
+
+- 参数（完整顺序）：`UART_HandleTypeDef *huart, HAL_UART_CallbackIDTypeDef CallbackID, pUART_CallbackTypeDef pCallback`
+- 返回类型：`HAL_StatusTypeDef`；固定声明：[L687](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_hal_uart.h#L687-L687)
+
+**`HAL_UART_UnRegisterCallback`**
+
+- 参数（完整顺序）：`UART_HandleTypeDef *huart, HAL_UART_CallbackIDTypeDef CallbackID`
+- 返回类型：`HAL_StatusTypeDef`；固定声明：[L688](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_hal_uart.h#L688-L688)
 
 #### 状态与错误查询
 
@@ -167,12 +172,25 @@
 
 #### 回调注册与条件编译
 
-|接口|参数（完整顺序）|返回类型|固定声明|
-|---|---|---|---|
-|`HAL_UART_RegisterCallback`|`UART_HandleTypeDef *huart, HAL_UART_CallbackIDTypeDef CallbackID, pUART_CallbackTypeDef pCallback`|`HAL_StatusTypeDef`|[L732](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/77fbb30b7a1d02533980400083e48c559aae5a4f/Inc/stm32f1xx_hal_uart.h#L732-L733)|
-|`HAL_UART_UnRegisterCallback`|`UART_HandleTypeDef *huart, HAL_UART_CallbackIDTypeDef CallbackID`|`HAL_StatusTypeDef`|[L734](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/77fbb30b7a1d02533980400083e48c559aae5a4f/Inc/stm32f1xx_hal_uart.h#L734-L734)|
-|`HAL_UART_RegisterRxEventCallback`|`UART_HandleTypeDef *huart, pUART_RxEventCallbackTypeDef pCallback`|`HAL_StatusTypeDef`|[L736](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/77fbb30b7a1d02533980400083e48c559aae5a4f/Inc/stm32f1xx_hal_uart.h#L736-L736)|
-|`HAL_UART_UnRegisterRxEventCallback`|`UART_HandleTypeDef *huart`|`HAL_StatusTypeDef`|[L737](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/77fbb30b7a1d02533980400083e48c559aae5a4f/Inc/stm32f1xx_hal_uart.h#L737-L737)|
+**`HAL_UART_RegisterCallback`**
+
+- 参数（完整顺序）：`UART_HandleTypeDef *huart, HAL_UART_CallbackIDTypeDef CallbackID, pUART_CallbackTypeDef pCallback`
+- 返回类型：`HAL_StatusTypeDef`；固定声明：[L732](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/77fbb30b7a1d02533980400083e48c559aae5a4f/Inc/stm32f1xx_hal_uart.h#L732-L733)
+
+**`HAL_UART_UnRegisterCallback`**
+
+- 参数（完整顺序）：`UART_HandleTypeDef *huart, HAL_UART_CallbackIDTypeDef CallbackID`
+- 返回类型：`HAL_StatusTypeDef`；固定声明：[L734](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/77fbb30b7a1d02533980400083e48c559aae5a4f/Inc/stm32f1xx_hal_uart.h#L734-L734)
+
+**`HAL_UART_RegisterRxEventCallback`**
+
+- 参数（完整顺序）：`UART_HandleTypeDef *huart, pUART_RxEventCallbackTypeDef pCallback`
+- 返回类型：`HAL_StatusTypeDef`；固定声明：[L736](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/77fbb30b7a1d02533980400083e48c559aae5a4f/Inc/stm32f1xx_hal_uart.h#L736-L736)
+
+**`HAL_UART_UnRegisterRxEventCallback`**
+
+- 参数（完整顺序）：`UART_HandleTypeDef *huart`
+- 返回类型：`HAL_StatusTypeDef`；固定声明：[L737](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/77fbb30b7a1d02533980400083e48c559aae5a4f/Inc/stm32f1xx_hal_uart.h#L737-L737)
 
 #### 状态与事件查询
 
@@ -240,10 +258,15 @@
 
 #### 回调注册与条件编译
 
-|接口|参数（完整顺序）|返回类型|固定声明|
-|---|---|---|---|
-|`HAL_USART_RegisterCallback`|`USART_HandleTypeDef *husart, HAL_USART_CallbackIDTypeDef CallbackID, pUSART_CallbackTypeDef pCallback`|`HAL_StatusTypeDef`|[L499](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_hal_usart.h#L499-L499)|
-|`HAL_USART_UnRegisterCallback`|`USART_HandleTypeDef *husart, HAL_USART_CallbackIDTypeDef CallbackID`|`HAL_StatusTypeDef`|[L500](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_hal_usart.h#L500-L500)|
+**`HAL_USART_RegisterCallback`**
+
+- 参数（完整顺序）：`USART_HandleTypeDef *husart, HAL_USART_CallbackIDTypeDef CallbackID, pUSART_CallbackTypeDef pCallback`
+- 返回类型：`HAL_StatusTypeDef`；固定声明：[L499](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_hal_usart.h#L499-L499)
+
+**`HAL_USART_UnRegisterCallback`**
+
+- 参数（完整顺序）：`USART_HandleTypeDef *husart, HAL_USART_CallbackIDTypeDef CallbackID`
+- 返回类型：`HAL_StatusTypeDef`；固定声明：[L500](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_hal_usart.h#L500-L500)
 
 #### 状态与错误查询
 
@@ -304,10 +327,15 @@
 
 #### 回调注册与条件编译
 
-|接口|参数（完整顺序）|返回类型|固定声明|
-|---|---|---|---|
-|`HAL_USART_RegisterCallback`|`USART_HandleTypeDef *husart, HAL_USART_CallbackIDTypeDef CallbackID, pUSART_CallbackTypeDef pCallback`|`HAL_StatusTypeDef`|[L499](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/77fbb30b7a1d02533980400083e48c559aae5a4f/Inc/stm32f1xx_hal_usart.h#L499-L500)|
-|`HAL_USART_UnRegisterCallback`|`USART_HandleTypeDef *husart, HAL_USART_CallbackIDTypeDef CallbackID`|`HAL_StatusTypeDef`|[L501](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/77fbb30b7a1d02533980400083e48c559aae5a4f/Inc/stm32f1xx_hal_usart.h#L501-L501)|
+**`HAL_USART_RegisterCallback`**
+
+- 参数（完整顺序）：`USART_HandleTypeDef *husart, HAL_USART_CallbackIDTypeDef CallbackID, pUSART_CallbackTypeDef pCallback`
+- 返回类型：`HAL_StatusTypeDef`；固定声明：[L499](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/77fbb30b7a1d02533980400083e48c559aae5a4f/Inc/stm32f1xx_hal_usart.h#L499-L500)
+
+**`HAL_USART_UnRegisterCallback`**
+
+- 参数（完整顺序）：`USART_HandleTypeDef *husart, HAL_USART_CallbackIDTypeDef CallbackID`
+- 返回类型：`HAL_StatusTypeDef`；固定声明：[L501](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/77fbb30b7a1d02533980400083e48c559aae5a4f/Inc/stm32f1xx_hal_usart.h#L501-L501)
 
 #### 状态与错误查询
 
