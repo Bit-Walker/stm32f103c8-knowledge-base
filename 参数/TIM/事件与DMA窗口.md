@@ -43,7 +43,7 @@ TG的字段定义只保证TIF及允许的请求，不据名称扩展为一次真
 
 ## 3 DCR编码与DMAR重定向
 
-DCR偏移0x48：DBA[4:0]为从CR1起的寄存器索引，DBL[12:8]为突发传输项数减1；DBL=00000～10001对应1～18项，其他编码不使用。DMAR偏移0x4C，为32位间接窗口。
+DCR偏移0x48：DBA[4:0]为从CR1起的寄存器索引，DBL[12:8]为突发传输项数减1；DBL=00000～10001对应1～18项，其他编码不使用。DMAR偏移0x4C，是间接访问窗口；TIM1的DMAB字段为[31:0]，TIM2～TIM4为[15:0]、高16位保留。
 
 ```math
 A_{\mathrm{target}}=A_{\mathrm{CR1}}+4(\mathrm{DBA}+i)
@@ -51,10 +51,10 @@ A_{\mathrm{target}}=A_{\mathrm{CR1}}+4(\mathrm{DBA}+i)
 
 $`A_{\mathrm{target}}`$ 为当前重定向寄存器地址， $`A_{\mathrm{CR1}}`$ 为该定时器CR1地址，单位均为字节地址；常数4表示相邻寄存器地址步长4字节；DBA和i均为无量纲整数，i是硬件维护的突发项索引，范围0～DBL。字段DBL表示末项索引，传输项数为DBL+1。
 
-例如访问CCR2、CCR3、CCR4：DBA=0xE，项数3，DBL字段应为2；DMA外设地址仍指向DMAR。连续两组数据需DMA传输项数6，不能把“3 transfers”的文字误写成DBL=3。DMA单项宽度与CPU访问规则分别解释：RM示例允许DMA半字搬运，而CPU访问32位DMAR的写操作按字进行。
+例如访问CCR2、CCR3、CCR4：DBA=0xE，项数3，DBL字段应为2；DMA外设地址仍指向DMAR。连续两组数据需DMA传输项数6，不能把“3 transfers”的文字误写成DBL=3。DMA单项宽度与CPU访问规则分别解释：RM示例采用DMA半字搬运，CPU访问须按实例核对[寄存器访问规则](硬件参数表.md#寄存器地图与实例差异)，不能统一推定DMAR只允许字写。
 
 TIM2～4在0x30与0x44分别没有TIM1的RCR/BDTR，突发窗口不能穿过这些不存在的功能寄存器再假定所有项有效。DMA地址步进、方向、实际DMA1请求映射及缓冲区有效期仍须独立配置。一次DMA搬运完成不证明最后的CCR预装载已反映为完整输出波形，停止与释放边界见[HAL生命周期](HAL生命周期与DMA.md)。
 
-来源：[RM0008 Rev21 TIM1 DCR/DMAR pp361–362](https://www.st.com/resource/en/reference_manual/cd00171190.pdf#page=361)、[TIM2～4寄存器段](https://www.st.com/resource/en/reference_manual/cd00171190.pdf#page=404)。本文按手册示例的寄存器索引与项数编码换算，未进行在途DMA或波形板测。
+来源：[RM0008 Rev21 TIM1 DCR/DMAR pp361–362](https://www.st.com/resource/en/reference_manual/cd00171190.pdf#page=361)、[TIM2～4 DCR/DMAR pp421–424](https://www.st.com/resource/en/reference_manual/cd00171190.pdf#page=421)。本文按手册示例的寄存器索引与项数编码换算，未进行在途DMA或波形板测。
 
 [返回定时器主题](../../知识库/06_定时器PWM与同步.md) · [图形关系与来源](图形关系与来源.md)

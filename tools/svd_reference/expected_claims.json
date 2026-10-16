@@ -1,0 +1,5888 @@
+[
+  {
+    "path": "peripherals.TIM1.registers.CR1.addressOffset",
+    "expected": 0,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "寄存器地图与实例差异",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.CR1.resetValue.value",
+    "expected": 0,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "寄存器地图与实例差异",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.CR2.addressOffset",
+    "expected": 4,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "寄存器地图与实例差异",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.CR2.resetValue.value",
+    "expected": 0,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "寄存器地图与实例差异",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.SMCR.addressOffset",
+    "expected": 8,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "寄存器地图与实例差异",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.SMCR.resetValue.value",
+    "expected": 0,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "寄存器地图与实例差异",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.DIER.addressOffset",
+    "expected": 12,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "寄存器地图与实例差异",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.DIER.resetValue.value",
+    "expected": 0,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "寄存器地图与实例差异",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.SR.addressOffset",
+    "expected": 16,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "寄存器地图与实例差异",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.SR.resetValue.value",
+    "expected": 0,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "寄存器地图与实例差异",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.EGR.addressOffset",
+    "expected": 20,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "寄存器地图与实例差异",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.EGR.resetValue.value",
+    "expected": 0,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "寄存器地图与实例差异",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.CCMR1_Input.addressOffset",
+    "expected": 24,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "寄存器地图与实例差异",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.CCMR1_Input.resetValue.value",
+    "expected": 0,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "寄存器地图与实例差异",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.CCMR1_Output.addressOffset",
+    "expected": 24,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "寄存器地图与实例差异",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.CCMR1_Output.resetValue.value",
+    "expected": 0,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "寄存器地图与实例差异",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.CCMR2_Input.addressOffset",
+    "expected": 28,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "寄存器地图与实例差异",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.CCMR2_Input.resetValue.value",
+    "expected": 0,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "寄存器地图与实例差异",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.CCMR2_Output.addressOffset",
+    "expected": 28,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "寄存器地图与实例差异",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.CCMR2_Output.resetValue.value",
+    "expected": 0,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "寄存器地图与实例差异",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.CCER.addressOffset",
+    "expected": 32,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "寄存器地图与实例差异",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.CCER.resetValue.value",
+    "expected": 0,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "寄存器地图与实例差异",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.CNT.addressOffset",
+    "expected": 36,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "寄存器地图与实例差异",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.CNT.resetValue.value",
+    "expected": 0,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "寄存器地图与实例差异",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.PSC.addressOffset",
+    "expected": 40,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "寄存器地图与实例差异",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.PSC.resetValue.value",
+    "expected": 0,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "寄存器地图与实例差异",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.ARR.addressOffset",
+    "expected": 44,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "寄存器地图与实例差异",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.ARR.resetValue.value",
+    "expected": 65535,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "寄存器地图与实例差异",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.CCR1.addressOffset",
+    "expected": 52,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "寄存器地图与实例差异",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.CCR1.resetValue.value",
+    "expected": 0,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "寄存器地图与实例差异",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.CCR2.addressOffset",
+    "expected": 56,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "寄存器地图与实例差异",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.CCR2.resetValue.value",
+    "expected": 0,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "寄存器地图与实例差异",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.CCR3.addressOffset",
+    "expected": 60,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "寄存器地图与实例差异",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.CCR3.resetValue.value",
+    "expected": 0,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "寄存器地图与实例差异",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.CCR4.addressOffset",
+    "expected": 64,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "寄存器地图与实例差异",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.CCR4.resetValue.value",
+    "expected": 0,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "寄存器地图与实例差异",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.DCR.addressOffset",
+    "expected": 72,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "寄存器地图与实例差异",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.DCR.resetValue.value",
+    "expected": 0,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "寄存器地图与实例差异",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.DMAR.addressOffset",
+    "expected": 76,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "寄存器地图与实例差异",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.DMAR.resetValue.value",
+    "expected": 0,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "寄存器地图与实例差异",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.RCR.addressOffset",
+    "expected": 48,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "寄存器地图与实例差异",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.RCR.resetValue.value",
+    "expected": 0,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "寄存器地图与实例差异",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.BDTR.addressOffset",
+    "expected": 68,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "寄存器地图与实例差异",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.BDTR.resetValue.value",
+    "expected": 0,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "寄存器地图与实例差异",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.CR1.addressOffset",
+    "expected": 0,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "寄存器地图与实例差异",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.CR1.resetValue.value",
+    "expected": 0,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "寄存器地图与实例差异",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.CR2.addressOffset",
+    "expected": 4,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "寄存器地图与实例差异",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.CR2.resetValue.value",
+    "expected": 0,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "寄存器地图与实例差异",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.SMCR.addressOffset",
+    "expected": 8,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "寄存器地图与实例差异",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.SMCR.resetValue.value",
+    "expected": 0,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "寄存器地图与实例差异",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.DIER.addressOffset",
+    "expected": 12,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "寄存器地图与实例差异",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.DIER.resetValue.value",
+    "expected": 0,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "寄存器地图与实例差异",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.SR.addressOffset",
+    "expected": 16,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "寄存器地图与实例差异",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.SR.resetValue.value",
+    "expected": 0,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "寄存器地图与实例差异",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.EGR.addressOffset",
+    "expected": 20,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "寄存器地图与实例差异",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.EGR.resetValue.value",
+    "expected": 0,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "寄存器地图与实例差异",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.CCMR1_Input.addressOffset",
+    "expected": 24,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "寄存器地图与实例差异",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.CCMR1_Input.resetValue.value",
+    "expected": 0,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "寄存器地图与实例差异",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.CCMR1_Output.addressOffset",
+    "expected": 24,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "寄存器地图与实例差异",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.CCMR1_Output.resetValue.value",
+    "expected": 0,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "寄存器地图与实例差异",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.CCMR2_Input.addressOffset",
+    "expected": 28,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "寄存器地图与实例差异",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.CCMR2_Input.resetValue.value",
+    "expected": 0,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "寄存器地图与实例差异",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.CCMR2_Output.addressOffset",
+    "expected": 28,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "寄存器地图与实例差异",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.CCMR2_Output.resetValue.value",
+    "expected": 0,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "寄存器地图与实例差异",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.CCER.addressOffset",
+    "expected": 32,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "寄存器地图与实例差异",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.CCER.resetValue.value",
+    "expected": 0,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "寄存器地图与实例差异",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.CNT.addressOffset",
+    "expected": 36,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "寄存器地图与实例差异",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.CNT.resetValue.value",
+    "expected": 0,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "寄存器地图与实例差异",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.PSC.addressOffset",
+    "expected": 40,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "寄存器地图与实例差异",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.PSC.resetValue.value",
+    "expected": 0,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "寄存器地图与实例差异",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.ARR.addressOffset",
+    "expected": 44,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "寄存器地图与实例差异",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.ARR.resetValue.value",
+    "expected": 65535,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "寄存器地图与实例差异",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.CCR1.addressOffset",
+    "expected": 52,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "寄存器地图与实例差异",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.CCR1.resetValue.value",
+    "expected": 0,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "寄存器地图与实例差异",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.CCR2.addressOffset",
+    "expected": 56,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "寄存器地图与实例差异",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.CCR2.resetValue.value",
+    "expected": 0,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "寄存器地图与实例差异",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.CCR3.addressOffset",
+    "expected": 60,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "寄存器地图与实例差异",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.CCR3.resetValue.value",
+    "expected": 0,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "寄存器地图与实例差异",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.CCR4.addressOffset",
+    "expected": 64,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "寄存器地图与实例差异",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.CCR4.resetValue.value",
+    "expected": 0,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "寄存器地图与实例差异",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.DCR.addressOffset",
+    "expected": 72,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "寄存器地图与实例差异",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.DCR.resetValue.value",
+    "expected": 0,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "寄存器地图与实例差异",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.DMAR.addressOffset",
+    "expected": 76,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "寄存器地图与实例差异",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.DMAR.resetValue.value",
+    "expected": 0,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "寄存器地图与实例差异",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.CR1.fields.CKD.bitOffset",
+    "expected": 8,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "CR1计数控制",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.CR1.fields.CKD.bitWidth",
+    "expected": 2,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "CR1计数控制",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.CR1.fields.CKD.bitOffset",
+    "expected": 8,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "CR1计数控制",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.CR1.fields.CKD.bitWidth",
+    "expected": 2,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "CR1计数控制",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.CR1.fields.ARPE.bitOffset",
+    "expected": 7,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "CR1计数控制",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.CR1.fields.ARPE.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "CR1计数控制",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.CR1.fields.ARPE.bitOffset",
+    "expected": 7,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "CR1计数控制",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.CR1.fields.ARPE.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "CR1计数控制",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.CR1.fields.CMS.bitOffset",
+    "expected": 5,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "CR1计数控制",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.CR1.fields.CMS.bitWidth",
+    "expected": 2,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "CR1计数控制",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.CR1.fields.CMS.bitOffset",
+    "expected": 5,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "CR1计数控制",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.CR1.fields.CMS.bitWidth",
+    "expected": 2,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "CR1计数控制",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.CR1.fields.DIR.bitOffset",
+    "expected": 4,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "CR1计数控制",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.CR1.fields.DIR.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "CR1计数控制",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.CR1.fields.DIR.bitOffset",
+    "expected": 4,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "CR1计数控制",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.CR1.fields.DIR.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "CR1计数控制",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.CR1.fields.OPM.bitOffset",
+    "expected": 3,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "CR1计数控制",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.CR1.fields.OPM.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "CR1计数控制",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.CR1.fields.OPM.bitOffset",
+    "expected": 3,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "CR1计数控制",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.CR1.fields.OPM.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "CR1计数控制",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.CR1.fields.URS.bitOffset",
+    "expected": 2,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "CR1计数控制",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.CR1.fields.URS.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "CR1计数控制",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.CR1.fields.URS.bitOffset",
+    "expected": 2,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "CR1计数控制",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.CR1.fields.URS.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "CR1计数控制",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.CR1.fields.UDIS.bitOffset",
+    "expected": 1,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "CR1计数控制",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.CR1.fields.UDIS.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "CR1计数控制",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.CR1.fields.UDIS.bitOffset",
+    "expected": 1,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "CR1计数控制",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.CR1.fields.UDIS.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "CR1计数控制",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.CR1.fields.CEN.bitOffset",
+    "expected": 0,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "CR1计数控制",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.CR1.fields.CEN.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "CR1计数控制",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.CR1.fields.CEN.bitOffset",
+    "expected": 0,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "CR1计数控制",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.CR1.fields.CEN.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "CR1计数控制",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.SMCR.fields.ETP.bitOffset",
+    "expected": 15,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "SMCR时钟与从模式",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.SMCR.fields.ETP.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "SMCR时钟与从模式",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.SMCR.fields.ETP.bitOffset",
+    "expected": 15,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "SMCR时钟与从模式",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.SMCR.fields.ETP.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "SMCR时钟与从模式",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.SMCR.fields.ECE.bitOffset",
+    "expected": 14,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "SMCR时钟与从模式",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.SMCR.fields.ECE.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "SMCR时钟与从模式",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.SMCR.fields.ECE.bitOffset",
+    "expected": 14,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "SMCR时钟与从模式",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.SMCR.fields.ECE.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "SMCR时钟与从模式",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.SMCR.fields.ETPS.bitOffset",
+    "expected": 12,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "SMCR时钟与从模式",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.SMCR.fields.ETPS.bitWidth",
+    "expected": 2,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "SMCR时钟与从模式",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.SMCR.fields.ETPS.bitOffset",
+    "expected": 12,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "SMCR时钟与从模式",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.SMCR.fields.ETPS.bitWidth",
+    "expected": 2,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "SMCR时钟与从模式",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.SMCR.fields.ETF.bitOffset",
+    "expected": 8,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "SMCR时钟与从模式",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.SMCR.fields.ETF.bitWidth",
+    "expected": 4,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "SMCR时钟与从模式",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.SMCR.fields.ETF.bitOffset",
+    "expected": 8,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "SMCR时钟与从模式",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.SMCR.fields.ETF.bitWidth",
+    "expected": 4,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "SMCR时钟与从模式",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.SMCR.fields.MSM.bitOffset",
+    "expected": 7,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "SMCR时钟与从模式",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.SMCR.fields.MSM.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "SMCR时钟与从模式",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.SMCR.fields.MSM.bitOffset",
+    "expected": 7,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "SMCR时钟与从模式",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.SMCR.fields.MSM.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "SMCR时钟与从模式",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.SMCR.fields.TS.bitOffset",
+    "expected": 4,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "SMCR时钟与从模式",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.SMCR.fields.TS.bitWidth",
+    "expected": 3,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "SMCR时钟与从模式",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.SMCR.fields.TS.bitOffset",
+    "expected": 4,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "SMCR时钟与从模式",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.SMCR.fields.TS.bitWidth",
+    "expected": 3,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "SMCR时钟与从模式",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.SMCR.fields.SMS.bitOffset",
+    "expected": 0,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "SMCR时钟与从模式",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.SMCR.fields.SMS.bitWidth",
+    "expected": 3,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "SMCR时钟与从模式",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.SMCR.fields.SMS.bitOffset",
+    "expected": 0,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "SMCR时钟与从模式",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.SMCR.fields.SMS.bitWidth",
+    "expected": 3,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "SMCR时钟与从模式",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.DIER.fields.TDE.bitOffset",
+    "expected": 14,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "DIER共享请求位",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.DIER.fields.TDE.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "DIER共享请求位",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.DIER.fields.TDE.bitOffset",
+    "expected": 14,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "DIER共享请求位",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.DIER.fields.TDE.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "DIER共享请求位",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.DIER.fields.CC4DE.bitOffset",
+    "expected": 12,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "DIER共享请求位",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.DIER.fields.CC4DE.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "DIER共享请求位",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.DIER.fields.CC4DE.bitOffset",
+    "expected": 12,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "DIER共享请求位",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.DIER.fields.CC4DE.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "DIER共享请求位",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.DIER.fields.CC3DE.bitOffset",
+    "expected": 11,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "DIER共享请求位",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.DIER.fields.CC3DE.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "DIER共享请求位",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.DIER.fields.CC3DE.bitOffset",
+    "expected": 11,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "DIER共享请求位",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.DIER.fields.CC3DE.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "DIER共享请求位",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.DIER.fields.CC2DE.bitOffset",
+    "expected": 10,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "DIER共享请求位",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.DIER.fields.CC2DE.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "DIER共享请求位",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.DIER.fields.CC2DE.bitOffset",
+    "expected": 10,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "DIER共享请求位",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.DIER.fields.CC2DE.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "DIER共享请求位",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.DIER.fields.CC1DE.bitOffset",
+    "expected": 9,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "DIER共享请求位",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.DIER.fields.CC1DE.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "DIER共享请求位",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.DIER.fields.CC1DE.bitOffset",
+    "expected": 9,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "DIER共享请求位",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.DIER.fields.CC1DE.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "DIER共享请求位",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.DIER.fields.UDE.bitOffset",
+    "expected": 8,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "DIER共享请求位",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.DIER.fields.UDE.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "DIER共享请求位",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.DIER.fields.UDE.bitOffset",
+    "expected": 8,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "DIER共享请求位",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.DIER.fields.UDE.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "DIER共享请求位",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.DIER.fields.TIE.bitOffset",
+    "expected": 6,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "DIER共享请求位",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.DIER.fields.TIE.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "DIER共享请求位",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.DIER.fields.TIE.bitOffset",
+    "expected": 6,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "DIER共享请求位",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.DIER.fields.TIE.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "DIER共享请求位",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.DIER.fields.CC4IE.bitOffset",
+    "expected": 4,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "DIER共享请求位",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.DIER.fields.CC4IE.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "DIER共享请求位",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.DIER.fields.CC4IE.bitOffset",
+    "expected": 4,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "DIER共享请求位",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.DIER.fields.CC4IE.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "DIER共享请求位",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.DIER.fields.CC3IE.bitOffset",
+    "expected": 3,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "DIER共享请求位",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.DIER.fields.CC3IE.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "DIER共享请求位",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.DIER.fields.CC3IE.bitOffset",
+    "expected": 3,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "DIER共享请求位",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.DIER.fields.CC3IE.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "DIER共享请求位",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.DIER.fields.CC2IE.bitOffset",
+    "expected": 2,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "DIER共享请求位",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.DIER.fields.CC2IE.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "DIER共享请求位",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.DIER.fields.CC2IE.bitOffset",
+    "expected": 2,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "DIER共享请求位",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.DIER.fields.CC2IE.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "DIER共享请求位",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.DIER.fields.CC1IE.bitOffset",
+    "expected": 1,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "DIER共享请求位",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.DIER.fields.CC1IE.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "DIER共享请求位",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.DIER.fields.CC1IE.bitOffset",
+    "expected": 1,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "DIER共享请求位",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.DIER.fields.CC1IE.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "DIER共享请求位",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.DIER.fields.UIE.bitOffset",
+    "expected": 0,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "DIER共享请求位",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.DIER.fields.UIE.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "DIER共享请求位",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.DIER.fields.UIE.bitOffset",
+    "expected": 0,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "DIER共享请求位",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.DIER.fields.UIE.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "DIER共享请求位",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.BDTR.fields.MOE.bitOffset",
+    "expected": 15,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "TIM1 BDTR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.BDTR.fields.MOE.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "TIM1 BDTR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.BDTR.fields.AOE.bitOffset",
+    "expected": 14,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "TIM1 BDTR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.BDTR.fields.AOE.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "TIM1 BDTR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.BDTR.fields.BKP.bitOffset",
+    "expected": 13,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "TIM1 BDTR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.BDTR.fields.BKP.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "TIM1 BDTR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.BDTR.fields.BKE.bitOffset",
+    "expected": 12,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "TIM1 BDTR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.BDTR.fields.BKE.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "TIM1 BDTR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.BDTR.fields.OSSR.bitOffset",
+    "expected": 11,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "TIM1 BDTR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.BDTR.fields.OSSR.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "TIM1 BDTR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.BDTR.fields.OSSI.bitOffset",
+    "expected": 10,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "TIM1 BDTR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.BDTR.fields.OSSI.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "TIM1 BDTR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.BDTR.fields.LOCK.bitOffset",
+    "expected": 8,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "TIM1 BDTR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.BDTR.fields.LOCK.bitWidth",
+    "expected": 2,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "TIM1 BDTR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.BDTR.fields.DTG.bitOffset",
+    "expected": 0,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "TIM1 BDTR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.BDTR.fields.DTG.bitWidth",
+    "expected": 8,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "TIM1 BDTR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.CNT.fields.CNT.bitOffset",
+    "expected": 0,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "共享计数与比较寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.CNT.fields.CNT.bitWidth",
+    "expected": 16,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "共享计数与比较寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.PSC.fields.PSC.bitOffset",
+    "expected": 0,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "共享计数与比较寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.PSC.fields.PSC.bitWidth",
+    "expected": 16,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "共享计数与比较寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.ARR.fields.ARR.bitOffset",
+    "expected": 0,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "共享计数与比较寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.ARR.fields.ARR.bitWidth",
+    "expected": 16,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "共享计数与比较寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.CCR1.fields.CCR1.bitOffset",
+    "expected": 0,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "共享计数与比较寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.CCR1.fields.CCR1.bitWidth",
+    "expected": 16,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "共享计数与比较寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.CCR2.fields.CCR2.bitOffset",
+    "expected": 0,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "共享计数与比较寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.CCR2.fields.CCR2.bitWidth",
+    "expected": 16,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "共享计数与比较寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.CCR3.fields.CCR3.bitOffset",
+    "expected": 0,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "共享计数与比较寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.CCR3.fields.CCR3.bitWidth",
+    "expected": 16,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "共享计数与比较寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.CCR4.fields.CCR4.bitOffset",
+    "expected": 0,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "共享计数与比较寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.CCR4.fields.CCR4.bitWidth",
+    "expected": 16,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "共享计数与比较寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.CNT.fields.CNT.bitOffset",
+    "expected": 0,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "共享计数与比较寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.CNT.fields.CNT.bitWidth",
+    "expected": 16,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "共享计数与比较寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.PSC.fields.PSC.bitOffset",
+    "expected": 0,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "共享计数与比较寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.PSC.fields.PSC.bitWidth",
+    "expected": 16,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "共享计数与比较寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.ARR.fields.ARR.bitOffset",
+    "expected": 0,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "共享计数与比较寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.ARR.fields.ARR.bitWidth",
+    "expected": 16,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "共享计数与比较寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.CCR1.fields.CCR1.bitOffset",
+    "expected": 0,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "共享计数与比较寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.CCR1.fields.CCR1.bitWidth",
+    "expected": 16,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "共享计数与比较寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.CCR2.fields.CCR2.bitOffset",
+    "expected": 0,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "共享计数与比较寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.CCR2.fields.CCR2.bitWidth",
+    "expected": 16,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "共享计数与比较寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.CCR3.fields.CCR3.bitOffset",
+    "expected": 0,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "共享计数与比较寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.CCR3.fields.CCR3.bitWidth",
+    "expected": 16,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "共享计数与比较寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.CCR4.fields.CCR4.bitOffset",
+    "expected": 0,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "共享计数与比较寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.CCR4.fields.CCR4.bitWidth",
+    "expected": 16,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "共享计数与比较寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.RCR.fields.REP.bitOffset",
+    "expected": 0,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "共享计数与比较寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM1.registers.RCR.fields.REP.bitWidth",
+    "expected": 8,
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "共享计数与比较寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.baseAddress",
+    "expected": 1073872896,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.ISR.addressOffset",
+    "expected": 0,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1347-完整寄存器偏移地图",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.ISR.resetValue.value",
+    "expected": 0,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.ISR.size.value",
+    "expected": 32,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器 [SVD size corroborates storage width, not ES096 access policy]",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.IFCR.addressOffset",
+    "expected": 4,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1347-完整寄存器偏移地图",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.IFCR.resetValue.value",
+    "expected": 0,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.IFCR.size.value",
+    "expected": 32,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器 [SVD size corroborates storage width, not ES096 access policy]",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR1.addressOffset",
+    "expected": 8,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1347-完整寄存器偏移地图",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR1.resetValue.value",
+    "expected": 0,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR1.size.value",
+    "expected": 32,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器 [SVD size corroborates storage width, not ES096 access policy]",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CNDTR1.addressOffset",
+    "expected": 12,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1347-完整寄存器偏移地图",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CNDTR1.resetValue.value",
+    "expected": 0,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CNDTR1.size.value",
+    "expected": 32,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器 [SVD size corroborates storage width, not ES096 access policy]",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CPAR1.addressOffset",
+    "expected": 16,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1347-完整寄存器偏移地图",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CPAR1.resetValue.value",
+    "expected": 0,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CPAR1.size.value",
+    "expected": 32,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器 [SVD size corroborates storage width, not ES096 access policy]",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CMAR1.addressOffset",
+    "expected": 20,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1347-完整寄存器偏移地图",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CMAR1.resetValue.value",
+    "expected": 0,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CMAR1.size.value",
+    "expected": 32,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器 [SVD size corroborates storage width, not ES096 access policy]",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR2.addressOffset",
+    "expected": 28,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1347-完整寄存器偏移地图",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR2.resetValue.value",
+    "expected": 0,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR2.size.value",
+    "expected": 32,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器 [SVD size corroborates storage width, not ES096 access policy]",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CNDTR2.addressOffset",
+    "expected": 32,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1347-完整寄存器偏移地图",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CNDTR2.resetValue.value",
+    "expected": 0,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CNDTR2.size.value",
+    "expected": 32,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器 [SVD size corroborates storage width, not ES096 access policy]",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CPAR2.addressOffset",
+    "expected": 36,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1347-完整寄存器偏移地图",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CPAR2.resetValue.value",
+    "expected": 0,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CPAR2.size.value",
+    "expected": 32,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器 [SVD size corroborates storage width, not ES096 access policy]",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CMAR2.addressOffset",
+    "expected": 40,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1347-完整寄存器偏移地图",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CMAR2.resetValue.value",
+    "expected": 0,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CMAR2.size.value",
+    "expected": 32,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器 [SVD size corroborates storage width, not ES096 access policy]",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR3.addressOffset",
+    "expected": 48,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1347-完整寄存器偏移地图",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR3.resetValue.value",
+    "expected": 0,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR3.size.value",
+    "expected": 32,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器 [SVD size corroborates storage width, not ES096 access policy]",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CNDTR3.addressOffset",
+    "expected": 52,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1347-完整寄存器偏移地图",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CNDTR3.resetValue.value",
+    "expected": 0,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CNDTR3.size.value",
+    "expected": 32,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器 [SVD size corroborates storage width, not ES096 access policy]",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CPAR3.addressOffset",
+    "expected": 56,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1347-完整寄存器偏移地图",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CPAR3.resetValue.value",
+    "expected": 0,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CPAR3.size.value",
+    "expected": 32,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器 [SVD size corroborates storage width, not ES096 access policy]",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CMAR3.addressOffset",
+    "expected": 60,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1347-完整寄存器偏移地图",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CMAR3.resetValue.value",
+    "expected": 0,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CMAR3.size.value",
+    "expected": 32,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器 [SVD size corroborates storage width, not ES096 access policy]",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR4.addressOffset",
+    "expected": 68,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1347-完整寄存器偏移地图",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR4.resetValue.value",
+    "expected": 0,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR4.size.value",
+    "expected": 32,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器 [SVD size corroborates storage width, not ES096 access policy]",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CNDTR4.addressOffset",
+    "expected": 72,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1347-完整寄存器偏移地图",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CNDTR4.resetValue.value",
+    "expected": 0,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CNDTR4.size.value",
+    "expected": 32,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器 [SVD size corroborates storage width, not ES096 access policy]",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CPAR4.addressOffset",
+    "expected": 76,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1347-完整寄存器偏移地图",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CPAR4.resetValue.value",
+    "expected": 0,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CPAR4.size.value",
+    "expected": 32,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器 [SVD size corroborates storage width, not ES096 access policy]",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CMAR4.addressOffset",
+    "expected": 80,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1347-完整寄存器偏移地图",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CMAR4.resetValue.value",
+    "expected": 0,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CMAR4.size.value",
+    "expected": 32,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器 [SVD size corroborates storage width, not ES096 access policy]",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR5.addressOffset",
+    "expected": 88,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1347-完整寄存器偏移地图",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR5.resetValue.value",
+    "expected": 0,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR5.size.value",
+    "expected": 32,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器 [SVD size corroborates storage width, not ES096 access policy]",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CNDTR5.addressOffset",
+    "expected": 92,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1347-完整寄存器偏移地图",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CNDTR5.resetValue.value",
+    "expected": 0,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CNDTR5.size.value",
+    "expected": 32,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器 [SVD size corroborates storage width, not ES096 access policy]",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CPAR5.addressOffset",
+    "expected": 96,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1347-完整寄存器偏移地图",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CPAR5.resetValue.value",
+    "expected": 0,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CPAR5.size.value",
+    "expected": 32,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器 [SVD size corroborates storage width, not ES096 access policy]",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CMAR5.addressOffset",
+    "expected": 100,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1347-完整寄存器偏移地图",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CMAR5.resetValue.value",
+    "expected": 0,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CMAR5.size.value",
+    "expected": 32,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器 [SVD size corroborates storage width, not ES096 access policy]",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR6.addressOffset",
+    "expected": 108,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1347-完整寄存器偏移地图",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR6.resetValue.value",
+    "expected": 0,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR6.size.value",
+    "expected": 32,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器 [SVD size corroborates storage width, not ES096 access policy]",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CNDTR6.addressOffset",
+    "expected": 112,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1347-完整寄存器偏移地图",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CNDTR6.resetValue.value",
+    "expected": 0,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CNDTR6.size.value",
+    "expected": 32,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器 [SVD size corroborates storage width, not ES096 access policy]",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CPAR6.addressOffset",
+    "expected": 116,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1347-完整寄存器偏移地图",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CPAR6.resetValue.value",
+    "expected": 0,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CPAR6.size.value",
+    "expected": 32,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器 [SVD size corroborates storage width, not ES096 access policy]",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CMAR6.addressOffset",
+    "expected": 120,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1347-完整寄存器偏移地图",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CMAR6.resetValue.value",
+    "expected": 0,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CMAR6.size.value",
+    "expected": 32,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器 [SVD size corroborates storage width, not ES096 access policy]",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR7.addressOffset",
+    "expected": 128,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1347-完整寄存器偏移地图",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR7.resetValue.value",
+    "expected": 0,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR7.size.value",
+    "expected": 32,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器 [SVD size corroborates storage width, not ES096 access policy]",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CNDTR7.addressOffset",
+    "expected": 132,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1347-完整寄存器偏移地图",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CNDTR7.resetValue.value",
+    "expected": 0,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CNDTR7.size.value",
+    "expected": 32,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器 [SVD size corroborates storage width, not ES096 access policy]",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CPAR7.addressOffset",
+    "expected": 136,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1347-完整寄存器偏移地图",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CPAR7.resetValue.value",
+    "expected": 0,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CPAR7.size.value",
+    "expected": 32,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器 [SVD size corroborates storage width, not ES096 access policy]",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CMAR7.addressOffset",
+    "expected": 140,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1347-完整寄存器偏移地图",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CMAR7.resetValue.value",
+    "expected": 0,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CMAR7.size.value",
+    "expected": 32,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器 [SVD size corroborates storage width, not ES096 access policy]",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.ISR.fields.GIF1.bitOffset",
+    "expected": 0,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1341-ISR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.ISR.fields.GIF1.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1341-ISR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.IFCR.fields.CGIF1.bitOffset",
+    "expected": 0,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1342-IFCR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.IFCR.fields.CGIF1.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1342-IFCR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.ISR.fields.TCIF1.bitOffset",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1341-ISR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.ISR.fields.TCIF1.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1341-ISR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.IFCR.fields.CTCIF1.bitOffset",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1342-IFCR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.IFCR.fields.CTCIF1.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1342-IFCR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.ISR.fields.HTIF1.bitOffset",
+    "expected": 2,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1341-ISR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.ISR.fields.HTIF1.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1341-ISR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.IFCR.fields.CHTIF1.bitOffset",
+    "expected": 2,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1342-IFCR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.IFCR.fields.CHTIF1.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1342-IFCR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.ISR.fields.TEIF1.bitOffset",
+    "expected": 3,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1341-ISR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.ISR.fields.TEIF1.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1341-ISR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.IFCR.fields.CTEIF1.bitOffset",
+    "expected": 3,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1342-IFCR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.IFCR.fields.CTEIF1.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1342-IFCR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR1.fields.MEM2MEM.bitOffset",
+    "expected": 14,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR1.fields.MEM2MEM.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR1.fields.PL.bitOffset",
+    "expected": 12,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR1.fields.PL.bitWidth",
+    "expected": 2,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR1.fields.MSIZE.bitOffset",
+    "expected": 10,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR1.fields.MSIZE.bitWidth",
+    "expected": 2,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR1.fields.PSIZE.bitOffset",
+    "expected": 8,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR1.fields.PSIZE.bitWidth",
+    "expected": 2,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR1.fields.MINC.bitOffset",
+    "expected": 7,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR1.fields.MINC.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR1.fields.PINC.bitOffset",
+    "expected": 6,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR1.fields.PINC.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR1.fields.CIRC.bitOffset",
+    "expected": 5,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR1.fields.CIRC.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR1.fields.DIR.bitOffset",
+    "expected": 4,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR1.fields.DIR.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR1.fields.TEIE.bitOffset",
+    "expected": 3,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR1.fields.TEIE.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR1.fields.HTIE.bitOffset",
+    "expected": 2,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR1.fields.HTIE.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR1.fields.TCIE.bitOffset",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR1.fields.TCIE.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR1.fields.EN.bitOffset",
+    "expected": 0,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR1.fields.EN.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CNDTR1.fields.NDT.bitOffset",
+    "expected": 0,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CNDTR1.fields.NDT.bitWidth",
+    "expected": 16,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CPAR1.fields.PA.bitOffset",
+    "expected": 0,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CPAR1.fields.PA.bitWidth",
+    "expected": 32,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CMAR1.fields.MA.bitOffset",
+    "expected": 0,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CMAR1.fields.MA.bitWidth",
+    "expected": 32,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.ISR.fields.GIF2.bitOffset",
+    "expected": 4,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1341-ISR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.ISR.fields.GIF2.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1341-ISR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.IFCR.fields.CGIF2.bitOffset",
+    "expected": 4,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1342-IFCR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.IFCR.fields.CGIF2.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1342-IFCR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.ISR.fields.TCIF2.bitOffset",
+    "expected": 5,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1341-ISR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.ISR.fields.TCIF2.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1341-ISR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.IFCR.fields.CTCIF2.bitOffset",
+    "expected": 5,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1342-IFCR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.IFCR.fields.CTCIF2.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1342-IFCR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.ISR.fields.HTIF2.bitOffset",
+    "expected": 6,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1341-ISR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.ISR.fields.HTIF2.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1341-ISR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.IFCR.fields.CHTIF2.bitOffset",
+    "expected": 6,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1342-IFCR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.IFCR.fields.CHTIF2.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1342-IFCR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.ISR.fields.TEIF2.bitOffset",
+    "expected": 7,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1341-ISR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.ISR.fields.TEIF2.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1341-ISR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.IFCR.fields.CTEIF2.bitOffset",
+    "expected": 7,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1342-IFCR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.IFCR.fields.CTEIF2.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1342-IFCR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR2.fields.MEM2MEM.bitOffset",
+    "expected": 14,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR2.fields.MEM2MEM.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR2.fields.PL.bitOffset",
+    "expected": 12,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR2.fields.PL.bitWidth",
+    "expected": 2,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR2.fields.MSIZE.bitOffset",
+    "expected": 10,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR2.fields.MSIZE.bitWidth",
+    "expected": 2,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR2.fields.PSIZE.bitOffset",
+    "expected": 8,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR2.fields.PSIZE.bitWidth",
+    "expected": 2,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR2.fields.MINC.bitOffset",
+    "expected": 7,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR2.fields.MINC.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR2.fields.PINC.bitOffset",
+    "expected": 6,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR2.fields.PINC.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR2.fields.CIRC.bitOffset",
+    "expected": 5,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR2.fields.CIRC.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR2.fields.DIR.bitOffset",
+    "expected": 4,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR2.fields.DIR.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR2.fields.TEIE.bitOffset",
+    "expected": 3,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR2.fields.TEIE.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR2.fields.HTIE.bitOffset",
+    "expected": 2,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR2.fields.HTIE.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR2.fields.TCIE.bitOffset",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR2.fields.TCIE.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR2.fields.EN.bitOffset",
+    "expected": 0,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR2.fields.EN.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CNDTR2.fields.NDT.bitOffset",
+    "expected": 0,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CNDTR2.fields.NDT.bitWidth",
+    "expected": 16,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CPAR2.fields.PA.bitOffset",
+    "expected": 0,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CPAR2.fields.PA.bitWidth",
+    "expected": 32,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CMAR2.fields.MA.bitOffset",
+    "expected": 0,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CMAR2.fields.MA.bitWidth",
+    "expected": 32,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.ISR.fields.GIF3.bitOffset",
+    "expected": 8,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1341-ISR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.ISR.fields.GIF3.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1341-ISR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.IFCR.fields.CGIF3.bitOffset",
+    "expected": 8,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1342-IFCR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.IFCR.fields.CGIF3.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1342-IFCR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.ISR.fields.TCIF3.bitOffset",
+    "expected": 9,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1341-ISR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.ISR.fields.TCIF3.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1341-ISR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.IFCR.fields.CTCIF3.bitOffset",
+    "expected": 9,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1342-IFCR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.IFCR.fields.CTCIF3.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1342-IFCR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.ISR.fields.HTIF3.bitOffset",
+    "expected": 10,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1341-ISR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.ISR.fields.HTIF3.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1341-ISR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.IFCR.fields.CHTIF3.bitOffset",
+    "expected": 10,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1342-IFCR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.IFCR.fields.CHTIF3.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1342-IFCR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.ISR.fields.TEIF3.bitOffset",
+    "expected": 11,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1341-ISR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.ISR.fields.TEIF3.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1341-ISR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.IFCR.fields.CTEIF3.bitOffset",
+    "expected": 11,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1342-IFCR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.IFCR.fields.CTEIF3.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1342-IFCR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR3.fields.MEM2MEM.bitOffset",
+    "expected": 14,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR3.fields.MEM2MEM.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR3.fields.PL.bitOffset",
+    "expected": 12,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR3.fields.PL.bitWidth",
+    "expected": 2,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR3.fields.MSIZE.bitOffset",
+    "expected": 10,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR3.fields.MSIZE.bitWidth",
+    "expected": 2,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR3.fields.PSIZE.bitOffset",
+    "expected": 8,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR3.fields.PSIZE.bitWidth",
+    "expected": 2,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR3.fields.MINC.bitOffset",
+    "expected": 7,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR3.fields.MINC.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR3.fields.PINC.bitOffset",
+    "expected": 6,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR3.fields.PINC.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR3.fields.CIRC.bitOffset",
+    "expected": 5,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR3.fields.CIRC.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR3.fields.DIR.bitOffset",
+    "expected": 4,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR3.fields.DIR.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR3.fields.TEIE.bitOffset",
+    "expected": 3,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR3.fields.TEIE.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR3.fields.HTIE.bitOffset",
+    "expected": 2,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR3.fields.HTIE.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR3.fields.TCIE.bitOffset",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR3.fields.TCIE.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR3.fields.EN.bitOffset",
+    "expected": 0,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR3.fields.EN.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CNDTR3.fields.NDT.bitOffset",
+    "expected": 0,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CNDTR3.fields.NDT.bitWidth",
+    "expected": 16,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CPAR3.fields.PA.bitOffset",
+    "expected": 0,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CPAR3.fields.PA.bitWidth",
+    "expected": 32,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CMAR3.fields.MA.bitOffset",
+    "expected": 0,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CMAR3.fields.MA.bitWidth",
+    "expected": 32,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.ISR.fields.GIF4.bitOffset",
+    "expected": 12,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1341-ISR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.ISR.fields.GIF4.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1341-ISR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.IFCR.fields.CGIF4.bitOffset",
+    "expected": 12,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1342-IFCR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.IFCR.fields.CGIF4.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1342-IFCR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.ISR.fields.TCIF4.bitOffset",
+    "expected": 13,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1341-ISR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.ISR.fields.TCIF4.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1341-ISR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.IFCR.fields.CTCIF4.bitOffset",
+    "expected": 13,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1342-IFCR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.IFCR.fields.CTCIF4.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1342-IFCR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.ISR.fields.HTIF4.bitOffset",
+    "expected": 14,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1341-ISR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.ISR.fields.HTIF4.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1341-ISR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.IFCR.fields.CHTIF4.bitOffset",
+    "expected": 14,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1342-IFCR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.IFCR.fields.CHTIF4.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1342-IFCR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.ISR.fields.TEIF4.bitOffset",
+    "expected": 15,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1341-ISR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.ISR.fields.TEIF4.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1341-ISR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.IFCR.fields.CTEIF4.bitOffset",
+    "expected": 15,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1342-IFCR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.IFCR.fields.CTEIF4.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1342-IFCR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR4.fields.MEM2MEM.bitOffset",
+    "expected": 14,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR4.fields.MEM2MEM.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR4.fields.PL.bitOffset",
+    "expected": 12,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR4.fields.PL.bitWidth",
+    "expected": 2,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR4.fields.MSIZE.bitOffset",
+    "expected": 10,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR4.fields.MSIZE.bitWidth",
+    "expected": 2,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR4.fields.PSIZE.bitOffset",
+    "expected": 8,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR4.fields.PSIZE.bitWidth",
+    "expected": 2,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR4.fields.MINC.bitOffset",
+    "expected": 7,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR4.fields.MINC.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR4.fields.PINC.bitOffset",
+    "expected": 6,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR4.fields.PINC.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR4.fields.CIRC.bitOffset",
+    "expected": 5,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR4.fields.CIRC.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR4.fields.DIR.bitOffset",
+    "expected": 4,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR4.fields.DIR.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR4.fields.TEIE.bitOffset",
+    "expected": 3,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR4.fields.TEIE.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR4.fields.HTIE.bitOffset",
+    "expected": 2,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR4.fields.HTIE.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR4.fields.TCIE.bitOffset",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR4.fields.TCIE.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR4.fields.EN.bitOffset",
+    "expected": 0,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR4.fields.EN.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CNDTR4.fields.NDT.bitOffset",
+    "expected": 0,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CNDTR4.fields.NDT.bitWidth",
+    "expected": 16,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CPAR4.fields.PA.bitOffset",
+    "expected": 0,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CPAR4.fields.PA.bitWidth",
+    "expected": 32,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CMAR4.fields.MA.bitOffset",
+    "expected": 0,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CMAR4.fields.MA.bitWidth",
+    "expected": 32,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.ISR.fields.GIF5.bitOffset",
+    "expected": 16,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1341-ISR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.ISR.fields.GIF5.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1341-ISR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.IFCR.fields.CGIF5.bitOffset",
+    "expected": 16,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1342-IFCR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.IFCR.fields.CGIF5.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1342-IFCR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.ISR.fields.TCIF5.bitOffset",
+    "expected": 17,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1341-ISR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.ISR.fields.TCIF5.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1341-ISR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.IFCR.fields.CTCIF5.bitOffset",
+    "expected": 17,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1342-IFCR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.IFCR.fields.CTCIF5.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1342-IFCR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.ISR.fields.HTIF5.bitOffset",
+    "expected": 18,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1341-ISR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.ISR.fields.HTIF5.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1341-ISR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.IFCR.fields.CHTIF5.bitOffset",
+    "expected": 18,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1342-IFCR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.IFCR.fields.CHTIF5.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1342-IFCR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.ISR.fields.TEIF5.bitOffset",
+    "expected": 19,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1341-ISR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.ISR.fields.TEIF5.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1341-ISR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.IFCR.fields.CTEIF5.bitOffset",
+    "expected": 19,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1342-IFCR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.IFCR.fields.CTEIF5.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1342-IFCR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR5.fields.MEM2MEM.bitOffset",
+    "expected": 14,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR5.fields.MEM2MEM.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR5.fields.PL.bitOffset",
+    "expected": 12,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR5.fields.PL.bitWidth",
+    "expected": 2,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR5.fields.MSIZE.bitOffset",
+    "expected": 10,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR5.fields.MSIZE.bitWidth",
+    "expected": 2,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR5.fields.PSIZE.bitOffset",
+    "expected": 8,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR5.fields.PSIZE.bitWidth",
+    "expected": 2,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR5.fields.MINC.bitOffset",
+    "expected": 7,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR5.fields.MINC.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR5.fields.PINC.bitOffset",
+    "expected": 6,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR5.fields.PINC.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR5.fields.CIRC.bitOffset",
+    "expected": 5,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR5.fields.CIRC.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR5.fields.DIR.bitOffset",
+    "expected": 4,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR5.fields.DIR.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR5.fields.TEIE.bitOffset",
+    "expected": 3,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR5.fields.TEIE.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR5.fields.HTIE.bitOffset",
+    "expected": 2,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR5.fields.HTIE.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR5.fields.TCIE.bitOffset",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR5.fields.TCIE.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR5.fields.EN.bitOffset",
+    "expected": 0,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR5.fields.EN.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CNDTR5.fields.NDT.bitOffset",
+    "expected": 0,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CNDTR5.fields.NDT.bitWidth",
+    "expected": 16,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CPAR5.fields.PA.bitOffset",
+    "expected": 0,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CPAR5.fields.PA.bitWidth",
+    "expected": 32,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CMAR5.fields.MA.bitOffset",
+    "expected": 0,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CMAR5.fields.MA.bitWidth",
+    "expected": 32,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.ISR.fields.GIF6.bitOffset",
+    "expected": 20,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1341-ISR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.ISR.fields.GIF6.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1341-ISR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.IFCR.fields.CGIF6.bitOffset",
+    "expected": 20,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1342-IFCR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.IFCR.fields.CGIF6.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1342-IFCR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.ISR.fields.TCIF6.bitOffset",
+    "expected": 21,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1341-ISR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.ISR.fields.TCIF6.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1341-ISR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.IFCR.fields.CTCIF6.bitOffset",
+    "expected": 21,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1342-IFCR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.IFCR.fields.CTCIF6.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1342-IFCR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.ISR.fields.HTIF6.bitOffset",
+    "expected": 22,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1341-ISR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.ISR.fields.HTIF6.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1341-ISR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.IFCR.fields.CHTIF6.bitOffset",
+    "expected": 22,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1342-IFCR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.IFCR.fields.CHTIF6.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1342-IFCR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.ISR.fields.TEIF6.bitOffset",
+    "expected": 23,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1341-ISR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.ISR.fields.TEIF6.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1341-ISR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.IFCR.fields.CTEIF6.bitOffset",
+    "expected": 23,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1342-IFCR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.IFCR.fields.CTEIF6.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1342-IFCR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR6.fields.MEM2MEM.bitOffset",
+    "expected": 14,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR6.fields.MEM2MEM.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR6.fields.PL.bitOffset",
+    "expected": 12,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR6.fields.PL.bitWidth",
+    "expected": 2,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR6.fields.MSIZE.bitOffset",
+    "expected": 10,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR6.fields.MSIZE.bitWidth",
+    "expected": 2,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR6.fields.PSIZE.bitOffset",
+    "expected": 8,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR6.fields.PSIZE.bitWidth",
+    "expected": 2,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR6.fields.MINC.bitOffset",
+    "expected": 7,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR6.fields.MINC.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR6.fields.PINC.bitOffset",
+    "expected": 6,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR6.fields.PINC.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR6.fields.CIRC.bitOffset",
+    "expected": 5,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR6.fields.CIRC.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR6.fields.DIR.bitOffset",
+    "expected": 4,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR6.fields.DIR.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR6.fields.TEIE.bitOffset",
+    "expected": 3,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR6.fields.TEIE.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR6.fields.HTIE.bitOffset",
+    "expected": 2,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR6.fields.HTIE.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR6.fields.TCIE.bitOffset",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR6.fields.TCIE.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR6.fields.EN.bitOffset",
+    "expected": 0,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR6.fields.EN.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CNDTR6.fields.NDT.bitOffset",
+    "expected": 0,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CNDTR6.fields.NDT.bitWidth",
+    "expected": 16,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CPAR6.fields.PA.bitOffset",
+    "expected": 0,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CPAR6.fields.PA.bitWidth",
+    "expected": 32,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CMAR6.fields.MA.bitOffset",
+    "expected": 0,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CMAR6.fields.MA.bitWidth",
+    "expected": 32,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.ISR.fields.GIF7.bitOffset",
+    "expected": 24,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1341-ISR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.ISR.fields.GIF7.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1341-ISR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.IFCR.fields.CGIF7.bitOffset",
+    "expected": 24,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1342-IFCR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.IFCR.fields.CGIF7.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1342-IFCR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.ISR.fields.TCIF7.bitOffset",
+    "expected": 25,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1341-ISR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.ISR.fields.TCIF7.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1341-ISR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.IFCR.fields.CTCIF7.bitOffset",
+    "expected": 25,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1342-IFCR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.IFCR.fields.CTCIF7.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1342-IFCR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.ISR.fields.HTIF7.bitOffset",
+    "expected": 26,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1341-ISR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.ISR.fields.HTIF7.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1341-ISR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.IFCR.fields.CHTIF7.bitOffset",
+    "expected": 26,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1342-IFCR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.IFCR.fields.CHTIF7.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1342-IFCR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.ISR.fields.TEIF7.bitOffset",
+    "expected": 27,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1341-ISR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.ISR.fields.TEIF7.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1341-ISR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.IFCR.fields.CTEIF7.bitOffset",
+    "expected": 27,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1342-IFCR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.IFCR.fields.CTEIF7.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1342-IFCR",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR7.fields.MEM2MEM.bitOffset",
+    "expected": 14,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR7.fields.MEM2MEM.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR7.fields.PL.bitOffset",
+    "expected": 12,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR7.fields.PL.bitWidth",
+    "expected": 2,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR7.fields.MSIZE.bitOffset",
+    "expected": 10,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR7.fields.MSIZE.bitWidth",
+    "expected": 2,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR7.fields.PSIZE.bitOffset",
+    "expected": 8,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR7.fields.PSIZE.bitWidth",
+    "expected": 2,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR7.fields.MINC.bitOffset",
+    "expected": 7,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR7.fields.MINC.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR7.fields.PINC.bitOffset",
+    "expected": 6,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR7.fields.PINC.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR7.fields.CIRC.bitOffset",
+    "expected": 5,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR7.fields.CIRC.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR7.fields.DIR.bitOffset",
+    "expected": 4,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR7.fields.DIR.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR7.fields.TEIE.bitOffset",
+    "expected": 3,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR7.fields.TEIE.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR7.fields.HTIE.bitOffset",
+    "expected": 2,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR7.fields.HTIE.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR7.fields.TCIE.bitOffset",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR7.fields.TCIE.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR7.fields.EN.bitOffset",
+    "expected": 0,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CCR7.fields.EN.bitWidth",
+    "expected": 1,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "1343-CCRx",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CNDTR7.fields.NDT.bitOffset",
+    "expected": 0,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CNDTR7.fields.NDT.bitWidth",
+    "expected": 16,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CPAR7.fields.PA.bitOffset",
+    "expected": 0,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CPAR7.fields.PA.bitWidth",
+    "expected": 32,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CMAR7.fields.MA.bitOffset",
+    "expected": 0,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.CMAR7.fields.MA.bitWidth",
+    "expected": 32,
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "全部-dma1-寄存器",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.DMA1.registers.IFCR.fields.CGIF1.modifiedWriteValues",
+    "expected": "oneToClear",
+    "source": {
+      "file": "参数/DMA参数与HAL接口.md",
+      "section_label": "中断 (semantic probe)",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.SR.fields.UIF.modifiedWriteValues",
+    "expected": "zeroToClear",
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "其余控制语义的归属 (semantic probe)",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  },
+  {
+    "path": "peripherals.TIM2.registers.CCR1.fields.CCR1.readAction",
+    "expected": "modifyExternal",
+    "source": {
+      "file": "参数/TIM/硬件参数表.md",
+      "section_label": "共享计数与比较寄存器 (semantic probe; conditional/side-effect target requires RM)",
+      "locator_kind": "human-readable section/formula label, not a URL anchor"
+    }
+  }
+]
