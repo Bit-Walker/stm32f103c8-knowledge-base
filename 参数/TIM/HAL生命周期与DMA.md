@@ -191,41 +191,133 @@ UM1850 Rev 3 第 36 章逐函数表（第 489–490 页）把四个 `HAL_TIM_One
 
 以下字段及注册接口以 USE_HAL_TIM_REGISTER_CALLBACKS == 1 为编译条件。回调函数类型为 void (*)(TIM_HandleTypeDef *htim)。htim 指向对应定时器句柄。
 
-- READY 状态允许注册/注销下表全部 27 项；RESET 状态仅允许 0x00–0x0D 共 14 项 MSP 回调。
-- 其余状态、未定义 ID 返回 HAL_ERROR。
-- RegisterCallback 的空函数指针在加锁前返回 HAL_ERROR。
-- 锁竞争返回值还依赖 __HAL_LOCK 定义，此补充不新增该依赖的核验结论。
-- UnRegisterCallback 将字段恢复为下表默认弱回调，不清空为 NULL，也不关闭硬件中断或停止 DMA。
+两接口按以下顺序判断返回值；调用方须提供有效的 htim 句柄：
 
-| ID | 数值 | TIM_HandleTypeDef 条件字段 | 注销后的默认函数 |
-|---|---|---|---|
-| HAL_TIM_BASE_MSPINIT_CB_ID | 0x00 | Base_MspInitCallback | HAL_TIM_Base_MspInit |
-| HAL_TIM_BASE_MSPDEINIT_CB_ID | 0x01 | Base_MspDeInitCallback | HAL_TIM_Base_MspDeInit |
-| HAL_TIM_IC_MSPINIT_CB_ID | 0x02 | IC_MspInitCallback | HAL_TIM_IC_MspInit |
-| HAL_TIM_IC_MSPDEINIT_CB_ID | 0x03 | IC_MspDeInitCallback | HAL_TIM_IC_MspDeInit |
-| HAL_TIM_OC_MSPINIT_CB_ID | 0x04 | OC_MspInitCallback | HAL_TIM_OC_MspInit |
-| HAL_TIM_OC_MSPDEINIT_CB_ID | 0x05 | OC_MspDeInitCallback | HAL_TIM_OC_MspDeInit |
-| HAL_TIM_PWM_MSPINIT_CB_ID | 0x06 | PWM_MspInitCallback | HAL_TIM_PWM_MspInit |
-| HAL_TIM_PWM_MSPDEINIT_CB_ID | 0x07 | PWM_MspDeInitCallback | HAL_TIM_PWM_MspDeInit |
-| HAL_TIM_ONE_PULSE_MSPINIT_CB_ID | 0x08 | OnePulse_MspInitCallback | HAL_TIM_OnePulse_MspInit |
-| HAL_TIM_ONE_PULSE_MSPDEINIT_CB_ID | 0x09 | OnePulse_MspDeInitCallback | HAL_TIM_OnePulse_MspDeInit |
-| HAL_TIM_ENCODER_MSPINIT_CB_ID | 0x0A | Encoder_MspInitCallback | HAL_TIM_Encoder_MspInit |
-| HAL_TIM_ENCODER_MSPDEINIT_CB_ID | 0x0B | Encoder_MspDeInitCallback | HAL_TIM_Encoder_MspDeInit |
-| HAL_TIM_HALL_SENSOR_MSPINIT_CB_ID | 0x0C | HallSensor_MspInitCallback | HAL_TIMEx_HallSensor_MspInit |
-| HAL_TIM_HALL_SENSOR_MSPDEINIT_CB_ID | 0x0D | HallSensor_MspDeInitCallback | HAL_TIMEx_HallSensor_MspDeInit |
-| HAL_TIM_PERIOD_ELAPSED_CB_ID | 0x0E | PeriodElapsedCallback | HAL_TIM_PeriodElapsedCallback |
-| HAL_TIM_PERIOD_ELAPSED_HALF_CB_ID | 0x0F | PeriodElapsedHalfCpltCallback | HAL_TIM_PeriodElapsedHalfCpltCallback |
-| HAL_TIM_TRIGGER_CB_ID | 0x10 | TriggerCallback | HAL_TIM_TriggerCallback |
-| HAL_TIM_TRIGGER_HALF_CB_ID | 0x11 | TriggerHalfCpltCallback | HAL_TIM_TriggerHalfCpltCallback |
-| HAL_TIM_IC_CAPTURE_CB_ID | 0x12 | IC_CaptureCallback | HAL_TIM_IC_CaptureCallback |
-| HAL_TIM_IC_CAPTURE_HALF_CB_ID | 0x13 | IC_CaptureHalfCpltCallback | HAL_TIM_IC_CaptureHalfCpltCallback |
-| HAL_TIM_OC_DELAY_ELAPSED_CB_ID | 0x14 | OC_DelayElapsedCallback | HAL_TIM_OC_DelayElapsedCallback |
-| HAL_TIM_PWM_PULSE_FINISHED_CB_ID | 0x15 | PWM_PulseFinishedCallback | HAL_TIM_PWM_PulseFinishedCallback |
-| HAL_TIM_PWM_PULSE_FINISHED_HALF_CB_ID | 0x16 | PWM_PulseFinishedHalfCpltCallback | HAL_TIM_PWM_PulseFinishedHalfCpltCallback |
-| HAL_TIM_ERROR_CB_ID | 0x17 | ErrorCallback | HAL_TIM_ErrorCallback |
-| HAL_TIM_COMMUTATION_CB_ID | 0x18 | CommutationCallback | HAL_TIMEx_CommutCallback |
-| HAL_TIM_COMMUTATION_HALF_CB_ID | 0x19 | CommutationHalfCpltCallback | HAL_TIMEx_CommutHalfCpltCallback |
-| HAL_TIM_BREAK_CB_ID | 0x1A | BreakCallback | HAL_TIMEx_BreakCallback |
+1. RegisterCallback 先检查 pCallback。为 NULL 时立即返回 HAL_ERROR，不读取或修改句柄锁；即使 Lock 已为 HAL_LOCKED，也先走这个错误分支。UnRegisterCallback 没有回调指针参数，不经过此检查。
+2. 随后执行 __HAL_LOCK。若 Lock 已为 HAL_LOCKED，立即返回 HAL_BUSY，不再检查 State 或 CallbackID，也不释放原有锁。因此，“非法状态或 ID 返回 HAL_ERROR”只适用于已经通过锁检查的路径。
+3. 取得锁后，READY 状态允许下列条目全部 27 项；RESET 状态仅允许 0x00–0x0D 共 14 项 MSP 回调。合法组合修改对应字段并返回 HAL_OK；其余状态或 ID 返回 HAL_ERROR。两种返回路径都会先执行 __HAL_UNLOCK。
+
+UnRegisterCallback 将字段恢复为下列条目中的默认弱回调，不清空为 NULL，也不关闭硬件中断或停止 DMA。两函数均未提供空 htim 的通用参数校验；不能把 pCallback 的空指针检查误认为句柄也可为空。
+
+同提交的 __HAL_LOCK 是普通的 Lock 检查与写入，__HAL_UNLOCK 只写 HAL_UNLOCKED；没有原子抢锁或中断屏蔽，应用仍须协调任务/IRQ 对共享句柄的访问。其 USE_RTOS=1 分支直接触发编译错误，不能当作已实现的 RTOS 锁。
+
+依据：[固定锁宏，L88–108](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_hal_def.h#L88-L108)、[RegisterCallback 完整实现，L5012–5218](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Src/stm32f1xx_hal_tim.c#L5012-L5218)、[UnRegisterCallback 完整实现，L5255–5456](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Src/stm32f1xx_hal_tim.c#L5255-L5456)。这些结论限定于 de129f1 的两个函数及匹配头文件，不扩展到其他版本或其他 TIM 接口。
+
+**MSP 初始化与释放**
+
+- `HAL_TIM_BASE_MSPINIT_CB_ID`（`0x00`）
+  - 句柄字段：`Base_MspInitCallback`
+  - 注销后的默认函数：`HAL_TIM_Base_MspInit`
+
+- `HAL_TIM_BASE_MSPDEINIT_CB_ID`（`0x01`）
+  - 句柄字段：`Base_MspDeInitCallback`
+  - 注销后的默认函数：`HAL_TIM_Base_MspDeInit`
+
+- `HAL_TIM_IC_MSPINIT_CB_ID`（`0x02`）
+  - 句柄字段：`IC_MspInitCallback`
+  - 注销后的默认函数：`HAL_TIM_IC_MspInit`
+
+- `HAL_TIM_IC_MSPDEINIT_CB_ID`（`0x03`）
+  - 句柄字段：`IC_MspDeInitCallback`
+  - 注销后的默认函数：`HAL_TIM_IC_MspDeInit`
+
+- `HAL_TIM_OC_MSPINIT_CB_ID`（`0x04`）
+  - 句柄字段：`OC_MspInitCallback`
+  - 注销后的默认函数：`HAL_TIM_OC_MspInit`
+
+- `HAL_TIM_OC_MSPDEINIT_CB_ID`（`0x05`）
+  - 句柄字段：`OC_MspDeInitCallback`
+  - 注销后的默认函数：`HAL_TIM_OC_MspDeInit`
+
+- `HAL_TIM_PWM_MSPINIT_CB_ID`（`0x06`）
+  - 句柄字段：`PWM_MspInitCallback`
+  - 注销后的默认函数：`HAL_TIM_PWM_MspInit`
+
+- `HAL_TIM_PWM_MSPDEINIT_CB_ID`（`0x07`）
+  - 句柄字段：`PWM_MspDeInitCallback`
+  - 注销后的默认函数：`HAL_TIM_PWM_MspDeInit`
+
+- `HAL_TIM_ONE_PULSE_MSPINIT_CB_ID`（`0x08`）
+  - 句柄字段：`OnePulse_MspInitCallback`
+  - 注销后的默认函数：`HAL_TIM_OnePulse_MspInit`
+
+- `HAL_TIM_ONE_PULSE_MSPDEINIT_CB_ID`（`0x09`）
+  - 句柄字段：`OnePulse_MspDeInitCallback`
+  - 注销后的默认函数：`HAL_TIM_OnePulse_MspDeInit`
+
+- `HAL_TIM_ENCODER_MSPINIT_CB_ID`（`0x0A`）
+  - 句柄字段：`Encoder_MspInitCallback`
+  - 注销后的默认函数：`HAL_TIM_Encoder_MspInit`
+
+- `HAL_TIM_ENCODER_MSPDEINIT_CB_ID`（`0x0B`）
+  - 句柄字段：`Encoder_MspDeInitCallback`
+  - 注销后的默认函数：`HAL_TIM_Encoder_MspDeInit`
+
+- `HAL_TIM_HALL_SENSOR_MSPINIT_CB_ID`（`0x0C`）
+  - 句柄字段：`HallSensor_MspInitCallback`
+  - 注销后的默认函数：`HAL_TIMEx_HallSensor_MspInit`
+
+- `HAL_TIM_HALL_SENSOR_MSPDEINIT_CB_ID`（`0x0D`）
+  - 句柄字段：`HallSensor_MspDeInitCallback`
+  - 注销后的默认函数：`HAL_TIMEx_HallSensor_MspDeInit`
+
+**周期与触发事件**
+
+- `HAL_TIM_PERIOD_ELAPSED_CB_ID`（`0x0E`）
+  - 句柄字段：`PeriodElapsedCallback`
+  - 注销后的默认函数：`HAL_TIM_PeriodElapsedCallback`
+
+- `HAL_TIM_PERIOD_ELAPSED_HALF_CB_ID`（`0x0F`）
+  - 句柄字段：`PeriodElapsedHalfCpltCallback`
+  - 注销后的默认函数：`HAL_TIM_PeriodElapsedHalfCpltCallback`
+
+- `HAL_TIM_TRIGGER_CB_ID`（`0x10`）
+  - 句柄字段：`TriggerCallback`
+  - 注销后的默认函数：`HAL_TIM_TriggerCallback`
+
+- `HAL_TIM_TRIGGER_HALF_CB_ID`（`0x11`）
+  - 句柄字段：`TriggerHalfCpltCallback`
+  - 注销后的默认函数：`HAL_TIM_TriggerHalfCpltCallback`
+
+**捕获、比较与 PWM 事件**
+
+- `HAL_TIM_IC_CAPTURE_CB_ID`（`0x12`）
+  - 句柄字段：`IC_CaptureCallback`
+  - 注销后的默认函数：`HAL_TIM_IC_CaptureCallback`
+
+- `HAL_TIM_IC_CAPTURE_HALF_CB_ID`（`0x13`）
+  - 句柄字段：`IC_CaptureHalfCpltCallback`
+  - 注销后的默认函数：`HAL_TIM_IC_CaptureHalfCpltCallback`
+
+- `HAL_TIM_OC_DELAY_ELAPSED_CB_ID`（`0x14`）
+  - 句柄字段：`OC_DelayElapsedCallback`
+  - 注销后的默认函数：`HAL_TIM_OC_DelayElapsedCallback`
+
+- `HAL_TIM_PWM_PULSE_FINISHED_CB_ID`（`0x15`）
+  - 句柄字段：`PWM_PulseFinishedCallback`
+  - 注销后的默认函数：`HAL_TIM_PWM_PulseFinishedCallback`
+
+- `HAL_TIM_PWM_PULSE_FINISHED_HALF_CB_ID`（`0x16`）
+  - 句柄字段：`PWM_PulseFinishedHalfCpltCallback`
+  - 注销后的默认函数：`HAL_TIM_PWM_PulseFinishedHalfCpltCallback`
+
+**错误、换相与刹车事件**
+
+- `HAL_TIM_ERROR_CB_ID`（`0x17`）
+  - 句柄字段：`ErrorCallback`
+  - 注销后的默认函数：`HAL_TIM_ErrorCallback`
+
+- `HAL_TIM_COMMUTATION_CB_ID`（`0x18`）
+  - 句柄字段：`CommutationCallback`
+  - 注销后的默认函数：`HAL_TIMEx_CommutCallback`
+
+- `HAL_TIM_COMMUTATION_HALF_CB_ID`（`0x19`）
+  - 句柄字段：`CommutationHalfCpltCallback`
+  - 注销后的默认函数：`HAL_TIMEx_CommutHalfCpltCallback`
+
+- `HAL_TIM_BREAK_CB_ID`（`0x1A`）
+  - 句柄字段：`BreakCallback`
+  - 注销后的默认函数：`HAL_TIMEx_BreakCallback`
 
 核验方法：逐一比较固定头文件 ID 数值、RegisterCallback switch 对应字段及 UnRegisterCallback 对应字段/默认函数。27 项字段映射一致。
 
