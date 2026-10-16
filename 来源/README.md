@@ -86,6 +86,12 @@ DMA来源按真实文档与固定源码归并，18条支持范围分别使用唯
 
 - [UM1734 Rev4 与固定 CubeF1 实现](UM1734.md)
 
+### USB 容量与 CAN 收发边界
+
+- [RM0008：USB 存储和端点写入](RM0008.md#src-rm0008-r21-usb-memory-endpoint)、[CAN 邮箱和FIFO](RM0008.md#src-rm0008-r21-can-mailbox-fifo)
+- [ES096：USB计数与CRC存储](ES096.md#src-es096-r15-usb-buffer-count)、[CAN TTCM限制](ES096.md#src-es096-r15-can-ttcm)
+- [固定HAL：USB容量与复制](驱动实现.md#src-hal-usb-v1110)、[CAN提交与释放](驱动实现.md#src-hal-can-v1110)
+
 ## ROM 串口引导
 
 - [AN2606 与 AN3155：连接、握手和能力查询](ROM串口引导资料.md)
