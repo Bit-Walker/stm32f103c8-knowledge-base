@@ -281,7 +281,13 @@ CPU同APB访问的额外4周期也是简化模型，非任意分频下C8最坏�
 
 ## HAL接口与实际返回
 
-UM1850 Rev 3 §14.2.5 pp151–154列出的12个API及参数保留如下；实际状态行为以固定提交bd368aa335c529641d2e567574885e02deacc64a为边界。DataLength的1～65535是硬件/调用契约；固定.c仅调用assert_param检查范围，不能声称关闭assert时仍会自动返回参数错误。__HAL_LOCK展开和完整状态枚举因缺固定主头文件而未核，不包括在以下已核返回分支中。
+以下 12 个 API 的行为限定于官方驱动提交 `bd368aa335c529641d2e567574885e02deacc64a`，同时核对该提交的 dma.c、dma.h、hal_def.h 和配置模板。UM1850 Rev 3 §14.2.5（p151–154）用于接口说明；用户工程覆盖的宏和回调不在此固定实现结论内。
+
+**长度检查与断言。** DataLength 的合法范围为 1～65535 项，头文件的 IS_DMA_BUFFER_SIZE 明确检查 `1 ≤ SIZE < 0x10000`。Start/Start_IT 仅通过 assert_param 使用该检查，没有独立的长度错误返回分支。官方配置模板未定义 USE_FULL_ASSERT 时，assert_param 展开为空操作；定义后，失败会调用用户提供的 assert_failed，而非自动返回 HAL_ERROR。该函数是否返回取决于用户实现，因此即使开启断言，也不能据此保证非法长度会安全中止。实际工程须核查自己的配置头文件。
+
+**句柄锁与返回分支。** __HAL_LOCK 先检查 Lock：已为 HAL_LOCKED 时立即从调用函数返回 HAL_BUSY；否则写入 HAL_LOCKED，再继续后续状态检查。它用于本页的 Start、Start_IT、RegisterCallback 和 UnRegisterCallback；__HAL_UNLOCK 只将 Lock 改回 HAL_UNLOCKED。宏是普通检查加写入，没有原子抢锁或中断屏蔽，不能代替任务与 IRQ 间的互斥。hal_def.h 在 USE_RTOS=1 时直接报编译错误；这表示该宏的预留 RTOS 分支未实现，不表示应用不能使用 RTOS，应用仍须自行协调共享句柄。
+
+依据：[长度范围定义](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Inc/stm32f1xx_hal_dma.h#L412)、[锁宏及 USE_RTOS 条件](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Inc/stm32f1xx_hal_def.h#L88-L108)、[官方模板的断言定义](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Inc/stm32f1xx_hal_conf_template.h#L374-L388)。
 
 共用参数类型（UM1850 Rev3 §14.2.5，印刷页151–154）：hdma为`DMA_HandleTypeDef *`；SrcAddress、DstAddress、DataLength、CompleteLevel、Timeout均为`uint32_t`；CallbackID为`HAL_DMA_CallbackIDTypeDef`；pCallback为`void (*)(DMA_HandleTypeDef *)`。各接口返回类型见各小节；句柄和回调指向的对象须在调用及相应异步过程期间有效。
 
@@ -305,7 +311,7 @@ UM1850 Rev 3 §14.2.5 pp151–154列出的12个API及参数保留如下；实际
 
 调用：`HAL_DMA_Start(hdma, SrcAddress, DstAddress, DataLength)`。
 
-地址参数为 `uint32_t`，DataLength 为 1～65535 个数据项。已通过锁宏进入函数主体后，READY 状态进入 HAL_DMA_STATE_BUSY（忙），成功启动返回 HAL_OK；非 READY 状态显式返回 HAL_BUSY。锁宏展开的返回路径仍不在本页核验范围内。
+地址参数为 `uint32_t`，DataLength 为 1～65535 个数据项。锁已占用时立即返回 HAL_BUSY；取得锁后，READY 状态进入 HAL_DMA_STATE_BUSY（忙），成功启动返回 HAL_OK，并保留锁供后续完成/终止路径处理。若取得锁后发现非 READY，则解锁并返回 HAL_BUSY。长度检查先于锁检查，断言条件见本节开头。
 
 [固定实现](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_dma.c#L318-L350)
 
@@ -358,7 +364,7 @@ BUSY路径在本调用同步执行非空Abort回调，回调可以早于返回�
 
 调用：`HAL_DMA_RegisterCallback(hdma, CallbackID, pCallback)`。
 
-返回 `HAL_StatusTypeDef`。READY 状态且 CallbackID 有效时才可修改；NULL 回调未被专门拒绝，意味着不调用。可注册的 ID 为：
+返回 `HAL_StatusTypeDef`。锁已占用时返回 HAL_BUSY；取得锁后，仅 READY 状态且 CallbackID 有效时修改回调并返回 HAL_OK，非 READY 或无效 ID 返回 HAL_ERROR，退出前解锁。NULL 回调未被专门拒绝，意味着不调用。可注册的 ID 为：
 
 - HAL_DMA_XFER_CPLT_CB_ID：完整传输回调
 - HAL_DMA_XFER_HALFCPLT_CB_ID：半传输回调
@@ -371,7 +377,7 @@ BUSY路径在本调用同步执行非空Abort回调，回调可以早于返回�
 
 调用：`HAL_DMA_UnRegisterCallback(hdma, CallbackID)`。
 
-支持解除上述单个回调，或用 HAL_DMA_XFER_ALL_CB_ID 解除全部回调。已通过锁宏进入函数主体后，READY 状态且 ID 合法时返回 HAL_OK；非 READY 或非法 ID 显式返回 HAL_ERROR。锁宏展开尚未核验。
+支持解除上述单个回调，或用 HAL_DMA_XFER_ALL_CB_ID 解除全部回调。锁已占用时返回 HAL_BUSY；取得锁后，READY 状态且 ID 合法时返回 HAL_OK，非 READY 或非法 ID 返回 HAL_ERROR，退出前解锁。
 
 [固定实现](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_dma.c#L743-L791)
 
@@ -379,7 +385,18 @@ BUSY路径在本调用同步执行非空Abort回调，回调可以早于返回�
 
 调用：`HAL_DMA_GetState(hdma)`。
 
-返回 `HAL_DMA_StateTypeDef`，只反映软件状态。固定 dma.c 使用 HAL_DMA_STATE_RESET、HAL_DMA_STATE_READY、HAL_DMA_STATE_BUSY；完整枚举仍未按对应固定头文件核验，不能据此断言其他枚举不存在。硬件是否停止须另查 EN，剩余数据项须另查 CNDTR。
+返回 `HAL_DMA_StateTypeDef`，只反映句柄的软件状态。固定头文件的完整枚举为：
+
+| 状态 | 编码 | 头文件含义 |
+|---|---|---|
+| HAL_DMA_STATE_RESET | 0x00 | 未初始化或禁用 |
+| HAL_DMA_STATE_READY | 0x01 | 已初始化，可使用 |
+| HAL_DMA_STATE_BUSY | 0x02 | 传输进行中 |
+| HAL_DMA_STATE_TIMEOUT | 0x03 | 超时状态 |
+
+TIMEOUT 枚举确实存在，但本提交 dma.c 不写入该状态。PollForTransfer 超时实际写入 READY，错误位图设置 HAL_DMA_ERROR_TIMEOUT，并返回 HAL_ERROR；不能根据枚举名称推定超时后的实际状态。硬件是否停止须另查 EN，剩余数据项须另查 CNDTR。
+
+[固定状态枚举](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Inc/stm32f1xx_hal_dma.h#L75-L83)、[轮询超时分支](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_dma.c#L557-L570)。
 
 [固定实现](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_dma.c#L819-L823)
 
@@ -404,4 +421,3 @@ IRQ入口分别读取一次ISR与CCR快照，随后按已允许的HT、TC、TE�
 ## 原厂证据边界
 
 规则扫描/注入抢占依据[RM0008 Rev21 §§11.3.8–11.3.9 p221](https://www.st.com/resource/en/reference_manual/cd00171190.pdf#page=221)；TIM burst依据[RM0008 Rev21 §§14.4.19–14.4.20 pp361–362](https://www.st.com/resource/en/reference_manual/cd00171190.pdf#page=361)。相关结论直接使用这些原厂章节；它们不构成对AN3116或AN4776整份文档的核验，也不代表ADC与定时器主题已完整覆盖。
-
