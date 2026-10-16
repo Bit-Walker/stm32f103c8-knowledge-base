@@ -137,7 +137,7 @@ $`\Delta\theta`$ 为这段采样期间的机械角增量，单位度； $`n`$ �
 
 ## 外部时钟模式2与触发从模式组合
 
-ECE=1可与复位、门控、触发从模式组合，不能与外部时钟模式1或编码器模式同时选用。RM还建议不要在这种组合中把ETR再经TS选作TRGI。
+p336正文所述组合用法为模式2配合复位、门控或触发，排除模式1与编码器；若同时设置两种外部模式，p342的ECE字段规定计数源为ETRF，这不表示两路时钟独立组合或叠加。对前述组合，p336正文建议避免ETR同时作TRGI，p342字段则明确要求TRGI不接ETRF，即TS≠111。[RM0008 Rev21 p336组合说明](https://www.st.com/resource/en/reference_manual/cd00171190.pdf#page=336) · [ECE字段p342](https://www.st.com/resource/en/reference_manual/cd00171190.pdf#page=342)。
 
 图99使用ETP=0、ETPS=00、ETF=0000、ECE=1，以ETR上升沿作为计数源；CC1S=01、IC1F=0000、CC1P=0、TS=101、SMS=110，以TI1上升沿启动计数。触发前CNT保持原值0x34；触发置CEN及TIF，之后符合条件的ETR上升沿使CNT依次到0x35、0x36（图例PSC=0）。TI1回落不会像门控模式那样停止计数；软件CEN控制与OPM结束条件另行适用。
 
