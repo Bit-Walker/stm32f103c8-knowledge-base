@@ -81,11 +81,21 @@
 
 软件在处理 IDLE 时才读取 `CNDTR`；硬件不会在 IDLE 事件发生时替软件锁存这个长度。中断延迟期间可能又有数据到达，相同的位置值也可能对应已经回卷一圈或多圈的状态。
 
+HT/TC 从 DMA IRQ 进入，IDLE 从 USART IRQ 进入，两个 IRQ 都须分发给对应 HAL 句柄。它们的服务顺序不必等于事件发生顺序：例如循环接收长度为 8，若 IDLE 先报告位置 6，而先前挂起的 HT 随后才被服务，HT 仍会报告固定位置 4。这个位置倒退本身不证明发生了回绕；仅对相邻 `Size` 作环形减法，或仅去掉相等值，不能可靠恢复这类延迟事件的数据量。此例是源码条件下的控制流推导，不是板端中断时序测试。
+
 HT、TC、IDLE 应交给同一个串行化的消费机制处理，并按最早覆盖时刻安排处理预算。单个事件标志或位置值不能证明多圈数据没有丢失。
 
 若采用前后半区模型， $`N`$ 应为正偶数。表中的 $`N/2`$ 整数商只说明源码传给回调的数值，不保证奇数长度时的硬件半传输边界。
 
-来源：[IRQ中的IDLE分支，L2478–2582](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/77fbb30b7a1d02533980400083e48c559aae5a4f/Src/stm32f1xx_hal_uart.c#L2478-L2582)、[DMA完整/半完整回调，L3042–3140](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/77fbb30b7a1d02533980400083e48c559aae5a4f/Src/stm32f1xx_hal_uart.c#L3042-L3140)。
+### 2.3 通知不自动冻结缓冲
+
+普通 DMA 的 HT 不停止后半段写入，不能据此释放整块仍在使用的缓冲。正确配置 `MINC=1`、没有其他写入或重启时，已完成的前半区不会因为本次普通 DMA 继续运行而循环覆盖。
+
+循环 DMA 的 HT、TC、IDLE 通知均不停止后续写入，也不复制一份数据快照。仅将位置或缓冲指针排队，不能保证后台消费者稍后读到的仍是本次通知对应的数据；消费或复制必须赶在相应区段被覆盖之前，并与其他事件处理串行协调。
+
+普通 DMA 的完整 TC 和部分 IDLE 会走结束接收路径，不能套用“每次回调后仍循环写入”的结论。其缓冲交接仍以启动正确、模式一致、停止路径确实完成且没有立即重启覆盖为前提；部分 IDLE 的 Abort 检查边界见 §4，错误与显式中止见[DMA生命周期 §7](DMA生命周期.md#7-uart错误与缓冲交接)。
+
+来源：[IRQ中的IDLE分支，L2478–2582](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/77fbb30b7a1d02533980400083e48c559aae5a4f/Src/stm32f1xx_hal_uart.c#L2478-L2582)、[DMA完整/半完整回调，L3042–3140](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/77fbb30b7a1d02533980400083e48c559aae5a4f/Src/stm32f1xx_hal_uart.c#L3042-L3140)、[DMA IRQ的HT/TC分发，L602–651](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/77fbb30b7a1d02533980400083e48c559aae5a4f/Src/stm32f1xx_hal_dma.c#L602-L651)、[RM0008 Rev21循环重装与HT/TC，p278](https://www.st.com/resource/en/reference_manual/cd00171190.pdf#page=278)。
 
 ## 3 事件类型是可变句柄字段
 
@@ -107,7 +117,9 @@ ReceiveToIdle_DMA先检查RxState、pData及非零Size，设置接收类型和�
 
 普通DMA的部分IDLE分支先关闭接收请求及相关中断、将RxState置READY，再调用HAL_DMA_Abort，且不传播Abort返回值。回调与READY不构成对所有异常入口状态的硬件停止认证；尤其在先前错误、暂停或资源状态不一致时，仍须分别核实DMA与缓冲归属。不能通过手改State绕过这些条件。
 
-来源：[ReceiveToIdle_DMA，L1776–1811](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/77fbb30b7a1d02533980400083e48c559aae5a4f/Src/stm32f1xx_hal_uart.c#L1776-L1811)、[UART_Start_Receive_DMA，L3271–3318](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/77fbb30b7a1d02533980400083e48c559aae5a4f/Src/stm32f1xx_hal_uart.c#L3271-L3318)、[普通DMA的IDLE收尾，L2501–2545](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/77fbb30b7a1d02533980400083e48c559aae5a4f/Src/stm32f1xx_hal_uart.c#L2501-L2545)。
+`HAL_UART_DMAStop`、显式 Abort 和错误收尾不承诺另发一次带最终 `Size` 的 RxEvent。阻塞 Abort 不调用用户中止完成回调；`Abort_IT` / `AbortReceive_IT` 使用各自的中止回调，错误路径使用 `ErrorCallback`，这些回调都没有 RxEvent 的长度参数。不要等一个必定到来的“最后位置”才回收事务，也不要把收尾时被清零的 `RxXferCount` 反推成已收满。长度记录、剩余数据处理与资源停止必须在同一事务的受控收尾中核对。
+
+来源：[ReceiveToIdle_DMA，L1776–1811](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/77fbb30b7a1d02533980400083e48c559aae5a4f/Src/stm32f1xx_hal_uart.c#L1776-L1811)、[UART_Start_Receive_DMA，L3271–3318](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/77fbb30b7a1d02533980400083e48c559aae5a4f/Src/stm32f1xx_hal_uart.c#L3271-L3318)、[普通DMA的IDLE收尾，L2501–2545](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/77fbb30b7a1d02533980400083e48c559aae5a4f/Src/stm32f1xx_hal_uart.c#L2501-L2545)、[DMAStop，L1536–1574](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/77fbb30b7a1d02533980400083e48c559aae5a4f/Src/stm32f1xx_hal_uart.c#L1536-L1574)、[阻塞Abort，L1859–1934](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/77fbb30b7a1d02533980400083e48c559aae5a4f/Src/stm32f1xx_hal_uart.c#L1859-L1934)、[AbortReceive_IT，L2272–2341](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/77fbb30b7a1d02533980400083e48c559aae5a4f/Src/stm32f1xx_hal_uart.c#L2272-L2341)、[错误路径与缓冲交接](DMA生命周期.md#7-uart错误与缓冲交接)。
 
 ## 5 阻塞接收的IDLE与超时顺序
 
