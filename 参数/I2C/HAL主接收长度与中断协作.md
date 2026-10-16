@@ -16,6 +16,22 @@ ACK 是应答控制位；POS 控制 ACK 的位置。ADDR 表示地址阶段完�
 
 来源：[HAL 轮询接收函数](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_i2c.c#L1195-L1428)。
 
+### 原图：1 字节与 2 字节轮询接收
+
+AN2824 Rev4 Figure 2 将旧寄存器例程的 1 字节、2 字节接收并排显示，便于看到两条路径的中断屏蔽窗口。图中不含 N>2 接收；上表的“剩余 3 字节”仍按固定 HAL 源码解释。
+
+图从发送地址阶段展开；请求 START、等待 SB 再发送地址的公共前序见 [p5](https://www.st.com/resource/en/application_note/an2824-stm32f10xxx-ic-optimized-examples-stmicroelectronics.pdf#page=5)，仍须先完成。图示选择 STOP 收尾，p6 正文提到的重复 START 不沿用图末等待 STOP 清零的步骤。
+
+![AN2824 Rev4 Figure 2：主机轮询接收1或2字节原流程图](../../assets/manual/an2824-r4/p8-fig2.png)
+
+原图：[AN2824 Figure 2，p8](https://www.st.com/resource/en/application_note/an2824-stm32f10xxx-ic-optimized-examples-stmicroelectronics.pdf#page=8)。配套的 [p6 正文与三条时序注释](https://www.st.com/resource/en/application_note/an2824-stm32f10xxx-ic-optimized-examples-stmicroelectronics.pdf#page=6)应一起看：
+
+- 1 字节的 EV6_3 序列要求在当前字节结束前完成，保护窗口是清 ADDR 到设置 STOP/START。
+- 2 字节的 EV6_1 序列要求在当前字节的 ACK 脉冲前完成，保护窗口是清 ADDR 到清 ACK。原文另因数据读取限制，要求保护设置 STOP 到读取 Data1 的窗口；图中完整保留这两段屏蔽与恢复。
+- 2 字节正文先列设置 POS 和 ACK、再等待 ADDR；图中在 ADDR 置位后列 POS=1，但仍在清 ADDR 前。图中没有重新列出入场的 ACK=1，不应把它省略。
+
+图末的等待 STOP 清零、恢复 ACK/POS 属于旧例流程；不能据此增加固定 HAL 的返回保证。图中的 Enable interrupts 也不表示恢复原 PRIMASK，调用环境限制见本节下文。
+
 ### 对照 AN2824 原流程图时的注意点
 
 AN2824 Rev4 第 7 页 Figure 1 的三字节收尾分支漏列了读取倒数第三个字节 `DataN-2` 的步骤。第 5 页正文明确写出：清 ACK 后读取这个字节，以启动最后一个字节的接收。上表所列固定 HAL 实现也包含这次读取，因此不能只按该图编写收尾代码。
@@ -60,6 +76,20 @@ AN2824 Rev4 在主机 DMA 接收部分注明不支持单字节接收。该笔记
 
 来源：[AN2824 Rev4，pp10、14](https://www.st.com/resource/en/application_note/an2824-stm32f10xxx-ic-optimized-examples-stmicroelectronics.pdf#page=10)、[HAL 单字节 ADDR 分支](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_i2c.c#L5987-L6009)、[DMA 完成处理](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/bd368aa335c529641d2e567574885e02deacc64a/Src/stm32f1xx_hal_i2c.c#L7103-L7171)。
 
+### 原图：旧例 DMA 接收的准备与收尾
+
+Figure 4 保留了旧例从 DMA 通道准备、LAST 到 STOP 的完整顺序，以及图前“单字节主接收不支持”的原注。它帮助解释上述版本差异，不能代替第 2 节固定 HAL 的启动与中断调用链。
+
+![AN2824 Rev4 Figure 4：旧例主机DMA接收原流程图，含单字节不支持原注](../../assets/manual/an2824-r4/p10-fig4.png)
+
+原图：[AN2824 Figure 4，p10](https://www.st.com/resource/en/application_note/an2824-stm32f10xxx-ic-optimized-examples-stmicroelectronics.pdf#page=10)。读图时区分以下几件事：
+
+- 图中的 DMA 通道使能与 I²C 的 DMAEN 是两个配置步骤；LAST 用于让最后一个接收字节自动产生 NACK。
+- [p9 的 DMA 接收说明](https://www.st.com/resource/en/application_note/an2824-stm32f10xxx-ic-optimized-examples-stmicroelectronics.pdf#page=9)将 DMA 限于数据搬运，SB、ADDR 等控制事件仍由软件管理，随附主机例程用轮询处理。本页第 2 节固定 HAL 则由 EVT 中断继续处理这些事件。
+- 原图等待 DMA 完成后，禁用 DMA 通道、清 DMA 完成标志，再请求 STOP 并等待 STOP 清零。固定 HAL 的接收回调与总线释放需分别判断，见紧接着的第 4 节。
+
+两幅原图只画正常推进路线。[p11 的共用错误说明](https://www.st.com/resource/en/application_note/an2824-stm32f10xxx-ic-optimized-examples-stmicroelectronics.pdf#page=11)明确：主机轮询或 DMA 例仍启用 BERR、OVR、AF、ARLO 错误中断，并由软件清相应错误标志。图中未画出的超时、错误退出与恢复，不能当作不需要处理；HAL 的启动失败条件保留在第 2 节。
+
 ## 4 接收回调与总线释放
 
 正常主接收的 DMA 完成处理会设置 STOP，清除 LAST、DMAEN，清零接收计数，并在正常路径更新状态后调用接收完成回调。
@@ -74,7 +104,7 @@ AN2824 Rev4 在主机 DMA 接收部分注明不支持单字节接收。该笔记
 - 源文件：`stm32f1xx_hal_i2c.c`；blob：`645f2498b0f278d6b38d2e592e6910450c1715b9`。
 - [AN2824 来源记录](../../来源/AN2824.md)。
 
-本文为上述函数路径的静态核查；尚未完成板端波形验证。应用笔记的原流程图将在硬件收发时序主题中就近整理。
+本文为上述函数路径的静态核查；尚未完成板端波形验证。Figure 2、4 仅作旧例硬件时序对照；[原图版本与裁切记录](../../assets/manual/an2824-r4/原图来源.md)保留来源、页码和图外条件。
 
 ## 总线电气时序入口
 
