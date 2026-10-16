@@ -26,10 +26,15 @@ TIM1 提供互补输出、刹车和 COM 换相事件。先看[HAL初始化边界
 
 ## Hall 接口
 
+以下 Hall Init/DeInit、MspInit/MspDeInit、Start/Stop、Start_IT/Stop_IT、Start_DMA/Stop_DMA 十个声明，以及后文 HallSensor_GetState，共 11 个原型已与[同提交 TIMEx 头文件 L114–128](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_hal_tim_ex.h#L114-L128)及 [L225](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_hal_tim_ex.h#L225)逐项核对。Start_DMA 的 pData 为 uint32_t *、Length 为 uint16_t；GetState 返回 HAL_TIM_StateTypeDef。此处仅补齐 Hall 声明依据，不把原型一致视为启停、DMA 或并发行为已完整验证。
+
 ### `HAL_TIMEx_HallSensor_Init`
 
 ```c
-HAL_StatusTypeDef HAL_TIMEx_HallSensor_Init (TIM_HandleTypeDef * htim, TIM_HallSensor_InitTypeDef * sConfig);
+HAL_StatusTypeDef HAL_TIMEx_HallSensor_Init(
+    TIM_HandleTypeDef * htim,
+    TIM_HallSensor_InitTypeDef * sConfig
+);
 ```
 
 初始化霍尔传感器接口。
@@ -145,7 +150,11 @@ HAL_StatusTypeDef HAL_TIMEx_HallSensor_Stop_IT (TIM_HandleTypeDef * htim);
 ### `HAL_TIMEx_HallSensor_Start_DMA`
 
 ```c
-HAL_StatusTypeDef HAL_TIMEx_HallSensor_Start_DMA (TIM_HandleTypeDef * htim, uint32_t * pData, uint16_t Length);
+HAL_StatusTypeDef HAL_TIMEx_HallSensor_Start_DMA(
+    TIM_HandleTypeDef * htim,
+    uint32_t * pData,
+    uint16_t Length
+);
 ```
 
 以 DMA 方式启动霍尔传感器接口。
@@ -185,7 +194,10 @@ HAL_StatusTypeDef HAL_TIMEx_HallSensor_Stop_DMA (TIM_HandleTypeDef * htim);
 ### `HAL_TIMEx_OCN_Start`
 
 ```c
-HAL_StatusTypeDef HAL_TIMEx_OCN_Start (TIM_HandleTypeDef * htim, uint32_t Channel);
+HAL_StatusTypeDef HAL_TIMEx_OCN_Start(
+    TIM_HandleTypeDef * htim,
+    uint32_t Channel
+);
 ```
 
 启动TIM1 互补输出比较。
@@ -203,7 +215,10 @@ HAL_StatusTypeDef HAL_TIMEx_OCN_Start (TIM_HandleTypeDef * htim, uint32_t Channe
 ### `HAL_TIMEx_OCN_Stop`
 
 ```c
-HAL_StatusTypeDef HAL_TIMEx_OCN_Stop (TIM_HandleTypeDef * htim, uint32_t Channel);
+HAL_StatusTypeDef HAL_TIMEx_OCN_Stop(
+    TIM_HandleTypeDef * htim,
+    uint32_t Channel
+);
 ```
 
 停止TIM1 互补输出比较。
@@ -221,7 +236,10 @@ HAL_StatusTypeDef HAL_TIMEx_OCN_Stop (TIM_HandleTypeDef * htim, uint32_t Channel
 ### `HAL_TIMEx_OCN_Start_IT`
 
 ```c
-HAL_StatusTypeDef HAL_TIMEx_OCN_Start_IT (TIM_HandleTypeDef * htim, uint32_t Channel);
+HAL_StatusTypeDef HAL_TIMEx_OCN_Start_IT(
+    TIM_HandleTypeDef * htim,
+    uint32_t Channel
+);
 ```
 
 以中断方式启动TIM1 互补输出比较。
@@ -239,7 +257,10 @@ HAL_StatusTypeDef HAL_TIMEx_OCN_Start_IT (TIM_HandleTypeDef * htim, uint32_t Cha
 ### `HAL_TIMEx_OCN_Stop_IT`
 
 ```c
-HAL_StatusTypeDef HAL_TIMEx_OCN_Stop_IT (TIM_HandleTypeDef * htim, uint32_t Channel);
+HAL_StatusTypeDef HAL_TIMEx_OCN_Stop_IT(
+    TIM_HandleTypeDef * htim,
+    uint32_t Channel
+);
 ```
 
 停止并关闭中断TIM1 互补输出比较。
@@ -259,7 +280,12 @@ HAL_StatusTypeDef HAL_TIMEx_OCN_Stop_IT (TIM_HandleTypeDef * htim, uint32_t Chan
 ### `HAL_TIMEx_OCN_Start_DMA`
 
 ```c
-HAL_StatusTypeDef HAL_TIMEx_OCN_Start_DMA (TIM_HandleTypeDef * htim, uint32_t Channel, uint32_t * pData, uint16_t Length);
+HAL_StatusTypeDef HAL_TIMEx_OCN_Start_DMA(
+    TIM_HandleTypeDef * htim,
+    uint32_t Channel,
+    uint32_t * pData,
+    uint16_t Length
+);
 ```
 
 以 DMA 方式启动TIM1 互补输出比较。
@@ -280,7 +306,10 @@ HAL_StatusTypeDef HAL_TIMEx_OCN_Start_DMA (TIM_HandleTypeDef * htim, uint32_t Ch
 ### `HAL_TIMEx_OCN_Stop_DMA`
 
 ```c
-HAL_StatusTypeDef HAL_TIMEx_OCN_Stop_DMA (TIM_HandleTypeDef * htim, uint32_t Channel);
+HAL_StatusTypeDef HAL_TIMEx_OCN_Stop_DMA(
+    TIM_HandleTypeDef * htim,
+    uint32_t Channel
+);
 ```
 
 停止 DMA 方式TIM1 互补输出比较。
@@ -301,7 +330,10 @@ HAL_StatusTypeDef HAL_TIMEx_OCN_Stop_DMA (TIM_HandleTypeDef * htim, uint32_t Cha
 ### `HAL_TIMEx_PWMN_Start`
 
 ```c
-HAL_StatusTypeDef HAL_TIMEx_PWMN_Start (TIM_HandleTypeDef * htim, uint32_t Channel);
+HAL_StatusTypeDef HAL_TIMEx_PWMN_Start(
+    TIM_HandleTypeDef * htim,
+    uint32_t Channel
+);
 ```
 
 启动TIM1 互补 PWM。
@@ -319,7 +351,10 @@ HAL_StatusTypeDef HAL_TIMEx_PWMN_Start (TIM_HandleTypeDef * htim, uint32_t Chann
 ### `HAL_TIMEx_PWMN_Stop`
 
 ```c
-HAL_StatusTypeDef HAL_TIMEx_PWMN_Stop (TIM_HandleTypeDef * htim, uint32_t Channel);
+HAL_StatusTypeDef HAL_TIMEx_PWMN_Stop(
+    TIM_HandleTypeDef * htim,
+    uint32_t Channel
+);
 ```
 
 停止TIM1 互补 PWM。
@@ -337,7 +372,10 @@ HAL_StatusTypeDef HAL_TIMEx_PWMN_Stop (TIM_HandleTypeDef * htim, uint32_t Channe
 ### `HAL_TIMEx_PWMN_Start_IT`
 
 ```c
-HAL_StatusTypeDef HAL_TIMEx_PWMN_Start_IT (TIM_HandleTypeDef * htim, uint32_t Channel);
+HAL_StatusTypeDef HAL_TIMEx_PWMN_Start_IT(
+    TIM_HandleTypeDef * htim,
+    uint32_t Channel
+);
 ```
 
 以中断方式启动TIM1 互补 PWM。
@@ -355,7 +393,10 @@ HAL_StatusTypeDef HAL_TIMEx_PWMN_Start_IT (TIM_HandleTypeDef * htim, uint32_t Ch
 ### `HAL_TIMEx_PWMN_Stop_IT`
 
 ```c
-HAL_StatusTypeDef HAL_TIMEx_PWMN_Stop_IT (TIM_HandleTypeDef * htim, uint32_t Channel);
+HAL_StatusTypeDef HAL_TIMEx_PWMN_Stop_IT(
+    TIM_HandleTypeDef * htim,
+    uint32_t Channel
+);
 ```
 
 停止并关闭中断TIM1 互补 PWM。
@@ -375,7 +416,12 @@ HAL_StatusTypeDef HAL_TIMEx_PWMN_Stop_IT (TIM_HandleTypeDef * htim, uint32_t Cha
 ### `HAL_TIMEx_PWMN_Start_DMA`
 
 ```c
-HAL_StatusTypeDef HAL_TIMEx_PWMN_Start_DMA (TIM_HandleTypeDef * htim, uint32_t Channel, uint32_t * pData, uint16_t Length);
+HAL_StatusTypeDef HAL_TIMEx_PWMN_Start_DMA(
+    TIM_HandleTypeDef * htim,
+    uint32_t Channel,
+    uint32_t * pData,
+    uint16_t Length
+);
 ```
 
 以 DMA 方式启动TIM1 互补 PWM。
@@ -396,7 +442,10 @@ HAL_StatusTypeDef HAL_TIMEx_PWMN_Start_DMA (TIM_HandleTypeDef * htim, uint32_t C
 ### `HAL_TIMEx_PWMN_Stop_DMA`
 
 ```c
-HAL_StatusTypeDef HAL_TIMEx_PWMN_Stop_DMA (TIM_HandleTypeDef * htim, uint32_t Channel);
+HAL_StatusTypeDef HAL_TIMEx_PWMN_Stop_DMA(
+    TIM_HandleTypeDef * htim,
+    uint32_t Channel
+);
 ```
 
 停止 DMA 方式TIM1 互补 PWM。
@@ -417,7 +466,10 @@ HAL_StatusTypeDef HAL_TIMEx_PWMN_Stop_DMA (TIM_HandleTypeDef * htim, uint32_t Ch
 ### `HAL_TIMEx_OnePulseN_Start`
 
 ```c
-HAL_StatusTypeDef HAL_TIMEx_OnePulseN_Start (TIM_HandleTypeDef * htim, uint32_t OutputChannel);
+HAL_StatusTypeDef HAL_TIMEx_OnePulseN_Start(
+    TIM_HandleTypeDef * htim,
+    uint32_t OutputChannel
+);
 ```
 
 启动TIM1 互补单脉冲。
@@ -435,7 +487,10 @@ HAL_StatusTypeDef HAL_TIMEx_OnePulseN_Start (TIM_HandleTypeDef * htim, uint32_t 
 ### `HAL_TIMEx_OnePulseN_Stop`
 
 ```c
-HAL_StatusTypeDef HAL_TIMEx_OnePulseN_Stop (TIM_HandleTypeDef * htim, uint32_t OutputChannel);
+HAL_StatusTypeDef HAL_TIMEx_OnePulseN_Stop(
+    TIM_HandleTypeDef * htim,
+    uint32_t OutputChannel
+);
 ```
 
 停止TIM1 互补单脉冲。
@@ -453,7 +508,10 @@ HAL_StatusTypeDef HAL_TIMEx_OnePulseN_Stop (TIM_HandleTypeDef * htim, uint32_t O
 ### `HAL_TIMEx_OnePulseN_Start_IT`
 
 ```c
-HAL_StatusTypeDef HAL_TIMEx_OnePulseN_Start_IT (TIM_HandleTypeDef * htim, uint32_t OutputChannel);
+HAL_StatusTypeDef HAL_TIMEx_OnePulseN_Start_IT(
+    TIM_HandleTypeDef * htim,
+    uint32_t OutputChannel
+);
 ```
 
 以中断方式启动TIM1 互补单脉冲。
@@ -473,7 +531,10 @@ HAL_StatusTypeDef HAL_TIMEx_OnePulseN_Start_IT (TIM_HandleTypeDef * htim, uint32
 ### `HAL_TIMEx_OnePulseN_Stop_IT`
 
 ```c
-HAL_StatusTypeDef HAL_TIMEx_OnePulseN_Stop_IT (TIM_HandleTypeDef * htim, uint32_t OutputChannel);
+HAL_StatusTypeDef HAL_TIMEx_OnePulseN_Stop_IT(
+    TIM_HandleTypeDef * htim,
+    uint32_t OutputChannel
+);
 ```
 
 停止并关闭中断TIM1 互补单脉冲。
@@ -495,7 +556,11 @@ HAL_StatusTypeDef HAL_TIMEx_OnePulseN_Stop_IT (TIM_HandleTypeDef * htim, uint32_
 ### `HAL_TIMEx_ConfigCommutEvent`
 
 ```c
-HAL_StatusTypeDef HAL_TIMEx_ConfigCommutEvent (TIM_HandleTypeDef * htim, uint32_t InputTrigger, uint32_t CommutationSource);
+HAL_StatusTypeDef HAL_TIMEx_ConfigCommutEvent(
+    TIM_HandleTypeDef * htim,
+    uint32_t InputTrigger,
+    uint32_t CommutationSource
+);
 ```
 
 配置 TIM1 换相更新来源，使 CCxE、CCxNE、OCxM 的预装载在 COM 事件时生效。
@@ -515,7 +580,11 @@ HAL_StatusTypeDef HAL_TIMEx_ConfigCommutEvent (TIM_HandleTypeDef * htim, uint32_
 ### `HAL_TIMEx_ConfigCommutEvent_IT`
 
 ```c
-HAL_StatusTypeDef HAL_TIMEx_ConfigCommutEvent_IT (TIM_HandleTypeDef * htim, uint32_t InputTrigger, uint32_t CommutationSource);
+HAL_StatusTypeDef HAL_TIMEx_ConfigCommutEvent_IT(
+    TIM_HandleTypeDef * htim,
+    uint32_t InputTrigger,
+    uint32_t CommutationSource
+);
 ```
 
 配置 TIM1 换相更新来源并开放 COM 中断。
@@ -533,7 +602,11 @@ HAL_StatusTypeDef HAL_TIMEx_ConfigCommutEvent_IT (TIM_HandleTypeDef * htim, uint
 ### `HAL_TIMEx_ConfigCommutEvent_DMA`
 
 ```c
-HAL_StatusTypeDef HAL_TIMEx_ConfigCommutEvent_DMA (TIM_HandleTypeDef * htim, uint32_t InputTrigger, uint32_t CommutationSource);
+HAL_StatusTypeDef HAL_TIMEx_ConfigCommutEvent_DMA(
+    TIM_HandleTypeDef * htim,
+    uint32_t InputTrigger,
+    uint32_t CommutationSource
+);
 ```
 
 配置 TIM1 换相 DMA 请求；该接口配置换相来源并使能 COMDE；原文“only COMDE”针对 DMA 部分，DMA 通道和传输本身仍须由应用配置。补证的v1.1.4实现还会通过 htim->hdma[TIM_DMA_ID_COMMUTATION] 安装完成、半完成和错误回调，所以调用前须先创建并关联有效DMA句柄；该接口不代替启动带源/目标地址与长度的DMA传输。
@@ -555,7 +628,10 @@ HAL_StatusTypeDef HAL_TIMEx_ConfigCommutEvent_DMA (TIM_HandleTypeDef * htim, uin
 ### `HAL_TIMEx_MasterConfigSynchronization`
 
 ```c
-HAL_StatusTypeDef HAL_TIMEx_MasterConfigSynchronization (TIM_HandleTypeDef * htim, TIM_MasterConfigTypeDef * sMasterConfig);
+HAL_StatusTypeDef HAL_TIMEx_MasterConfigSynchronization(
+    TIM_HandleTypeDef * htim,
+    TIM_MasterConfigTypeDef * sMasterConfig
+);
 ```
 
 配置 TRGO 主触发输出和主从同步模式；核对 RM0008 中各定时器 ITR 实际连线。
@@ -572,7 +648,10 @@ HAL_StatusTypeDef HAL_TIMEx_MasterConfigSynchronization (TIM_HandleTypeDef * hti
 ### `HAL_TIMEx_ConfigBreakDeadTime`
 
 ```c
-HAL_StatusTypeDef HAL_TIMEx_ConfigBreakDeadTime (TIM_HandleTypeDef * htim, TIM_BreakDeadTimeConfigTypeDef * sBreakDeadTimeConfig);
+HAL_StatusTypeDef HAL_TIMEx_ConfigBreakDeadTime(
+    TIM_HandleTypeDef * htim,
+    TIM_BreakDeadTimeConfigTypeDef * sBreakDeadTimeConfig
+);
 ```
 
 配置 TIM1 的刹车、死区、锁定、OSSI/OSSR 和自动输出恢复；锁定前必须一次配好受保护字段。
@@ -642,7 +721,9 @@ TIM1 刹车事件回调；进入回调时硬件可能已经清除 MOE 并关闭�
 ### `HAL_TIMEx_HallSensor_GetState`
 
 ```c
-HAL_TIM_StateTypeDef HAL_TIMEx_HallSensor_GetState (TIM_HandleTypeDef * htim);
+HAL_TIM_StateTypeDef HAL_TIMEx_HallSensor_GetState(
+    TIM_HandleTypeDef * htim
+);
 ```
 
 返回句柄状态：霍尔传感器接口。

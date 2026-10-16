@@ -1,6 +1,6 @@
 # TIM HAL 配置结构
 
-字段表由既有资料迁移，基础HAL字段参考固定de129f1头文件；Hall结构的四个uint32_t字段已逐项核对保留的[UM1850 Rev3 §37.1.1 p532原文](https://www.st.com/resource/en/user_manual/um1850-description-of-stm32f1-hal-and-lowlayer-drivers-stmicroelectronics.pdf#page=532)，并与固定实现访问字段交叉核对；此处不宣称已核对TIMEx头文件。参数及返回状态边界另见[HAL初始化](HAL初始化边界.md)和[扩展接口](HAL扩展接口.md)。
+基础 HAL 字段参考固定 de129f1 头文件；Hall 结构的四个 uint32_t 字段已逐项核对[UM1850 Rev3 §37.1.1 p532原文](https://www.st.com/resource/en/user_manual/um1850-description-of-stm32f1-hal-and-lowlayer-drivers-stmicroelectronics.pdf#page=532)、同提交的 TIMEx 头文件及既有实现访问记录。参数及返回状态边界另见[HAL初始化](HAL初始化边界.md)和[扩展接口](HAL扩展接口.md)。
 
 
 ### `TIM_Base_InitTypeDef`
@@ -127,6 +127,8 @@
 
 ### `TIM_HallSensor_InitTypeDef`
 
+声明见[de129f1 的 stm32f1xx_hal_tim_ex.h，L48–61](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_hal_tim_ex.h#L48-L61)。字段顺序、类型、IC1Filter 的 0～0xF 和 Commutation_Delay 的 0～0xFFFF 范围与下表一致。头文件只说明比较寄存器值范围；写 CCR2 及换相时序仍按对应实现和硬件模式解释。
+
 | 字段类型与名称 | 中文含义与约束 |
 |---|---|
 | `uint32_t IC1Polarity` | 输入捕获有效边沿/极性；C8 使用 RISING 或 FALLING。编码器路径需按相位方向选择极性，不能将双边沿选项当成普遍可用。 |
@@ -134,5 +136,7 @@
 | `uint32_t IC1Filter` | 输入数字滤波编码，HAL 为 0–15；LL 采用 FDIV 和 N 命名常量。滤波增加识别延迟，N 为连续一致采样数。 |
 | `uint32_t Commutation_Delay` | 霍尔输入变化后产生 TRGO 换相事件的延迟比较值，写 CCR2，0–65535。 |
 
+
+TIMEx 头文件不另定义 Hall 参数宏，而引用基础 TIM 输入捕获组。同提交 tim.h 的 [IC1Prescaler 宏](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_hal_tim.h#L611-L614)对应 DIV1/2/4/8，[输入捕获校验宏](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_hal_tim.h#L1550-L1561)列出极性和分频选项，[滤波校验](https://github.com/STMicroelectronics/stm32f1xx-hal-driver/blob/de129f1c0af55ea4b2cfa8ba5686af54b7a51cf9/Inc/stm32f1xx_hal_tim.h#L1720)仅检查值不超过 0xF。通用极性宏包含 BOTHEDGE，不据此放宽上表面向本器件的 RISING/FALLING 条件；宏可接受某值不等于具体实例、通道和模式支持该值。这里核对的是定义，不保证关闭断言后的运行期拒绝行为。
 
 [返回定时器主题](../../知识库/06_定时器PWM与同步.md) · [图形关系与来源](图形关系与来源.md)
