@@ -35,6 +35,10 @@
 
 ## 3 本机作主机：检查MISO输入和MOSI输出
 
+![DS5319 Rev20图35：SPI主机时序，完整CPHA/CPOL组合](../assets/manual/ds5319-r20/p72-fig35.png)
+
+原图在同一数据窗口上方列出四种CPHA/CPOL组合的SCK输出。选择与当前配置对应的时钟行，再对照MISO输入建立/保持和MOSI输出有效/保持的测量箭头；不能把四行时钟当作同次传输的四个信号。来源：[DS5319 Rev20 Figure35，p72](https://www.st.com/resource/en/datasheet/stm32f103c8.pdf#page=72)。
+
 MI是Master Input（主机输入，MISO），MO是Master Output（主机输出，MOSI）。tsu表示建立时间，th表示保持时间，tv表示输出有效时间。
 
 | 符号与含义 | 条件/测量关系 | Min | Max | 单位 | 类型 |
@@ -51,6 +55,12 @@ MI是Master Input（主机输入，MISO），MO是Master Output（主机输出�
 ## 4 本机作从机：检查MOSI输入、MISO输出与NSS
 
 SI是Slave Input（从机输入，MOSI），SO是Slave Output（从机输出，MISO）。NSS是从机选择信号。
+
+![DS5319 Rev20图33：SPI从机CPHA=0，保留CPOL=0/1及首尾位窗口](../assets/manual/ds5319-r20/p71-fig33.png)
+
+![DS5319 Rev20图34：SPI从机CPHA=1，保留CPOL=0/1及首尾位窗口](../assets/manual/ds5319-r20/p71-fig34.png)
+
+两幅图均从NSS选中开始阅读，分别定位首位、后续位和末位的输入/输出窗口，再沿右侧箭头检查NSS保持与输出禁用。ta(SO)、tv(SO)、th(SO)和tdis(SO)各有自己的起止边沿，不能合并成一个“数据延迟”。来源：[DS5319 Rev20 Figures33–34，p71](https://www.st.com/resource/en/datasheet/stm32f103c8.pdf#page=71)。
 
 ### 4.1 数据输入输出
 
