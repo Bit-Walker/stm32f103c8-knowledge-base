@@ -1,0 +1,71 @@
+{
+  "document": "AN2834",
+  "revision": "10",
+  "revision_date": "2024-10-25",
+  "pages": 53,
+  "official_url": "https://www.st.com/content/ccc/resource/technical/document/application_note/group0/3f/4c/a4/82/bd/63/4e/92/CD00211314/files/CD00211314.pdf/jcr%3Acontent/translations/en.CD00211314.pdf",
+  "pdf_sha256": "da96e285ee1e151646b285e8828b3486ed40bf7ca2680620f06ef693be2cd569",
+  "method": "PyMuPDF get_pixmap clip from original PDF; no redrawing, annotation, label editing, curve editing, or post-resize; coordinates are PDF points from top-left (1 point = 1/72 inch).",
+  "figures": [
+    {
+      "figure": 39,
+      "printed_page": 43,
+      "pdf_page_1based": 43,
+      "crop_box_pdf_points_top_left": [
+        119,
+        429,
+        533,
+        722
+      ],
+      "dpi": 240,
+      "pixels": [
+        1381,
+        977
+      ],
+      "path": "assets/manual/an2834-r10/p43-fig39.png",
+      "sha256": "c0d1244dbd94ff13f690dd8a7957661d4f86c523069c5e978eeedc71ecf67903",
+      "bytes": 83266,
+      "retained_notes": "保留图下关于非零外部/引脚寄生电容及转换期间经Rin恢复的两行说明。"
+    },
+    {
+      "figure": 40,
+      "printed_page": 44,
+      "pdf_page_1based": 44,
+      "crop_box_pdf_points_top_left": [
+        119,
+        291,
+        533,
+        576
+      ],
+      "dpi": 240,
+      "pixels": [
+        1381,
+        950
+      ],
+      "path": "assets/manual/an2834-r10/p44-fig40.png",
+      "sha256": "77375a34a6ddcb70830775e409f4aeb4b821fa564fddb4728c7d829b1e98e3bd",
+      "bytes": 82807,
+      "retained_notes": "原图无独立脚注；p44不另加Cext的正文限制在引用处完整保留。"
+    },
+    {
+      "figure": 41,
+      "printed_page": 45,
+      "pdf_page_1based": 45,
+      "crop_box_pdf_points_top_left": [
+        119,
+        460,
+        533,
+        706
+      ],
+      "dpi": 240,
+      "pixels": [
+        1381,
+        821
+      ],
+      "path": "assets/manual/an2834-r10/p45-fig41.png",
+      "sha256": "8a855374c30f78040391fcc389db36c60e5094e9bf75e0073bac648b1da3b984",
+      "bytes": 65488,
+      "retained_notes": "原图无独立脚注；pp45–48的大外部电容及软件等待条件在引用处保留。"
+    }
+  ]
+}
